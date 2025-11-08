@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿// ===========================
+// File: PhanDangNhap.cs
+// ===========================
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Security.Cryptography;
-namespace Cinema_Management
+
+namespace CinemaManagement
 {
     public partial class PhanDangNhap : Form
     {
@@ -18,189 +15,76 @@ namespace Cinema_Management
             InitializeComponent();
         }
 
-        private UserInfo LayVaTaoThongTinUser(string Username)
+        public static string ToSha256(string input)
         {
-            UserInfo User = null;
-            // truy vấn thông tin từ database thông qua Username nếu trùng với username mà người dùng nhập vào
-            string sqlSelectUser = @"
-        SELECT HoTen, NgaySinh, SDT, Email, KhuVuc 
-        FROM UserClient 
-        WHERE Username = @Username";
-
-            // Kết nối với database
-            string ConnectionString = "Server=.;Database=USERS;Integrated Security=True;";
-
-            try
-            {
-                /*             using (SqlConnection Connection = new SqlConnection(ConnectionString))
-                             {
-                                 Connection.Open();
-                                 using (SqlCommand command = new SqlCommand(sqlSelectUser, Connection))
-                                 {
-                                     command.Parameters.AddWithValue("@Username", Username);
-
-                                     using (SqlDataReader reader = command.ExecuteReader())
-                                     {
-                                         if (reader.Read())
-                                         {
-                                             User = new UserInfo();
-                                             User.Username = Username;
-                                             User.HoTen = reader["HoTen"].ToString();
-                                             User.SDT = reader["SDT"].ToString();
-                                             User.Email = reader["Email"].ToString();
-
-
-                                             User.KhuVuc = reader["KhuVuc"] == DBNull.Value ? "" : reader["KhuVuc"].ToString();
-
-
-                                             if (reader["NgaySinh"] != DBNull.Value)
-                                             {
-                                                 User.NgaySinh = (DateTime)reader["NgaySinh"];
-                                             }
-                                             else
-                                             {
-                                                 User.NgaySinh = DateTime.MinValue; 
-                                             }
-                                         }
-                                     }
-                                 }
-                             }
-                         }
-                         catch (Exception ex)
-                         {
-                             MessageBox.Show($"Lỗi truy vấn thông tin người dùng: {ex.Message}", "Lỗi");
-                         }
-                */
-
-            }
-            catch { }
-            return User;
-        }
-        
-        public static string ToSha256(string input) // hàm thuật toán SHA-256
-        {
-            using (SHA256 sha256 = SHA256.Create())
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(input);
-                byte[] hashBytes = sha256.ComputeHash(bytes);
-                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                byte[] hash = sha256.ComputeHash(bytes);
+                return BitConverter.ToString(hash).Replace("-", "").ToLower();
             }
         }
-        private void label1_Click(object sender, EventArgs e)
+
+        private async void button1_Click(object sender, EventArgs e)
         {
+            string username = TenDangNhap.Text.Trim();
+            string password = MatKhau.Text;
 
-        }
-        private const string connectionString = "Server=.;Database=USERS;Integrated Security=True;"; // Kết nối với database
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-
-
-            string Username = TenDangNhap.Text.Trim(); 
-            string MatKhauNhap = MatKhau.Text; 
-
-            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(MatKhauNhap))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ Tên đăng nhập và Mật khẩu.", "Lỗi nhập liệu");
+                MessageBox.Show("Vui lòng nhập Tên đăng nhập và Mật khẩu.");
                 return;
             }
 
-            // Tên cột phải khớp: MaHashCuaMatKhau
-            string sqlSelectHash = "SELECT MaHashCuaMatKhau FROM UserClient WHERE Username = @Ten";
-            // Chọn mã Hash của Mật khẩu từ bảng UserClient nếu Username trùng  với Ten , là username người dùng nhập vào
+            string passwordHash = ToSha256(password);
 
-            string matKhauHashTrongDB = null;
-
-     /*       try
+            try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                ClientTCP client = new ClientTCP();
+                string message = $"LOGIN|{username}|{passwordHash}";
+                string response = await client.SendMessageAsync(message);
+
+                if (response.StartsWith("[LOGIN_SUCCESS]"))
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand(sqlSelectHash, connection))
+                    MessageBox.Show("Đăng nhập thành công!");
+
+                    string[] parts = response.Split('|');
+                    UserInfo CurrentUser = new UserInfo
                     {
+                        HoTen = parts.Length > 1 ? parts[1] : "",
+                        Username = parts.Length > 2 ? parts[2] : "",
+                        Email = parts.Length > 3 ? parts[3] : "",
+                        SDT = parts.Length > 4 ? parts[4] : "",
+                        GioiTinh = parts.Length > 5 ? parts[5] : "",
+                        NgaySinh = parts.Length > 6 && DateTime.TryParse(parts[6], out DateTime ns) ? ns : DateTime.MinValue
+                    };
 
-                        command.Parameters.AddWithValue("@Ten", Username);
-
-                        object result = command.ExecuteScalar();
-
-                        if (result != null)
-                        {
-                            matKhauHashTrongDB = result.ToString();
-                        }
-
-                    }
-                }
-
-                if (matKhauHashTrongDB == null)
-                {
-                    // Không tìm thấy tên đăng nhập, hoặc tên đăng nhập không tồn tại
-                    MessageBox.Show("Tên đăng nhập hoặc Mật khẩu không đúng.", "Lỗi Đăng nhập");
-                    return;
-                }
-                // Băm mật khẩu người dùng nhập vào bằng SHA-256
-                string hashMatKhauNhap = ToSha256(MatKhauNhap);
-
-                // So sánh chuỗi hash vừa tính toán với chuỗi hash đã lấy từ DB
-                if (hashMatKhauNhap == matKhauHashTrongDB)
-                {
-                    MessageBox.Show("Đăng nhập thành công!", "Thành công");
-
-                    UserInfo CurrentUser = LayVaTaoThongTinUser(Username);
-
-                    if (CurrentUser == null)
-                    {
-                        MessageBox.Show("Lỗi hệ thống: Không lấy được thông tin hồ sơ người dùng.", "Lỗi");
-                        return;
-                    }
-
-                    GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(CurrentUser);
+                    GiaoDienSauKhiDaDangNhapHoacDangKyXong dashboard = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(CurrentUser);
                     this.Hide();
-                    GiaoDien.Show();
-                    GiaoDien.FormClosed += (s, args) => this.Close(); 
+                    dashboard.Show();
+                    dashboard.FormClosed += (s, args) => this.Close();
+                }
+                else if (response == "LOGIN_FAILED")
+                {
+                    MessageBox.Show("Sai tài khoản hoặc mật khẩu.");
                 }
                 else
                 {
-                    // Mật khẩu sai
-                    MessageBox.Show("Tên đăng nhập hoặc Mật khẩu không đúng.", "Lỗi Đăng nhập");
+                    MessageBox.Show($"Lỗi từ server: {response}");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi kết nối hoặc thao tác: {ex.Message}", "Lỗi");
+                MessageBox.Show($"Lỗi kết nối đến server: {ex.Message}");
             }
-
-
-
-
-
-
-            */
-
-
-
-
-
-
-
         }
-
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            PhanDangKy DangKy = new PhanDangKy();
+            PhanDangKy dangKy = new PhanDangKy();
             this.Hide();
-            DangKy.Show();
-            DangKy.FormClosed += (s, args) => this.Close();
-        }
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void PhanDangNhap_Load(object sender, EventArgs e)
-        {
-
+            dangKy.Show();
+            dangKy.FormClosed += (s, args) => this.Close();
         }
     }
 }

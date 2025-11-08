@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace Cinema_Management
+namespace CinemaManagement
 {
 
     public partial class GiaoDienTaiKhoanCuaToi : Form

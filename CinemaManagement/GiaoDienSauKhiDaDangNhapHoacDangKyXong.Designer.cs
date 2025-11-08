@@ -1,4 +1,4 @@
-﻿namespace Cinema_Management
+﻿namespace CinemaManagement
 {
     partial class GiaoDienSauKhiDaDangNhapHoacDangKyXong
     {

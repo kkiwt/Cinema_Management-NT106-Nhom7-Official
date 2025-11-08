@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
+﻿// ===========================
+// File: PhanDangKy.cs
+// ===========================
+using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-namespace Cinema_Management
+using System.Text.Json;
+namespace CinemaManagement
 {
     public partial class PhanDangKy : Form
     {
@@ -19,17 +16,17 @@ namespace Cinema_Management
             InitializeComponent();
         }
 
-        public static string ToSha256(string input) // Hàm được viết bởi bạn Hoàng Nhật Huy
+        public static string ToSha256(string input)
         {
-            using (SHA256 sha256 = SHA256.Create())
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(input);
                 byte[] hashBytes = sha256.ComputeHash(bytes);
                 return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
             }
         }
-        string connectionString = "Server=.;Database=USERS;Integrated Security=True;";
-        private void NutDangKy_Click(object sender, EventArgs e)
+
+        private async void NutDangKy_Click(object sender, EventArgs e)
         {
             string Name = HoTen.Text.Trim();
             string TenDangNhap = Username.Text.Trim();
@@ -37,10 +34,14 @@ namespace Cinema_Management
             string E_mail = Email.Text.Trim();
             string MatKhauGoc = MatKhau.Text;
             string XacNhanMK = XacNhanMatKhau.Text;
-            string Area = KhuVuc.SelectedItem?.ToString();
+            string Sex = GioiTinh.SelectedItem?.ToString();
             DateTime NgaySinh = NgayThangNamSinh.Value.Date;
 
-            if (TenDangNhap == "" || Name == "" || SDT == "" || E_mail == "" || MatKhauGoc == "" || XacNhanMK == "")
+            // --- Validation ---
+            if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(TenDangNhap) ||
+                string.IsNullOrEmpty(SDT) || string.IsNullOrEmpty(E_mail) ||
+                string.IsNullOrEmpty(MatKhauGoc) || string.IsNullOrEmpty(XacNhanMK) ||
+                string.IsNullOrEmpty(Sex))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
                 return;
@@ -48,7 +49,7 @@ namespace Cinema_Management
 
             if (!Regex.IsMatch(Name, @"^[a-zA-ZÀ-ỹ\s]+$"))
             {
-                MessageBox.Show("Họ tên không hợp lệ (chỉ cho phép chữ).");
+                MessageBox.Show("Họ tên không hợp lệ.");
                 return;
             }
 
@@ -66,7 +67,7 @@ namespace Cinema_Management
 
             if (!Regex.IsMatch(MatKhauGoc, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$"))
             {
-                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt.");
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự, chữ hoa, chữ thường, số và ký tự đặc biệt.");
                 return;
             }
 
@@ -75,120 +76,86 @@ namespace Cinema_Management
                 MessageBox.Show("Xác nhận mật khẩu không trùng khớp.");
                 return;
             }
+
             if (NgaySinh > DateTime.Today)
             {
-                MessageBox.Show("Ngày sinh không hợp lệ (Không được là ngày trong tương lai).");
+                MessageBox.Show("Ngày sinh không hợp lệ.");
                 return;
             }
 
+            string MatKhauDaHash = ToSha256(MatKhauGoc);
+
             try
             {
+                ClientTCP client = new ClientTCP();
+                string message = $"REGISTER|{Name}|{TenDangNhap}|{MatKhauDaHash}|{E_mail}|{Sex}|{NgaySinh:yyyy-MM-dd}|{SDT}";
+                string response = await client.SendMessageAsync(message);
+                string cleanresponse = response.Replace("[", "")
+                                            .Replace("]", "")
+                                            .Replace("\"", "")
+                                            .Trim(); 
+                // Message bi dong trong dinh dang JSON nen loi, kieu nhu [REGISTER_SUCCESS]
 
-                string MatKhauDaHash = ToSha256(MatKhauGoc);
-            } catch {}// dùng thuật toán SHA256 để mã hóa mật khẩu
-            }
 
-                // Thục thi lệnh INSERT INTO vào bảng UserClient
-       /*         string sqlInsert = @"
-            INSERT INTO UserClient (Username, HoTen, NgaySinh, SDT, Email, KhuVuc, MaHashCuaMatKhau) 
-            VALUES (@Username, @HoTen, @NgaySinh, @SDT, @Email, @KhuVuc, @MaHashCuaMatKhau)";
-
-            
-            } */
-
-   /*             using (SqlConnection connection = new SqlConnection(connectionString))
+                this.Invoke((MethodInvoker)delegate
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand(sqlInsert, connection))
+                    if (cleanresponse == "REGISTER_SUCCESS")
                     {
-                        // Truyền tham số
-                        command.Parameters.AddWithValue("@Username", TenDangNhap);
-                        command.Parameters.AddWithValue("@HoTen", Name);
+                        MessageBox.Show("Đăng ký thành công!", "Thành công");
 
-                        
-                        command.Parameters.AddWithValue("@NgaySinh", NgaySinh);
-
-                        command.Parameters.AddWithValue("@SDT", SDT);
-                        command.Parameters.AddWithValue("@Email", E_mail);
-                        command.Parameters.AddWithValue("@KhuVuc", Area ?? (object)DBNull.Value); // Xử lý nếu ComboBox trống
-
-                        // Truyền MÃ HASH vào database
-                        command.Parameters.AddWithValue("@MaHashCuaMatKhau", MatKhauDaHash);
-
-
-                        int rowsAffected = command.ExecuteNonQuery(); // Execute lệnh SQL
-
-                        if (rowsAffected > 0)
+                        UserInfo newUser = new UserInfo
                         {
-                            MessageBox.Show("Đăng ký tài khoản thành công!", "Thành công");
+                            HoTen = Name,
+                            Username = TenDangNhap,
+                            SDT = SDT,
+                            Email = E_mail,
+                            GioiTinh = Sex,
+                            NgaySinh = NgaySinh
+                        };
 
-                            string finalArea = Area ?? "Chưa có";
-
-                            UserInfo NewUser = new UserInfo  // Khởi tạo đối tượng NewUser thuộc lớp UserInfo để thông tin người dùng lưu vào đối tượng NewUser
-                            {
-                                Username = TenDangNhap,
-                                HoTen = Name,
-                                NgaySinh = NgaySinh,
-                                SDT = SDT, 
-                                Email = E_mail,
-                                KhuVuc = finalArea
-                            };
-                            GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(NewUser); // Constructor dùng để khởi tạo form có tham số là đối tượng NewUser
-                            this.Hide(); 
-                            GiaoDien.Show();
-                            GiaoDien.FormClosed += (s, args) => this.Close(); // đóng form cũ khi form mới tắt
-                        }
+                        var dashboard = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(newUser);
+                        this.Hide();
+                        dashboard.Show();
                     }
-                }
-            }
-            catch (SqlException ex)
-            {
-                // Lỗi 2627 là lỗi trùng lập Username
-                if (ex.Number == 2627)
-                {
-                    MessageBox.Show("Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.", "Lỗi Database");
-                }
-                else
-                {
-                    MessageBox.Show($"Lỗi kết nối: {ex.Message}", "Lỗi");
-                }
+                    else if (cleanresponse == "USERNAME_EXISTS")
+                    {
+                        MessageBox.Show("Tên đăng nhập đã tồn tại.", "Lỗi");
+                    }
+                    else if (cleanresponse == "EMAIL_EXISTS")
+                    {
+                        MessageBox.Show("Email đã được đăng ký.", "Lỗi");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Raw response: [{response}]\nLength: {response.Length}", "DEBUG");
+
+                        string asciiCodes = "";
+                        foreach (char c in response)
+                        {
+                            asciiCodes += ((int)c) + " ";
+                        }
+
+                        MessageBox.Show($"ASCII Codes:\n{asciiCodes}", "DEBUG ASCII");
+
+
+                    }
+                });
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi");
+                this.Invoke((Action)(() =>
+                {
+                    MessageBox.Show($"Lỗi gửi dữ liệu đến server: {ex.Message}", "Lỗi");
+                }));
             }
-
-                */
-        
-
+        }
 
         private void NutDangNhap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            PhanDangNhap DangNhap = new PhanDangNhap();
+            PhanDangNhap dangNhap = new PhanDangNhap();
             this.Hide();
-            DangNhap.Show();
-            DangNhap.FormClosed += (s, args) => this.Close();
+            dangNhap.Show();
+            dangNhap.FormClosed += (s, args) => this.Close();
         }
-
-        private void NgayThangNam_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void HoTen_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-    }
-
-    public class UserInfo
-    {
-        public string Username { get; set; }
-        public string HoTen { get; set; }
-        public DateTime NgaySinh { get; set; }
-        public string SDT { get; set; }
-        public string Email { get; set; }
-        public string KhuVuc { get; set; }
     }
 }
-

@@ -1,4 +1,4 @@
-﻿namespace Cinema_Management
+﻿namespace CinemaManagement
 {
     partial class PhanDangNhap
     {
@@ -51,7 +51,7 @@
             this.label1.Size = new System.Drawing.Size(427, 46);
             this.label1.TabIndex = 2;
             this.label1.Text = "Đăng Nhập Tài Khoản";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+
             // 
             // NutDangNhap
             // 
@@ -161,7 +161,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PhanDangNhap";
             this.Text = "Đăng Nhập";
-            this.Load += new System.EventHandler(this.PhanDangNhap_Load);
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
