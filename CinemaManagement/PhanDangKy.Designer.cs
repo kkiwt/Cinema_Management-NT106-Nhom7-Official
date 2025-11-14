@@ -53,10 +53,10 @@
             // 
             // NutDangKy
             // 
-            NutDangKy.BackColor = Color.Red;
-            NutDangKy.Font = new Font("Arial", 19.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            NutDangKy.BackColor = Color.FromArgb(161, 8, 86);
+            NutDangKy.Font = new Font("Epilogue", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutDangKy.ForeColor = SystemColors.Window;
-            NutDangKy.Location = new Point(691, 978);
+            NutDangKy.Location = new Point(608, 732);
             NutDangKy.Margin = new Padding(3, 2, 3, 2);
             NutDangKy.Name = "NutDangKy";
             NutDangKy.Size = new Size(290, 85);
@@ -68,12 +68,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = SystemColors.ActiveCaptionText;
-            label1.Font = new Font("Arial", 22.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Epilogue ExtraBold", 22F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gold;
-            label1.Location = new Point(779, 56);
+            label1.Location = new Point(553, 86);
             label1.Name = "label1";
-            label1.Size = new Size(488, 51);
+            label1.Size = new Size(466, 62);
             label1.TabIndex = 1;
             label1.Text = "ĐĂNG KÝ TÀI KHOẢN";
             // 
@@ -85,7 +85,7 @@
             NutDangNHap.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutDangNHap.ForeColor = SystemColors.Window;
             NutDangNHap.LinkColor = Color.White;
-            NutDangNHap.Location = new Point(1270, 1012);
+            NutDangNHap.Location = new Point(1122, 730);
             NutDangNHap.Name = "NutDangNHap";
             NutDangNHap.Size = new Size(126, 26);
             NutDangNHap.TabIndex = 2;
@@ -97,14 +97,15 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = SystemColors.WindowText;
-            label2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Epilogue", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.HighlightText;
-            label2.Location = new Point(659, 194);
+            label2.Location = new Point(319, 210);
             label2.Name = "label2";
-            label2.Size = new Size(128, 29);
+            label2.Size = new Size(137, 34);
             label2.TabIndex = 3;
             label2.Text = "Họ và tên:";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -112,7 +113,7 @@
             label3.BackColor = SystemColors.WindowText;
             label3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.Window;
-            label3.Location = new Point(659, 276);
+            label3.Location = new Point(691, 272);
             label3.Name = "label3";
             label3.Size = new Size(264, 29);
             label3.TabIndex = 3;
@@ -121,48 +122,48 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = SystemColors.WindowText;
-            label4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Epilogue", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.Window;
-            label4.Location = new Point(659, 370);
+            label4.Location = new Point(319, 341);
             label4.Name = "label4";
-            label4.Size = new Size(173, 29);
+            label4.Size = new Size(182, 34);
             label4.TabIndex = 3;
             label4.Text = "Số điện thoại:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = SystemColors.WindowText;
-            label5.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Epilogue", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.Window;
-            label5.Location = new Point(659, 470);
+            label5.Location = new Point(319, 425);
             label5.Name = "label5";
-            label5.Size = new Size(84, 29);
+            label5.Size = new Size(86, 34);
             label5.TabIndex = 3;
             label5.Text = "Email:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.BackColor = SystemColors.WindowText;
-            label7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Epilogue", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.Window;
-            label7.Location = new Point(659, 761);
+            label7.Location = new Point(322, 605);
             label7.Name = "label7";
-            label7.Size = new Size(125, 29);
+            label7.Size = new Size(136, 34);
             label7.TabIndex = 3;
             label7.Text = "Mật khẩu:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.BackColor = SystemColors.WindowText;
-            label8.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Epilogue", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = SystemColors.Window;
-            label8.Location = new Point(659, 856);
+            label8.Location = new Point(319, 669);
             label8.Name = "label8";
-            label8.Size = new Size(273, 29);
+            label8.Size = new Size(287, 34);
             label8.TabIndex = 3;
             label8.Text = "Xác nhận lại mật khẩu:";
             // 
@@ -171,24 +172,23 @@
             HoTen.BackColor = SystemColors.WindowText;
             HoTen.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             HoTen.ForeColor = SystemColors.Window;
-            HoTen.Location = new Point(953, 176);
+            HoTen.Location = new Point(513, 196);
             HoTen.Margin = new Padding(3, 5, 3, 5);
             HoTen.Multiline = true;
             HoTen.Name = "HoTen";
-            HoTen.Size = new Size(442, 53);
+            HoTen.Size = new Size(679, 53);
             HoTen.TabIndex = 4;
-
             // 
             // SoDienThoai
             // 
             SoDienThoai.BackColor = SystemColors.WindowText;
             SoDienThoai.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             SoDienThoai.ForeColor = SystemColors.Window;
-            SoDienThoai.Location = new Point(953, 352);
+            SoDienThoai.Location = new Point(513, 328);
             SoDienThoai.Margin = new Padding(3, 5, 3, 5);
             SoDienThoai.Multiline = true;
             SoDienThoai.Name = "SoDienThoai";
-            SoDienThoai.Size = new Size(442, 53);
+            SoDienThoai.Size = new Size(679, 53);
             SoDienThoai.TabIndex = 4;
             // 
             // Email
@@ -196,11 +196,11 @@
             Email.BackColor = SystemColors.WindowText;
             Email.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Email.ForeColor = SystemColors.Window;
-            Email.Location = new Point(953, 452);
+            Email.Location = new Point(513, 412);
             Email.Margin = new Padding(3, 5, 3, 5);
             Email.Multiline = true;
             Email.Name = "Email";
-            Email.Size = new Size(442, 53);
+            Email.Size = new Size(679, 53);
             Email.TabIndex = 4;
             // 
             // Username
@@ -208,11 +208,11 @@
             Username.BackColor = SystemColors.WindowText;
             Username.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Username.ForeColor = SystemColors.Window;
-            Username.Location = new Point(953, 644);
+            Username.Location = new Point(513, 491);
             Username.Margin = new Padding(3, 5, 3, 5);
             Username.Multiline = true;
             Username.Name = "Username";
-            Username.Size = new Size(442, 53);
+            Username.Size = new Size(679, 53);
             Username.TabIndex = 4;
             // 
             // MatKhau
@@ -220,23 +220,23 @@
             MatKhau.BackColor = SystemColors.WindowText;
             MatKhau.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             MatKhau.ForeColor = SystemColors.Window;
-            MatKhau.Location = new Point(953, 744);
+            MatKhau.Location = new Point(608, 586);
             MatKhau.Margin = new Padding(3, 5, 3, 5);
             MatKhau.Multiline = true;
             MatKhau.Name = "MatKhau";
             MatKhau.PasswordChar = '*';
-            MatKhau.Size = new Size(442, 53);
+            MatKhau.Size = new Size(584, 53);
             MatKhau.TabIndex = 4;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.BackColor = SystemColors.WindowText;
-            label9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("Epilogue", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = SystemColors.Window;
-            label9.Location = new Point(659, 661);
+            label9.Location = new Point(319, 506);
             label9.Name = "label9";
-            label9.Size = new Size(187, 29);
+            label9.Size = new Size(187, 34);
             label9.TabIndex = 3;
             label9.Text = "Tên Tài Khoản:";
             // 
@@ -245,12 +245,12 @@
             XacNhanMatKhau.BackColor = SystemColors.WindowText;
             XacNhanMatKhau.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             XacNhanMatKhau.ForeColor = SystemColors.Window;
-            XacNhanMatKhau.Location = new Point(953, 839);
+            XacNhanMatKhau.Location = new Point(608, 655);
             XacNhanMatKhau.Margin = new Padding(3, 5, 3, 5);
             XacNhanMatKhau.Multiline = true;
             XacNhanMatKhau.Name = "XacNhanMatKhau";
             XacNhanMatKhau.PasswordChar = '*';
-            XacNhanMatKhau.Size = new Size(442, 53);
+            XacNhanMatKhau.Size = new Size(584, 53);
             XacNhanMatKhau.TabIndex = 4;
             // 
             // label10
@@ -259,11 +259,12 @@
             label10.BackColor = SystemColors.WindowText;
             label10.Font = new Font("Arial", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label10.ForeColor = SystemColors.Window;
-            label10.Location = new Point(1037, 1014);
+            label10.Location = new Point(904, 732);
             label10.Name = "label10";
             label10.Size = new Size(212, 24);
             label10.TabIndex = 6;
             label10.Text = "Bạn đã có tài khoản?";
+            label10.Click += label10_Click;
             // 
             // NgayThangNamSinh
             // 
@@ -274,22 +275,21 @@
             NgayThangNamSinh.CustomFormat = "";
             NgayThangNamSinh.Font = new Font("Arial", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             NgayThangNamSinh.Format = DateTimePickerFormat.Short;
-            NgayThangNamSinh.Location = new Point(953, 278);
+            NgayThangNamSinh.Location = new Point(973, 272);
             NgayThangNamSinh.Margin = new Padding(3, 5, 3, 5);
             NgayThangNamSinh.Name = "NgayThangNamSinh";
-            NgayThangNamSinh.Size = new Size(442, 32);
+            NgayThangNamSinh.Size = new Size(219, 32);
             NgayThangNamSinh.TabIndex = 7;
-
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.BackColor = SystemColors.WindowText;
-            label11.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.BackColor = Color.Transparent;
+            label11.Font = new Font("Epilogue", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = SystemColors.HighlightText;
-            label11.Location = new Point(227, 276);
+            label11.Location = new Point(319, 272);
             label11.Name = "label11";
-            label11.Size = new Size(122, 29);
+            label11.Size = new Size(121, 34);
             label11.TabIndex = 8;
             label11.Text = "Giới tính:";
             // 
@@ -300,19 +300,20 @@
             GioiTinh.ForeColor = SystemColors.Window;
             GioiTinh.FormattingEnabled = true;
             GioiTinh.Items.AddRange(new object[] { "Nam", "Nữ", "Không Muốn Nói", "Không Xác Định" });
-            GioiTinh.Location = new Point(355, 272);
+            GioiTinh.Location = new Point(513, 272);
             GioiTinh.Margin = new Padding(3, 5, 3, 5);
             GioiTinh.Name = "GioiTinh";
-            GioiTinh.Size = new Size(200, 33);
+            GioiTinh.Size = new Size(168, 33);
             GioiTinh.TabIndex = 9;
             // 
             // PhanDangKy
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
+            AutoSize = true;
+            BackColor = Color.FromArgb(4, 21, 49);
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1477, 1126);
+            ClientSize = new Size(1477, 873);
             Controls.Add(GioiTinh);
             Controls.Add(label11);
             Controls.Add(NgayThangNamSinh);
@@ -334,6 +335,7 @@
             Controls.Add(label1);
             Controls.Add(NutDangKy);
             ForeColor = SystemColors.WindowText;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "PhanDangKy";

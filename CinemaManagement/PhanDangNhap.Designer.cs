@@ -29,142 +29,160 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhanDangNhap));
-            this.label1 = new System.Windows.Forms.Label();
-            this.NutDangNhap = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TenDangNhap = new System.Windows.Forms.TextBox();
-            this.MatKhau = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            NutDangNhap = new Button();
+            linkLabel1 = new LinkLabel();
+            label2 = new Label();
+            label3 = new Label();
+            TenDangNhap = new TextBox();
+            MatKhau = new TextBox();
+            pictureBox1 = new PictureBox();
+            label10 = new Label();
+            LabelQuenMatKhau = new LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gold;
-            this.label1.Location = new System.Drawing.Point(215, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(427, 46);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Đăng Nhập Tài Khoản";
-
+            label1.AutoSize = true;
+            label1.Font = new Font("Epilogue ExtraBold", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Gold;
+            label1.Location = new Point(255, 73);
+            label1.Name = "label1";
+            label1.Size = new Size(454, 56);
+            label1.TabIndex = 2;
+            label1.Text = "Đăng Nhập Tài Khoản";
             // 
             // NutDangNhap
             // 
-            this.NutDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NutDangNhap.Location = new System.Drawing.Point(318, 291);
-            this.NutDangNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.NutDangNhap.Name = "NutDangNhap";
-            this.NutDangNhap.Size = new System.Drawing.Size(186, 48);
-            this.NutDangNhap.TabIndex = 3;
-            this.NutDangNhap.Text = "Đăng Nhập";
-            this.NutDangNhap.UseVisualStyleBackColor = true;
-            this.NutDangNhap.Click += new System.EventHandler(this.button1_Click);
+            NutDangNhap.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutDangNhap.Location = new Point(381, 364);
+            NutDangNhap.Margin = new Padding(3, 2, 3, 2);
+            NutDangNhap.Name = "NutDangNhap";
+            NutDangNhap.Size = new Size(207, 60);
+            NutDangNhap.TabIndex = 3;
+            NutDangNhap.Text = "Đăng Nhập";
+            NutDangNhap.UseVisualStyleBackColor = true;
+            NutDangNhap.Click += button1_Click;
             // 
             // linkLabel1
             // 
-            this.linkLabel1.ActiveLinkColor = System.Drawing.Color.RoyalBlue;
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Arial", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.ForeColor = System.Drawing.SystemColors.Control;
-            this.linkLabel1.LinkColor = System.Drawing.SystemColors.Control;
-            this.linkLabel1.Location = new System.Drawing.Point(725, 318);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(83, 21);
-            this.linkLabel1.TabIndex = 5;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Đăng Ký";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            linkLabel1.ActiveLinkColor = Color.RoyalBlue;
+            linkLabel1.AutoSize = true;
+            linkLabel1.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            linkLabel1.ForeColor = SystemColors.Control;
+            linkLabel1.LinkColor = SystemColors.Control;
+            linkLabel1.Location = new Point(626, 319);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(83, 21);
+            linkLabel1.TabIndex = 5;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Đăng Ký";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(208, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 25);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Tên đăng nhập";
+            label2.AutoSize = true;
+            label2.Font = new Font("Epilogue", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ControlLightLight;
+            label2.Location = new Point(231, 150);
+            label2.Name = "label2";
+            label2.Size = new Size(179, 31);
+            label2.TabIndex = 7;
+            label2.Text = "Tên đăng nhập";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(208, 198);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 25);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Mật khẩu";
+            label3.AutoSize = true;
+            label3.Font = new Font("Epilogue", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.ControlLightLight;
+            label3.Location = new Point(237, 246);
+            label3.Name = "label3";
+            label3.Size = new Size(120, 31);
+            label3.TabIndex = 8;
+            label3.Text = "Mật khẩu";
             // 
             // TenDangNhap
             // 
-            this.TenDangNhap.Location = new System.Drawing.Point(213, 149);
-            this.TenDangNhap.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.TenDangNhap.Name = "TenDangNhap";
-            this.TenDangNhap.Size = new System.Drawing.Size(401, 26);
-            this.TenDangNhap.TabIndex = 9;
+            TenDangNhap.Location = new Point(237, 186);
+            TenDangNhap.Margin = new Padding(3, 5, 3, 5);
+            TenDangNhap.Name = "TenDangNhap";
+            TenDangNhap.Size = new Size(445, 31);
+            TenDangNhap.TabIndex = 9;
             // 
             // MatKhau
             // 
-            this.MatKhau.Location = new System.Drawing.Point(213, 226);
-            this.MatKhau.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MatKhau.Name = "MatKhau";
-            this.MatKhau.PasswordChar = '*';
-            this.MatKhau.Size = new System.Drawing.Size(401, 26);
-            this.MatKhau.TabIndex = 10;
+            MatKhau.Location = new Point(237, 282);
+            MatKhau.Margin = new Padding(3, 5, 3, 5);
+            MatKhau.Name = "MatKhau";
+            MatKhau.PasswordChar = '*';
+            MatKhau.Size = new Size(445, 31);
+            MatKhau.TabIndex = 10;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Desktop;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(672, 145);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(127, 107);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(718, 179);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(141, 134);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 11;
+            pictureBox1.TabStop = false;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.SystemColors.WindowText;
-            this.label10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.Window;
-            this.label10.Location = new System.Drawing.Point(519, 317);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(200, 22);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Bạn chưa có tài khoản?";
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Arial", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label10.ForeColor = SystemColors.Window;
+            label10.Location = new Point(420, 318);
+            label10.Name = "label10";
+            label10.Size = new Size(200, 22);
+            label10.TabIndex = 12;
+            label10.Text = "Bạn chưa có tài khoản?";
+            // 
+            // LabelQuenMatKhau
+            // 
+            LabelQuenMatKhau.ActiveLinkColor = Color.RoyalBlue;
+            LabelQuenMatKhau.AutoSize = true;
+            LabelQuenMatKhau.BackColor = Color.Transparent;
+            LabelQuenMatKhau.Font = new Font("Arial", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            LabelQuenMatKhau.ForeColor = SystemColors.Control;
+            LabelQuenMatKhau.LinkColor = SystemColors.Control;
+            LabelQuenMatKhau.Location = new Point(231, 318);
+            LabelQuenMatKhau.Name = "LabelQuenMatKhau";
+            LabelQuenMatKhau.Size = new Size(142, 21);
+            LabelQuenMatKhau.TabIndex = 14;
+            LabelQuenMatKhau.TabStop = true;
+            LabelQuenMatKhau.Text = "Quên Mật Khẩu";
+            LabelQuenMatKhau.LinkClicked += LabelQuenMatKhau_LinkClicked;
             // 
             // PhanDangNhap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(862, 486);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.MatKhau);
-            this.Controls.Add(this.TenDangNhap);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.NutDangNhap);
-            this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "PhanDangNhap";
-            this.Text = "Đăng Nhập";
-
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(4, 21, 49);
+            ClientSize = new Size(958, 608);
+            Controls.Add(LabelQuenMatKhau);
+            Controls.Add(label10);
+            Controls.Add(pictureBox1);
+            Controls.Add(MatKhau);
+            Controls.Add(TenDangNhap);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(linkLabel1);
+            Controls.Add(NutDangNhap);
+            Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "PhanDangNhap";
+            Text = "Đăng Nhập";
+            Load += PhanDangNhap_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -179,5 +197,6 @@
         private System.Windows.Forms.TextBox MatKhau;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label10;
+        private LinkLabel LabelQuenMatKhau;
     }
 }
