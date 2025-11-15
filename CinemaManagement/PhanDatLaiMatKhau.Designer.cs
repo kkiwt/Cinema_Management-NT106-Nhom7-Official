@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhanDatLaiMatKhau));
             MatKhau = new TextBox();
             MatKhauMoi = new TextBox();
             NhapLaiMatKhauMoi = new Label();
             label2 = new Label();
             label1 = new Label();
             NutXacNhan = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // MatKhau
@@ -98,12 +101,23 @@
             NutXacNhan.UseVisualStyleBackColor = true;
             NutXacNhan.Click += NutXacNhan_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(758, 28);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(149, 153);
+            pictureBox1.TabIndex = 23;
+            pictureBox1.TabStop = false;
+            // 
             // PhanDatLaiMatKhau
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(961, 527);
+            Controls.Add(pictureBox1);
             Controls.Add(NutXacNhan);
             Controls.Add(MatKhau);
             Controls.Add(MatKhauMoi);
@@ -112,6 +126,7 @@
             Controls.Add(label1);
             Name = "PhanDatLaiMatKhau";
             Text = "PhanDatLaiMatKhau";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -124,5 +139,6 @@
         private Label label2;
         private Label label1;
         private Button NutXacNhan;
+        private PictureBox pictureBox1;
     }
 }

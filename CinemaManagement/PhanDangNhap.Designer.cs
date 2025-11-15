@@ -36,10 +36,10 @@
             label3 = new Label();
             TenDangNhap = new TextBox();
             MatKhau = new TextBox();
-            pictureBox1 = new PictureBox();
             label10 = new Label();
             LabelQuenMatKhau = new LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pictureBox2 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -119,18 +119,6 @@
             MatKhau.Size = new Size(445, 31);
             MatKhau.TabIndex = 10;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(718, 179);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(141, 134);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 11;
-            pictureBox1.TabStop = false;
-            // 
             // label10
             // 
             label10.AutoSize = true;
@@ -159,15 +147,25 @@
             LabelQuenMatKhau.Text = "Quên Mật Khẩu";
             LabelQuenMatKhau.LinkClicked += LabelQuenMatKhau_LinkClicked;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox2.Location = new Point(749, 34);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(171, 168);
+            pictureBox2.TabIndex = 23;
+            pictureBox2.TabStop = false;
+            // 
             // PhanDangNhap
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(958, 608);
+            Controls.Add(pictureBox2);
             Controls.Add(LabelQuenMatKhau);
             Controls.Add(label10);
-            Controls.Add(pictureBox1);
             Controls.Add(MatKhau);
             Controls.Add(TenDangNhap);
             Controls.Add(label3);
@@ -180,7 +178,7 @@
             Name = "PhanDangNhap";
             Text = "Đăng Nhập";
             Load += PhanDangNhap_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -198,5 +196,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label10;
         private LinkLabel LabelQuenMatKhau;
+        private PictureBox pictureBox2;
     }
 }
