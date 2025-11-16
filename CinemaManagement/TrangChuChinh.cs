@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.Devices;
 using System.Drawing;
+using TrangChu;
 
 namespace CinemaManagement
 {
@@ -201,6 +202,18 @@ namespace CinemaManagement
         }
 
         private void TenPhim3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongtintaikhoan = new ThongTInTaiKhoan();
+            thongtintaikhoan.ShowDialog();
+            this.Close();
+        }
+
+        private void VeDaDat_Click(object sender, EventArgs e)
         {
 
         }

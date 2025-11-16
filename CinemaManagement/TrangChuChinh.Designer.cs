@@ -79,15 +79,17 @@
             PanelHeader.Controls.Add(PhimHot);
             PanelHeader.Controls.Add(UuDai);
             PanelHeader.Location = new Point(0, 1);
+            PanelHeader.Margin = new Padding(3, 2, 3, 2);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1277, 104);
+            PanelHeader.Size = new Size(1117, 78);
             PanelHeader.TabIndex = 0;
             // 
             // Logo
             // 
-            Logo.Location = new Point(122, 0);
+            Logo.Location = new Point(107, 0);
+            Logo.Margin = new Padding(3, 2, 3, 2);
             Logo.Name = "Logo";
-            Logo.Size = new Size(104, 95);
+            Logo.Size = new Size(91, 71);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
@@ -95,9 +97,10 @@
             // TimKiem
             // 
             TimKiem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TimKiem.Location = new Point(450, 37);
+            TimKiem.Location = new Point(394, 28);
+            TimKiem.Margin = new Padding(3, 2, 3, 2);
             TimKiem.Name = "TimKiem";
-            TimKiem.Size = new Size(206, 30);
+            TimKiem.Size = new Size(181, 26);
             TimKiem.TabIndex = 3;
             TimKiem.Text = "Tìm kiếm phim";
             // 
@@ -107,9 +110,10 @@
             TaiKhoan.ContextMenuStrip = MenuTaiKhoan;
             TaiKhoan.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TaiKhoan.ForeColor = SystemColors.Control;
-            TaiKhoan.Location = new Point(1067, 24);
+            TaiKhoan.Location = new Point(934, 18);
+            TaiKhoan.Margin = new Padding(3, 2, 3, 2);
             TaiKhoan.Name = "TaiKhoan";
-            TaiKhoan.Size = new Size(156, 56);
+            TaiKhoan.Size = new Size(136, 42);
             TaiKhoan.TabIndex = 1;
             TaiKhoan.Text = "TÀI KHOẢN";
             TaiKhoan.UseVisualStyleBackColor = false;
@@ -120,7 +124,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(277, 100);
+            MenuTaiKhoan.Size = new Size(240, 88);
             // 
             // ThongTinTaiKhoan
             // 
@@ -128,8 +132,9 @@
             ThongTinTaiKhoan.Font = new Font("Arial", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ThongTinTaiKhoan.ForeColor = Color.FromArgb(92, 77, 68);
             ThongTinTaiKhoan.Name = "ThongTinTaiKhoan";
-            ThongTinTaiKhoan.Size = new Size(276, 32);
+            ThongTinTaiKhoan.Size = new Size(239, 28);
             ThongTinTaiKhoan.Text = "Thông tin tài khoản ";
+            ThongTinTaiKhoan.Click += ThongTinTaiKhoan_Click;
             // 
             // VeDaDat
             // 
@@ -137,8 +142,9 @@
             VeDaDat.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             VeDaDat.ForeColor = Color.FromArgb(92, 77, 68);
             VeDaDat.Name = "VeDaDat";
-            VeDaDat.Size = new Size(276, 32);
+            VeDaDat.Size = new Size(239, 28);
             VeDaDat.Text = "Vé đã đặt";
+            VeDaDat.Click += VeDaDat_Click;
             // 
             // DangXuat
             // 
@@ -146,7 +152,7 @@
             DangXuat.Font = new Font("Arial", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DangXuat.ForeColor = Color.FromArgb(92, 77, 68);
             DangXuat.Name = "DangXuat";
-            DangXuat.Size = new Size(276, 32);
+            DangXuat.Size = new Size(239, 28);
             DangXuat.Text = "Đăng xuất";
             // 
             // PhimHot
@@ -154,9 +160,10 @@
             PhimHot.BackColor = Color.FromArgb(230, 57, 70);
             PhimHot.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PhimHot.ForeColor = SystemColors.Control;
-            PhimHot.Location = new Point(694, 24);
+            PhimHot.Location = new Point(607, 18);
+            PhimHot.Margin = new Padding(3, 2, 3, 2);
             PhimHot.Name = "PhimHot";
-            PhimHot.Size = new Size(141, 56);
+            PhimHot.Size = new Size(123, 42);
             PhimHot.TabIndex = 1;
             PhimHot.Text = "PHIM HOT";
             PhimHot.UseVisualStyleBackColor = false;
@@ -167,9 +174,10 @@
             UuDai.BackColor = Color.FromArgb(230, 57, 70);
             UuDai.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UuDai.ForeColor = SystemColors.Control;
-            UuDai.Location = new Point(879, 24);
+            UuDai.Location = new Point(769, 18);
+            UuDai.Margin = new Padding(3, 2, 3, 2);
             UuDai.Name = "UuDai";
-            UuDai.Size = new Size(141, 56);
+            UuDai.Size = new Size(123, 42);
             UuDai.TabIndex = 1;
             UuDai.Text = "ƯU ĐÃI";
             UuDai.UseVisualStyleBackColor = false;
@@ -180,9 +188,10 @@
             PanelDuongDan.BackColor = Color.LightBlue;
             PanelDuongDan.Controls.Add(DuongDan);
             PanelDuongDan.ForeColor = Color.Transparent;
-            PanelDuongDan.Location = new Point(0, 102);
+            PanelDuongDan.Location = new Point(0, 76);
+            PanelDuongDan.Margin = new Padding(3, 2, 3, 2);
             PanelDuongDan.Name = "PanelDuongDan";
-            PanelDuongDan.Size = new Size(1277, 52);
+            PanelDuongDan.Size = new Size(1117, 39);
             PanelDuongDan.TabIndex = 1;
             // 
             // DuongDan
@@ -190,9 +199,9 @@
             DuongDan.AutoSize = true;
             DuongDan.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DuongDan.ForeColor = Color.Navy;
-            DuongDan.Location = new Point(54, 16);
+            DuongDan.Location = new Point(47, 12);
             DuongDan.Name = "DuongDan";
-            DuongDan.Size = new Size(96, 23);
+            DuongDan.Size = new Size(75, 18);
             DuongDan.TabIndex = 2;
             DuongDan.Text = "Trang chủ";
             DuongDan.Click += DuongDan_Click;
@@ -201,9 +210,10 @@
             // 
             Phim1.BackColor = SystemColors.ControlLightLight;
             Phim1.CustomBackground = false;
-            Phim1.Location = new Point(122, 87);
+            Phim1.Location = new Point(107, 65);
+            Phim1.Margin = new Padding(3, 2, 3, 2);
             Phim1.Name = "Phim1";
-            Phim1.Size = new Size(298, 442);
+            Phim1.Size = new Size(261, 332);
             Phim1.Style = MetroFramework.MetroColorStyle.Magenta;
             Phim1.StyleManager = null;
             Phim1.TabIndex = 3;
@@ -215,9 +225,10 @@
             ChiTietPhim1.BackColor = Color.Pink;
             ChiTietPhim1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ChiTietPhim1.ForeColor = Color.Maroon;
-            ChiTietPhim1.Location = new Point(141, 487);
+            ChiTietPhim1.Location = new Point(123, 365);
+            ChiTietPhim1.Margin = new Padding(3, 2, 3, 2);
             ChiTietPhim1.Name = "ChiTietPhim1";
-            ChiTietPhim1.Size = new Size(108, 42);
+            ChiTietPhim1.Size = new Size(94, 32);
             ChiTietPhim1.TabIndex = 5;
             ChiTietPhim1.Text = "CHI TIẾT";
             ChiTietPhim1.UseVisualStyleBackColor = false;
@@ -243,9 +254,10 @@
             PanelChinh.Controls.Add(ChiTietPhim1);
             PanelChinh.Controls.Add(PosterPhim1);
             PanelChinh.Controls.Add(Phim1);
-            PanelChinh.Location = new Point(0, 160);
+            PanelChinh.Location = new Point(0, 120);
+            PanelChinh.Margin = new Padding(3, 2, 3, 2);
             PanelChinh.Name = "PanelChinh";
-            PanelChinh.Size = new Size(1277, 635);
+            PanelChinh.Size = new Size(1117, 476);
             PanelChinh.TabIndex = 3;
             // 
             // TenPhim3
@@ -253,9 +265,9 @@
             TenPhim3.AutoSize = true;
             TenPhim3.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TenPhim3.ForeColor = SystemColors.Menu;
-            TenPhim3.Location = new Point(954, 451);
+            TenPhim3.Location = new Point(835, 338);
             TenPhim3.Name = "TenPhim3";
-            TenPhim3.Size = new Size(137, 33);
+            TenPhim3.Size = new Size(106, 26);
             TenPhim3.TabIndex = 24;
             TenPhim3.Text = "EXHUMA";
             TenPhim3.Click += TenPhim3_Click;
@@ -265,9 +277,9 @@
             TenPhim2.AutoSize = true;
             TenPhim2.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TenPhim2.ForeColor = SystemColors.Menu;
-            TenPhim2.Location = new Point(562, 451);
+            TenPhim2.Location = new Point(492, 338);
             TenPhim2.Name = "TenPhim2";
-            TenPhim2.Size = new Size(154, 33);
+            TenPhim2.Size = new Size(123, 26);
             TenPhim2.TabIndex = 23;
             TenPhim2.Text = "TEEYOD 3";
             TenPhim2.Click += TenPhim2_Click;
@@ -277,9 +289,9 @@
             TenPhim1.AutoSize = true;
             TenPhim1.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TenPhim1.ForeColor = SystemColors.Menu;
-            TenPhim1.Location = new Point(236, 451);
+            TenPhim1.Location = new Point(206, 338);
             TenPhim1.Name = "TenPhim1";
-            TenPhim1.Size = new Size(67, 33);
+            TenPhim1.Size = new Size(49, 26);
             TenPhim1.TabIndex = 22;
             TenPhim1.Text = "MAI";
             // 
@@ -288,9 +300,9 @@
             PhimDangChieu.AutoSize = true;
             PhimDangChieu.Font = new Font("Arial", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PhimDangChieu.ForeColor = Color.FromArgb(255, 212, 59);
-            PhimDangChieu.Location = new Point(85, 28);
+            PhimDangChieu.Location = new Point(74, 21);
             PhimDangChieu.Name = "PhimDangChieu";
-            PhimDangChieu.Size = new Size(327, 40);
+            PhimDangChieu.Size = new Size(263, 32);
             PhimDangChieu.TabIndex = 21;
             PhimDangChieu.Text = "PHIM ĐANG CHIẾU";
             // 
@@ -301,9 +313,10 @@
             Next.FlatStyle = FlatStyle.Flat;
             Next.Font = new Font("Arial Narrow", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Next.ForeColor = SystemColors.Control;
-            Next.Location = new Point(1188, 225);
+            Next.Location = new Point(1040, 169);
+            Next.Margin = new Padding(3, 2, 3, 2);
             Next.Name = "Next";
-            Next.Size = new Size(61, 99);
+            Next.Size = new Size(53, 74);
             Next.TabIndex = 20;
             Next.Text = ">";
             Next.UseVisualStyleBackColor = false;
@@ -316,9 +329,10 @@
             Prev.FlatStyle = FlatStyle.Flat;
             Prev.Font = new Font("Arial Narrow", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Prev.ForeColor = SystemColors.Control;
-            Prev.Location = new Point(38, 225);
+            Prev.Location = new Point(33, 169);
+            Prev.Margin = new Padding(3, 2, 3, 2);
             Prev.Name = "Prev";
-            Prev.Size = new Size(61, 99);
+            Prev.Size = new Size(53, 74);
             Prev.TabIndex = 19;
             Prev.Text = "<";
             Prev.UseVisualStyleBackColor = false;
@@ -329,9 +343,10 @@
             DatVePhim3.BackColor = Color.FromArgb(230, 57, 70);
             DatVePhim3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DatVePhim3.ForeColor = SystemColors.Control;
-            DatVePhim3.Location = new Point(1028, 487);
+            DatVePhim3.Location = new Point(900, 365);
+            DatVePhim3.Margin = new Padding(3, 2, 3, 2);
             DatVePhim3.Name = "DatVePhim3";
-            DatVePhim3.Size = new Size(108, 44);
+            DatVePhim3.Size = new Size(94, 33);
             DatVePhim3.TabIndex = 16;
             DatVePhim3.Text = "ĐẶT VÉ";
             DatVePhim3.UseCompatibleTextRendering = true;
@@ -342,18 +357,20 @@
             ChiTietPhim3.BackColor = Color.Pink;
             ChiTietPhim3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ChiTietPhim3.ForeColor = Color.Maroon;
-            ChiTietPhim3.Location = new Point(882, 487);
+            ChiTietPhim3.Location = new Point(772, 365);
+            ChiTietPhim3.Margin = new Padding(3, 2, 3, 2);
             ChiTietPhim3.Name = "ChiTietPhim3";
-            ChiTietPhim3.Size = new Size(108, 42);
+            ChiTietPhim3.Size = new Size(94, 32);
             ChiTietPhim3.TabIndex = 15;
             ChiTietPhim3.Text = "CHI TIẾT";
             ChiTietPhim3.UseVisualStyleBackColor = false;
             // 
             // PosterPhim3
             // 
-            PosterPhim3.Location = new Point(865, 87);
+            PosterPhim3.Location = new Point(757, 65);
+            PosterPhim3.Margin = new Padding(3, 2, 3, 2);
             PosterPhim3.Name = "PosterPhim3";
-            PosterPhim3.Size = new Size(296, 351);
+            PosterPhim3.Size = new Size(259, 263);
             PosterPhim3.SizeMode = PictureBoxSizeMode.Zoom;
             PosterPhim3.TabIndex = 14;
             PosterPhim3.TabStop = false;
@@ -362,9 +379,10 @@
             // 
             Phim3.BackColor = SystemColors.ControlLightLight;
             Phim3.CustomBackground = false;
-            Phim3.Location = new Point(863, 87);
+            Phim3.Location = new Point(755, 65);
+            Phim3.Margin = new Padding(3, 2, 3, 2);
             Phim3.Name = "Phim3";
-            Phim3.Size = new Size(298, 442);
+            Phim3.Size = new Size(261, 332);
             Phim3.Style = MetroFramework.MetroColorStyle.Magenta;
             Phim3.StyleManager = null;
             Phim3.TabIndex = 13;
@@ -375,9 +393,10 @@
             DatVePhim2.BackColor = Color.FromArgb(230, 57, 70);
             DatVePhim2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DatVePhim2.ForeColor = SystemColors.Control;
-            DatVePhim2.Location = new Point(655, 487);
+            DatVePhim2.Location = new Point(573, 365);
+            DatVePhim2.Margin = new Padding(3, 2, 3, 2);
             DatVePhim2.Name = "DatVePhim2";
-            DatVePhim2.Size = new Size(108, 44);
+            DatVePhim2.Size = new Size(94, 33);
             DatVePhim2.TabIndex = 11;
             DatVePhim2.Text = "ĐẶT VÉ";
             DatVePhim2.UseCompatibleTextRendering = true;
@@ -388,18 +407,20 @@
             ChiTietPhim2.BackColor = Color.Pink;
             ChiTietPhim2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ChiTietPhim2.ForeColor = Color.Maroon;
-            ChiTietPhim2.Location = new Point(509, 487);
+            ChiTietPhim2.Location = new Point(445, 365);
+            ChiTietPhim2.Margin = new Padding(3, 2, 3, 2);
             ChiTietPhim2.Name = "ChiTietPhim2";
-            ChiTietPhim2.Size = new Size(108, 42);
+            ChiTietPhim2.Size = new Size(94, 32);
             ChiTietPhim2.TabIndex = 10;
             ChiTietPhim2.Text = "CHI TIẾT";
             ChiTietPhim2.UseVisualStyleBackColor = false;
             // 
             // PosterPhim2
             // 
-            PosterPhim2.Location = new Point(492, 87);
+            PosterPhim2.Location = new Point(430, 65);
+            PosterPhim2.Margin = new Padding(3, 2, 3, 2);
             PosterPhim2.Name = "PosterPhim2";
-            PosterPhim2.Size = new Size(296, 351);
+            PosterPhim2.Size = new Size(259, 263);
             PosterPhim2.SizeMode = PictureBoxSizeMode.Zoom;
             PosterPhim2.TabIndex = 9;
             PosterPhim2.TabStop = false;
@@ -408,9 +429,10 @@
             // 
             Phim2.BackColor = SystemColors.ControlLightLight;
             Phim2.CustomBackground = false;
-            Phim2.Location = new Point(490, 87);
+            Phim2.Location = new Point(429, 65);
+            Phim2.Margin = new Padding(3, 2, 3, 2);
             Phim2.Name = "Phim2";
-            Phim2.Size = new Size(298, 442);
+            Phim2.Size = new Size(261, 332);
             Phim2.Style = MetroFramework.MetroColorStyle.Magenta;
             Phim2.StyleManager = null;
             Phim2.TabIndex = 8;
@@ -421,9 +443,10 @@
             DatVePhim1.BackColor = Color.FromArgb(230, 57, 70);
             DatVePhim1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DatVePhim1.ForeColor = SystemColors.Control;
-            DatVePhim1.Location = new Point(287, 487);
+            DatVePhim1.Location = new Point(251, 365);
+            DatVePhim1.Margin = new Padding(3, 2, 3, 2);
             DatVePhim1.Name = "DatVePhim1";
-            DatVePhim1.Size = new Size(108, 44);
+            DatVePhim1.Size = new Size(94, 33);
             DatVePhim1.TabIndex = 6;
             DatVePhim1.Text = "ĐẶT VÉ";
             DatVePhim1.UseCompatibleTextRendering = true;
@@ -431,9 +454,10 @@
             // 
             // PosterPhim1
             // 
-            PosterPhim1.Location = new Point(124, 87);
+            PosterPhim1.Location = new Point(108, 65);
+            PosterPhim1.Margin = new Padding(3, 2, 3, 2);
             PosterPhim1.Name = "PosterPhim1";
-            PosterPhim1.Size = new Size(296, 351);
+            PosterPhim1.Size = new Size(259, 263);
             PosterPhim1.SizeMode = PictureBoxSizeMode.Zoom;
             PosterPhim1.TabIndex = 4;
             PosterPhim1.TabStop = false;
@@ -441,13 +465,14 @@
             // 
             // TrangChuChinh
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(21, 3, 27);
-            ClientSize = new Size(1277, 796);
+            ClientSize = new Size(1117, 597);
             Controls.Add(PanelChinh);
             Controls.Add(PanelDuongDan);
             Controls.Add(PanelHeader);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TrangChuChinh";
             Text = "Solunar Cinema";
             PanelHeader.ResumeLayout(false);
