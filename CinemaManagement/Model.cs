@@ -366,6 +366,12 @@ namespace CinemaManagement
         public string IdPhim { get; set; }
         public string TenPhim { get; set; }
         public string NhaXuatBan { get; set; }
+
+
+        public string DaoDien { get; set; }
+
+        public string DanDienVien { get; set; }
+
         public string TheLoai { get; set; }
         public string DoTuoi { get; set; }
         public decimal? GiaVeChuan { get; set; }
@@ -373,18 +379,26 @@ namespace CinemaManagement
         public string MoTa { get; set; }
         public string UrlTrailer { get; set; }
 
+        public string QuocGia { get; set; }
+        public string NgonNgu { get; set; }
+
+
         public Phim() { }
-        public Phim(string id, string ten, string nhaXB, string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url)
+        public Phim(string id, string ten, string nhaXB,string Director ,string Actor,string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Nation, string Language)
         {
             IdPhim = id;
             TenPhim = ten;
             NhaXuatBan = nhaXB;
+            DaoDien = Director;
+            DanDienVien = Actor;
             TheLoai = theLoai;
             DoTuoi = doTuoi;
             GiaVeChuan = giaVe;
             ThoiLuong = thoiLuong;
             MoTa = moTa;
             UrlTrailer = url;
+            QuocGia = Nation;
+            NgonNgu = Language;
         }
 
         public static List<Phim> DanhSachPhim = new List<Phim>();
