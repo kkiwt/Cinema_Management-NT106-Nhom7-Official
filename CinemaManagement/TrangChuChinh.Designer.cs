@@ -1,4 +1,4 @@
-﻿namespace TrangChu
+﻿namespace CinemaManagement
 {
     partial class TrangChuChinh
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualBasic.Devices;
 using System.Drawing;
 
-namespace TrangChu
+namespace CinemaManagement
 {
     public partial class TrangChuChinh : Form
     {
