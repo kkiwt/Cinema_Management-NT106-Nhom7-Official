@@ -32,13 +32,18 @@ namespace CinemaManagement
         {
 
         }
-       
+
         private void TaiKhoanCuaToi_Click(object sender, EventArgs e)
         {
             GiaoDienTaiKhoanCuaToi TaiKhoanCuaToi = new GiaoDienTaiKhoanCuaToi(CurrentUser);
             this.Hide();
             TaiKhoanCuaToi.Show();
             TaiKhoanCuaToi.FormClosed += (s, args) => this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

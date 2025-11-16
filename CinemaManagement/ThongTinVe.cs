@@ -8,23 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TrangChu
+namespace CinemaManagement
 {
-    public partial class DanhGia : Form
+    public partial class ThongTinVe : Form
     {
-        public DanhGia()
+        public ThongTinVe()
         {
             InitializeComponent();
-        }
-
-        private void ListDS_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Loc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

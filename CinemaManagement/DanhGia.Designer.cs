@@ -307,6 +307,7 @@
             Loc.Size = new Size(181, 31);
             Loc.TabIndex = 0;
             Loc.Text = "Lọc theo sao";
+            Loc.SelectedIndexChanged += Loc_SelectedIndexChanged;
             // 
             // TongSoLuotDanhGia
             // 
