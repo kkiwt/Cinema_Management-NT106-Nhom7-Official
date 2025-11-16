@@ -389,6 +389,7 @@
             TaiKhoan.TabIndex = 1;
             TaiKhoan.Text = "TÀI KHOẢN";
             TaiKhoan.UseVisualStyleBackColor = false;
+            TaiKhoan.Click += TaiKhoan_Click;
             // 
             // PhimHot
             // 
@@ -425,6 +426,7 @@
             Controls.Add(panelDuongDan);
             Name = "ChiTietPhim";
             Text = "Solunar Cinema";
+            Load += ChiTietPhim_Load_1;
             panelDuongDan.ResumeLayout(false);
             panelDuongDan.PerformLayout();
             PanelChinh.ResumeLayout(false);
