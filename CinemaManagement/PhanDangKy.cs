@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
+
 namespace CinemaManagement
 {
     public partial class PhanDangKy : Form
@@ -90,54 +91,68 @@ namespace CinemaManagement
                 ClientTCP client = new ClientTCP();
                 string message = $"REGISTER|{Name}|{TenDangNhap}|{MatKhauDaHash}|{E_mail}|{Sex}|{NgaySinh:yyyy-MM-dd}|{SDT}";
                 string response = await client.SendMessageAsync(message);
-                string cleanresponse = response.Replace("[", "")
-                                            .Replace("]", "")
-                                            .Replace("\"", "")
-                                            .Trim(); 
-                // Message bi dong trong dinh dang JSON nen loi, kieu nhu [REGISTER_SUCCESS]
-
 
                 this.Invoke((MethodInvoker)delegate
                 {
-                    if (cleanresponse == "REGISTER_SUCCESS")
+                    string[] parts = null;
+
+                    try
                     {
-                        MessageBox.Show("Đăng ký thành công!", "Thành công");
-
-                        UserInfo newUser = new UserInfo
-                        {
-                            HoTen = Name,
-                            Username = TenDangNhap,
-                            SDT = SDT,
-                            Email = E_mail,
-                            GioiTinh = Sex,
-                            NgaySinh = NgaySinh
-                        };
-
-                        var dashboard = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(newUser);
-                        this.Hide();
-                        dashboard.Show();
+                        // Thử parse JSON array trước
+                        parts = JsonSerializer.Deserialize<string[]>(response);
                     }
-                    else if (cleanresponse == "USERNAME_EXISTS")
+                    catch
                     {
-                        MessageBox.Show("Tên đăng nhập đã tồn tại.", "Lỗi");
+                        // Nếu không phải JSON, dọn chuỗi escape rồi split
+                        string clean = response.Replace("\\", "")
+                                               .Replace("[", "")
+                                               .Replace("]", "")
+                                               .Replace("\"", "")
+                                               .Trim();
+                        parts = clean.Split(',', StringSplitOptions.RemoveEmptyEntries);
                     }
-                    else if (cleanresponse == "EMAIL_EXISTS")
+
+                    if (parts == null || parts.Length == 0)
                     {
-                        MessageBox.Show("Email đã được đăng ký.", "Lỗi");
+                        MessageBox.Show($"Phản hồi rỗng hoặc không hợp lệ: {response}", "Lỗi");
+                        return;
                     }
-                    else
+
+                    string command = parts[0].Trim();
+
+                    switch (command)
                     {
-                        MessageBox.Show($"Raw response: [{response}]\nLength: {response.Length}", "DEBUG");
+                        case "REGISTER_SUCCESS":
+                            string newUserID = parts.Length > 1 ? parts[1].Trim() : "UNKNOWN";
+                            MessageBox.Show($"Đăng ký thành công! Mã người dùng: {newUserID}", "Thành công");
 
-                        string asciiCodes = "";
-                        foreach (char c in response)
-                        {
-                            asciiCodes += ((int)c) + " ";
-                        }
+                            UserInfo newUser = new UserInfo
+                            {
+                                HoTen = Name,
+                                Username = TenDangNhap,
+                                SDT = SDT,
+                                Email = E_mail,
+                                GioiTinh = Sex,
+                                NgaySinh = NgaySinh,
+                                IDUser = newUserID
+                            };
 
-                        MessageBox.Show($"ASCII Codes:\n{asciiCodes}", "DEBUG ASCII");
+                            var dashboard = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(newUser);
+                            this.Hide();
+                            dashboard.Show();
+                            break;
 
+                        case "USERNAME_EXISTS":
+                            MessageBox.Show("Tên đăng nhập đã tồn tại.", "Lỗi");
+                            break;
 
+                        case "EMAIL_EXISTS":
+                            MessageBox.Show("Email đã được đăng ký.", "Lỗi");
+                            break;
+
+                        default:
+                            MessageBox.Show($"Phản hồi không xác định: {string.Join(", ", parts)}", "DEBUG");
+                            break;
                     }
                 });
             }
@@ -156,6 +171,16 @@ namespace CinemaManagement
             this.Hide();
             dangNhap.Show();
             dangNhap.FormClosed += (s, args) => this.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

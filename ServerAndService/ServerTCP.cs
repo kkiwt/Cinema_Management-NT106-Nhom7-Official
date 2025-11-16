@@ -11,23 +11,23 @@ namespace ServerAndService
 {
     internal class ServerTCP
     {
-        private TcpListener _listener;
-        private Service _service;
+        private TcpListener listener;
+        private Service service;
 
         public ServerTCP()
         {
-            _service = new Service();
+            service = new Service();
         }
 
         public async Task StartAsync(int port = 5000)
         {
-            _listener = new TcpListener(IPAddress.Any, port);
-            _listener.Start();
+            listener = new TcpListener(IPAddress.Any, port);
+            listener.Start();
             Console.WriteLine($"Server dang chay tai cong {port}...");
 
             while (true)
             {
-                var client = await _listener.AcceptTcpClientAsync();
+                var client = await listener.AcceptTcpClientAsync();
                 _ = HandleClientAsync(client);
             }
         }
@@ -38,17 +38,31 @@ namespace ServerAndService
             {
                 Console.WriteLine("Client moi ket noi.");
                 var stream = client.GetStream();
-                var buffer = new byte[1024];
+                var buffer = new byte[4096];
                 int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                 string message = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
 
                 Console.WriteLine($"Nhan: {message}");
 
-                string[] parts = message.Split('|');
-                string command = parts[0];
-                string response ;
+                // 🔹 Kiểm tra dữ liệu rỗng
+                if (string.IsNullOrWhiteSpace(message))
+                {
+                    await SendResponseAsync(stream, "ERROR: Empty message received");
+                    return;
+                }
 
-                switch (command.ToUpper())
+                // 🔹 Tách phần command
+                string[] parts = message.Split('|');
+                if (parts.Length == 0)
+                {
+                    await SendResponseAsync(stream, "ERROR: Invalid message format");
+                    return;
+                }
+
+                string command = parts[0].ToUpper();
+                string response;
+
+                switch (command)
                 {
                     case "REGISTER":
                         if (parts.Length < 8)
@@ -62,16 +76,17 @@ namespace ServerAndService
                             string password = parts[3];
                             string email = parts[4];
                             string gioiTinh = parts[5];
-                            DateTime ngaySinh;
+                            string ngaySinhStr = parts[6];
                             string soDienThoai = parts[7];
 
-                            if (!DateTime.TryParse(parts[6], out ngaySinh))
+                            if (!DateTime.TryParse(ngaySinhStr, out DateTime ngaySinh))
                             {
                                 response = "ERROR: Invalid date format";
                                 break;
                             }
 
-                            response = await _service.RegisterUser(hoTen, username, password, email, gioiTinh, ngaySinh, soDienThoai);
+                            response = await service.RegisterUser(
+                                hoTen, username, password, email, gioiTinh, ngaySinh, soDienThoai);
                         }
                         break;
 
@@ -84,7 +99,7 @@ namespace ServerAndService
                         {
                             string username = parts[1];
                             string password = parts[2];
-                            response = await _service.LoginUser(username, password);
+                            response = await service.LoginUser(username, password);
                         }
                         break;
 
@@ -95,13 +110,13 @@ namespace ServerAndService
 
                 await SendResponseAsync(stream, response);
                 Console.WriteLine($"Gui: {response.Trim()}");
-
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Loi xu ly client: {ex.Message}");
+                Console.WriteLine($"Loi xu ly client: {ex}");
             }
         }
+
 
         private async Task SendResponseAsync(NetworkStream stream, string message)
         {

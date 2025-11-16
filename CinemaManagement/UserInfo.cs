@@ -11,5 +11,7 @@ namespace CinemaManagement
         public string Email { get; set; }
         public string KhuVuc { get; set; }
         public string GioiTinh { get; set; }
+
+        public string IDUser = "00"; // tam thoi
     }
 }

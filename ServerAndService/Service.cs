@@ -6,15 +6,15 @@ namespace ServerAndService
 {
     internal class Service
     {
-        private static Client _client;
-        private static bool _initialized = false;
+        private static Client client;
+        private static bool initialized = false;
 
         public Service()
         {
-            if (!_initialized)
+            if (!initialized)
             {
                 InitializeSupabase().Wait();
-                _initialized = true;
+                initialized = true;
             }
         }
 
@@ -29,15 +29,16 @@ namespace ServerAndService
                 AutoRefreshToken = true
             };
 
-            _client = new Supabase.Client(url, key, options); // ⚠️ Gán cho _client
-            await _client.InitializeAsync();
+            client = new Supabase.Client(url, key, options); // ⚠️ Gán cho _client
+            await client.InitializeAsync();
 
             Console.WriteLine("Supabase connected successfully!");
         }
 
 
         // 🟢 Đăng ký tài khoản
-        public async Task<string> RegisterUser(
+        public async Task<string> RegisterUser
+            (
                    string hoTen,
                    string username,
                    string passwordHash,  // Băm SHA256 ở client trước
@@ -49,7 +50,7 @@ namespace ServerAndService
         {
             try
             {
-                var result = await _client.Rpc("register_user", new
+                var result = await client.Rpc("register_user", new
                 {
                     _hoten = hoTen,
                     _username = username,
@@ -73,20 +74,58 @@ namespace ServerAndService
         {
             try
             {
-                var result = await _client.Rpc("login_user", new
+                var result = await client.Rpc("login_user", new
                 {
                     _username = username,
                     _password = passwordHash
-                });
 
-                return result.Content.Trim(); // LOGIN_SUCCESS hoặc ERROR_LOGIN
+                });
+                Console.WriteLine("🔹 Raw JSON from Supabase:");
+                Console.WriteLine(result.Content);
+                if (string.IsNullOrWhiteSpace(result.Content))
+                    return "LOGIN_FAILED";
+
+                // Supabase trả JSON, ví dụ:
+                // [{"result":"LOGIN_SUCCESS","hoten":"Nguyen Van A","username":"admin",...}]
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "[]" || json == "{}")
+                    return "LOGIN_FAILED";
+
+                using var data = System.Text.Json.JsonDocument.Parse(json);
+                if (data.RootElement.ValueKind != System.Text.Json.JsonValueKind.Array || data.RootElement.GetArrayLength() == 0)
+                    return "LOGIN_FAILED";
+
+                var firstRow = data.RootElement[0];
+
+
+                string status = firstRow.GetProperty("result").GetString();
+
+                if (status == "LOGIN_SUCCESS")
+                {
+                    string id = firstRow.GetProperty("idtaikhoan").GetString();
+                    string hoTen = firstRow.GetProperty("hoten").GetString();
+                    string userName = firstRow.GetProperty("username").GetString();
+                    string email = firstRow.GetProperty("email").GetString();
+                    string sdt = firstRow.GetProperty("sodienthoai").GetString();
+                    string gioiTinh = firstRow.GetProperty("gioitinh").GetString();
+                    DateTime ngaySinh = DateTime.TryParse(firstRow.GetProperty("ngaysinh").ToString(), out var ns)
+                        ? ns : DateTime.MinValue;
+
+                    return $"[LOGIN_SUCCESS]|{id}|{hoTen}|{userName}|{email}|{sdt}|{gioiTinh}|{ngaySinh:yyyy-MM-dd}";
+                }
+
+
+                return "LOGIN_FAILED";
             }
             catch (Exception ex)
             {
                 return $"ERROR_LOGIN: {ex.Message}";
             }
+
+
         }
 
- 
+
+
     }
 }
