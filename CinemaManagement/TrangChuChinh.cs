@@ -209,13 +209,15 @@ namespace CinemaManagement
         private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
         {
             ThongTInTaiKhoan thongtintaikhoan = new ThongTInTaiKhoan();
-            thongtintaikhoan.ShowDialog();
-            this.Close();
+            this.Hide();
+            thongtintaikhoan.Show();
         }
 
         private void VeDaDat_Click(object sender, EventArgs e)
         {
-
+            VeDaDat vedadat = new VeDaDat();
+            this.Hide();
+            vedadat.ShowDialog();
         }
     }
 }
