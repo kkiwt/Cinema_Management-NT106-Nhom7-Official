@@ -208,7 +208,7 @@
             DCRap.Location = new Point(32, 97);
             DCRap.Margin = new Padding(3, 2, 3, 2);
             DCRap.Name = "DCRap";
-            DCRap.Size = new Size(454, 23);
+            DCRap.Size = new Size(454, 22);
             DCRap.TabIndex = 18;
             // 
             // textBox5
