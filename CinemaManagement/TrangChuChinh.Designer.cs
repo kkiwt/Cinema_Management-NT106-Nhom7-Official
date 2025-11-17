@@ -124,7 +124,8 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 88);
+            MenuTaiKhoan.Size = new Size(240, 110);
+            MenuTaiKhoan.Opening += MenuTaiKhoan_Opening;
             // 
             // ThongTinTaiKhoan
             // 

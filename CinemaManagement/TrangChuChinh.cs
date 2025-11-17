@@ -217,6 +217,11 @@ namespace CinemaManagement
         {
 
         }
+
+        private void MenuTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
     }
 }
 
