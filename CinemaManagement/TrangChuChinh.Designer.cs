@@ -86,7 +86,7 @@
             // 
             // Logo
             // 
-            Logo.Image = Properties.Resources.Picture11;
+            Logo.Image = Properties.Resources.Picture1;
             Logo.Location = new Point(74, 10);
             Logo.Margin = new Padding(3, 2, 3, 2);
             Logo.Name = "Logo";

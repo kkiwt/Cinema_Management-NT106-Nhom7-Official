@@ -142,7 +142,9 @@ namespace CinemaManagement
 
         private void UuDai_Click(object sender, EventArgs e)
         {
-
+            DanhSachUuDai danhSachUuDai = new DanhSachUuDai();
+            this.Hide();
+            danhSachUuDai.ShowDialog();
         }
 
         private void PhimHot_Click(object sender, EventArgs e)
