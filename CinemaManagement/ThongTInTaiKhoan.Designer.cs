@@ -414,7 +414,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaptionText;
+            BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(1119, 644);
             Controls.Add(panel1);
             Controls.Add(lbThongTinNguoiDung);

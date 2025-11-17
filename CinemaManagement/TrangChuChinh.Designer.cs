@@ -124,7 +124,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 110);
+            MenuTaiKhoan.Size = new Size(240, 88);
             MenuTaiKhoan.Opening += MenuTaiKhoan_Opening;
             // 
             // ThongTinTaiKhoan
@@ -237,6 +237,7 @@
             // 
             // PanelChinh
             // 
+            PanelChinh.BackColor = Color.FromArgb(4, 21, 49);
             PanelChinh.Controls.Add(TenPhim3);
             PanelChinh.Controls.Add(TenPhim2);
             PanelChinh.Controls.Add(TenPhim1);
@@ -255,10 +256,10 @@
             PanelChinh.Controls.Add(ChiTietPhim1);
             PanelChinh.Controls.Add(PosterPhim1);
             PanelChinh.Controls.Add(Phim1);
-            PanelChinh.Location = new Point(0, 120);
+            PanelChinh.Location = new Point(0, 108);
             PanelChinh.Margin = new Padding(3, 2, 3, 2);
             PanelChinh.Name = "PanelChinh";
-            PanelChinh.Size = new Size(1117, 476);
+            PanelChinh.Size = new Size(1117, 497);
             PanelChinh.TabIndex = 3;
             // 
             // TenPhim3
