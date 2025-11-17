@@ -41,7 +41,7 @@ namespace ServerAndService
             (
                    string hoTen,
                    string username,
-                   string passwordHash,  // Băm SHA256 ở client trước
+                   string passwordHash,  // Đã băm SHA256 ở client
                    string email,
                    string gioiTinh,
                    DateTime ngaySinh,

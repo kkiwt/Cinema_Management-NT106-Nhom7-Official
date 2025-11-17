@@ -86,10 +86,11 @@
             // 
             // Logo
             // 
-            Logo.Location = new Point(107, 0);
+            Logo.Image = Properties.Resources.Picture11;
+            Logo.Location = new Point(74, 10);
             Logo.Margin = new Padding(3, 2, 3, 2);
             Logo.Name = "Logo";
-            Logo.Size = new Size(91, 71);
+            Logo.Size = new Size(84, 58);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
