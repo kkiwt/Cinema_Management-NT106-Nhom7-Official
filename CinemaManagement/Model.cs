@@ -378,13 +378,15 @@ namespace CinemaManagement
         public int? ThoiLuong { get; set; }
         public string MoTa { get; set; }
         public string UrlTrailer { get; set; }
+        public string PosterPhim { get; set; }
+
 
         public string QuocGia { get; set; }
         public string NgonNgu { get; set; }
 
 
         public Phim() { }
-        public Phim(string id, string ten, string nhaXB,string Director ,string Actor,string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Nation, string Language)
+        public Phim(string id, string ten, string nhaXB,string Director ,string Actor,string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Poster,string Nation, string Language)
         {
             IdPhim = id;
             TenPhim = ten;
@@ -397,6 +399,7 @@ namespace CinemaManagement
             ThoiLuong = thoiLuong;
             MoTa = moTa;
             UrlTrailer = url;
+            PosterPhim = Poster;
             QuocGia = Nation;
             NgonNgu = Language;
         }

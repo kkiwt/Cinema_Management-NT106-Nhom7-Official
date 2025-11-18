@@ -222,6 +222,16 @@ namespace CinemaManagement
         {
 
         }
+
+        private void PanelChinh_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void TrangChuChinh_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

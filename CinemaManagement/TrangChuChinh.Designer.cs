@@ -86,7 +86,6 @@
             // 
             // Logo
             // 
-            Logo.Image = Properties.Resources.Picture11;
             Logo.Location = new Point(74, 10);
             Logo.Margin = new Padding(3, 2, 3, 2);
             Logo.Name = "Logo";
@@ -262,6 +261,7 @@
             PanelChinh.Name = "PanelChinh";
             PanelChinh.Size = new Size(1117, 497);
             PanelChinh.TabIndex = 3;
+            PanelChinh.Paint += PanelChinh_Paint;
             // 
             // TenPhim3
             // 
@@ -478,6 +478,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "TrangChuChinh";
             Text = "Solunar Cinema";
+            Load += TrangChuChinh_Load;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
