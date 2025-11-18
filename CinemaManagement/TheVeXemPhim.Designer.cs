@@ -37,10 +37,9 @@
             lbNgayChieu = new Label();
             lbTenPhim = new Label();
             panel2 = new Panel();
-            btnInVe = new Button();
-            pictureBox1 = new PictureBox();
-            btnXuatVe = new Button();
             btnHuyVe = new Button();
+            btnXuatVe = new Button();
+            pictureBox1 = new PictureBox();
             tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picturePoster).BeginInit();
             panel1.SuspendLayout();
@@ -50,6 +49,7 @@
             // 
             // tableLayoutPanel
             // 
+            tableLayoutPanel.BackColor = Color.FromArgb(4, 21, 49);
             tableLayoutPanel.ColumnCount = 3;
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30.1401863F));
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 69.85981F));
@@ -94,8 +94,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = SystemColors.ButtonShadow;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Arial Narrow", 12.8F);
+            label1.ForeColor = Color.White;
             label1.Location = new Point(16, 107);
             label1.Name = "label1";
             label1.Size = new Size(55, 22);
@@ -105,8 +106,9 @@
             // lbGheNgoi
             // 
             lbGheNgoi.AutoSize = true;
-            lbGheNgoi.BackColor = SystemColors.ButtonShadow;
+            lbGheNgoi.BackColor = Color.Transparent;
             lbGheNgoi.Font = new Font("Arial Narrow", 12.8F);
+            lbGheNgoi.ForeColor = Color.White;
             lbGheNgoi.Location = new Point(16, 84);
             lbGheNgoi.Name = "lbGheNgoi";
             lbGheNgoi.Size = new Size(76, 22);
@@ -116,8 +118,9 @@
             // lbGioChieu
             // 
             lbGioChieu.AutoSize = true;
-            lbGioChieu.BackColor = SystemColors.ButtonShadow;
+            lbGioChieu.BackColor = Color.Transparent;
             lbGioChieu.Font = new Font("Arial Narrow", 12.8F);
+            lbGioChieu.ForeColor = Color.White;
             lbGioChieu.Location = new Point(16, 61);
             lbGioChieu.Name = "lbGioChieu";
             lbGioChieu.Size = new Size(78, 22);
@@ -127,8 +130,9 @@
             // lbNgayChieu
             // 
             lbNgayChieu.AutoSize = true;
-            lbNgayChieu.BackColor = SystemColors.ButtonShadow;
+            lbNgayChieu.BackColor = Color.Transparent;
             lbNgayChieu.Font = new Font("Arial Narrow", 12.8F);
+            lbNgayChieu.ForeColor = Color.White;
             lbNgayChieu.Location = new Point(16, 38);
             lbNgayChieu.Name = "lbNgayChieu";
             lbNgayChieu.Size = new Size(92, 22);
@@ -138,8 +142,9 @@
             // lbTenPhim
             // 
             lbTenPhim.AutoSize = true;
-            lbTenPhim.BackColor = SystemColors.ButtonShadow;
+            lbTenPhim.BackColor = Color.Transparent;
             lbTenPhim.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbTenPhim.ForeColor = Color.White;
             lbTenPhim.Location = new Point(16, 6);
             lbTenPhim.Name = "lbTenPhim";
             lbTenPhim.Size = new Size(81, 23);
@@ -150,21 +155,29 @@
             // 
             panel2.Controls.Add(btnHuyVe);
             panel2.Controls.Add(btnXuatVe);
-            panel2.Controls.Add(btnInVe);
             panel2.Controls.Add(pictureBox1);
             panel2.Location = new Point(425, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(204, 168);
             panel2.TabIndex = 2;
             // 
-            // btnInVe
+            // btnHuyVe
             // 
-            btnInVe.Location = new Point(9, 147);
-            btnInVe.Name = "btnInVe";
-            btnInVe.Size = new Size(63, 20);
-            btnInVe.TabIndex = 1;
-            btnInVe.Text = "In Vé";
-            btnInVe.UseVisualStyleBackColor = true;
+            btnHuyVe.Location = new Point(130, 145);
+            btnHuyVe.Name = "btnHuyVe";
+            btnHuyVe.Size = new Size(63, 20);
+            btnHuyVe.TabIndex = 3;
+            btnHuyVe.Text = "Hủy Vé";
+            btnHuyVe.UseVisualStyleBackColor = true;
+            // 
+            // btnXuatVe
+            // 
+            btnXuatVe.Location = new Point(32, 145);
+            btnXuatVe.Name = "btnXuatVe";
+            btnXuatVe.Size = new Size(63, 20);
+            btnXuatVe.TabIndex = 2;
+            btnXuatVe.Text = "Xuất Vé";
+            btnXuatVe.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -175,29 +188,11 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnXuatVe
-            // 
-            btnXuatVe.Location = new Point(78, 147);
-            btnXuatVe.Name = "btnXuatVe";
-            btnXuatVe.Size = new Size(63, 20);
-            btnXuatVe.TabIndex = 2;
-            btnXuatVe.Text = "Xuất Vé";
-            btnXuatVe.UseVisualStyleBackColor = true;
-            // 
-            // btnHuyVe
-            // 
-            btnHuyVe.Location = new Point(144, 147);
-            btnHuyVe.Name = "btnHuyVe";
-            btnHuyVe.Size = new Size(63, 20);
-            btnHuyVe.TabIndex = 3;
-            btnHuyVe.Text = "Hủy Vé";
-            btnHuyVe.UseVisualStyleBackColor = true;
-            // 
             // TheVeXemPhim
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonShadow;
+            BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(632, 174);
             Controls.Add(tableLayoutPanel);
             Name = "TheVeXemPhim";
@@ -223,7 +218,6 @@
         private Label label1;
         private Panel panel2;
         private Button button2;
-        private Button btnInVe;
         private PictureBox pictureBox1;
         private Button btnHuyVe;
         private Button btnXuatVe;
