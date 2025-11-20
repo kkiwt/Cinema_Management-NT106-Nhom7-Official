@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-﻿using Microsoft.VisualBasic.Devices;
-using System.Drawing;
-using TrangChu;
-
-namespace CinemaManagement
-{
-    public partial class TrangChuChinh : Form
-    {
 
 
 ﻿using CinemaManagement;
@@ -43,7 +34,7 @@ namespace TrangChu
         {
             InitializeComponent();
         }
-<<<<<<< Updated upstream
+
         // Trong TrangChuChinh.cs
 
         // Khai báo thêm biến để theo dõi vị trí phim
@@ -173,11 +164,11 @@ namespace TrangChu
                 }
         */
 
-=======
+
 
         private async void TrangChuChinh_Load(object sender, EventArgs e)
         {
-            // Thay thế logic TCP bằng Supabase
+
             await LoadPhimTuSupabase();
         }
 
@@ -293,7 +284,7 @@ namespace TrangChu
         {
             MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height)); //Hien thi menu tai khoan de chon 3 tien ich.
         }
-<<<<<<< Updated upstream
+
 
         private void Poster_Click(object sender, EventArgs e)
         {
@@ -322,12 +313,12 @@ namespace TrangChu
 
         private void Prev_Click(object sender, EventArgs e)
         {
-            /*if (currentMovieStartIndex > 0)
+            if (currentMovieStartIndex > 0)
             {
                 currentMovieStartIndex = Math.Max(0, currentMovieStartIndex - 3); // Cuộn ngược lại 3 phim
                 DisplayMovies();
                 UpdateNavigationButtons();
-            }*/
+            }
         }
 
         private void ChiTietPhim1_Click(object sender, EventArgs e)
@@ -362,8 +353,7 @@ namespace TrangChu
         {
 
         }
-=======
->>>>>>> Stashed changes
+
     }
 }
 
