@@ -6,8 +6,14 @@ namespace ServerAndService
 {
     internal class Service
     {
+<<<<<<< Updated upstream
         private static Client client;
         private static bool initialized = false;
+=======
+        private static Client _client;
+        private static bool _initialized = false;
+        private List<Phim> DanhSachPhim = new List<Phim>();
+>>>>>>> Stashed changes
 
         public Service()
         {
@@ -125,7 +131,47 @@ namespace ServerAndService
 
         }
 
+<<<<<<< Updated upstream
 
 
+=======
+        private async Task LoadPhimTuSupabase()
+        {
+
+            try
+            {
+                // 2. Khởi tạo Supabase Client
+                var Options = new SupabaseOptions { AutoConnectRealtime = true };
+                var Client = new Supabase.Client(SupabaseUrl, SupabaseKey, Options);
+                await Client.InitializeAsync();
+
+                // 3. Truy vấn dữ liệu từ bảng 'Phim'
+                // Phương thức From<Phim>() sẽ ánh xạ dữ liệu trả về vào list Phim
+                var Response = await Client.From<Phim>().Get();
+
+                // 4. Lấy danh sách phim đã được ánh xạ
+                DanhSachPhim = Response.Models;
+                DanhSachPhim = Response.Models;
+
+                if (DanhSachPhim != null && DanhSachPhim.Count > 0)
+                {
+                    TongSoTrang = (int)Math.Ceiling((double)DanhSachPhim.Count / KichThuocTrang);
+                    TrangHienTai = 1; // Bắt đầu ở trang 1
+
+                    HienThiPhim();
+                    CapNhatNutDiChuyen();
+                    CapNhatTrang(); // Gọi hàm cập nhật Label
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu phim nào.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối hoặc truy vấn Supabase: " + ex.Message);
+            }
+        }
+>>>>>>> Stashed changes
     }
 }

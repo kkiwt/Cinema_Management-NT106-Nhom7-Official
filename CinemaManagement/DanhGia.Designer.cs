@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhGia));
             panelDuongDan = new Panel();
             DuongDan = new Label();
             PanelChinh = new Panel();
@@ -144,8 +145,13 @@
             // 
             // Sao5a
             // 
+<<<<<<< Updated upstream
             Sao5a.Location = new Point(150, 0);
             Sao5a.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao5a.Image = (Image)resources.GetObject("Sao5a.Image");
+            Sao5a.Location = new Point(171, 0);
+>>>>>>> Stashed changes
             Sao5a.Name = "Sao5a";
             Sao5a.Size = new Size(32, 27);
             Sao5a.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -154,8 +160,13 @@
             // 
             // Sao4a
             // 
+<<<<<<< Updated upstream
             Sao4a.Location = new Point(113, 0);
             Sao4a.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao4a.Image = (Image)resources.GetObject("Sao4a.Image");
+            Sao4a.Location = new Point(129, 0);
+>>>>>>> Stashed changes
             Sao4a.Name = "Sao4a";
             Sao4a.Size = new Size(32, 27);
             Sao4a.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -164,8 +175,13 @@
             // 
             // Sao3a
             // 
+<<<<<<< Updated upstream
             Sao3a.Location = new Point(76, 0);
             Sao3a.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao3a.Image = (Image)resources.GetObject("Sao3a.Image");
+            Sao3a.Location = new Point(87, 0);
+>>>>>>> Stashed changes
             Sao3a.Name = "Sao3a";
             Sao3a.Size = new Size(32, 27);
             Sao3a.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -174,8 +190,13 @@
             // 
             // Sao2a
             // 
+<<<<<<< Updated upstream
             Sao2a.Location = new Point(39, 0);
             Sao2a.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao2a.Image = (Image)resources.GetObject("Sao2a.Image");
+            Sao2a.Location = new Point(45, 0);
+>>>>>>> Stashed changes
             Sao2a.Name = "Sao2a";
             Sao2a.Size = new Size(32, 27);
             Sao2a.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -184,6 +205,7 @@
             // 
             // Sao1a
             // 
+            Sao1a.Image = (Image)resources.GetObject("Sao1a.Image");
             Sao1a.Location = new Point(3, 1);
             Sao1a.Margin = new Padding(3, 2, 3, 2);
             Sao1a.Name = "Sao1a";
@@ -207,8 +229,13 @@
             // 
             // Sao5
             // 
+<<<<<<< Updated upstream
             Sao5.Location = new Point(214, 0);
             Sao5.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao5.Image = (Image)resources.GetObject("Sao5.Image");
+            Sao5.Location = new Point(245, 0);
+>>>>>>> Stashed changes
             Sao5.Name = "Sao5";
             Sao5.Size = new Size(46, 40);
             Sao5.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -217,8 +244,13 @@
             // 
             // Sao4
             // 
+<<<<<<< Updated upstream
             Sao4.Location = new Point(158, 0);
             Sao4.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao4.Image = (Image)resources.GetObject("Sao4.Image");
+            Sao4.Location = new Point(180, 0);
+>>>>>>> Stashed changes
             Sao4.Name = "Sao4";
             Sao4.Size = new Size(46, 40);
             Sao4.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -227,8 +259,13 @@
             // 
             // Sao3
             // 
+<<<<<<< Updated upstream
             Sao3.Location = new Point(106, 1);
             Sao3.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao3.Image = (Image)resources.GetObject("Sao3.Image");
+            Sao3.Location = new Point(121, 1);
+>>>>>>> Stashed changes
             Sao3.Name = "Sao3";
             Sao3.Size = new Size(46, 40);
             Sao3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -237,8 +274,13 @@
             // 
             // Sao2
             // 
+<<<<<<< Updated upstream
             Sao2.Location = new Point(54, 1);
             Sao2.Margin = new Padding(3, 2, 3, 2);
+=======
+            Sao2.Image = (Image)resources.GetObject("Sao2.Image");
+            Sao2.Location = new Point(62, 1);
+>>>>>>> Stashed changes
             Sao2.Name = "Sao2";
             Sao2.Size = new Size(46, 40);
             Sao2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -247,6 +289,7 @@
             // 
             // Sao1
             // 
+            Sao1.Image = (Image)resources.GetObject("Sao1.Image");
             Sao1.Location = new Point(3, 1);
             Sao1.Margin = new Padding(3, 2, 3, 2);
             Sao1.Name = "Sao1";
@@ -382,8 +425,13 @@
             // 
             // Logo
             // 
+<<<<<<< Updated upstream
             Logo.Location = new Point(107, 4);
             Logo.Margin = new Padding(3, 2, 3, 2);
+=======
+            Logo.Image = (Image)resources.GetObject("Logo.Image");
+            Logo.Location = new Point(122, 6);
+>>>>>>> Stashed changes
             Logo.Name = "Logo";
             Logo.Size = new Size(91, 71);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;

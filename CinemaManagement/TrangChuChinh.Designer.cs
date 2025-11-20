@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrangChuChinh));
             PanelHeader = new Panel();
             Logo = new PictureBox();
             TimKiem = new TextBox();
@@ -44,9 +45,14 @@
             Phim1 = new MetroFramework.Controls.MetroUserControl();
             ChiTietPhim1 = new Button();
             PanelChinh = new Panel();
+<<<<<<< Updated upstream
             TenPhim3 = new Label();
             TenPhim2 = new Label();
             TenPhim1 = new Label();
+=======
+            Trang = new Label();
+            BangPhim = new FlowLayoutPanel();
+>>>>>>> Stashed changes
             PhimDangChieu = new Label();
             Next = new Button();
             Prev = new Button();
@@ -86,9 +92,14 @@
             // 
             // Logo
             // 
+<<<<<<< Updated upstream
             Logo.Image = Properties.Resources.Picture11;
             Logo.Location = new Point(74, 10);
             Logo.Margin = new Padding(3, 2, 3, 2);
+=======
+            Logo.Image = (Image)resources.GetObject("Logo.Image");
+            Logo.Location = new Point(122, 0);
+>>>>>>> Stashed changes
             Logo.Name = "Logo";
             Logo.Size = new Size(84, 58);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -206,7 +217,6 @@
             DuongDan.Size = new Size(75, 18);
             DuongDan.TabIndex = 2;
             DuongDan.Text = "Trang chủ";
-            DuongDan.Click += DuongDan_Click;
             // 
             // Phim1
             // 
@@ -238,10 +248,15 @@
             // 
             // PanelChinh
             // 
+<<<<<<< Updated upstream
             PanelChinh.BackColor = Color.FromArgb(4, 21, 49);
             PanelChinh.Controls.Add(TenPhim3);
             PanelChinh.Controls.Add(TenPhim2);
             PanelChinh.Controls.Add(TenPhim1);
+=======
+            PanelChinh.Controls.Add(Trang);
+            PanelChinh.Controls.Add(BangPhim);
+>>>>>>> Stashed changes
             PanelChinh.Controls.Add(PhimDangChieu);
             PanelChinh.Controls.Add(Next);
             PanelChinh.Controls.Add(Prev);
@@ -260,6 +275,7 @@
             PanelChinh.Location = new Point(0, 108);
             PanelChinh.Margin = new Padding(3, 2, 3, 2);
             PanelChinh.Name = "PanelChinh";
+<<<<<<< Updated upstream
             PanelChinh.Size = new Size(1117, 497);
             PanelChinh.TabIndex = 3;
             // 
@@ -297,6 +313,29 @@
             TenPhim1.Size = new Size(49, 26);
             TenPhim1.TabIndex = 22;
             TenPhim1.Text = "MAI";
+=======
+            PanelChinh.Size = new Size(1277, 646);
+            PanelChinh.TabIndex = 3;
+            // 
+            // Trang
+            // 
+            Trang.AutoSize = true;
+            Trang.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Trang.ForeColor = SystemColors.Control;
+            Trang.Location = new Point(581, 602);
+            Trang.Name = "Trang";
+            Trang.Size = new Size(90, 23);
+            Trang.TabIndex = 27;
+            Trang.Text = "Trang:    ";
+            Trang.TextAlign = ContentAlignment.BottomCenter;
+            // 
+            // BangPhim
+            // 
+            BangPhim.Location = new Point(105, 85);
+            BangPhim.Name = "BangPhim";
+            BangPhim.Size = new Size(1045, 514);
+            BangPhim.TabIndex = 23;
+>>>>>>> Stashed changes
             // 
             // PhimDangChieu
             // 
@@ -471,7 +510,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(21, 3, 27);
+<<<<<<< Updated upstream
             ClientSize = new Size(1117, 597);
+=======
+            ClientSize = new Size(1277, 807);
+>>>>>>> Stashed changes
             Controls.Add(PanelChinh);
             Controls.Add(PanelDuongDan);
             Controls.Add(PanelHeader);
@@ -522,8 +565,13 @@
         private Label TenPhim3;
         private Label TenPhim2;
         private PictureBox Logo;
+<<<<<<< Updated upstream
         private PictureBox PosterPhim3;
         private PictureBox PosterPhim2;
         private PictureBox PosterPhim1;
+=======
+        private FlowLayoutPanel BangPhim;
+        private Label Trang;
+>>>>>>> Stashed changes
     }
 }

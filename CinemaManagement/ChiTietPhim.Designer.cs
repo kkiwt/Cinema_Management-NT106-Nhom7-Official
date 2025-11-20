@@ -28,29 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiTietPhim));
             panelDuongDan = new Panel();
             DuongDan = new Label();
             PanelChinh = new Panel();
-            NoiDungPhim = new Label();
             DanhGia = new Button();
             Trailer = new Button();
             DatVe = new Button();
             PanelChiTietPhim = new Panel();
-            QuocGia = new TextBox();
-            DoTuoi = new TextBox();
-            NgonNgu = new TextBox();
-            ThoiLuong = new TextBox();
-            TheLoai = new TextBox();
-            DienVien = new TextBox();
-            DaoDien = new TextBox();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            TenPhim = new TextBox();
+            NoiDungPhim = new Label();
             PanelHeader = new Panel();
             Logo = new PictureBox();
             TimKiem = new TextBox();
@@ -62,7 +48,6 @@
             PanelChiTietPhim.SuspendLayout();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
-            SuspendLayout();
             // 
             // panelDuongDan
             // 
@@ -89,7 +74,6 @@
             // PanelChinh
             // 
             PanelChinh.BackColor = Color.FromArgb(21, 3, 27);
-            PanelChinh.Controls.Add(NoiDungPhim);
             PanelChinh.Controls.Add(DanhGia);
             PanelChinh.Controls.Add(Trailer);
             PanelChinh.Controls.Add(DatVe);
@@ -97,6 +81,7 @@
             PanelChinh.Location = new Point(3, 121);
             PanelChinh.Margin = new Padding(3, 2, 3, 2);
             PanelChinh.Name = "PanelChinh";
+<<<<<<< Updated upstream
             PanelChinh.Size = new Size(1117, 476);
             PanelChinh.TabIndex = 4;
             // 
@@ -111,13 +96,22 @@
             NoiDungPhim.TabIndex = 10;
             NoiDungPhim.Text = "NỘI DUNG PHIM";
             // 
+=======
+            PanelChinh.Size = new Size(1277, 666);
+            PanelChinh.TabIndex = 4;
+            // 
+>>>>>>> Stashed changes
             // DanhGia
             // 
             DanhGia.BackColor = Color.Pink;
             DanhGia.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DanhGia.ForeColor = Color.Maroon;
+<<<<<<< Updated upstream
             DanhGia.Location = new Point(707, 400);
             DanhGia.Margin = new Padding(3, 2, 3, 2);
+=======
+            DanhGia.Location = new Point(808, 586);
+>>>>>>> Stashed changes
             DanhGia.Name = "DanhGia";
             DanhGia.Size = new Size(122, 38);
             DanhGia.TabIndex = 9;
@@ -130,8 +124,12 @@
             Trailer.BackColor = Color.Pink;
             Trailer.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Trailer.ForeColor = Color.Maroon;
+<<<<<<< Updated upstream
             Trailer.Location = new Point(298, 400);
             Trailer.Margin = new Padding(3, 2, 3, 2);
+=======
+            Trailer.Location = new Point(340, 586);
+>>>>>>> Stashed changes
             Trailer.Name = "Trailer";
             Trailer.Size = new Size(122, 38);
             Trailer.TabIndex = 8;
@@ -144,8 +142,12 @@
             DatVe.BackColor = Color.FromArgb(230, 57, 70);
             DatVe.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DatVe.ForeColor = SystemColors.Control;
+<<<<<<< Updated upstream
             DatVe.Location = new Point(508, 400);
             DatVe.Margin = new Padding(3, 2, 3, 2);
+=======
+            DatVe.Location = new Point(581, 586);
+>>>>>>> Stashed changes
             DatVe.Name = "DatVe";
             DatVe.Size = new Size(122, 38);
             DatVe.TabIndex = 7;
@@ -155,6 +157,7 @@
             // 
             // PanelChiTietPhim
             // 
+<<<<<<< Updated upstream
             PanelChiTietPhim.Controls.Add(QuocGia);
             PanelChiTietPhim.Controls.Add(DoTuoi);
             PanelChiTietPhim.Controls.Add(NgonNgu);
@@ -174,10 +177,18 @@
             PanelChiTietPhim.Margin = new Padding(3, 2, 3, 2);
             PanelChiTietPhim.Name = "PanelChiTietPhim";
             PanelChiTietPhim.Size = new Size(665, 338);
+=======
+            PanelChiTietPhim.Controls.Add(NoiDungPhim);
+            PanelChiTietPhim.Location = new Point(65, 33);
+            PanelChiTietPhim.Name = "PanelChiTietPhim";
+            PanelChiTietPhim.Size = new Size(1131, 528);
+>>>>>>> Stashed changes
             PanelChiTietPhim.TabIndex = 5;
+            PanelChiTietPhim.Paint += PanelChiTietPhim_Paint;
             // 
-            // QuocGia
+            // NoiDungPhim
             // 
+<<<<<<< Updated upstream
             QuocGia.BackColor = Color.FromArgb(21, 3, 27);
             QuocGia.BorderStyle = BorderStyle.None;
             QuocGia.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -359,6 +370,16 @@
             TenPhim.TabIndex = 0;
             TenPhim.Text = "TEEYOD 3 - QUỶ ĂN TẠNG (PHẦN 3)";
             TenPhim.TextAlign = HorizontalAlignment.Center;
+=======
+            NoiDungPhim.AutoSize = true;
+            NoiDungPhim.Font = new Font("Arial", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NoiDungPhim.ForeColor = Color.FromArgb(255, 212, 59);
+            NoiDungPhim.Location = new Point(19, 12);
+            NoiDungPhim.Name = "NoiDungPhim";
+            NoiDungPhim.Size = new Size(282, 40);
+            NoiDungPhim.TabIndex = 10;
+            NoiDungPhim.Text = "NỘI DUNG PHIM";
+>>>>>>> Stashed changes
             // 
             // PanelHeader
             // 
@@ -376,14 +397,18 @@
             // 
             // Logo
             // 
+<<<<<<< Updated upstream
             Logo.Location = new Point(100, 6);
             Logo.Margin = new Padding(3, 2, 3, 2);
+=======
+            Logo.Image = (Image)resources.GetObject("Logo.Image");
+            Logo.Location = new Point(114, 8);
+>>>>>>> Stashed changes
             Logo.Name = "Logo";
             Logo.Size = new Size(91, 71);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
-            Logo.Click += pictureBox1_Click;
             // 
             // TimKiem
             // 
@@ -440,7 +465,11 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(21, 3, 27);
+<<<<<<< Updated upstream
             ClientSize = new Size(1113, 596);
+=======
+            ClientSize = new Size(1272, 820);
+>>>>>>> Stashed changes
             Controls.Add(PanelHeader);
             Controls.Add(PanelChinh);
             Controls.Add(panelDuongDan);
@@ -451,7 +480,6 @@
             panelDuongDan.ResumeLayout(false);
             panelDuongDan.PerformLayout();
             PanelChinh.ResumeLayout(false);
-            PanelChinh.PerformLayout();
             PanelChiTietPhim.ResumeLayout(false);
             PanelChiTietPhim.PerformLayout();
             PanelHeader.ResumeLayout(false);
@@ -466,22 +494,7 @@
         private PictureBox Poster;
         private Panel PanelChinh;
         private Panel PanelChiTietPhim;
-        private TextBox TenPhim;
-        private Label label8;
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
         private TextBox textBox2;
-        private TextBox DaoDien;
-        private TextBox TheLoai;
-        private TextBox DienVien;
-        private TextBox ThoiLuong;
-        private TextBox QuocGia;
-        private TextBox DoTuoi;
-        private TextBox NgonNgu;
         private Button DatVe;
         private Button Trailer;
         private Button DanhGia;

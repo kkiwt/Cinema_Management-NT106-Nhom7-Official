@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhSachNguoiDanhGia));
             TenNguoiKhac = new Label();
             NgayDanhGiaNguoiKhac = new DateTimePicker();
             PanelSao = new Panel();
-            Sao5a = new PictureBox();
-            Sao4a = new PictureBox();
-            Sao3a = new PictureBox();
-            Sao2a = new PictureBox();
-            Sao1a = new PictureBox();
+            Sao5 = new PictureBox();
+            Sao4 = new PictureBox();
+            Sao3 = new PictureBox();
+            Sao2 = new PictureBox();
+            Sao1 = new PictureBox();
             NoiDungDanhGiaNgKhac = new TextBox();
             XoaCuaNhanVien = new Button();
             PanelSao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Sao5a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao4a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao3a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao2a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao1a).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Sao5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Sao4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Sao3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Sao2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Sao1).BeginInit();
             SuspendLayout();
             // 
             // TenNguoiKhac
@@ -66,60 +67,65 @@
             // 
             // PanelSao
             // 
-            PanelSao.Controls.Add(Sao5a);
-            PanelSao.Controls.Add(Sao4a);
-            PanelSao.Controls.Add(Sao3a);
-            PanelSao.Controls.Add(Sao2a);
-            PanelSao.Controls.Add(Sao1a);
+            PanelSao.Controls.Add(Sao5);
+            PanelSao.Controls.Add(Sao4);
+            PanelSao.Controls.Add(Sao3);
+            PanelSao.Controls.Add(Sao2);
+            PanelSao.Controls.Add(Sao1);
             PanelSao.Location = new Point(45, 72);
             PanelSao.Name = "PanelSao";
             PanelSao.Size = new Size(224, 44);
             PanelSao.TabIndex = 22;
             // 
-            // Sao5a
+            // Sao5
             // 
-            Sao5a.Location = new Point(171, 0);
-            Sao5a.Name = "Sao5a";
-            Sao5a.Size = new Size(36, 36);
-            Sao5a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao5a.TabIndex = 25;
-            Sao5a.TabStop = false;
+            Sao5.Image = (Image)resources.GetObject("Sao5.Image");
+            Sao5.Location = new Point(171, 0);
+            Sao5.Name = "Sao5";
+            Sao5.Size = new Size(36, 36);
+            Sao5.SizeMode = PictureBoxSizeMode.StretchImage;
+            Sao5.TabIndex = 25;
+            Sao5.TabStop = false;
             // 
-            // Sao4a
+            // Sao4
             // 
-            Sao4a.Location = new Point(129, 0);
-            Sao4a.Name = "Sao4a";
-            Sao4a.Size = new Size(36, 36);
-            Sao4a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao4a.TabIndex = 24;
-            Sao4a.TabStop = false;
+            Sao4.Image = (Image)resources.GetObject("Sao4.Image");
+            Sao4.Location = new Point(129, 0);
+            Sao4.Name = "Sao4";
+            Sao4.Size = new Size(36, 36);
+            Sao4.SizeMode = PictureBoxSizeMode.StretchImage;
+            Sao4.TabIndex = 24;
+            Sao4.TabStop = false;
             // 
-            // Sao3a
+            // Sao3
             // 
-            Sao3a.Location = new Point(87, 0);
-            Sao3a.Name = "Sao3a";
-            Sao3a.Size = new Size(36, 36);
-            Sao3a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao3a.TabIndex = 23;
-            Sao3a.TabStop = false;
+            Sao3.Image = (Image)resources.GetObject("Sao3.Image");
+            Sao3.Location = new Point(87, 0);
+            Sao3.Name = "Sao3";
+            Sao3.Size = new Size(36, 36);
+            Sao3.SizeMode = PictureBoxSizeMode.StretchImage;
+            Sao3.TabIndex = 23;
+            Sao3.TabStop = false;
             // 
-            // Sao2a
+            // Sao2
             // 
-            Sao2a.Location = new Point(45, 0);
-            Sao2a.Name = "Sao2a";
-            Sao2a.Size = new Size(36, 36);
-            Sao2a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao2a.TabIndex = 22;
-            Sao2a.TabStop = false;
+            Sao2.Image = (Image)resources.GetObject("Sao2.Image");
+            Sao2.Location = new Point(45, 0);
+            Sao2.Name = "Sao2";
+            Sao2.Size = new Size(36, 36);
+            Sao2.SizeMode = PictureBoxSizeMode.StretchImage;
+            Sao2.TabIndex = 22;
+            Sao2.TabStop = false;
             // 
-            // Sao1a
+            // Sao1
             // 
-            Sao1a.Location = new Point(3, 1);
-            Sao1a.Name = "Sao1a";
-            Sao1a.Size = new Size(36, 36);
-            Sao1a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao1a.TabIndex = 21;
-            Sao1a.TabStop = false;
+            Sao1.Image = (Image)resources.GetObject("Sao1.Image");
+            Sao1.Location = new Point(3, 1);
+            Sao1.Name = "Sao1";
+            Sao1.Size = new Size(36, 36);
+            Sao1.SizeMode = PictureBoxSizeMode.StretchImage;
+            Sao1.TabIndex = 21;
+            Sao1.TabStop = false;
             // 
             // NoiDungDanhGiaNgKhac
             // 
@@ -157,11 +163,11 @@
             Size = new Size(591, 261);
             Load += DanhSachNguoiDanhGia_Load;
             PanelSao.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)Sao5a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao4a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao3a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao2a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao1a).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Sao5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Sao4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Sao3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Sao2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Sao1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -171,11 +177,11 @@
         private Label TenNguoiKhac;
         private DateTimePicker NgayDanhGiaNguoiKhac;
         private Panel PanelSao;
-        private PictureBox Sao5a;
-        private PictureBox Sao4a;
-        private PictureBox Sao3a;
-        private PictureBox Sao2a;
-        private PictureBox Sao1a;
+        private PictureBox Sao5;
+        private PictureBox Sao4;
+        private PictureBox Sao3;
+        private PictureBox Sao2;
+        private PictureBox Sao1;
         private TextBox NoiDungDanhGiaNgKhac;
         private Button XoaCuaNhanVien;
     }

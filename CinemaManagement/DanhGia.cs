@@ -22,7 +22,11 @@ namespace TrangChu
 
         }
 
+<<<<<<< Updated upstream
         private void Loc_SelectedIndexChanged(object sender, EventArgs e)
+=======
+        private void panel1_Paint(object sender, PaintEventArgs e)
+>>>>>>> Stashed changes
         {
 
         }

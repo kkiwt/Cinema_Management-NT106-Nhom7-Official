@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using Microsoft.VisualBasic.Devices;
 using System.Drawing;
 using TrangChu;
@@ -6,10 +7,43 @@ namespace CinemaManagement
 {
     public partial class TrangChuChinh : Form
     {
+
+
+﻿using CinemaManagement;
+using Microsoft.VisualBasic.Devices;
+using Supabase; 
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
+
+namespace TrangChu
+{
+    public partial class TrangChuChinh : Form
+    {
+        private List<Phim> DanhSachPhim= new List<Phim>();
+        private int ViTriBatDauCuaMotPhim = 0;
+
+        private int KichThuocTrang = 3; // Số phim hiển thị mỗi trang
+        private int TongSoTrang = 1; // Tổng số trang
+        private int TrangHienTai = 1; // Trang hiện tại
+
+        private const string SupabaseUrl = "https://qyhamranljmfsrxfxfls.supabase.co" ;
+        private const string SupabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aGFtcmFubGptZnNyeGZ4ZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0NjgzMzQsImV4cCI6MjA3NzA0NDMzNH0.Qtd4vxXBsDlx7ZDWFV92WTmHqXUpJrbyOqW8D5yIBJs";
+
+
+>>>>>>> Stashed changes
         public TrangChuChinh()
         {
             InitializeComponent();
         }
+<<<<<<< Updated upstream
         // Trong TrangChuChinh.cs
 
         // Khai báo thêm biến để theo dõi vị trí phim
@@ -139,6 +173,111 @@ namespace CinemaManagement
                 }
         */
 
+=======
+
+        private async void TrangChuChinh_Load(object sender, EventArgs e)
+        {
+            // Thay thế logic TCP bằng Supabase
+            await LoadPhimTuSupabase();
+        }
+
+        private async Task LoadPhimTuSupabase()
+        {
+            try
+            {
+                // 2. Khởi tạo Supabase Client
+                var Options = new SupabaseOptions { AutoConnectRealtime = true };
+                var Client = new Supabase.Client(SupabaseUrl, SupabaseKey, Options);
+                await Client.InitializeAsync();
+
+                // 3. Truy vấn dữ liệu từ bảng 'Phim'
+                // Phương thức From<Phim>() sẽ ánh xạ dữ liệu trả về vào list Phim
+                var Response = await Client.From<Phim>().Get();
+
+                // 4. Lấy danh sách phim đã được ánh xạ
+                DanhSachPhim = Response.Models;
+                DanhSachPhim = Response.Models;
+
+                if (DanhSachPhim != null && DanhSachPhim.Count > 0)
+                {
+                    TongSoTrang = (int)Math.Ceiling((double)DanhSachPhim.Count / KichThuocTrang);
+                    TrangHienTai = 1; // Bắt đầu ở trang 1
+
+                    HienThiPhim();
+                    CapNhatNutDiChuyen();
+                    CapNhatTrang(); // Gọi hàm cập nhật Label
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu phim nào.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối hoặc truy vấn Supabase: " + ex.Message);
+            }
+        }
+
+        private void CapNhatNutDiChuyen()
+        {
+            Prev.Enabled = ViTriBatDauCuaMotPhim > 0;
+            Next.Enabled = ViTriBatDauCuaMotPhim + 3 < DanhSachPhim.Count;
+        }
+        // Hàm mới: Cập nhật nội dung Label hiển thị số trang
+        private void CapNhatTrang()
+        {
+            // Căn cứ vào CurrentMovieStartIndex và pageSize để tính currentPage
+            if (DanhSachPhim.Count > 0)
+            {
+                TrangHienTai = (ViTriBatDauCuaMotPhim / KichThuocTrang) + 1;
+                Trang.Text = $"Trang {TrangHienTai} / {TongSoTrang}";
+            }
+            else
+            {
+                Trang.Text = "Không có phim nào";
+            }
+        }
+        private void HienThiPhim()
+        {
+            BangPhim.Controls.Clear();
+            for (int i = ViTriBatDauCuaMotPhim; i < ViTriBatDauCuaMotPhim + 3 && i < DanhSachPhim.Count; i++)
+            {
+                var MucPhim = new MovieItemControl();
+                var DuLieuPhim = DanhSachPhim[i];
+                MucPhim.PhimDuocChon += MucPhimDuocChon;
+                MucPhim.ThongTinPhim(DuLieuPhim);
+                BangPhim.Controls.Add(MucPhim);
+            }
+        }
+
+        private void MucPhimDuocChon (object sender, PhimDuocChonEventArgs e)
+        {
+            Phim PhimDaDuocChon = e.PhimDuocChon;
+            MessageBox.Show($"Trang chủ nhận được yêu cầu Chi tiết/Đặt vé cho phim: {PhimDaDuocChon.TenPhim}");
+        }
+
+        private void Next_Click(object sender, EventArgs e)
+        {
+            if (ViTriBatDauCuaMotPhim + 3 < DanhSachPhim.Count)
+            {
+                ViTriBatDauCuaMotPhim += 3;
+                HienThiPhim();
+                CapNhatNutDiChuyen();
+                CapNhatTrang(); // Gọi hàm cập nhật Label
+            }
+        }
+
+        private void Prev_Click(object sender, EventArgs e)
+        {
+            if (ViTriBatDauCuaMotPhim > 0)
+            {
+                ViTriBatDauCuaMotPhim = Math.Max(0, ViTriBatDauCuaMotPhim - 3);
+                HienThiPhim();
+                CapNhatNutDiChuyen();
+                CapNhatTrang(); // Gọi hàm cập nhật Label
+            }
+        }
+
 
         private void UuDai_Click(object sender, EventArgs e)
         {
@@ -154,6 +293,7 @@ namespace CinemaManagement
         {
             MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height)); //Hien thi menu tai khoan de chon 3 tien ich.
         }
+<<<<<<< Updated upstream
 
         private void Poster_Click(object sender, EventArgs e)
         {
@@ -222,6 +362,8 @@ namespace CinemaManagement
         {
 
         }
+=======
+>>>>>>> Stashed changes
     }
 }
 

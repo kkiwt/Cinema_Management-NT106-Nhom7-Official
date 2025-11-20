@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace CinemaManagement
+﻿namespace CinemaManagement
 {
     public class TaiKhoan
     {
@@ -360,7 +357,7 @@ namespace CinemaManagement
             }
         }
     }
-
+    /*
     public class Phim
     {
         public string IdPhim { get; set; }
@@ -384,7 +381,11 @@ namespace CinemaManagement
 
 
         public Phim() { }
+<<<<<<< Updated upstream
         public Phim(string id, string ten, string nhaXB,string Director ,string Actor,string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Nation, string Language)
+=======
+        public Phim(string id, string ten, string nhaXB, string Director, string Actor, string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Poster, string Nation, string Language)
+>>>>>>> Stashed changes
         {
             IdPhim = id;
             TenPhim = ten;
@@ -425,7 +426,7 @@ namespace CinemaManagement
             }
         }
     }
-
+    */
     public class SuatChieu
     {
         public string IdSuatChieu { get; set; }
