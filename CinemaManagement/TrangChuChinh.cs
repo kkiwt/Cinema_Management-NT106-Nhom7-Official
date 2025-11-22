@@ -166,12 +166,6 @@ namespace CinemaManagement
             CapNhatTrang();
         }
 
-        // ChiTietPhim.cs
-
-        // Form ChiTietPhim đã có biến: private TrangChuChinh formTrangChuChinh;
-
-       
-
     }
     public class PhimDuocChonEventArgs : EventArgs
     {
