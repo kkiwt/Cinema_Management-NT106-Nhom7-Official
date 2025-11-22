@@ -178,8 +178,6 @@ namespace ServerAndService
             }
         }
 
-
-        // File Service.cs (Phiên bản đơn giản hóa, giả định hàm SQL đã trả về đủ)
         public async Task<string> GetReviewSummary(string idPhim)
         {
             try
