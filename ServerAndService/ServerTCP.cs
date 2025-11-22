@@ -57,6 +57,44 @@ namespace ServerAndService
 
                 switch (command)
                 {
+                    case "REGISTER":
+                        if (parts.Length < 8)
+                        {
+                            response = "ERROR: REGISTER requires 7 parameters";
+                        }
+                        else
+                        {
+                            string hoTen = parts[1];
+                            string username = parts[2];
+                            string password = parts[3];
+                            string email = parts[4];
+                            string gioiTinh = parts[5];
+                            string ngaySinhStr = parts[6];
+                            string soDienThoai = parts[7];
+
+                            if (!DateTime.TryParse(ngaySinhStr, out DateTime ngaySinh))
+                            {
+                                response = "ERROR: Invalid date format";
+                                break;
+                            }
+
+                            response = await service.RegisterUser(
+                                hoTen, username, password, email, gioiTinh, ngaySinh, soDienThoai);
+                        }
+                        break;
+
+                    case "LOGIN":
+                        if (parts.Length < 3)
+                        {
+                            response = "ERROR: LOGIN requires 2 parameters";
+                        }
+                        else
+                        {
+                            string username = parts[1];
+                            string password = parts[2];
+                            response = await service.LoginUser(username, password);
+                        }
+                        break;
                     case "GET_LATEST_MOVIES":
                         if (parts.Length < 2 || !int.TryParse(parts[1], out int limitCount) || limitCount < 0)
                         {

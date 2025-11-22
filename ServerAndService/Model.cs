@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ServerAndService
 {
@@ -264,7 +265,34 @@ namespace ServerAndService
             }
         }
     }
+    public class ReviewDisplay
+    {
+        [JsonPropertyName("idtaikhoan")]
+        public string IdTaiKhoan { get; set; }
 
+        [JsonPropertyName("hoten")]
+        public string HoTen { get; set; }
+
+        [JsonPropertyName("noidung")]
+        public string NoiDung { get; set; }
+
+        [JsonPropertyName("sosao")]
+        public int SoSao { get; set; }
+
+
+    }
+
+    public class ReviewSummary
+    {
+        [JsonPropertyName("avg_rating")]
+        public float AvgRating { get; set; }
+
+        [JsonPropertyName("total_reviews")]
+        public int TotalReviews { get; set; }
+
+        [JsonPropertyName("latest_reviews")]
+        public List<ReviewDisplay> LatestReviews { get; set; }
+    }
     public class GiamGia
     {
         public string IdGiamGia { get; set; }

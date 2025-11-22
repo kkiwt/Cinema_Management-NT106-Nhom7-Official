@@ -35,7 +35,8 @@
             LinkTrangChuChinh = new LinkLabel();
             House = new PictureBox();
             PanelChinh = new Panel();
-            ListDS = new FlowLayoutPanel();
+            NhapDanhGia = new TextBox();
+            DanhSachCacDanhGia = new FlowLayoutPanel();
             panel1 = new Panel();
             Sao5a = new PictureBox();
             Sao4a = new PictureBox();
@@ -50,7 +51,6 @@
             Sao1 = new PictureBox();
             HuyDanhGia = new Button();
             GuiPhanHoi = new Button();
-            NoiDungDanhGiaUser = new TextBox();
             TenUser = new Label();
             VietDanhGiaCuaBan = new Label();
             Loc = new ComboBox();
@@ -111,7 +111,6 @@
             LinkTenPhim.TabIndex = 23;
             LinkTenPhim.TabStop = true;
             LinkTenPhim.Text = "Tên Phim";
-            LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked;
             // 
             // LinkTrangChuChinh
             // 
@@ -124,7 +123,6 @@
             LinkTrangChuChinh.TabIndex = 8;
             LinkTrangChuChinh.TabStop = true;
             LinkTrangChuChinh.Text = "Trang chủ chính >>";
-            LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
             // 
             // House
             // 
@@ -140,12 +138,12 @@
             // PanelChinh
             // 
             PanelChinh.BackColor = Color.FromArgb(21, 3, 27);
-            PanelChinh.Controls.Add(ListDS);
+            PanelChinh.Controls.Add(NhapDanhGia);
+            PanelChinh.Controls.Add(DanhSachCacDanhGia);
             PanelChinh.Controls.Add(panel1);
             PanelChinh.Controls.Add(PanelSao);
             PanelChinh.Controls.Add(HuyDanhGia);
             PanelChinh.Controls.Add(GuiPhanHoi);
-            PanelChinh.Controls.Add(NoiDungDanhGiaUser);
             PanelChinh.Controls.Add(TenUser);
             PanelChinh.Controls.Add(VietDanhGiaCuaBan);
             PanelChinh.Controls.Add(Loc);
@@ -158,13 +156,21 @@
             PanelChinh.Size = new Size(1117, 469);
             PanelChinh.TabIndex = 8;
             // 
-            // ListDS
+            // NhapDanhGia
             // 
-            ListDS.Location = new Point(32, 147);
-            ListDS.Margin = new Padding(3, 2, 3, 2);
-            ListDS.Name = "ListDS";
-            ListDS.Size = new Size(504, 313);
-            ListDS.TabIndex = 22;
+            NhapDanhGia.Location = new Point(628, 147);
+            NhapDanhGia.Multiline = true;
+            NhapDanhGia.Name = "NhapDanhGia";
+            NhapDanhGia.Size = new Size(452, 261);
+            NhapDanhGia.TabIndex = 23;
+            // 
+            // DanhSachCacDanhGia
+            // 
+            DanhSachCacDanhGia.ForeColor = SystemColors.ControlLightLight;
+            DanhSachCacDanhGia.Location = new Point(32, 146);
+            DanhSachCacDanhGia.Name = "DanhSachCacDanhGia";
+            DanhSachCacDanhGia.Size = new Size(515, 314);
+            DanhSachCacDanhGia.TabIndex = 22;
             // 
             // panel1
             // 
@@ -320,16 +326,6 @@
             GuiPhanHoi.UseCompatibleTextRendering = true;
             GuiPhanHoi.UseVisualStyleBackColor = false;
             // 
-            // NoiDungDanhGiaUser
-            // 
-            NoiDungDanhGiaUser.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            NoiDungDanhGiaUser.Location = new Point(607, 146);
-            NoiDungDanhGiaUser.Margin = new Padding(3, 2, 3, 2);
-            NoiDungDanhGiaUser.Multiline = true;
-            NoiDungDanhGiaUser.Name = "NoiDungDanhGiaUser";
-            NoiDungDanhGiaUser.Size = new Size(463, 272);
-            NoiDungDanhGiaUser.TabIndex = 12;
-            // 
             // TenUser
             // 
             TenUser.AutoSize = true;
@@ -451,7 +447,6 @@
             TaiKhoan.TabIndex = 1;
             TaiKhoan.Text = "TÀI KHOẢN";
             TaiKhoan.UseVisualStyleBackColor = false;
-            TaiKhoan.Click += TaiKhoan_Click;
             // 
             // PhimHot
             // 
@@ -557,7 +552,6 @@
         private TextBox TongSoLuotDanhGia;
         private ComboBox Loc;
         private Label VietDanhGiaCuaBan;
-        private TextBox NoiDungDanhGiaUser;
         private Label TenUser;
         private Button HuyDanhGia;
         private Button GuiPhanHoi;
@@ -579,7 +573,6 @@
         private PictureBox Sao3;
         private PictureBox Sao2;
         private PictureBox Sao1;
-        private FlowLayoutPanel ListDS;
         private ContextMenuStrip MenuTaiKhoan;
         private ToolStripMenuItem ThongTinTaiKhoan;
         private ToolStripMenuItem VeDaDat;
@@ -587,5 +580,7 @@
         private PictureBox House;
         private LinkLabel LinkTrangChuChinh;
         private LinkLabel LinkTenPhim;
+        private TextBox NhapDanhGia;
+        private FlowLayoutPanel DanhSachCacDanhGia;
     }
 }
