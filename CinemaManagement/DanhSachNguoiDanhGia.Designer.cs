@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TenNguoiKhac = new Label();
+            HoTen = new Label();
             NgayDanhGiaNguoiKhac = new DateTimePicker();
             PanelSao = new Panel();
             Sao5a = new PictureBox();
@@ -46,22 +46,23 @@
             ((System.ComponentModel.ISupportInitialize)Sao1a).BeginInit();
             SuspendLayout();
             // 
-            // TenNguoiKhac
+            // HoTen
             // 
-            TenNguoiKhac.AutoSize = true;
-            TenNguoiKhac.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TenNguoiKhac.ForeColor = Color.White;
-            TenNguoiKhac.Location = new Point(45, 39);
-            TenNguoiKhac.Name = "TenNguoiKhac";
-            TenNguoiKhac.Size = new Size(133, 23);
-            TenNguoiKhac.TabIndex = 0;
-            TenNguoiKhac.Text = "Nguyễn Văn A";
+            HoTen.AutoSize = true;
+            HoTen.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            HoTen.ForeColor = Color.White;
+            HoTen.Location = new Point(39, 29);
+            HoTen.Name = "HoTen";
+            HoTen.Size = new Size(106, 18);
+            HoTen.TabIndex = 0;
+            HoTen.Text = "Nguyễn Văn A";
             // 
             // NgayDanhGiaNguoiKhac
             // 
-            NgayDanhGiaNguoiKhac.Location = new Point(244, 39);
+            NgayDanhGiaNguoiKhac.Location = new Point(214, 29);
+            NgayDanhGiaNguoiKhac.Margin = new Padding(3, 2, 3, 2);
             NgayDanhGiaNguoiKhac.Name = "NgayDanhGiaNguoiKhac";
-            NgayDanhGiaNguoiKhac.Size = new Size(195, 27);
+            NgayDanhGiaNguoiKhac.Size = new Size(171, 23);
             NgayDanhGiaNguoiKhac.TabIndex = 1;
             // 
             // PanelSao
@@ -71,43 +72,48 @@
             PanelSao.Controls.Add(Sao3a);
             PanelSao.Controls.Add(Sao2a);
             PanelSao.Controls.Add(Sao1a);
-            PanelSao.Location = new Point(45, 72);
+            PanelSao.Location = new Point(39, 54);
+            PanelSao.Margin = new Padding(3, 2, 3, 2);
             PanelSao.Name = "PanelSao";
-            PanelSao.Size = new Size(224, 44);
+            PanelSao.Size = new Size(196, 33);
             PanelSao.TabIndex = 22;
             // 
             // Sao5a
             // 
-            Sao5a.Location = new Point(171, 0);
+            Sao5a.Location = new Point(150, 0);
+            Sao5a.Margin = new Padding(3, 2, 3, 2);
             Sao5a.Name = "Sao5a";
-            Sao5a.Size = new Size(36, 36);
+            Sao5a.Size = new Size(32, 27);
             Sao5a.SizeMode = PictureBoxSizeMode.StretchImage;
             Sao5a.TabIndex = 25;
             Sao5a.TabStop = false;
             // 
             // Sao4a
             // 
-            Sao4a.Location = new Point(129, 0);
+            Sao4a.Location = new Point(113, 0);
+            Sao4a.Margin = new Padding(3, 2, 3, 2);
             Sao4a.Name = "Sao4a";
-            Sao4a.Size = new Size(36, 36);
+            Sao4a.Size = new Size(32, 27);
             Sao4a.SizeMode = PictureBoxSizeMode.StretchImage;
             Sao4a.TabIndex = 24;
             Sao4a.TabStop = false;
             // 
             // Sao3a
             // 
-            Sao3a.Location = new Point(87, 0);
+            Sao3a.Location = new Point(76, 0);
+            Sao3a.Margin = new Padding(3, 2, 3, 2);
             Sao3a.Name = "Sao3a";
-            Sao3a.Size = new Size(36, 36);
+            Sao3a.Size = new Size(32, 27);
             Sao3a.SizeMode = PictureBoxSizeMode.StretchImage;
             Sao3a.TabIndex = 23;
             Sao3a.TabStop = false;
             // 
             // Sao2a
             // 
-            Sao2a.Location = new Point(45, 0);
+            Sao2a.Location = new Point(39, 0);
+            Sao2a.Margin = new Padding(3, 2, 3, 2);
             Sao2a.Name = "Sao2a";
-            Sao2a.Size = new Size(36, 36);
+            Sao2a.Size = new Size(32, 27);
             Sao2a.SizeMode = PictureBoxSizeMode.StretchImage;
             Sao2a.TabIndex = 22;
             Sao2a.TabStop = false;
@@ -115,8 +121,9 @@
             // Sao1a
             // 
             Sao1a.Location = new Point(3, 1);
+            Sao1a.Margin = new Padding(3, 2, 3, 2);
             Sao1a.Name = "Sao1a";
-            Sao1a.Size = new Size(36, 36);
+            Sao1a.Size = new Size(32, 27);
             Sao1a.SizeMode = PictureBoxSizeMode.StretchImage;
             Sao1a.TabIndex = 21;
             Sao1a.TabStop = false;
@@ -124,10 +131,11 @@
             // NoiDungDanhGiaNgKhac
             // 
             NoiDungDanhGiaNgKhac.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            NoiDungDanhGiaNgKhac.Location = new Point(45, 122);
+            NoiDungDanhGiaNgKhac.Location = new Point(42, 102);
+            NoiDungDanhGiaNgKhac.Margin = new Padding(3, 2, 3, 2);
             NoiDungDanhGiaNgKhac.Multiline = true;
             NoiDungDanhGiaNgKhac.Name = "NoiDungDanhGiaNgKhac";
-            NoiDungDanhGiaNgKhac.Size = new Size(523, 122);
+            NoiDungDanhGiaNgKhac.Size = new Size(458, 92);
             NoiDungDanhGiaNgKhac.TabIndex = 23;
             // 
             // XoaCuaNhanVien
@@ -135,27 +143,28 @@
             XoaCuaNhanVien.BackColor = Color.LightYellow;
             XoaCuaNhanVien.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             XoaCuaNhanVien.ForeColor = Color.Maroon;
-            XoaCuaNhanVien.Location = new Point(483, 67);
+            XoaCuaNhanVien.Location = new Point(423, 50);
+            XoaCuaNhanVien.Margin = new Padding(3, 2, 3, 2);
             XoaCuaNhanVien.Name = "XoaCuaNhanVien";
-            XoaCuaNhanVien.Size = new Size(85, 42);
+            XoaCuaNhanVien.Size = new Size(74, 32);
             XoaCuaNhanVien.TabIndex = 24;
             XoaCuaNhanVien.Text = "XÓA";
             XoaCuaNhanVien.UseVisualStyleBackColor = false;
             // 
             // DanhSachNguoiDanhGia
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(21, 3, 27);
             Controls.Add(XoaCuaNhanVien);
             Controls.Add(NoiDungDanhGiaNgKhac);
             Controls.Add(PanelSao);
             Controls.Add(NgayDanhGiaNguoiKhac);
-            Controls.Add(TenNguoiKhac);
+            Controls.Add(HoTen);
             ForeColor = SystemColors.ActiveCaptionText;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "DanhSachNguoiDanhGia";
-            Size = new Size(591, 261);
-            Load += DanhSachNguoiDanhGia_Load;
+            Size = new Size(517, 196);
             PanelSao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Sao5a).EndInit();
             ((System.ComponentModel.ISupportInitialize)Sao4a).EndInit();
@@ -168,7 +177,7 @@
 
         #endregion
 
-        private Label TenNguoiKhac;
+        private Label HoTen;
         private DateTimePicker NgayDanhGiaNguoiKhac;
         private Panel PanelSao;
         private PictureBox Sao5a;

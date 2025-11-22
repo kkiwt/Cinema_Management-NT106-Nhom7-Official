@@ -1,9 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
 using Supabase;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
+using System;
+using System.Text.Json; 
+using System.Threading.Tasks;
 
 namespace ServerAndService
 {
+
     internal class Service
     {
         private static Client client;
@@ -29,14 +35,14 @@ namespace ServerAndService
                 AutoRefreshToken = true
             };
 
-            client = new Supabase.Client(url, key, options); // ⚠️ Gán cho _client
+            client = new Supabase.Client(url, key, options);
             await client.InitializeAsync();
 
             Console.WriteLine("Supabase connected successfully!");
         }
 
 
-        // 🟢 Đăng ký tài khoản
+        // Đăng ký tài khoản
         public async Task<string> RegisterUser
             (
                    string hoTen,
@@ -69,7 +75,7 @@ namespace ServerAndService
             }
         }
 
-        // 🔹 Đăng nhập user (ví dụ)
+        // Đăng nhập user (ví dụ)
         public async Task<string> LoginUser(string username, string passwordHash)
         {
             try
@@ -125,7 +131,111 @@ namespace ServerAndService
 
         }
 
+        
+        public async Task<string> GetMovies()
+        {
+            try
+            {
+                // Sử dụng client đã được khởi tạo tĩnh
+                var Response = await client.From<Movie>().Get();
+
+                // Serialize danh sách Models thành JSON string
+                string json = JsonSerializer.Serialize(Response.Models);
+
+                // Trả về JSON string của danh sách phim
+                return json;
+            }
+            catch (Exception ex)
+            {
+                // Trả về chuỗi lỗi nếu có vấn đề
+                return $"ERROR_GET_MOVIES: {ex.Message}";
+            }
+        }
+        
+        public async Task<string> GetLatestMoviesRPC(int limitCount)
+        {
+            try
+            {
+                // Gọi RPC
+                var result = await client.Rpc("get_latest_movies", new
+                {
+                    limit_count = limitCount
+                });
+
+                var json = result.Content?.Trim();
+
+                // Xử lý phản hồi rỗng hoặc không hợp lệ (nếu Supabase trả về null/rỗng)
+                if (string.IsNullOrWhiteSpace(json) || json == "null" || json == "[]")
+                {
+                    return "[]"; // Trả về JSON Array rỗng hợp lệ
+                }
+                return json;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error calling get_latest_movies: {ex.Message}");
+                return $"ERROR_GET_LATEST_MOVIES: {ex.Message}";
+            }
+        }
 
 
+        // File Service.cs (Phiên bản đơn giản hóa, giả định hàm SQL đã trả về đủ)
+        public async Task<string> GetReviewSummary(string idPhim)
+        {
+            try
+            {
+                // Chỉ gọi một hàm RPC duy nhất
+                var result = await client.Rpc("get_review_summary", new
+                {
+                    p_idphim = idPhim
+                });
+
+                string json = result.Content?.Trim();
+
+                // Xử lý phản hồi rỗng hoặc không hợp lệ (nếu Supabase trả về null/rỗng)
+                if (string.IsNullOrWhiteSpace(json) || json == "null" || json == "[]")
+                {
+                    // Trả về JSON hợp lệ với giá trị mặc định nếu không tìm thấy
+                    return "{\"avg_rating\": 0, \"total_reviews\": 0, \"latest_reviews\": []}";
+                }
+
+                // Supabase trả về mảng JSON, ta chỉ cần phần tử đầu tiên
+                if (json.StartsWith("[")) json = json.Trim(['[', ']']);
+
+                return json;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error calling get_review_summary: {ex.Message}");
+                return $"ERROR_GET_REVIEW_SUMMARY: {ex.Message}";
+            }
+        }
+
+        public async Task<string> PostReview(string idTaiKhoan, string idPhim, string noiDung, int soSao)
+        {
+            try
+            {
+                var result = await client.Rpc("insert_review", new
+                {
+                    _idtaikhoan = idTaiKhoan,
+                    _idphim = idPhim,
+                    _noidung = noiDung,
+                    _sosao = soSao
+                });
+                var responseText = result.Content?.Trim();
+
+                if (string.IsNullOrWhiteSpace(responseText) || responseText.Contains("SUCCESS"))
+                {
+                    return "SUCCESS";
+                }
+
+                return responseText;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error calling insert_review: {ex.Message}");
+                return $"ERROR_POST_REVIEW_SERVICE: {ex.Message}";
+            }
+        }
     }
 }

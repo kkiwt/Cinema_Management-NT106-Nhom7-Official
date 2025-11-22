@@ -1,4 +1,4 @@
-﻿namespace TrangChu
+﻿namespace CinemaManagement
 {
     partial class DanhGia
     {
@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhGia));
             panelDuongDan = new Panel();
-            DuongDan = new Label();
+            LinkTenPhim = new LinkLabel();
+            LinkTrangChuChinh = new LinkLabel();
+            House = new PictureBox();
             PanelChinh = new Panel();
             ListDS = new FlowLayoutPanel();
             panel1 = new Panel();
@@ -59,7 +63,12 @@
             TaiKhoan = new Button();
             PhimHot = new Button();
             UuDai = new Button();
+            MenuTaiKhoan = new ContextMenuStrip(components);
+            ThongTinTaiKhoan = new ToolStripMenuItem();
+            VeDaDat = new ToolStripMenuItem();
+            DangXuat = new ToolStripMenuItem();
             panelDuongDan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)House).BeginInit();
             PanelChinh.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Sao5a).BeginInit();
@@ -75,29 +84,58 @@
             ((System.ComponentModel.ISupportInitialize)Sao1).BeginInit();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
+            MenuTaiKhoan.SuspendLayout();
             SuspendLayout();
             // 
             // panelDuongDan
             // 
             panelDuongDan.BackColor = Color.LightBlue;
-            panelDuongDan.Controls.Add(DuongDan);
+            panelDuongDan.Controls.Add(LinkTenPhim);
+            panelDuongDan.Controls.Add(LinkTrangChuChinh);
+            panelDuongDan.Controls.Add(House);
             panelDuongDan.ForeColor = Color.Transparent;
             panelDuongDan.Location = new Point(0, 77);
             panelDuongDan.Margin = new Padding(3, 2, 3, 2);
             panelDuongDan.Name = "panelDuongDan";
-            panelDuongDan.Size = new Size(1117, 44);
+            panelDuongDan.Size = new Size(1117, 55);
             panelDuongDan.TabIndex = 7;
             // 
-            // DuongDan
+            // LinkTenPhim
             // 
-            DuongDan.AutoSize = true;
-            DuongDan.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DuongDan.ForeColor = Color.Navy;
-            DuongDan.Location = new Point(47, 12);
-            DuongDan.Name = "DuongDan";
-            DuongDan.Size = new Size(330, 18);
-            DuongDan.TabIndex = 2;
-            DuongDan.Text = "Trang chủ > Phim Hot > TEEYOD 3 > Đánh giá";
+            LinkTenPhim.AutoSize = true;
+            LinkTenPhim.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LinkTenPhim.LinkColor = Color.Navy;
+            LinkTenPhim.Location = new Point(217, 19);
+            LinkTenPhim.Name = "LinkTenPhim";
+            LinkTenPhim.Size = new Size(74, 18);
+            LinkTenPhim.TabIndex = 23;
+            LinkTenPhim.TabStop = true;
+            LinkTenPhim.Text = "Tên Phim";
+            LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked;
+            // 
+            // LinkTrangChuChinh
+            // 
+            LinkTrangChuChinh.AutoSize = true;
+            LinkTrangChuChinh.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LinkTrangChuChinh.LinkColor = Color.Navy;
+            LinkTrangChuChinh.Location = new Point(75, 19);
+            LinkTrangChuChinh.Name = "LinkTrangChuChinh";
+            LinkTrangChuChinh.Size = new Size(136, 18);
+            LinkTrangChuChinh.TabIndex = 8;
+            LinkTrangChuChinh.TabStop = true;
+            LinkTrangChuChinh.Text = "Trang chủ chính >>";
+            LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
+            // 
+            // House
+            // 
+            House.Image = (Image)resources.GetObject("House.Image");
+            House.InitialImage = null;
+            House.Location = new Point(32, 11);
+            House.Name = "House";
+            House.Size = new Size(37, 33);
+            House.SizeMode = PictureBoxSizeMode.StretchImage;
+            House.TabIndex = 7;
+            House.TabStop = false;
             // 
             // PanelChinh
             // 
@@ -127,7 +165,6 @@
             ListDS.Name = "ListDS";
             ListDS.Size = new Size(504, 313);
             ListDS.TabIndex = 22;
-            ListDS.Paint += ListDS_Paint;
             // 
             // panel1
             // 
@@ -202,7 +239,7 @@
             PanelSao.Location = new Point(668, 86);
             PanelSao.Margin = new Padding(3, 2, 3, 2);
             PanelSao.Name = "PanelSao";
-            PanelSao.Size = new Size(264, 40);
+            PanelSao.Size = new Size(271, 56);
             PanelSao.TabIndex = 20;
             // 
             // Sao5
@@ -286,7 +323,7 @@
             // NoiDungDanhGiaUser
             // 
             NoiDungDanhGiaUser.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            NoiDungDanhGiaUser.Location = new Point(607, 131);
+            NoiDungDanhGiaUser.Location = new Point(607, 146);
             NoiDungDanhGiaUser.Margin = new Padding(3, 2, 3, 2);
             NoiDungDanhGiaUser.Multiline = true;
             NoiDungDanhGiaUser.Name = "NoiDungDanhGiaUser";
@@ -326,7 +363,6 @@
             Loc.Size = new Size(159, 26);
             Loc.TabIndex = 0;
             Loc.Text = "Lọc theo sao";
-            Loc.SelectedIndexChanged += Loc_SelectedIndexChanged;
             // 
             // TongSoLuotDanhGia
             // 
@@ -337,6 +373,7 @@
             TongSoLuotDanhGia.Location = new Point(376, 94);
             TongSoLuotDanhGia.Margin = new Padding(3, 2, 3, 2);
             TongSoLuotDanhGia.Name = "TongSoLuotDanhGia";
+            TongSoLuotDanhGia.ReadOnly = true;
             TongSoLuotDanhGia.Size = new Size(160, 19);
             TongSoLuotDanhGia.TabIndex = 9;
             TongSoLuotDanhGia.Text = "1234 lượt đánh giá";
@@ -350,6 +387,7 @@
             DTB.Location = new Point(56, 67);
             DTB.Margin = new Padding(3, 2, 3, 2);
             DTB.Name = "DTB";
+            DTB.ReadOnly = true;
             DTB.Size = new Size(113, 56);
             DTB.TabIndex = 4;
             DTB.Text = "4.3";
@@ -382,10 +420,11 @@
             // 
             // Logo
             // 
+            Logo.Image = (Image)resources.GetObject("Logo.Image");
             Logo.Location = new Point(107, 4);
             Logo.Margin = new Padding(3, 2, 3, 2);
             Logo.Name = "Logo";
-            Logo.Size = new Size(91, 71);
+            Logo.Size = new Size(75, 71);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
@@ -412,6 +451,7 @@
             TaiKhoan.TabIndex = 1;
             TaiKhoan.Text = "TÀI KHOẢN";
             TaiKhoan.UseVisualStyleBackColor = false;
+            TaiKhoan.Click += TaiKhoan_Click;
             // 
             // PhimHot
             // 
@@ -439,6 +479,40 @@
             UuDai.Text = "ƯU ĐÃI";
             UuDai.UseVisualStyleBackColor = false;
             // 
+            // MenuTaiKhoan
+            // 
+            MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
+            MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
+            MenuTaiKhoan.Name = "MenuTaiKhoan";
+            MenuTaiKhoan.Size = new Size(240, 88);
+            // 
+            // ThongTinTaiKhoan
+            // 
+            ThongTinTaiKhoan.BackColor = Color.FromArgb(255, 235, 235);
+            ThongTinTaiKhoan.Font = new Font("Arial", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ThongTinTaiKhoan.ForeColor = Color.FromArgb(92, 77, 68);
+            ThongTinTaiKhoan.Name = "ThongTinTaiKhoan";
+            ThongTinTaiKhoan.Size = new Size(239, 28);
+            ThongTinTaiKhoan.Text = "Thông tin tài khoản ";
+            // 
+            // VeDaDat
+            // 
+            VeDaDat.BackColor = Color.FromArgb(247, 201, 201);
+            VeDaDat.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            VeDaDat.ForeColor = Color.FromArgb(92, 77, 68);
+            VeDaDat.Name = "VeDaDat";
+            VeDaDat.Size = new Size(239, 28);
+            VeDaDat.Text = "Vé đã đặt";
+            // 
+            // DangXuat
+            // 
+            DangXuat.BackColor = Color.FromArgb(255, 235, 235);
+            DangXuat.Font = new Font("Arial", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            DangXuat.ForeColor = Color.FromArgb(92, 77, 68);
+            DangXuat.Name = "DangXuat";
+            DangXuat.Size = new Size(239, 28);
+            DangXuat.Text = "Đăng xuất";
+            // 
             // DanhGia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -453,6 +527,7 @@
             Text = "Solunar Cinema";
             panelDuongDan.ResumeLayout(false);
             panelDuongDan.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)House).EndInit();
             PanelChinh.ResumeLayout(false);
             PanelChinh.PerformLayout();
             panel1.ResumeLayout(false);
@@ -470,12 +545,12 @@
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
+            MenuTaiKhoan.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
         private Panel panelDuongDan;
-        private Label DuongDan;
         private Panel PanelChinh;
         private Label DanhGiaPhim;
         private TextBox DTB;
@@ -505,5 +580,12 @@
         private PictureBox Sao2;
         private PictureBox Sao1;
         private FlowLayoutPanel ListDS;
+        private ContextMenuStrip MenuTaiKhoan;
+        private ToolStripMenuItem ThongTinTaiKhoan;
+        private ToolStripMenuItem VeDaDat;
+        private ToolStripMenuItem DangXuat;
+        private PictureBox House;
+        private LinkLabel LinkTrangChuChinh;
+        private LinkLabel LinkTenPhim;
     }
 }

@@ -1,6 +1,4 @@
-﻿// ===========================
-// File: ServerTCP.cs
-// ===========================
+﻿// ServerTCP.cs
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -38,71 +36,61 @@ namespace ServerAndService
             {
                 Console.WriteLine("Client moi ket noi.");
                 var stream = client.GetStream();
-                var buffer = new byte[4096];
+
+                var buffer = new byte[1048576]; // 1 Megabyte
+
                 int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                 string message = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
 
                 Console.WriteLine($"Nhan: {message}");
 
-                // 🔹 Kiểm tra dữ liệu rỗng
+                //Check Data Rong
                 if (string.IsNullOrWhiteSpace(message))
                 {
-                    await SendResponseAsync(stream, "ERROR: Empty message received");
+                    await SendResponseAsync(stream, "ERROR: EMPTY_MESSAGE");
                     return;
                 }
 
-                // 🔹 Tách phần command
-                string[] parts = message.Split('|');
-                if (parts.Length == 0)
-                {
-                    await SendResponseAsync(stream, "ERROR: Invalid message format");
-                    return;
-                }
-
-                string command = parts[0].ToUpper();
                 string response;
+                var parts = message.Split('|');
+                var command = parts[0].ToUpper();
 
                 switch (command)
                 {
-                    case "REGISTER":
-                        if (parts.Length < 8)
+                    case "GET_LATEST_MOVIES":
+                        if (parts.Length < 2 || !int.TryParse(parts[1], out int limitCount) || limitCount < 0)
                         {
-                            response = "ERROR: REGISTER requires 7 parameters";
+                            response = "ERROR: GET_LATEST_MOVIES requires a non-negative integer limit parameter (e.g., GET_LATEST_MOVIES|100)";
                         }
                         else
                         {
-                            string hoTen = parts[1];
-                            string username = parts[2];
-                            string password = parts[3];
-                            string email = parts[4];
-                            string gioiTinh = parts[5];
-                            string ngaySinhStr = parts[6];
-                            string soDienThoai = parts[7];
-
-                            if (!DateTime.TryParse(ngaySinhStr, out DateTime ngaySinh))
-                            {
-                                response = "ERROR: Invalid date format";
-                                break;
-                            }
-
-                            response = await service.RegisterUser(
-                                hoTen, username, password, email, gioiTinh, ngaySinh, soDienThoai);
+                            response = await service.GetLatestMoviesRPC(limitCount);
                         }
                         break;
-
-                    case "LOGIN":
-                        if (parts.Length < 3)
+                    case "GET_REVIEW_SUMMARY":
+                        if (parts.Length < 2 || string.IsNullOrWhiteSpace(parts[1]))
                         {
-                            response = "ERROR: LOGIN requires 2 parameters";
+                            response = "ERROR: GET_REVIEW_SUMMARY requires IdPhim (e.g., GET_REVIEW_SUMMARY|PHIM001)";
                         }
                         else
                         {
-                            string username = parts[1];
-                            string password = parts[2];
-                            response = await service.LoginUser(username, password);
+                            string idPhim = parts[1];
+                            response = await service.GetReviewSummary(idPhim); //goi pthu kethop 2 RCP da tao
                         }
                         break;
-
+                    case "POST_REVIEW":
+                        if (parts.Length < 5 || !int.TryParse(parts[4], out int soSao) || soSao < 1 || soSao > 5)
+                        {
+                            response = "ERROR: POST_REVIEW requires IdTaiKhoan|IdPhim|NoiDung|SoSao (1-5)";
+                        }
+                        else
+                        {
+                            string idTaiKhoan = parts[1];
+                            string idPhim = parts[2];
+                            string noiDung = parts[3];
+                            response = await service.PostReview(idTaiKhoan, idPhim, noiDung, soSao);
+                        }
+                        break;
                     default:
                         response = "UNKNOWN_COMMAND";
                         break;
@@ -117,13 +105,16 @@ namespace ServerAndService
             }
         }
 
-
         private async Task SendResponseAsync(NetworkStream stream, string message)
         {
-            string responseWithDelimiter = message;
-            byte[] respBytes = Encoding.UTF8.GetBytes(responseWithDelimiter);
+            byte[] messageBytes = Encoding.UTF8.GetBytes(message);
+            int length = messageBytes.Length;
 
-            await stream.WriteAsync(respBytes, 0, respBytes.Length);
+            byte[] lengthBytes = BitConverter.GetBytes(length);
+
+            await stream.WriteAsync(lengthBytes, 0, lengthBytes.Length);
+
+            await stream.WriteAsync(messageBytes, 0, messageBytes.Length);
         }
     }
 }
