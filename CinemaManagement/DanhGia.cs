@@ -1,324 +1,306 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using System.Windows.Forms;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq; // Cần cho lọc LINQ
+using CinemaManagement; // Chứa các Models Phim, ReviewSummary, ReviewDisplay
 
 namespace CinemaManagement
 {
-    // Giả định ClientTCP có phương thức SendMessageAsync(string command)
-    // và ClientTCP nằm trong cùng Namespace hoặc được tham chiếu.
-    // public class ClientTCP { public async Task<string> SendMessageAsync(string command) { ... } } 
-
     public partial class DanhGia : Form
     {
-        private TrangChuChinh formTrangChuChinh;
+        private Phim PhimHienTai;
+        private ClientTCP clientTcp;
+        private ReviewSummary currentReviewSummary;
+        private int selectedStar = 0; // Số sao người dùng chọn khi viết đánh giá
 
-        private List<Review> AllReviews = new List<Review>();
+        private ChiTietPhim _callerChiTietPhim;
+        private readonly string CurrentUserId = "ID_NGUOI_DUNG_HIEN_TAI"; // Cần lấy từ Session/Login
+        private readonly string CurrentUserName = "Tên Của Tôi"; // Cần lấy từ Session/Login
 
-        // Giả định các Dependency đã được định nghĩa
-        private readonly ClientTCP clientTcp;
-        private readonly Phim PhimHienTai;
-        private readonly string CurrentUserId = "TK001"; // ID người dùng hiện tại (Giả định)
-        private readonly string CurrentUserName = "Tên Người Dùng"; // Tên người dùng hiện tại (Giả định)
+        // Giả định Controls: Loc (ComboBox), DiemDanhGia (Label), TongLuotDanhGia (Label), 
+        // TongSao (Label), flowLayoutPanel (FlowLayoutPanel), pnlMyStars (Panel), 
+        // NoiDungDanhGia (TextBox), Gui (Button)
 
-        private int _soSaoDaChon = 0;
-        private PictureBox[] _starBoxes;
-
-        // KHAI BÁO BIẾN HÌNH ẢNH SAO (Cần load từ Resources hoặc file)
-        private Image SaoVang;
-        private Image SaoXam;
-
-       
-
-        // ===============================================
-        // KHỞI TẠO & LOAD DỮ LIỆU
-        // ===============================================
-
-        public DanhGia(Phim phim)
+        public DanhGia(Phim phim, ChiTietPhim callerForm) // Constructor nhận thông tin Phim
         {
             InitializeComponent();
+            PhimHienTai = phim;
+            clientTcp = new ClientTCP();
+            _callerChiTietPhim = callerForm;
+            // Cập nhật tên phim trên tiêu đề/form nếu cần
+            this.Text = $"Đánh giá phim: {phim.TenPhim}";
 
-            this.PhimHienTai = phim;
-            this.clientTcp = new ClientTCP(); // Khởi tạo TCP client
+            // Khởi tạo ComboBox
+            SetupComboBox();
 
+            // Khởi tạo sự kiện cho chọn sao
+            SetupStarSelection();
+
+            // GÁN SỰ KIỆN GỬI ĐÁNH GIÁ (Cần thiết để nút hoạt động)
+            // Giả định nút Gửi có tên là 'Gui'
+            Gui.Click += Gui_Click;
+
+            // Tải dữ liệu khi Form mở
             this.Load += DanhGia_Load;
+            // Gán sự kiện cho LinkLabel (Giả định tên LinkLabel là LinkTrangChuChinh và LinkTenPhim)
+            LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
+            LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked;
+            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá"; // Đặt tên phim cho Link
+        }
 
-            // Thiết lập các PictureBox cho rating (Giống như trong snippet của bạn)
-            _starBoxes = new PictureBox[]
-            {
-                this.Controls.Find("Sao1", true).FirstOrDefault() as PictureBox,
-                this.Controls.Find("Sao2", true).FirstOrDefault() as PictureBox,
-                this.Controls.Find("Sao3", true).FirstOrDefault() as PictureBox,
-                this.Controls.Find("Sao4", true).FirstOrDefault() as PictureBox,
-                this.Controls.Find("Sao5", true).FirstOrDefault() as PictureBox
-            }.Where(pb => pb != null).ToArray();
-
-            // Đính kèm sự kiện cho các ngôi sao
-            foreach (var pb in _starBoxes)
-            {
-                if (pb != null)
-                {
-                    pb.MouseEnter += Sao_MouseEnter;
-                    pb.MouseLeave += Sao_MouseLeave;
-                    pb.Click += Sao_Click;
-                }
-            }
-
-            // Đảm bảo flpReviews có FlowDirection.TopDown
-            if (DanhSachCacDanhGia != null)
-            {
-                DanhSachCacDanhGia.FlowDirection = FlowDirection.TopDown;
-                DanhSachCacDanhGia.WrapContents = false;
-                DanhSachCacDanhGia.AutoScroll = true;
-            }
-
-            // Gán sự kiện cho nút gửi đánh giá
-            this.GuiPhanHoi.Click += GuiPhanHoi_Click;
-
-            try
-            {
-                // Gán hình ảnh từ Resources của dự án của bạn
-                // BẠN PHẢI THAY THẾ 'star_filled' và 'star_empty' bằng tên Resources thực tế
-                // Hoặc load từ file nếu bạn không dùng Resources
-                SaoVang = Properties.Resources.star_filled;
-                SaoXam = Properties.Resources.star_empty;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Không tìm thấy tài nguyên hình ảnh ngôi sao. Vui lòng kiểm tra lại Properties.Resources.", "Lỗi Resource", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Có thể gán NULL hoặc Placeholder nếu không tìm thấy
-                SaoVang = null;
-                SaoXam = null;
-            }
+        // Constructor rỗng cho Designer
+        public DanhGia()
+        {
+            InitializeComponent();
         }
 
         private async void DanhGia_Load(object sender, EventArgs e)
         {
-            // Kết nối TCP nếu cần (tùy thuộc vào thiết kế ClientTCP)
-            // await clientTcp.ConnectAsync(); 
-
-            // Tải dữ liệu đánh giá ban đầu
-            await LoadReviewData(PhimHienTai.IdPhim);
-        }
-
-        // ===============================================
-        // LOGIC TƯƠNG TÁC STAR RATING (UI)
-        // ===============================================
-
-        /// <summary> Cập nhật hình ảnh ngôi sao dựa trên số sao (starCount) </summary>
-        // File: DanhGia.cs
-
-        /// <summary> Cập nhật hình ảnh ngôi sao dựa trên số sao (starCount) </summary>
-        private void UpdateStarDisplay(int starCount)
-        {
-            if (SaoVang == null || SaoXam == null) return; // Bảo vệ nếu hình ảnh không load được
-
-            for (int i = 0; i < _starBoxes.Length; i++)
+            if (PhimHienTai != null && !string.IsNullOrEmpty(PhimHienTai.IdPhim))
             {
-                // Nếu chỉ số i nhỏ hơn số sao được truyền vào, tô màu vàng, ngược lại tô xám
-                _starBoxes[i].Image = (i < starCount) ? SaoVang : SaoXam; 
+                await LoadReviewDataAsync(PhimHienTai.IdPhim);
             }
         }
 
-        private void Sao_MouseEnter(object sender, EventArgs e)
+        // Cấu hình ComboBox
+        private void SetupComboBox()
         {
-            PictureBox currentStar = sender as PictureBox;
-            if (currentStar == null) return;
-
-            // Tìm index của ngôi sao hiện tại trong mảng
-            int index = Array.IndexOf(_starBoxes, currentStar);
-
-            // Hiển thị ngôi sao sáng từ đầu đến ngôi sao hiện tại (index + 1)
-            UpdateStarDisplay(index + 1);
+            // Thêm các mục lọc vào ComboBox
+            Loc.Items.Add("Tất cả");
+            for (int i = 5; i >= 1; i--)
+            {
+                Loc.Items.Add($"{i} sao");
+            }
+            Loc.SelectedIndex = 0; // Mặc định chọn "Tất cả"
+            Loc.SelectedIndexChanged += Loc_SelectedIndexChanged;
         }
 
-        private void Sao_MouseLeave(object sender, EventArgs e)
+        // Cấu hình chọn sao cho phần "Viết đánh giá của bạn" (Sử dụng Unicode Label)
+        private void SetupStarSelection()
         {
-            // Khi chuột rời, hiển thị lại số sao đã chọn (hoặc 0 nếu chưa chọn)
-            UpdateStarDisplay(_soSaoDaChon);
+            pnlMyStars.Controls.Clear();
+            for (int i = 1; i <= 5; i++)
+            {
+                Label star = new Label
+                {
+                    Name = $"lblStar_{i}",
+                    Tag = i,
+                    Text = "☆", // Ký tự sao rỗng Unicode
+                    Size = new Size(80, 80),
+                    Location = new Point((i - 1) * 80, 0),
+                    Font = new Font("Arial", 40), // Dùng font lớn để dễ nhìn
+                    ForeColor = Color.Gray,
+                    Cursor = Cursors.Hand,
+                    TextAlign = ContentAlignment.MiddleCenter // Căn giữa sao trong Label
+                };
+                star.Click += Star_Click;
+                pnlMyStars.Controls.Add(star);
+            }
+            selectedStar = 0; // Đảm bảo reset lại số sao đã chọn
         }
 
-        private void Sao_Click(object sender, EventArgs e)
+        // Xử lý sự kiện click chọn sao (Sử dụng Unicode Label)
+        private void Star_Click(object sender, EventArgs e)
         {
-            PictureBox currentStar = sender as PictureBox;
-            if (currentStar == null) return;
+            Label clickedStar = (Label)sender;
+            int starValue = (int)clickedStar.Tag;
+            selectedStar = starValue;
 
-            // Lưu lại số sao đã chọn
-            _soSaoDaChon = Array.IndexOf(_starBoxes, currentStar) + 1;
-
-            // Cập nhật hiển thị (sao_MouseLeave sẽ không thay đổi nó)
-            UpdateStarDisplay(_soSaoDaChon);
-        }
-
-        // ===============================================
-        // GỬI ĐÁNH GIÁ (SUBMISSION)
-        // ===============================================
-
-        private async void GuiPhanHoi_Click(object sender, EventArgs e)
-        {
-            if (_soSaoDaChon == 0)
+            foreach (Control control in pnlMyStars.Controls)
             {
-                MessageBox.Show("Vui lòng chọn số sao đánh giá.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string noiDung = NhapDanhGia.Text.Trim();
-            if (string.IsNullOrWhiteSpace(noiDung))
-            {
-                MessageBox.Show("Vui lòng nhập nội dung bình luận.", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Giao thức: POST_REVIEW|IdTaiKhoan|IdPhim|NoiDung|SoSao
-            // Lưu ý: Dùng Base64 để mã hóa NộiDung nếu TCP không đảm bảo ký tự UTF8 nguyên vẹn
-            // Tuy nhiên, dựa trên snippet ServerTCP, chúng ta sẽ gửi chuỗi thẳng
-            string command = $"POST_REVIEW|{CurrentUserId}|{PhimHienTai.IdPhim}|{noiDung}|{_soSaoDaChon}";
-
-            // 2. GỬI LỆNH ĐẾN SERVER
-            string response = await clientTcp.SendMessageAsync(command);
-
-            // 3. XỬ LÝ PHẢN HỒI
-            if (response == "SUCCESS")
-            {
-                MessageBox.Show("Đánh giá của bạn đã được gửi thành công!", "Thành công");
-
-                // Reset UI sau khi gửi thành công
-                NhapDanhGia.Text = string.Empty;
-                _soSaoDaChon = 0;
-                UpdateStarDisplay(0);
-
-                await LoadReviewData(PhimHienTai.IdPhim); // Tải lại danh sách
-            }
-            else
-            {
-                MessageBox.Show($"Lỗi gửi đánh giá: {response}", "Lỗi");
+                if (control is Label lbl)
+                {
+                    int tagValue = (int)lbl.Tag;
+                    lbl.Font = new Font("Arial", 40);
+                    lbl.Text = (tagValue <= starValue) ? "★" : "☆";
+                    lbl.ForeColor = (tagValue <= starValue) ? Color.Gold : Color.Gray;
+                }
             }
         }
 
-        // ===============================================
-        // TẢI VÀ HIỂN THỊ ĐÁNH GIÁ (DISPLAY)
-        // ===============================================
-       
-        private async Task LoadReviewData(string idPhim)
+        // --- HÀM TẢI DỮ LIỆU CHÍNH ---
+        private async Task LoadReviewDataAsync(string idPhim)
         {
-            // Giao thức: GET_REVIEW_SUMMARY|IdPhim
-            string command = $"GET_REVIEW_SUMMARY|{idPhim}";
+            string message = $"GET_REVIEW_SUMMARY|{idPhim}";
+            string response = await clientTcp.SendMessageAsync(message);
 
-            string jsonResponse = await clientTcp.SendMessageAsync(command);
-
-            if (jsonResponse.StartsWith("ERROR"))
+            if (response.StartsWith("ERROR"))
             {
-                MessageBox.Show($"Không thể tải dữ liệu đánh giá: {jsonResponse}", "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi tải đánh giá: {response}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                currentReviewSummary = new ReviewSummary { LatestReviews = new List<ReviewDisplay>() };
+                UpdateSummaryDisplay(currentReviewSummary); // Vẫn cập nhật UI dù lỗi
                 return;
             }
 
             try
             {
-                // Deserialize JSON string thành ReviewSummary object
-                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                var summary = JsonSerializer.Deserialize<ReviewSummary>(jsonResponse, options);
+                currentReviewSummary = JsonSerializer.Deserialize<ReviewSummary>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                if (summary == null) throw new Exception("Dữ liệu summary rỗng");
+                // 1. Hiển thị thông tin tổng hợp
+                UpdateSummaryDisplay(currentReviewSummary);
 
-                // 1. Cập nhật tổng quan
-                UpdateAverageRatingDisplay(summary.AvgRating, summary.TotalReviews);
-
-                // 2. Hiển thị danh sách đánh giá
-                DisplayReviews(summary.LatestReviews);
+                // 3. Hiển thị danh sách đánh giá ban đầu (Tất cả)
+                // Lấy giá trị lọc hiện tại (hoặc 0 nếu là Tất cả)
+                int filterStar = (Loc.SelectedIndex > 0) ?
+                    int.Parse(Loc.SelectedItem.ToString().Split(' ')[0]) : 0;
+                DisplayReviewList(currentReviewSummary.LatestReviews, filterStar);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi xử lý dữ liệu đánh giá: {ex.Message}\nJSON nhận được: {jsonResponse}", "Lỗi Dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi xử lý dữ liệu đánh giá: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void UpdateAverageRatingDisplay(float avgRating, int totalReviews)
+        // Cập nhật phần tổng hợp (Mục tiêu 1)
+        private void UpdateSummaryDisplay(ReviewSummary summary)
         {
-            DTB.Text = $"{avgRating:0.0}";
-            TongSoLuotDanhGia.Text = $"{totalReviews} lượt đánh giá";
+            DiemDanhGia.Text = $"{summary.AvgRating:0.0}";
+            TongLuotDanhGia.Text = $"{summary.TotalReviews} lượt đánh giá";
+
+            // Hiển thị số sao trung bình bằng Unicode
+            int roundedStars = (int)Math.Round(summary.AvgRating);
+            string stars = "";
+            for (int i = 0; i < 5; i++)
+            {
+                stars += (i < roundedStars) ? "★" : "☆";
+            }
+            TongSao.Text = stars;
+            TongSao.Font = new Font("Arial", 28, FontStyle.Regular);
         }
 
-        private void DisplayReviews(List<ReviewDisplay> reviews)
+        private void DisplayReviewList(List<ReviewDisplay> reviews, int filterStar)
         {
-            // Xóa các đánh giá cũ
-            if (DanhSachCacDanhGia == null) return;
-            DanhSachCacDanhGia.Controls.Clear();
+            // *** CẬP NHẬT: Xóa Controls một cách an toàn ***
+            // Tạo danh sách controls cần xóa (bản sao)
+            List<Control> controlsToRemove = flowLayoutPanel.Controls.Cast<Control>().ToList();
 
-            if (reviews == null || reviews.Count == 0)
+            // Xóa từng control khỏi flowLayoutPanel
+            foreach (var control in controlsToRemove)
             {
-                Label lbl = new Label { Text = "Chưa có đánh giá nào cho phim này.", AutoSize = true, Margin = new Padding(10) };
-                DanhSachCacDanhGia.Controls.Add(lbl);
+                flowLayoutPanel.Controls.Remove(control);
+                control.Dispose(); // Giải phóng tài nguyên
+            }
+            // Hết khu vực xóa an toàn
+
+            // Lọc danh sách nếu filterStar > 0
+            var filteredReviews = (filterStar > 0)
+                ? reviews.Where(r => r.SoSao == filterStar).ToList()
+                : reviews;
+
+            foreach (var review in filteredReviews)
+            {
+                var reviewItem = new DanhGiaItemControl(review);
+                reviewItem.Width = flowLayoutPanel.Width - 5;
+                // Đảm bảo có Margin để các item không dính sát
+                reviewItem.Margin = new Padding(0, 0, 0, 10);
+                flowLayoutPanel.Controls.Add(reviewItem);
+            }
+        }
+
+        // Xử lý sự kiện thay đổi ComboBox (Mục tiêu 3 - Lọc)
+        private void Loc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (currentReviewSummary == null) return;
+
+            string selectedItem = Loc.SelectedItem.ToString();
+            int filterStar = 0;
+
+            if (selectedItem != "Tất cả")
+            {
+                // Lấy số sao từ chuỗi (vd: "5 sao" -> 5)
+                int.TryParse(selectedItem.Split(' ')[0], out filterStar);
+            }
+
+            DisplayReviewList(currentReviewSummary.LatestReviews, filterStar);
+        }
+
+
+        // DanhGia.cs - Hàm Gui_Click
+
+        private async void Gui_Click(object sender, EventArgs e)
+        {
+            if (selectedStar == 0)
+            {
+                MessageBox.Show("Vui lòng chọn số sao trước khi gửi.", "Lỗi");
                 return;
             }
 
-            foreach (var review in reviews)
+            string noiDung = NoiDungDanhGia.Text.Trim();
+            string message = $"POST_REVIEW|{CurrentUserId}|{PhimHienTai.IdPhim}|{noiDung}|{selectedStar}";
+
+            string response = await clientTcp.SendMessageAsync(message); // *** Chạy Bất đồng bộ ở đây ***
+
+            if (response == "SUCCESS")
             {
-                // Tạo Review Card
-                FlowLayoutPanel reviewPanel = new FlowLayoutPanel();
-                // ... (cài đặt FlowLayoutPanel) ...
+                MessageBox.Show("Gửi đánh giá thành công!", "Thông báo");
 
-                // 1. Dòng Tiêu đề (User + Ngôi sao)
-                Label lblHeader = new Label();
-                lblHeader.Text = review.HoTen; // Dùng thuộc tính HoTen mới
-                lblHeader.Font = new Font(lblHeader.Font, FontStyle.Bold);
-                lblHeader.AutoSize = true;
-                reviewPanel.Controls.Add(lblHeader);
+                // *** KHU VỰC CẦN CHỈNH SỬA: CHỈ SỬ DỤNG Invoke cho UI TỨC THỜI ***
 
-                // 2. Hiển thị Ngôi sao (tạo động)
-                FlowLayoutPanel starContainer = new FlowLayoutPanel { AutoSize = true, FlowDirection = FlowDirection.LeftToRight };
-                int rating = review.SoSao ?? 0; // Đảm bảo rating là 0 nếu SoSao là null
-
-                for (int i = 0; i < 5; i++)
+                // 1. Reset Form nhập liệu (Chạy trên UI Thread, KHÔNG cần await)
+                this.Invoke((MethodInvoker)delegate
                 {
-                    PictureBox pbStar = new PictureBox
-                    {
-                        // SỬA: Sử dụng thuộc tính SoSao để gán hình ảnh
-                        Image = (i < rating) ? SaoVang : SaoXam, // <<< ĐÃ SỬA
-                        SizeMode = PictureBoxSizeMode.StretchImage,
-                        Size = new Size(20, 20),
-                        Margin = new Padding(1)
-                    };
-                    starContainer.Controls.Add(pbStar);
-                }
-                reviewPanel.Controls.Add(starContainer);
+                    NoiDungDanhGia.Text = "";
+                    selectedStar = 0;
+                    SetupStarSelection(); // Đặt lại ngôi sao rỗng
+                });
 
-                
+                // 2. Tải lại dữ liệu (Chạy bất đồng bộ TRÊN LUỒNG HIỆN TẠI, sau khi UI reset)
+                await LoadReviewDataAsync(PhimHienTai.IdPhim);
 
-                // 3. Nội dung bình luận
-                Label lblComment = new Label();
-                lblComment.Text = review.NoiDung; // Dùng thuộc tính NoiDung
-                                                  // ...
-
-                // 4. Ngày tạo
-                // ... (hiện tại không có, tạm bỏ qua hoặc dùng placeholder)
-
-                DanhSachCacDanhGia.Controls.Add(reviewPanel);
-            }
-        }
-        // ===============================================
-        // CÁC HÀM KHÁC (GIỮ NGUYÊN HOẶC ĐƠN GIẢN HÓA)
-        // ===============================================
-
-        private void TaiKhoan_Click(object sender, EventArgs e)
-        {
-            // Giả định có MenuTaiKhoan
-            // MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height));
-        }
-
-        private void LinkTrangChuChinh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (formTrangChuChinh != null)
-            {
-                this.Hide(); //An form chi tiet hien tai 
-                formTrangChuChinh.Show(); //Hien thi TrangChuChinh
+                // 3. Tự động cuộn (Chạy trên UI Thread sau khi tải xong)
+                this.Invoke((MethodInvoker)delegate
+                {
+                    if (flowLayoutPanel.Controls.Count > 0)
+                        flowLayoutPanel.ScrollControlIntoView(flowLayoutPanel.Controls[0]);
+                });
+                // *** HẾT KHU VỰC CHỈNH SỬA ***
             }
             else
             {
-                this.Close();
+                MessageBox.Show($"Lỗi gửi đánh giá: {response}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        private void TaiKhoan_Click(object sender, EventArgs e)
+        {
+            MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height));
+        }
+
+        // DanhGia.cs
+
+        private void LinkTrangChuChinh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Đóng Form Đánh giá
+            this.Close();
+
+            // Yêu cầu Form Chi Tiết Phim gọi hàm trở về Trang Chủ Chính của nó
+            if (_callerChiTietPhim != null)
+            {
+                _callerChiTietPhim.TroVeTrangChuChinh();
+            }
+        }
+
+        // DanhGia.cs
+
+        private void LinkTenPhim_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Ẩn Form DanhGia
+            this.Hide();
+
+            if (_callerChiTietPhim != null)
+            {
+                // Hiển thị lại Form Chi Tiết Phim đã gọi
+                _callerChiTietPhim.Show();
+
+            }
+            // Form sẽ đóng khi ShowDialog kết thúc, nếu dùng ShowDialog
+            this.Close();
+        }
+
+        
     }
 }

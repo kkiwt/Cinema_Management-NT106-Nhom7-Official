@@ -227,15 +227,15 @@
             MoTa.BackColor = Color.FromArgb(21, 3, 27);
             MoTa.BorderStyle = BorderStyle.None;
             MoTa.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            MoTa.ForeColor = SystemColors.Window;
-            MoTa.Location = new Point(447, 326);
+            MoTa.ForeColor = Color.White;
+            MoTa.Location = new Point(446, 325);
             MoTa.Multiline = true;
             MoTa.Name = "MoTa";
             MoTa.ReadOnly = true;
-            MoTa.ScrollBars = ScrollBars.Vertical;
-            MoTa.Size = new Size(565, 106);
+            MoTa.ScrollBars = ScrollBars.Both;
+            MoTa.Size = new Size(565, 107);
             MoTa.TabIndex = 71;
-            MoTa.Text = "Nation";
+            MoTa.Text = "Konnichiwa";
             // 
             // DienVien
             // 
@@ -594,12 +594,12 @@
         private LinkLabel LinkTrangChuChinh;
         private LinkLabel LinkTenPhim;
         private TextBox DienVien;
-        private TextBox MoTa;
         private ContextMenuStrip MenuTaiKhoan;
         private ToolStripMenuItem ThongTinTaiKhoan;
         private ToolStripMenuItem VeDaDat;
         private ToolStripMenuItem DangXuat;
         private PictureBox House;
         private PictureBox Logo;
+        private TextBox MoTa;
     }
 }

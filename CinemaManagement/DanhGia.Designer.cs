@@ -30,33 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhGia));
-            panelDuongDan = new Panel();
-            LinkTenPhim = new LinkLabel();
-            LinkTrangChuChinh = new LinkLabel();
-            House = new PictureBox();
-            PanelChinh = new Panel();
-            NhapDanhGia = new TextBox();
-            DanhSachCacDanhGia = new FlowLayoutPanel();
-            panel1 = new Panel();
-            Sao5a = new PictureBox();
-            Sao4a = new PictureBox();
-            Sao3a = new PictureBox();
-            Sao2a = new PictureBox();
-            Sao1a = new PictureBox();
-            PanelSao = new Panel();
-            Sao5 = new PictureBox();
-            Sao4 = new PictureBox();
-            Sao3 = new PictureBox();
-            Sao2 = new PictureBox();
-            Sao1 = new PictureBox();
-            HuyDanhGia = new Button();
-            GuiPhanHoi = new Button();
-            TenUser = new Label();
-            VietDanhGiaCuaBan = new Label();
-            Loc = new ComboBox();
-            TongSoLuotDanhGia = new TextBox();
-            DTB = new TextBox();
-            DanhGiaPhim = new Label();
             PanelHeader = new Panel();
             Logo = new PictureBox();
             TimKiem = new TextBox();
@@ -67,338 +40,44 @@
             ThongTinTaiKhoan = new ToolStripMenuItem();
             VeDaDat = new ToolStripMenuItem();
             DangXuat = new ToolStripMenuItem();
-            panelDuongDan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)House).BeginInit();
-            PanelChinh.SuspendLayout();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Sao5a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao4a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao3a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao2a).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao1a).BeginInit();
-            PanelSao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Sao5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Sao1).BeginInit();
+            panelDuongDan = new Panel();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            House = new PictureBox();
+            LinkTenPhim = new LinkLabel();
+            LinkTrangChuChinh = new LinkLabel();
+            PanelChinh = new Panel();
+            pnlMyStars = new Panel();
+            Sao1 = new Button();
+            Sao2 = new Button();
+            Sao3 = new Button();
+            Sao4 = new Button();
+            Sao5 = new Button();
+            flowLayoutPanel = new FlowLayoutPanel();
+            Loc = new ComboBox();
+            Gui = new Button();
+            Xoa = new Button();
+            NoiDungDanhGia = new TextBox();
+            label1 = new Label();
+            pnlReviewSummary = new Panel();
+            TongLuotDanhGia = new Label();
+            DiemDanhGia = new Label();
+            TongSao = new Label();
+            PhimDangChieu = new Label();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripMenuItem();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             MenuTaiKhoan.SuspendLayout();
+            panelDuongDan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)House).BeginInit();
+            PanelChinh.SuspendLayout();
+            pnlMyStars.SuspendLayout();
+            pnlReviewSummary.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // panelDuongDan
-            // 
-            panelDuongDan.BackColor = Color.LightBlue;
-            panelDuongDan.Controls.Add(LinkTenPhim);
-            panelDuongDan.Controls.Add(LinkTrangChuChinh);
-            panelDuongDan.Controls.Add(House);
-            panelDuongDan.ForeColor = Color.Transparent;
-            panelDuongDan.Location = new Point(0, 77);
-            panelDuongDan.Margin = new Padding(3, 2, 3, 2);
-            panelDuongDan.Name = "panelDuongDan";
-            panelDuongDan.Size = new Size(1117, 55);
-            panelDuongDan.TabIndex = 7;
-            // 
-            // LinkTenPhim
-            // 
-            LinkTenPhim.AutoSize = true;
-            LinkTenPhim.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LinkTenPhim.LinkColor = Color.Navy;
-            LinkTenPhim.Location = new Point(217, 19);
-            LinkTenPhim.Name = "LinkTenPhim";
-            LinkTenPhim.Size = new Size(74, 18);
-            LinkTenPhim.TabIndex = 23;
-            LinkTenPhim.TabStop = true;
-            LinkTenPhim.Text = "Tên Phim";
-            // 
-            // LinkTrangChuChinh
-            // 
-            LinkTrangChuChinh.AutoSize = true;
-            LinkTrangChuChinh.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LinkTrangChuChinh.LinkColor = Color.Navy;
-            LinkTrangChuChinh.Location = new Point(75, 19);
-            LinkTrangChuChinh.Name = "LinkTrangChuChinh";
-            LinkTrangChuChinh.Size = new Size(136, 18);
-            LinkTrangChuChinh.TabIndex = 8;
-            LinkTrangChuChinh.TabStop = true;
-            LinkTrangChuChinh.Text = "Trang chủ chính >>";
-            // 
-            // House
-            // 
-            House.Image = (Image)resources.GetObject("House.Image");
-            House.InitialImage = null;
-            House.Location = new Point(32, 11);
-            House.Name = "House";
-            House.Size = new Size(37, 33);
-            House.SizeMode = PictureBoxSizeMode.StretchImage;
-            House.TabIndex = 7;
-            House.TabStop = false;
-            // 
-            // PanelChinh
-            // 
-            PanelChinh.BackColor = Color.FromArgb(21, 3, 27);
-            PanelChinh.Controls.Add(NhapDanhGia);
-            PanelChinh.Controls.Add(DanhSachCacDanhGia);
-            PanelChinh.Controls.Add(panel1);
-            PanelChinh.Controls.Add(PanelSao);
-            PanelChinh.Controls.Add(HuyDanhGia);
-            PanelChinh.Controls.Add(GuiPhanHoi);
-            PanelChinh.Controls.Add(TenUser);
-            PanelChinh.Controls.Add(VietDanhGiaCuaBan);
-            PanelChinh.Controls.Add(Loc);
-            PanelChinh.Controls.Add(TongSoLuotDanhGia);
-            PanelChinh.Controls.Add(DTB);
-            PanelChinh.Controls.Add(DanhGiaPhim);
-            PanelChinh.Location = new Point(0, 126);
-            PanelChinh.Margin = new Padding(3, 2, 3, 2);
-            PanelChinh.Name = "PanelChinh";
-            PanelChinh.Size = new Size(1117, 469);
-            PanelChinh.TabIndex = 8;
-            // 
-            // NhapDanhGia
-            // 
-            NhapDanhGia.Location = new Point(628, 147);
-            NhapDanhGia.Multiline = true;
-            NhapDanhGia.Name = "NhapDanhGia";
-            NhapDanhGia.Size = new Size(452, 261);
-            NhapDanhGia.TabIndex = 23;
-            // 
-            // DanhSachCacDanhGia
-            // 
-            DanhSachCacDanhGia.ForeColor = SystemColors.ControlLightLight;
-            DanhSachCacDanhGia.Location = new Point(32, 146);
-            DanhSachCacDanhGia.Name = "DanhSachCacDanhGia";
-            DanhSachCacDanhGia.Size = new Size(515, 314);
-            DanhSachCacDanhGia.TabIndex = 22;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(Sao5a);
-            panel1.Controls.Add(Sao4a);
-            panel1.Controls.Add(Sao3a);
-            panel1.Controls.Add(Sao2a);
-            panel1.Controls.Add(Sao1a);
-            panel1.Location = new Point(161, 86);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(196, 33);
-            panel1.TabIndex = 21;
-            // 
-            // Sao5a
-            // 
-            Sao5a.Location = new Point(150, 0);
-            Sao5a.Margin = new Padding(3, 2, 3, 2);
-            Sao5a.Name = "Sao5a";
-            Sao5a.Size = new Size(32, 27);
-            Sao5a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao5a.TabIndex = 25;
-            Sao5a.TabStop = false;
-            // 
-            // Sao4a
-            // 
-            Sao4a.Location = new Point(113, 0);
-            Sao4a.Margin = new Padding(3, 2, 3, 2);
-            Sao4a.Name = "Sao4a";
-            Sao4a.Size = new Size(32, 27);
-            Sao4a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao4a.TabIndex = 24;
-            Sao4a.TabStop = false;
-            // 
-            // Sao3a
-            // 
-            Sao3a.Location = new Point(76, 0);
-            Sao3a.Margin = new Padding(3, 2, 3, 2);
-            Sao3a.Name = "Sao3a";
-            Sao3a.Size = new Size(32, 27);
-            Sao3a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao3a.TabIndex = 23;
-            Sao3a.TabStop = false;
-            // 
-            // Sao2a
-            // 
-            Sao2a.Location = new Point(39, 0);
-            Sao2a.Margin = new Padding(3, 2, 3, 2);
-            Sao2a.Name = "Sao2a";
-            Sao2a.Size = new Size(32, 27);
-            Sao2a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao2a.TabIndex = 22;
-            Sao2a.TabStop = false;
-            // 
-            // Sao1a
-            // 
-            Sao1a.Location = new Point(3, 1);
-            Sao1a.Margin = new Padding(3, 2, 3, 2);
-            Sao1a.Name = "Sao1a";
-            Sao1a.Size = new Size(32, 27);
-            Sao1a.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao1a.TabIndex = 21;
-            Sao1a.TabStop = false;
-            // 
-            // PanelSao
-            // 
-            PanelSao.Controls.Add(Sao5);
-            PanelSao.Controls.Add(Sao4);
-            PanelSao.Controls.Add(Sao3);
-            PanelSao.Controls.Add(Sao2);
-            PanelSao.Controls.Add(Sao1);
-            PanelSao.Location = new Point(668, 86);
-            PanelSao.Margin = new Padding(3, 2, 3, 2);
-            PanelSao.Name = "PanelSao";
-            PanelSao.Size = new Size(271, 56);
-            PanelSao.TabIndex = 20;
-            // 
-            // Sao5
-            // 
-            Sao5.Location = new Point(214, 0);
-            Sao5.Margin = new Padding(3, 2, 3, 2);
-            Sao5.Name = "Sao5";
-            Sao5.Size = new Size(46, 40);
-            Sao5.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao5.TabIndex = 22;
-            Sao5.TabStop = false;
-            // 
-            // Sao4
-            // 
-            Sao4.Location = new Point(158, 0);
-            Sao4.Margin = new Padding(3, 2, 3, 2);
-            Sao4.Name = "Sao4";
-            Sao4.Size = new Size(46, 40);
-            Sao4.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao4.TabIndex = 23;
-            Sao4.TabStop = false;
-            // 
-            // Sao3
-            // 
-            Sao3.Location = new Point(106, 1);
-            Sao3.Margin = new Padding(3, 2, 3, 2);
-            Sao3.Name = "Sao3";
-            Sao3.Size = new Size(46, 40);
-            Sao3.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao3.TabIndex = 24;
-            Sao3.TabStop = false;
-            // 
-            // Sao2
-            // 
-            Sao2.Location = new Point(54, 1);
-            Sao2.Margin = new Padding(3, 2, 3, 2);
-            Sao2.Name = "Sao2";
-            Sao2.Size = new Size(46, 40);
-            Sao2.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao2.TabIndex = 25;
-            Sao2.TabStop = false;
-            // 
-            // Sao1
-            // 
-            Sao1.Location = new Point(3, 1);
-            Sao1.Margin = new Padding(3, 2, 3, 2);
-            Sao1.Name = "Sao1";
-            Sao1.Size = new Size(46, 40);
-            Sao1.SizeMode = PictureBoxSizeMode.StretchImage;
-            Sao1.TabIndex = 21;
-            Sao1.TabStop = false;
-            // 
-            // HuyDanhGia
-            // 
-            HuyDanhGia.BackColor = Color.Pink;
-            HuyDanhGia.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            HuyDanhGia.ForeColor = Color.Maroon;
-            HuyDanhGia.Location = new Point(882, 422);
-            HuyDanhGia.Margin = new Padding(3, 2, 3, 2);
-            HuyDanhGia.Name = "HuyDanhGia";
-            HuyDanhGia.Size = new Size(150, 38);
-            HuyDanhGia.TabIndex = 14;
-            HuyDanhGia.Text = "HỦY ĐÁNH GIÁ";
-            HuyDanhGia.UseVisualStyleBackColor = false;
-            // 
-            // GuiPhanHoi
-            // 
-            GuiPhanHoi.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            GuiPhanHoi.BackColor = Color.FromArgb(230, 57, 70);
-            GuiPhanHoi.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            GuiPhanHoi.ForeColor = SystemColors.Control;
-            GuiPhanHoi.Location = new Point(656, 422);
-            GuiPhanHoi.Margin = new Padding(3, 2, 3, 2);
-            GuiPhanHoi.Name = "GuiPhanHoi";
-            GuiPhanHoi.Size = new Size(183, 38);
-            GuiPhanHoi.TabIndex = 13;
-            GuiPhanHoi.Text = "GỬI PHẢN HỒI";
-            GuiPhanHoi.UseCompatibleTextRendering = true;
-            GuiPhanHoi.UseVisualStyleBackColor = false;
-            // 
-            // TenUser
-            // 
-            TenUser.AutoSize = true;
-            TenUser.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TenUser.ForeColor = Color.White;
-            TenUser.Location = new Point(696, 67);
-            TenUser.Name = "TenUser";
-            TenUser.Size = new Size(106, 18);
-            TenUser.TabIndex = 11;
-            TenUser.Text = "Nguyễn Văn A";
-            // 
-            // VietDanhGiaCuaBan
-            // 
-            VietDanhGiaCuaBan.AutoSize = true;
-            VietDanhGiaCuaBan.Font = new Font("Arial", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            VietDanhGiaCuaBan.ForeColor = Color.FromArgb(255, 212, 59);
-            VietDanhGiaCuaBan.Location = new Point(607, 25);
-            VietDanhGiaCuaBan.Name = "VietDanhGiaCuaBan";
-            VietDanhGiaCuaBan.Size = new Size(352, 32);
-            VietDanhGiaCuaBan.TabIndex = 10;
-            VietDanhGiaCuaBan.Text = "VIẾT ĐÁNH GIÁ CỦA BẠN";
-            // 
-            // Loc
-            // 
-            Loc.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Loc.FormattingEnabled = true;
-            Loc.Items.AddRange(new object[] { "Tất cả", "5 sao", "4 sao", "3 sao", "2 sao", "1 sao" });
-            Loc.Location = new Point(378, 32);
-            Loc.Margin = new Padding(3, 2, 3, 2);
-            Loc.Name = "Loc";
-            Loc.Size = new Size(159, 26);
-            Loc.TabIndex = 0;
-            Loc.Text = "Lọc theo sao";
-            // 
-            // TongSoLuotDanhGia
-            // 
-            TongSoLuotDanhGia.BackColor = Color.FromArgb(21, 3, 27);
-            TongSoLuotDanhGia.BorderStyle = BorderStyle.None;
-            TongSoLuotDanhGia.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TongSoLuotDanhGia.ForeColor = Color.White;
-            TongSoLuotDanhGia.Location = new Point(376, 94);
-            TongSoLuotDanhGia.Margin = new Padding(3, 2, 3, 2);
-            TongSoLuotDanhGia.Name = "TongSoLuotDanhGia";
-            TongSoLuotDanhGia.ReadOnly = true;
-            TongSoLuotDanhGia.Size = new Size(160, 19);
-            TongSoLuotDanhGia.TabIndex = 9;
-            TongSoLuotDanhGia.Text = "1234 lượt đánh giá";
-            // 
-            // DTB
-            // 
-            DTB.BackColor = Color.FromArgb(21, 3, 27);
-            DTB.BorderStyle = BorderStyle.None;
-            DTB.Font = new Font("Arial", 36F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            DTB.ForeColor = Color.FromArgb(225, 155, 125);
-            DTB.Location = new Point(56, 67);
-            DTB.Margin = new Padding(3, 2, 3, 2);
-            DTB.Name = "DTB";
-            DTB.ReadOnly = true;
-            DTB.Size = new Size(113, 56);
-            DTB.TabIndex = 4;
-            DTB.Text = "4.3";
-            DTB.TextAlign = HorizontalAlignment.Center;
-            // 
-            // DanhGiaPhim
-            // 
-            DanhGiaPhim.AutoSize = true;
-            DanhGiaPhim.Font = new Font("Arial", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DanhGiaPhim.ForeColor = Color.FromArgb(255, 212, 59);
-            DanhGiaPhim.Location = new Point(47, 25);
-            DanhGiaPhim.Name = "DanhGiaPhim";
-            DanhGiaPhim.Size = new Size(224, 32);
-            DanhGiaPhim.TabIndex = 2;
-            DanhGiaPhim.Text = "ĐÁNH GIÁ PHIM";
             // 
             // PanelHeader
             // 
@@ -408,19 +87,18 @@
             PanelHeader.Controls.Add(TaiKhoan);
             PanelHeader.Controls.Add(PhimHot);
             PanelHeader.Controls.Add(UuDai);
-            PanelHeader.Location = new Point(0, 2);
+            PanelHeader.Location = new Point(0, 1);
             PanelHeader.Margin = new Padding(3, 2, 3, 2);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1117, 78);
-            PanelHeader.TabIndex = 15;
+            PanelHeader.Size = new Size(1120, 86);
+            PanelHeader.TabIndex = 1;
             // 
             // Logo
             // 
             Logo.Image = (Image)resources.GetObject("Logo.Image");
-            Logo.Location = new Point(107, 4);
-            Logo.Margin = new Padding(3, 2, 3, 2);
+            Logo.Location = new Point(74, 0);
             Logo.Name = "Logo";
-            Logo.Size = new Size(75, 71);
+            Logo.Size = new Size(83, 75);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
@@ -447,6 +125,7 @@
             TaiKhoan.TabIndex = 1;
             TaiKhoan.Text = "TÀI KHOẢN";
             TaiKhoan.UseVisualStyleBackColor = false;
+            TaiKhoan.Click += TaiKhoan_Click;
             // 
             // PhimHot
             // 
@@ -508,79 +187,364 @@
             DangXuat.Size = new Size(239, 28);
             DangXuat.Text = "Đăng xuất";
             // 
+            // panelDuongDan
+            // 
+            panelDuongDan.BackColor = Color.LightBlue;
+            panelDuongDan.Controls.Add(flowLayoutPanel2);
+            panelDuongDan.Controls.Add(flowLayoutPanel1);
+            panelDuongDan.Controls.Add(House);
+            panelDuongDan.Controls.Add(LinkTenPhim);
+            panelDuongDan.Controls.Add(LinkTrangChuChinh);
+            panelDuongDan.ForeColor = Color.Transparent;
+            panelDuongDan.Location = new Point(0, 81);
+            panelDuongDan.Margin = new Padding(3, 2, 3, 2);
+            panelDuongDan.Name = "panelDuongDan";
+            panelDuongDan.Size = new Size(1137, 53);
+            panelDuongDan.TabIndex = 3;
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.Location = new Point(0, 50);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(1188, 564);
+            flowLayoutPanel2.TabIndex = 4;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(3, 50);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(1476, 547);
+            flowLayoutPanel1.TabIndex = 4;
+            // 
+            // House
+            // 
+            House.Image = (Image)resources.GetObject("House.Image");
+            House.InitialImage = null;
+            House.Location = new Point(40, 11);
+            House.Name = "House";
+            House.Size = new Size(37, 33);
+            House.SizeMode = PictureBoxSizeMode.StretchImage;
+            House.TabIndex = 6;
+            House.TabStop = false;
+            // 
+            // LinkTenPhim
+            // 
+            LinkTenPhim.AutoSize = true;
+            LinkTenPhim.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LinkTenPhim.LinkColor = Color.Navy;
+            LinkTenPhim.Location = new Point(236, 17);
+            LinkTenPhim.Name = "LinkTenPhim";
+            LinkTenPhim.Size = new Size(167, 18);
+            LinkTenPhim.TabIndex = 4;
+            LinkTenPhim.TabStop = true;
+            LinkTenPhim.Text = "Tên Phim >>  Đánh giá";
+            // 
+            // LinkTrangChuChinh
+            // 
+            LinkTrangChuChinh.AutoSize = true;
+            LinkTrangChuChinh.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LinkTrangChuChinh.LinkColor = Color.Navy;
+            LinkTrangChuChinh.Location = new Point(83, 17);
+            LinkTrangChuChinh.Name = "LinkTrangChuChinh";
+            LinkTrangChuChinh.Size = new Size(136, 18);
+            LinkTrangChuChinh.TabIndex = 3;
+            LinkTrangChuChinh.TabStop = true;
+            LinkTrangChuChinh.Text = "Trang chủ chính >>";
+            // 
+            // PanelChinh
+            // 
+            PanelChinh.BackColor = Color.FromArgb(21, 3, 27);
+            PanelChinh.Controls.Add(pnlMyStars);
+            PanelChinh.Controls.Add(flowLayoutPanel);
+            PanelChinh.Controls.Add(Loc);
+            PanelChinh.Controls.Add(Gui);
+            PanelChinh.Controls.Add(Xoa);
+            PanelChinh.Controls.Add(NoiDungDanhGia);
+            PanelChinh.Controls.Add(label1);
+            PanelChinh.Controls.Add(pnlReviewSummary);
+            PanelChinh.Controls.Add(PhimDangChieu);
+            PanelChinh.Location = new Point(-13, 131);
+            PanelChinh.Name = "PanelChinh";
+            PanelChinh.Size = new Size(1359, 649);
+            PanelChinh.TabIndex = 4;
+            // 
+            // pnlMyStars
+            // 
+            pnlMyStars.Controls.Add(Sao1);
+            pnlMyStars.Controls.Add(Sao2);
+            pnlMyStars.Controls.Add(Sao3);
+            pnlMyStars.Controls.Add(Sao4);
+            pnlMyStars.Controls.Add(Sao5);
+            pnlMyStars.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            pnlMyStars.Location = new Point(643, 62);
+            pnlMyStars.Name = "pnlMyStars";
+            pnlMyStars.Size = new Size(388, 87);
+            pnlMyStars.TabIndex = 39;
+            // 
+            // Sao1
+            // 
+            Sao1.Location = new Point(12, 15);
+            Sao1.Name = "Sao1";
+            Sao1.Size = new Size(57, 55);
+            Sao1.TabIndex = 29;
+            Sao1.Text = "button1";
+            Sao1.UseVisualStyleBackColor = true;
+            // 
+            // Sao2
+            // 
+            Sao2.Location = new Point(84, 15);
+            Sao2.Name = "Sao2";
+            Sao2.Size = new Size(57, 55);
+            Sao2.TabIndex = 30;
+            Sao2.Text = "button2";
+            Sao2.UseVisualStyleBackColor = true;
+            // 
+            // Sao3
+            // 
+            Sao3.Location = new Point(158, 17);
+            Sao3.Name = "Sao3";
+            Sao3.Size = new Size(57, 55);
+            Sao3.TabIndex = 31;
+            Sao3.Text = "button3";
+            Sao3.UseVisualStyleBackColor = true;
+            // 
+            // Sao4
+            // 
+            Sao4.Location = new Point(230, 17);
+            Sao4.Name = "Sao4";
+            Sao4.Size = new Size(57, 55);
+            Sao4.TabIndex = 32;
+            Sao4.Text = "button4";
+            Sao4.UseVisualStyleBackColor = true;
+            // 
+            // Sao5
+            // 
+            Sao5.Location = new Point(304, 17);
+            Sao5.Name = "Sao5";
+            Sao5.Size = new Size(57, 55);
+            Sao5.TabIndex = 33;
+            Sao5.Text = "button5";
+            Sao5.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel
+            // 
+            flowLayoutPanel.AutoScroll = true;
+            flowLayoutPanel.Location = new Point(55, 168);
+            flowLayoutPanel.Name = "flowLayoutPanel";
+            flowLayoutPanel.Size = new Size(517, 432);
+            flowLayoutPanel.TabIndex = 38;
+            // 
+            // Loc
+            // 
+            Loc.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Loc.FormattingEnabled = true;
+            Loc.Location = new Point(407, 126);
+            Loc.Name = "Loc";
+            Loc.Size = new Size(146, 26);
+            Loc.TabIndex = 37;
+            Loc.Text = "Lọc theo";
+            // 
+            // Gui
+            // 
+            Gui.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            Gui.BackColor = Color.FromArgb(230, 57, 70);
+            Gui.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Gui.ForeColor = SystemColors.Control;
+            Gui.Location = new Point(692, 552);
+            Gui.Margin = new Padding(3, 2, 3, 2);
+            Gui.Name = "Gui";
+            Gui.Size = new Size(122, 38);
+            Gui.TabIndex = 36;
+            Gui.Text = "GỬI";
+            Gui.UseCompatibleTextRendering = true;
+            Gui.UseVisualStyleBackColor = false;
+            // 
+            // Xoa
+            // 
+            Xoa.BackColor = Color.Pink;
+            Xoa.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Xoa.ForeColor = Color.Maroon;
+            Xoa.Location = new Point(893, 553);
+            Xoa.Margin = new Padding(3, 2, 3, 2);
+            Xoa.Name = "Xoa";
+            Xoa.Size = new Size(122, 38);
+            Xoa.TabIndex = 35;
+            Xoa.Text = "XÓA";
+            Xoa.UseVisualStyleBackColor = false;
+            // 
+            // NoiDungDanhGia
+            // 
+            NoiDungDanhGia.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            NoiDungDanhGia.Location = new Point(601, 154);
+            NoiDungDanhGia.Multiline = true;
+            NoiDungDanhGia.Name = "NoiDungDanhGia";
+            NoiDungDanhGia.Size = new Size(482, 372);
+            NoiDungDanhGia.TabIndex = 34;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(255, 212, 59);
+            label1.Location = new Point(584, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(352, 32);
+            label1.TabIndex = 28;
+            label1.Text = "VIẾT ĐÁNH GIÁ CỦA BẠN";
+            // 
+            // pnlReviewSummary
+            // 
+            pnlReviewSummary.Controls.Add(TongLuotDanhGia);
+            pnlReviewSummary.Controls.Add(DiemDanhGia);
+            pnlReviewSummary.Controls.Add(TongSao);
+            pnlReviewSummary.Location = new Point(96, 62);
+            pnlReviewSummary.Name = "pnlReviewSummary";
+            pnlReviewSummary.Size = new Size(287, 87);
+            pnlReviewSummary.TabIndex = 27;
+            // 
+            // TongLuotDanhGia
+            // 
+            TongLuotDanhGia.AutoSize = true;
+            TongLuotDanhGia.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TongLuotDanhGia.ForeColor = SystemColors.ControlLightLight;
+            TongLuotDanhGia.Location = new Point(134, 15);
+            TongLuotDanhGia.Name = "TongLuotDanhGia";
+            TongLuotDanhGia.Size = new Size(141, 18);
+            TongLuotDanhGia.TabIndex = 24;
+            TongLuotDanhGia.Text = "5003 lượt đánh giá";
+            // 
+            // DiemDanhGia
+            // 
+            DiemDanhGia.AutoSize = true;
+            DiemDanhGia.Font = new Font("Arial", 36F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            DiemDanhGia.ForeColor = Color.FromArgb(255, 128, 0);
+            DiemDanhGia.Location = new Point(23, 17);
+            DiemDanhGia.Name = "DiemDanhGia";
+            DiemDanhGia.Size = new Size(91, 55);
+            DiemDanhGia.TabIndex = 23;
+            DiemDanhGia.Text = "4.3";
+            // 
+            // TongSao
+            // 
+            TongSao.AutoSize = true;
+            TongSao.Font = new Font("Arial", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TongSao.ForeColor = Color.Gold;
+            TongSao.Location = new Point(134, 35);
+            TongSao.Name = "TongSao";
+            TongSao.Size = new Size(109, 35);
+            TongSao.TabIndex = 25;
+            TongSao.Text = "⭐⭐⭐⭐✰";
+            // 
+            // PhimDangChieu
+            // 
+            PhimDangChieu.AutoSize = true;
+            PhimDangChieu.Font = new Font("Arial", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PhimDangChieu.ForeColor = Color.FromArgb(255, 212, 59);
+            PhimDangChieu.Location = new Point(87, 27);
+            PhimDangChieu.Name = "PhimDangChieu";
+            PhimDangChieu.Size = new Size(224, 32);
+            PhimDangChieu.TabIndex = 22;
+            PhimDangChieu.Text = "ĐÁNH GIÁ PHIM";
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, toolStripMenuItem3 });
+            contextMenuStrip1.Name = "MenuTaiKhoan";
+            contextMenuStrip1.Size = new Size(240, 88);
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.BackColor = Color.FromArgb(255, 235, 235);
+            toolStripMenuItem1.Font = new Font("Arial", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStripMenuItem1.ForeColor = Color.FromArgb(92, 77, 68);
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(239, 28);
+            toolStripMenuItem1.Text = "Thông tin tài khoản ";
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.BackColor = Color.FromArgb(247, 201, 201);
+            toolStripMenuItem2.Font = new Font("Arial Narrow", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStripMenuItem2.ForeColor = Color.FromArgb(92, 77, 68);
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(239, 28);
+            toolStripMenuItem2.Text = "Vé đã đặt";
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.BackColor = Color.FromArgb(255, 235, 235);
+            toolStripMenuItem3.Font = new Font("Arial", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStripMenuItem3.ForeColor = Color.FromArgb(92, 77, 68);
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new Size(239, 28);
+            toolStripMenuItem3.Text = "Đăng xuất";
+            // 
             // DanhGia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(1101, 606);
-            Controls.Add(PanelHeader);
+            ClientSize = new Size(1097, 745);
             Controls.Add(PanelChinh);
             Controls.Add(panelDuongDan);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(PanelHeader);
             Name = "DanhGia";
-            Text = "Solunar Cinema";
+            Text = "DanhGia";
+            PanelHeader.ResumeLayout(false);
+            PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
+            MenuTaiKhoan.ResumeLayout(false);
             panelDuongDan.ResumeLayout(false);
             panelDuongDan.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)House).EndInit();
             PanelChinh.ResumeLayout(false);
             PanelChinh.PerformLayout();
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)Sao5a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao4a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao3a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao2a).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao1a).EndInit();
-            PanelSao.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)Sao5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Sao1).EndInit();
-            PanelHeader.ResumeLayout(false);
-            PanelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
-            MenuTaiKhoan.ResumeLayout(false);
+            pnlMyStars.ResumeLayout(false);
+            pnlReviewSummary.ResumeLayout(false);
+            pnlReviewSummary.PerformLayout();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private Panel panelDuongDan;
-        private Panel PanelChinh;
-        private Label DanhGiaPhim;
-        private TextBox DTB;
-        private TextBox TongSoLuotDanhGia;
-        private ComboBox Loc;
-        private Label VietDanhGiaCuaBan;
-        private Label TenUser;
-        private Button HuyDanhGia;
-        private Button GuiPhanHoi;
+
         private Panel PanelHeader;
         private PictureBox Logo;
         private TextBox TimKiem;
         private Button TaiKhoan;
         private Button PhimHot;
         private Button UuDai;
-        private Panel PanelSao;
-        private Panel panel1;
-        private PictureBox Sao5a;
-        private PictureBox Sao4a;
-        private PictureBox Sao3a;
-        private PictureBox Sao2a;
-        private PictureBox Sao1a;
-        private PictureBox Sao5;
-        private PictureBox Sao4;
-        private PictureBox Sao3;
-        private PictureBox Sao2;
-        private PictureBox Sao1;
         private ContextMenuStrip MenuTaiKhoan;
         private ToolStripMenuItem ThongTinTaiKhoan;
         private ToolStripMenuItem VeDaDat;
         private ToolStripMenuItem DangXuat;
+        private Panel panelDuongDan;
         private PictureBox House;
-        private LinkLabel LinkTrangChuChinh;
         private LinkLabel LinkTenPhim;
-        private TextBox NhapDanhGia;
-        private FlowLayoutPanel DanhSachCacDanhGia;
+        private LinkLabel LinkTrangChuChinh;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Panel PanelChinh;
+        private Label PhimDangChieu;
+        private Panel pnlReviewSummary;
+        private Label TongLuotDanhGia;
+        private Label DiemDanhGia;
+        private Label TongSao;
+        private TextBox NoiDungDanhGia;
+        private Button Sao5;
+        private Button Sao4;
+        private Button Sao3;
+        private Button Sao2;
+        private Button Sao1;
+        private Label label1;
+        private Button Xoa;
+        private Button Gui;
+        private ComboBox Loc;
+        private FlowLayoutPanel flowLayoutPanel;
+        private Panel pnlMyStars;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem3;
     }
 }

@@ -107,17 +107,38 @@ namespace CinemaManagement
             }
         }
 
+        // ChiTietPhim.cs - Hàm DanhGia_Click (Dòng 115)
+
         private void DanhGia_Click(object sender, EventArgs e)
         {
             if (PhimHienTai != null)
             {
-                // TẠO Form DanhGia và truyền đối tượng PhimHienTai
-                DanhGia danhgia = new DanhGia(PhimHienTai);
-                danhgia.Show();
+                this.Hide(); // Ẩn Form Chi Tiết Phim trước khi mở Form Đánh Giá
+
+                // *** DÒNG CẦN SỬA: Thêm 'this' (Form ChiTietPhim hiện tại) vào Constructor ***
+                DanhGia danhgia = new DanhGia(PhimHienTai, this);
+
+                danhgia.ShowDialog(); // Dùng ShowDialog để Form ChiTietPhim đợi
+
+                // Hiển thị lại Form Chi Tiết Phim sau khi Form DanhGia đóng
+                this.Show();
             }
             else
             {
-                MessageBox.Show("Không thể xem đánh giá vì thông tin phim không khả dụng.", "Lỗi");
+                MessageBox.Show("Không thể xem đánh giá vì thông tin phim không khả dụng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ChiTietPhim.cs
+
+        // Form ChiTietPhim đã có biến: private TrangChuChinh formTrangChuChinh;
+
+        public void TroVeTrangChuChinh()
+        {
+            this.Close(); // Đóng Form Chi Tiết Phim
+            if (formTrangChuChinh != null)
+            {
+                formTrangChuChinh.Show(); // Hiển thị Form Trang Chủ Chính
             }
         }
     }
