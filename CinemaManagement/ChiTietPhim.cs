@@ -1,17 +1,4 @@
-﻿using CinemaManagement;
-using ReaLTaiizor.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿
 namespace CinemaManagement
 {
     public partial class ChiTietPhim : Form
@@ -22,7 +9,7 @@ namespace CinemaManagement
         {
             InitializeComponent();
             this.formTrangChuChinh = parentForm;
-
+            TimKiem.KeyPress += TimKiem_KeyPress; //Tim kiem
         }
 
         public void HienThiThongTinPhim(Phim phim)
@@ -111,9 +98,9 @@ namespace CinemaManagement
         {
             if (PhimHienTai != null)
             {
-                this.Hide(); 
+                this.Hide();
                 DanhGia danhgia = new DanhGia(PhimHienTai, this);
-                danhgia.ShowDialog(); 
+                danhgia.ShowDialog();
                 this.Show();
             }
             else
@@ -124,10 +111,51 @@ namespace CinemaManagement
 
         public void TroVeTrangChuChinh()
         {
-            this.Close(); // Đóng Form Chi Tiết Phim
+            this.Close(); //Dong ChiTietPhim
             if (formTrangChuChinh != null)
             {
-                formTrangChuChinh.Show(); // Hiển thị Form Trang Chủ Chính
+                formTrangChuChinh.Show(); //Hien thi TrangChuChinh
+            }
+        }
+
+        public TrangChuChinh GetTrangChuChinh()
+        {
+            return formTrangChuChinh;
+        }
+
+        private void PhimHot_Click(object sender, EventArgs e)
+        {
+            if (formTrangChuChinh != null)
+            {
+                PhimHot phimhot = new PhimHot(formTrangChuChinh);
+                this.Hide(); //An ChiTietPhim
+                phimhot.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Không thể chuyển hướng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TimKiem_KeyPress(object sender, KeyPressEventArgs e)  //Tim kiem
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                string TenPhimCanTim = TimKiem.Text.Trim();
+
+                if (formTrangChuChinh != null && !string.IsNullOrEmpty(TenPhimCanTim))
+                {
+                    this.Hide(); //An ChiTietPhim hien tai
+                    formTrangChuChinh.TimKiemVaHienThiChiTiet(TenPhimCanTim); //goi ham tim kiem tren TrangChuChinh
+                }
+                else if (formTrangChuChinh == null)
+                {
+                    MessageBox.Show("Lỗi: Không tìm thấy Trang Chủ Chính để thực hiện tìm kiếm.", "Lỗi");
+                }
+
+                TimKiem.Text = ""; //Xoa ndung tim kiem
+
             }
         }
     }

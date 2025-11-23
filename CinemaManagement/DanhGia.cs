@@ -1,11 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
-using CinemaManagement;
+﻿using System.Text.Json;
 
 namespace CinemaManagement
 {
@@ -14,7 +7,7 @@ namespace CinemaManagement
         private Phim PhimHienTai;
         private ClientTCP clientTcp;
         private ReviewSummary TongDanhGiaHienTai;
-        private int ChonSaoDanhGia = 0; 
+        private int ChonSaoDanhGia = 0;
         private ChiTietPhim GoiChiTietPhim;
         private readonly string UserIdHienTai = "ID_NGUOI_DUNG_HIEN_TAI"; // Cần lấy từ Session/Login
         private readonly string UserNameHienTai = "Tên Của Tôi"; // Cần lấy từ Session/Login
@@ -32,10 +25,11 @@ namespace CinemaManagement
             this.Load += DanhGia_Load;
             LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
             LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked;
-            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá"; 
+            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá";
+            TimKiem.KeyPress += TimKiem_KeyPress;   //Tim kiem
         }
 
-        // Constructor rỗng cho Designer
+        // Constructor rong cho Designer
         public DanhGia()
         {
             InitializeComponent();
@@ -56,7 +50,7 @@ namespace CinemaManagement
             {
                 Loc.Items.Add($"{i} sao");
             }
-            Loc.SelectedIndex = 0; // Mặc định chọn "Tất cả"
+            Loc.SelectedIndex = 0; // mac dinh la Tat ca
             Loc.SelectedIndexChanged += Loc_SelectedIndexChanged;
         }
 
@@ -70,10 +64,10 @@ namespace CinemaManagement
                 {
                     Name = $"lblStar_{i}",
                     Tag = i,
-                    Text = "☆", 
+                    Text = "☆",
                     Size = new Size(80, 80),
                     Location = new Point((i - 1) * 80, 0),
-                    Font = new Font("Arial", 40), 
+                    Font = new Font("Arial", 40),
                     ForeColor = Color.Gray,
                     Cursor = Cursors.Hand,
                     TextAlign = ContentAlignment.MiddleCenter
@@ -81,7 +75,7 @@ namespace CinemaManagement
                 star.Click += Star_Click;
                 pnlMyStars.Controls.Add(star);
             }
-            ChonSaoDanhGia = 0; // Đảm bảo reset lại số sao đã chọn
+            ChonSaoDanhGia = 0; // dam bao reset so sao da chon
         }
 
         private void Star_Click(object sender, EventArgs e)
@@ -96,7 +90,7 @@ namespace CinemaManagement
                 {
                     int TagGiaTri = (int)lbl.Tag;
                     lbl.Font = new Font("Arial", 40);
-                    lbl.Text = (TagGiaTri  <= GiaTriSao) ? "★" : "☆";
+                    lbl.Text = (TagGiaTri <= GiaTriSao) ? "★" : "☆";
                     lbl.ForeColor = (TagGiaTri <= GiaTriSao) ? Color.Gold : Color.Gray;
                 }
             }
@@ -111,17 +105,17 @@ namespace CinemaManagement
             {
                 MessageBox.Show($"Lỗi tải đánh giá: {response}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TongDanhGiaHienTai = new ReviewSummary { LatestReviews = new List<ReviewDisplay>() };
-                HienThiKetQuaTong(TongDanhGiaHienTai); // Vẫn cập nhật UI dù lỗi
+                HienThiKetQuaTong(TongDanhGiaHienTai); // van cap nhat du UI loi
                 return;
             }
 
             try
             {
                 TongDanhGiaHienTai = JsonSerializer.Deserialize<ReviewSummary>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                // 1. Hiển thị thông tin tổng hợp
+                // Hien thi in4 tong hop
                 HienThiKetQuaTong(TongDanhGiaHienTai);
-                // 3. Hiển thị danh sách đánh giá ban đầu (Tất cả)
-                // Lấy giá trị lọc hiện tại (hoặc 0 nếu là Tất cả)
+                // hien thi list danhgia ban dau
+                // lay gia tri loc hien tai
                 int LocTheoSao = (Loc.SelectedIndex > 0) ?
                     int.Parse(Loc.SelectedItem.ToString().Split(' ')[0]) : 0;
                 DisplayReviewList(TongDanhGiaHienTai.LatestReviews, LocTheoSao);
@@ -137,7 +131,7 @@ namespace CinemaManagement
             DiemDanhGia.Text = $"{Tong.AvgRating:0.0}";
             TongLuotDanhGia.Text = $"{Tong.TotalReviews} lượt đánh giá";
 
-            // Hiển thị số sao trung bình bằng Unicode
+            // Sao trung binh
             int RoundedStars = (int)Math.Round(Tong.AvgRating);
             string Stars = "";
             for (int i = 0; i < 5; i++)
@@ -150,16 +144,16 @@ namespace CinemaManagement
 
         private void DisplayReviewList(List<ReviewDisplay> Reviews, int LocSao)
         {
-            // Tạo danh sách controls cần xóa (bản sao)
+            // tao danh sach control can xoa
             List<Control> controlsToRemove = flowLayoutPanel.Controls.Cast<Control>().ToList();
-            // Xóa từng control khỏi flowLayoutPanel
+            // xoa tung control ra khoi panel
             foreach (var control in controlsToRemove)
             {
                 flowLayoutPanel.Controls.Remove(control);
-                control.Dispose(); // Giải phóng tài nguyên
+                control.Dispose(); //giai phong tai nguyen
             }
 
-            // Lọc danh sách nếu filterStar > 0
+            //loc danh sach
             var LocDanhGia = (LocSao > 0)
                 ? Reviews.Where(r => r.SoSao == LocSao).ToList()
                 : Reviews;
@@ -168,7 +162,6 @@ namespace CinemaManagement
             {
                 var ReviewItem = new DanhGiaItemControl(Review);
                 ReviewItem.Width = flowLayoutPanel.Width - 5;
-                // Đảm bảo có Margin để các item không dính sát
                 ReviewItem.Margin = new Padding(0, 0, 0, 10);
                 flowLayoutPanel.Controls.Add(ReviewItem);
             }
@@ -183,7 +176,6 @@ namespace CinemaManagement
 
             if (ItemDuocChon != "Tất cả")
             {
-                // Lấy số sao từ chuỗi (vd: "5 sao" -> 5)
                 int.TryParse(ItemDuocChon.Split(' ')[0], out LocSao);
             }
 
@@ -201,22 +193,22 @@ namespace CinemaManagement
             string NoiDung = NoiDungDanhGia.Text.Trim();
             string message = $"POST_REVIEW|{UserIdHienTai}|{PhimHienTai.IdPhim}|{NoiDung}|{ChonSaoDanhGia}";
 
-            string response = await clientTcp.SendMessageAsync(message); 
+            string response = await clientTcp.SendMessageAsync(message);
 
             if (response == "SUCCESS")
             {
                 MessageBox.Show("Gửi đánh giá thành công!", "Thông báo");
-                // 1. Reset Form nhập liệu (Chạy trên UI Thread, KHÔNG cần await)
+                //  Reset Form nhap lieu (chay tren UI Thread, Kko can await)
                 this.Invoke((MethodInvoker)delegate
                 {
                     NoiDungDanhGia.Text = "";
                     ChonSaoDanhGia = 0;
-                    SetupStarSelection(); // Đặt lại ngôi sao rỗng
+                    SetupStarSelection(); // dat lai starempty
                 });
-                // 2. Tải lại dữ liệu
+                // tai lai data
                 await LoadReviewDataAsync(PhimHienTai.IdPhim);
 
-                // 3. Tự động cuộn
+                // tu dong cuon
                 this.Invoke((MethodInvoker)delegate
                 {
                     if (flowLayoutPanel.Controls.Count > 0)
@@ -255,6 +247,45 @@ namespace CinemaManagement
             this.Close();
         }
 
-        
+        private void PhimHot_Click(object sender, EventArgs e)
+        {
+            TrangChuChinh formTrangChuChinh = GoiChiTietPhim.GetTrangChuChinh(); // Lay form TrangChuChinh thong qua form ChiTietPhim
+
+            if (formTrangChuChinh != null)
+            {
+                PhimHot phimhot = new PhimHot(formTrangChuChinh);
+                this.Close(); //dong DanhGia
+                GoiChiTietPhim.Hide(); //an ChiTietPhim va goi DanhGia
+                phimhot.ShowDialog(); //Hien thi PhimHot
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy Trang Chủ Chính để điều hướng.", "Lỗi");
+            }
+        }
+
+        private void TimKiem_KeyPress(object sender, KeyPressEventArgs e) //Tim kiem
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                string TenPhimCanTim = TimKiem.Text.Trim();
+
+                TrangChuChinh formTrangChuChinh = GoiChiTietPhim?.GetTrangChuChinh();
+
+                if (formTrangChuChinh != null && !string.IsNullOrEmpty(TenPhimCanTim))
+                {
+                    this.Close(); //dong DanhGia hien tai
+                    GoiChiTietPhim.Close(); //an ChiTietPhim
+                    formTrangChuChinh.TimKiemVaHienThiChiTiet(TenPhimCanTim); //goi ham timkiem tren TrangChuChinh
+                }
+                else if (formTrangChuChinh == null)
+                {
+                    MessageBox.Show("Lỗi: Không tìm thấy Trang Chủ Chính để thực hiện tìm kiếm.", "Lỗi");
+                }
+
+                TimKiem.Text = ""; //xoa ndung tim kiem 
+            }
+        }
     }
 }

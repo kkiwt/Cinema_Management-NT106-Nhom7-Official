@@ -139,6 +139,7 @@
             PhimHot.TabIndex = 1;
             PhimHot.Text = "PHIM HOT";
             PhimHot.UseVisualStyleBackColor = false;
+            PhimHot.Click += PhimHot_Click;
             // 
             // UuDai
             // 
@@ -489,7 +490,7 @@
             Controls.Add(panelDuongDan);
             Controls.Add(PanelHeader);
             Name = "DanhGia";
-            Text = "DanhGia";
+            Text = "Solunar Cinema";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();

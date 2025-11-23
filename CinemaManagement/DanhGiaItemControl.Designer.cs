@@ -39,7 +39,7 @@
             TenNguoiDung.AutoSize = true;
             TenNguoiDung.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TenNguoiDung.ForeColor = SystemColors.ControlLightLight;
-            TenNguoiDung.Location = new Point(26, 16);
+            TenNguoiDung.Location = new Point(26, 0);
             TenNguoiDung.Name = "TenNguoiDung";
             TenNguoiDung.Size = new Size(161, 22);
             TenNguoiDung.TabIndex = 25;
@@ -50,7 +50,7 @@
             Sao.AutoSize = true;
             Sao.Font = new Font("Arial", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Sao.ForeColor = Color.Gold;
-            Sao.Location = new Point(26, 42);
+            Sao.Location = new Point(26, 26);
             Sao.Name = "Sao";
             Sao.Size = new Size(263, 35);
             Sao.TabIndex = 27;
@@ -61,7 +61,7 @@
             Xoa.BackColor = Color.Pink;
             Xoa.Font = new Font("Arial Narrow", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Xoa.ForeColor = Color.Maroon;
-            Xoa.Location = new Point(414, 42);
+            Xoa.Location = new Point(414, 26);
             Xoa.Margin = new Padding(3, 2, 3, 2);
             Xoa.Name = "Xoa";
             Xoa.Size = new Size(66, 36);
@@ -76,12 +76,12 @@
             NoiDungDanhGia.BorderStyle = BorderStyle.None;
             NoiDungDanhGia.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             NoiDungDanhGia.ForeColor = Color.White;
-            NoiDungDanhGia.Location = new Point(5, 86);
+            NoiDungDanhGia.Location = new Point(5, 70);
             NoiDungDanhGia.Multiline = true;
             NoiDungDanhGia.Name = "NoiDungDanhGia";
             NoiDungDanhGia.ReadOnly = true;
             NoiDungDanhGia.ScrollBars = ScrollBars.Both;
-            NoiDungDanhGia.Size = new Size(475, 66);
+            NoiDungDanhGia.Size = new Size(475, 49);
             NoiDungDanhGia.TabIndex = 72;
             NoiDungDanhGia.Text = "Konnichiwa";
             // 
@@ -96,7 +96,7 @@
             Controls.Add(TenNguoiDung);
             ForeColor = SystemColors.ControlLightLight;
             Name = "DanhGiaItemControl";
-            Size = new Size(499, 164);
+            Size = new Size(499, 132);
             ResumeLayout(false);
             PerformLayout();
         }

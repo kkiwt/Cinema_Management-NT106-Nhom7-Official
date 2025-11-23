@@ -1,14 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 namespace CinemaManagement
 {
 
@@ -25,6 +17,7 @@ namespace CinemaManagement
         {
             InitializeComponent();
             this.Load += TrangChuChinh_Load; // Gan su kien Load
+            TimKiem.KeyPress += TimKiem_KeyPress; //Tim kiem
         }
 
         private async void TrangChuChinh_Load(object sender, EventArgs e)
@@ -140,6 +133,14 @@ namespace CinemaManagement
             }
         }
 
+        private void LinkTrangChuChinh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //An vao thi tro ve trang dau tien
+            ViTriBatDauCuaMotPhim = 0;
+            HienThiPhim();
+            CapNhatNutDiChuyen();
+            CapNhatTrang();
+        }
 
         private void TaiKhoan_Click(object sender, EventArgs e)
         {
@@ -154,19 +155,49 @@ namespace CinemaManagement
 
         private void PhimHot_Click(object sender, EventArgs e)
         {
-
+            PhimHot phimhot = new PhimHot(this); // 'this' là TrangChuChinh
+            this.Hide();
+            phimhot.ShowDialog();
         }
 
-        private void LinkTrangChuChinh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void TimKiem_KeyPress(object sender, KeyPressEventArgs e)  //Ham de tim kiem phim
         {
-            //An vao thi tro ve trang dau tien
-            ViTriBatDauCuaMotPhim = 0;
-            HienThiPhim();
-            CapNhatNutDiChuyen();
-            CapNhatTrang();
+            if (e.KeyChar == (char)Keys.Enter) //An enter
+            {
+                e.Handled = true; //chan tieng bệp cua window
+
+                string TenPhimCanTim = TimKiem.Text.Trim();
+                if (!string.IsNullOrEmpty(TenPhimCanTim))
+                {
+                    TimKiemVaHienThiChiTiet(TenPhimCanTim);
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập tên phim cần tìm.", "Thông báo");
+                }
+            }
         }
 
-    }
+        public void TimKiemVaHienThiChiTiet(string tenPhim) //Ham de tim kiem phim
+        {
+            string TenPhimThuong = tenPhim.ToLower(); //Khong phan biet chu hoa/thuong khi nhap vao tim kiem
+
+            Phim PhimDuocTimThay = DanhSachPhim.FirstOrDefault(p =>p.TenPhim.ToLower().Contains(TenPhimThuong)); //Tim kiem phim tu list
+
+            if (PhimDuocTimThay != null)
+            {
+                ChiTietPhim chitietphim = new ChiTietPhim(this); //Chuuyen sang ChiTietPhim
+                chitietphim.HienThiThongTinPhim(PhimDuocTimThay);
+                this.Hide();
+                chitietphim.Show();
+                TimKiem.Text = "";
+            }
+            else
+            {
+                MessageBox.Show($"Không tìm thấy phim có tên gần giống '{tenPhim}'.", "Kết quả tìm kiếm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        }
     public class PhimDuocChonEventArgs : EventArgs
     {
         public Phim PhimDuocChon { get; private set; }

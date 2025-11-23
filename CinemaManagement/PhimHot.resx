@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Logo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAACGEAAAhhCAYAAABPKmCBAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAy
         tgAAMrYBjHpqdwAA/7JJREFUeF7s3Xm81XWd+PFPO+20TTY1xTTNjDPTNFYql33fF0EBAZFVBGR1ySg3
@@ -10713,9 +10713,6 @@
         WKccOun/G1PdTfybpxofhlhVDsgAAAAAe+43X0PQMgUQ0LIAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="MenuTaiKhoan.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="House.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAF0AAABXCAIAAADpiN7yAAABXmlDQ1BJQ0MgUHJvZmlsZQAAKM9jYGCS
@@ -10877,7 +10874,7 @@
         Hj3WaHjCdNGSyp23QWH0Q3L5v6D0ZSXRILXDAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>120</value>
+  <metadata name="MenuTaiKhoan.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
 </root>

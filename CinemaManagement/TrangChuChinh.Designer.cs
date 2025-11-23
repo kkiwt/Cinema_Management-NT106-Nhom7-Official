@@ -152,6 +152,7 @@
             PhimHot.TabIndex = 1;
             PhimHot.Text = "PHIM HOT";
             PhimHot.UseVisualStyleBackColor = false;
+            PhimHot.Click += PhimHot_Click;
             // 
             // UuDai
             // 
