@@ -1,9 +1,4 @@
-﻿using System;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using CinemaManagement; 
-
+﻿
 namespace CinemaManagement
 {
     public partial class DanhGiaItemControl : UserControl
