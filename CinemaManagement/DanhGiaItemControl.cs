@@ -22,7 +22,6 @@ namespace CinemaManagement
         {
             TenNguoiDung.Text = Review.HoTen;
             NoiDungDanhGia.Text = Review.NoiDung;
-            // vẽ hoặc load 5 ngôi sao
             HienThiSao(Review.SoSao);
             string UserIdHienTai = "ID_NGUOI_DUNG_HIEN_TAI"; 
 
