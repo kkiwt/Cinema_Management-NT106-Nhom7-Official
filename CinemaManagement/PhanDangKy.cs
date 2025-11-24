@@ -137,7 +137,7 @@ namespace CinemaManagement
                                 IDUser = newUserID
                             };
 
-                            var dashboard = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(newUser);
+                            var dashboard = new TrangChuChinh(newUser);
                             this.Hide();
                             dashboard.Show();
                             break;

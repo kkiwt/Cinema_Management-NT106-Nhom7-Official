@@ -111,7 +111,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 88);
+            MenuTaiKhoan.Size = new Size(240, 110);
             // 
             // ThongTinTaiKhoan
             // 
@@ -121,6 +121,7 @@
             ThongTinTaiKhoan.Name = "ThongTinTaiKhoan";
             ThongTinTaiKhoan.Size = new Size(239, 28);
             ThongTinTaiKhoan.Text = "Thông tin tài khoản ";
+            ThongTinTaiKhoan.Click += ThongTinTaiKhoan_Click;
             // 
             // VeDaDat
             // 
@@ -139,6 +140,7 @@
             DangXuat.Name = "DangXuat";
             DangXuat.Size = new Size(239, 28);
             DangXuat.Text = "Đăng xuất";
+            DangXuat.Click += DangXuat_Click;
             // 
             // PhimHot
             // 

@@ -85,7 +85,7 @@ namespace CinemaManagement
                         "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // 🔄 Chuyển sang giao diện chính
-                    var dashboard = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(currentUser);
+                    var dashboard = new TrangChuChinh(currentUser);
                     this.Hide();
                     dashboard.Show();
                     dashboard.FormClosed += (s, args) => this.Close();

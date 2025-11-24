@@ -47,6 +47,8 @@
             DuongDanTrangChu = new Label();
             lbThongTinNguoiDung = new Label();
             panel1 = new Panel();
+            label5 = new Label();
+            ID = new TextBox();
             tbNgaySinh = new TextBox();
             lbNgaySinh = new Label();
             tbEmail = new TextBox();
@@ -55,7 +57,7 @@
             lbUsername = new Label();
             tbSDT = new TextBox();
             lbSoDienThoai = new Label();
-            lbHovaTen = new TextBox();
+            tbHovaTen = new TextBox();
             lbHoTen = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -145,7 +147,8 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 88);
+            MenuTaiKhoan.Size = new Size(240, 110);
+            MenuTaiKhoan.Opening += MenuTaiKhoan_Opening;
             // 
             // toolStripMenuItem1
             // 
@@ -173,6 +176,7 @@
             DangXuat.Name = "DangXuat";
             DangXuat.Size = new Size(239, 28);
             DangXuat.Text = "Đăng xuất";
+            DangXuat.Click += DangXuat_Click;
             // 
             // PanelDuongDan
             // 
@@ -261,6 +265,8 @@
             panel1.AutoScroll = true;
             panel1.BackColor = Color.Transparent;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(ID);
             panel1.Controls.Add(tbNgaySinh);
             panel1.Controls.Add(lbNgaySinh);
             panel1.Controls.Add(tbEmail);
@@ -269,7 +275,7 @@
             panel1.Controls.Add(lbUsername);
             panel1.Controls.Add(tbSDT);
             panel1.Controls.Add(lbSoDienThoai);
-            panel1.Controls.Add(lbHovaTen);
+            panel1.Controls.Add(tbHovaTen);
             panel1.Controls.Add(lbHoTen);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
@@ -278,6 +284,28 @@
             panel1.Size = new Size(1003, 341);
             panel1.TabIndex = 8;
             panel1.Paint += panel1_Paint;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(669, 70);
+            label5.Name = "label5";
+            label5.Size = new Size(21, 20);
+            label5.TabIndex = 20;
+            label5.Text = "ID";
+            // 
+            // ID
+            // 
+            ID.BackColor = Color.DimGray;
+            ID.BorderStyle = BorderStyle.FixedSingle;
+            ID.ForeColor = Color.White;
+            ID.Location = new Point(671, 93);
+            ID.Multiline = true;
+            ID.Name = "ID";
+            ID.Size = new Size(319, 42);
+            ID.TabIndex = 19;
             // 
             // tbNgaySinh
             // 
@@ -333,6 +361,7 @@
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(319, 42);
             tbUsername.TabIndex = 14;
+            tbUsername.TextChanged += tbUsername_TextChanged;
             // 
             // lbUsername
             // 
@@ -367,16 +396,16 @@
             lbSoDienThoai.TabIndex = 11;
             lbSoDienThoai.Text = "Số điện thoại";
             // 
-            // lbHovaTen
+            // tbHovaTen
             // 
-            lbHovaTen.BackColor = Color.DimGray;
-            lbHovaTen.BorderStyle = BorderStyle.FixedSingle;
-            lbHovaTen.ForeColor = Color.White;
-            lbHovaTen.Location = new Point(26, 93);
-            lbHovaTen.Multiline = true;
-            lbHovaTen.Name = "lbHovaTen";
-            lbHovaTen.Size = new Size(314, 42);
-            lbHovaTen.TabIndex = 10;
+            tbHovaTen.BackColor = Color.DimGray;
+            tbHovaTen.BorderStyle = BorderStyle.FixedSingle;
+            tbHovaTen.ForeColor = Color.White;
+            tbHovaTen.Location = new Point(26, 93);
+            tbHovaTen.Multiline = true;
+            tbHovaTen.Name = "tbHovaTen";
+            tbHovaTen.Size = new Size(314, 42);
+            tbHovaTen.TabIndex = 10;
             // 
             // lbHoTen
             // 
@@ -423,6 +452,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "ThongTInTaiKhoan";
             Text = "ThongTInTaiKhoan";
+            Load += ThongTInTaiKhoan_Load;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
@@ -457,7 +487,7 @@
         private Panel panel1;
         private Label label3;
         private Label label4;
-        private TextBox lbHovaTen;
+        private TextBox tbHovaTen;
         private Label lbHoTen;
         private TextBox tbSDT;
         private Label lbSoDienThoai;
@@ -467,5 +497,7 @@
         private Label lbNgaySinh;
         private TextBox tbEmail;
         private Label lbEmail;
+        private Label label5;
+        private TextBox ID;
     }
 }

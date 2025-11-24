@@ -20,6 +20,8 @@ namespace CinemaManagement
             TimKiem.KeyPress += TimKiem_KeyPress; //Tim kiem
         }
 
+
+
         private async void TrangChuChinh_Load(object sender, EventArgs e)
         {
             var tcpClient = new ClientTCP();
@@ -182,7 +184,7 @@ namespace CinemaManagement
         {
             string TenPhimThuong = tenPhim.ToLower(); //Khong phan biet chu hoa/thuong khi nhap vao tim kiem
 
-            Phim PhimDuocTimThay = DanhSachPhim.FirstOrDefault(p =>p.TenPhim.ToLower().Contains(TenPhimThuong)); //Tim kiem phim tu list
+            Phim PhimDuocTimThay = DanhSachPhim.FirstOrDefault(p => p.TenPhim.ToLower().Contains(TenPhimThuong)); //Tim kiem phim tu list
 
             if (PhimDuocTimThay != null)
             {
@@ -197,7 +199,37 @@ namespace CinemaManagement
                 MessageBox.Show($"Không tìm thấy phim có tên gần giống '{tenPhim}'.", "Kết quả tìm kiếm", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
+            this.Hide();
+            thongTinTaiKhoan.ShowDialog();
+
+
         }
+        private UserInfo currentUser;
+        public TrangChuChinh(UserInfo user)
+        {
+            InitializeComponent();
+            currentUser = user; // Lưu lại để dùng sau
+            this.Load += TrangChuChinh_Load;
+            TimKiem.KeyPress += TimKiem_KeyPress;
+        }
+
+        private void DangXuat_Click(object sender, EventArgs e)
+        {
+            var dangNhap = new PhanDangNhap();
+            this.Hide();
+            dangNhap.Show();
+ // Đóng form hiện tại thay vì Hide()
+        }
+
+    }
+
+
+
+
     public class PhimDuocChonEventArgs : EventArgs
     {
         public Phim PhimDuocChon { get; private set; }
@@ -207,4 +239,5 @@ namespace CinemaManagement
             this.PhimDuocChon = phim;
         }
     }
+
 }
