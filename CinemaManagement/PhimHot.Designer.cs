@@ -112,6 +112,7 @@
             DanhSachPhimHot.TabIndex = 1;
             DanhSachPhimHot.Text = "PHIM HOT";
             DanhSachPhimHot.UseVisualStyleBackColor = false;
+            DanhSachPhimHot.Click += DanhSachPhimHot_Click;
             // 
             // UuDai
             // 
@@ -196,6 +197,7 @@
             ThongTinTaiKhoan.Name = "ThongTinTaiKhoan";
             ThongTinTaiKhoan.Size = new Size(239, 28);
             ThongTinTaiKhoan.Text = "Thông tin tài khoản ";
+            ThongTinTaiKhoan.Click += ThongTinTaiKhoan_Click;
             // 
             // VeDaDat
             // 
@@ -214,6 +216,7 @@
             DangXuat.Name = "DangXuat";
             DangXuat.Size = new Size(239, 28);
             DangXuat.Text = "Đăng xuất";
+            DangXuat.Click += DangXuat_Click;
             // 
             // PhimHot
             // 

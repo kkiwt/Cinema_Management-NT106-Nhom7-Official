@@ -12,10 +12,29 @@ namespace CinemaManagement
         private readonly string UserIdHienTai = "ID_NGUOI_DUNG_HIEN_TAI"; // Cần lấy từ Session/Login
         private readonly string UserNameHienTai = "Tên Của Tôi"; // Cần lấy từ Session/Login
 
-        public DanhGia(Phim phim, ChiTietPhim GoiForm)
+
+        private UserInfo currentUser;
+
+        private void DangXuat_Click(object sender, EventArgs e)
+        {
+            var dangNhap = new PhanDangNhap();
+            this.Hide();
+            dangNhap.Show();
+
+        }
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
+            this.Hide();
+            thongTinTaiKhoan.ShowDialog();
+
+
+        }
+        public DanhGia(Phim phim, ChiTietPhim GoiForm, UserInfo user)
         {
             InitializeComponent();
             PhimHienTai = phim;
+            this.currentUser = user;
             clientTcp = new ClientTCP();
             GoiChiTietPhim = GoiForm;
             this.Text = $"Đánh giá phim: {phim.TenPhim}";
@@ -191,7 +210,7 @@ namespace CinemaManagement
             }
 
             string NoiDung = NoiDungDanhGia.Text.Trim();
-            string message = $"POST_REVIEW|{UserIdHienTai}|{PhimHienTai.IdPhim}|{NoiDung}|{ChonSaoDanhGia}";
+            string message = $"POST_REVIEW|{currentUser.IDUser}|{PhimHienTai.IdPhim}|{NoiDung}|{ChonSaoDanhGia}";
 
             string response = await clientTcp.SendMessageAsync(message);
 

@@ -128,6 +128,7 @@
             PhimHot.TabIndex = 1;
             PhimHot.Text = "PHIM HOT";
             PhimHot.UseVisualStyleBackColor = false;
+            PhimHot.Click += PhimHot_Click;
             // 
             // UuDai
             // 
@@ -158,6 +159,7 @@
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(239, 28);
             toolStripMenuItem1.Text = "Thông tin tài khoản ";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // VeDaDat
             // 

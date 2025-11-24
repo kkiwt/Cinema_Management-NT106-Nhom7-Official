@@ -359,6 +359,7 @@
             Gui.Text = "GỬI";
             Gui.UseCompatibleTextRendering = true;
             Gui.UseVisualStyleBackColor = false;
+            Gui.Click += Gui_Click;
             // 
             // Xoa
             // 

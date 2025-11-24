@@ -11,6 +11,32 @@ namespace CinemaManagement
             this.formTrangChuChinh = parentForm;
             TimKiem.KeyPress += TimKiem_KeyPress; //Tim kiem
         }
+        private UserInfo currentUser;
+
+        public ChiTietPhim(TrangChuChinh parentForm, UserInfo user)
+        {
+            InitializeComponent();
+            this.formTrangChuChinh = parentForm;
+            this.currentUser = user; // Lưu thông tin người dùng
+            TimKiem.KeyPress += TimKiem_KeyPress;
+        }
+
+        private void DangXuat_Click(object sender, EventArgs e)
+        {
+            var dangNhap = new PhanDangNhap();
+            this.Hide();
+            dangNhap.Show();
+            // Đóng form hiện tại thay vì Hide()
+        }
+
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
+            this.Hide();
+            thongTinTaiKhoan.ShowDialog();
+
+
+        }
 
         public void HienThiThongTinPhim(Phim phim)
         {
@@ -99,7 +125,7 @@ namespace CinemaManagement
             if (PhimHienTai != null)
             {
                 this.Hide();
-                DanhGia danhgia = new DanhGia(PhimHienTai, this);
+                DanhGia danhgia = new DanhGia(PhimHienTai, this, currentUser);
                 danhgia.ShowDialog();
                 this.Show();
             }
@@ -127,7 +153,7 @@ namespace CinemaManagement
         {
             if (formTrangChuChinh != null)
             {
-                PhimHot phimhot = new PhimHot(formTrangChuChinh);
+                PhimHot phimhot = new PhimHot(formTrangChuChinh, currentUser);
                 this.Hide(); //An ChiTietPhim
                 phimhot.ShowDialog();
             }
@@ -157,6 +183,11 @@ namespace CinemaManagement
                 TimKiem.Text = ""; //Xoa ndung tim kiem
 
             }
+        }
+
+        private void MenuTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

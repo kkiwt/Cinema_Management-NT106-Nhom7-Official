@@ -143,5 +143,38 @@ namespace CinemaManagement
         {
             MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height));
         }
+        private void DangXuat_Click(object sender, EventArgs e)
+        {
+            var dangNhap = new PhanDangNhap();
+            this.Hide();
+            dangNhap.Show();
+            // Đóng form hiện tại thay vì Hide()
+        }
+        private UserInfo currentUser;
+
+        public PhimHot(Form parentForm, UserInfo user)
+        {
+            InitializeComponent();
+            this.ParentForm = parentForm;
+            this.currentUser = user; // Lưu thông tin người dùng
+            this.Load += DanhSachPhim_Load;
+            LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
+            TimKiem.KeyPress += TimKiem_KeyPress;
+        }
+
+
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
+            this.Hide();
+            thongTinTaiKhoan.ShowDialog();
+
+
+        }
+
+        private void DanhSachPhimHot_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

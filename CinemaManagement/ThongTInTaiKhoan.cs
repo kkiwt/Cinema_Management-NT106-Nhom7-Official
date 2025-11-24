@@ -74,9 +74,32 @@ namespace CinemaManagement
         private void DangXuat_Click(object sender, EventArgs e)
         {
             var dangNhap = new PhanDangNhap();
+            this.Hide();
             dangNhap.Show();
-            this.Close(); // Đóng form hiện tại thay vì Hide()
+
+        }
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
+            this.Hide();
+            thongTinTaiKhoan.ShowDialog();
+
+
         }
 
+        private void PhimHot_Click(object sender, EventArgs e)
+        {
+            PhimHot phimhot = new PhimHot(this, currentUser); // 'this' là TrangChuChinh
+            this.Hide();
+            phimhot.ShowDialog();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
+            this.Hide();
+            thongTinTaiKhoan.ShowDialog();
+
+        }
     }
 }

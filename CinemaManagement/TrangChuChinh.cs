@@ -105,14 +105,16 @@ namespace CinemaManagement
                 BangPhim.Controls.Add(MucPhim);
             }
         }
+
         private void MucPhimDuocChon(object sender, PhimDuocChonEventArgs e)
         {
             Phim PhimDaDuocChon = e.PhimDuocChon;
-            ChiTietPhim formChiTiet = new ChiTietPhim(this); //them this vi ben ChiTietPhim co chen parentForm
+            ChiTietPhim formChiTiet = new ChiTietPhim(this, currentUser); // Truyền user
             formChiTiet.HienThiThongTinPhim(PhimDaDuocChon);
-            this.Hide(); //lien quan toi linklable TrangChuChinh o ChiTietphim neu muon quay lai TrangChuChinh
+            this.Hide();
             formChiTiet.Show();
         }
+
         private void Next_Click(object sender, EventArgs e)
         {
             if (ViTriBatDauCuaMotPhim + 3 < DanhSachPhim.Count)
@@ -157,7 +159,7 @@ namespace CinemaManagement
 
         private void PhimHot_Click(object sender, EventArgs e)
         {
-            PhimHot phimhot = new PhimHot(this); // 'this' là TrangChuChinh
+            PhimHot phimhot = new PhimHot(this, currentUser); // 'this' là TrangChuChinh
             this.Hide();
             phimhot.ShowDialog();
         }
