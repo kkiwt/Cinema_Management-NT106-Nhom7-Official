@@ -159,7 +159,7 @@ namespace CinemaManagement
 
         private void PhimHot_Click(object sender, EventArgs e)
         {
-            PhimHot phimhot = new PhimHot(this, currentUser); // 'this' là TrangChuChinh
+            PhimHot phimhot = new PhimHot(this, currentUser);// 'this' là TrangChuChinh
             this.Hide();
             phimhot.ShowDialog();
         }

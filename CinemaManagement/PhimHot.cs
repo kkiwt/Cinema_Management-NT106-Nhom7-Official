@@ -82,7 +82,7 @@ namespace CinemaManagement
 
             if (formTrangChuChinh != null)
             {
-                ChiTietPhim formChiTietPhim = new ChiTietPhim(formTrangChuChinh);
+                ChiTietPhim formChiTietPhim = new ChiTietPhim(formTrangChuChinh, currentUser);
                 formChiTietPhim.HienThiThongTinPhim(PhimDaDuocChon);
                 this.Hide();
                 formChiTietPhim.ShowDialog();
