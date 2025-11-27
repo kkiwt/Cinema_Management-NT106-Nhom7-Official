@@ -4,7 +4,7 @@ using Supabase;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using System;
-using System.Text.Json;
+using System.Text.Json; 
 using System.Threading.Tasks;
 
 namespace ServerAndService
@@ -130,7 +130,6 @@ namespace ServerAndService
 
 
         }
-
 
         public async Task<string> GetMovies()
         {

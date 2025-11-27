@@ -40,8 +40,10 @@ namespace ServerAndService
                 var buffer = new byte[1048576]; // 1 Megabyte
 
                 int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+
                 // Doc du lieu tu client
                 string message = Encoding.UTF8.GetString(buffer, 0, bytesRead).Replace("\0", "").Trim();
+
 
                 Console.WriteLine($"Nhan: {message}");
 
