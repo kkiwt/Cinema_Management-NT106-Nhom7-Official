@@ -74,6 +74,50 @@ namespace ServerAndService
                 return $"ERROR_REGISTER: {ex.Message}";
             }
         }
+        public async Task<string> RequestPasswordReset(string email)
+        {
+            var result = await client.Rpc("request_password_reset", new { _email = email });
+
+            return result.Content; // Trả về OTP hoặc EMAIL_NOT_FOUND
+        }
+
+        public async Task<string> ConfirmPasswordReset(string email, string otp, string newPass)
+        {
+            var result = await client.Rpc("confirm_password_reset", new
+            {
+                _email = email,
+                _otp = otp,
+                _newpassword = newPass
+            });
+
+            return result.Content.Trim('"'); // RESET_SUCCESS hoặc OTP_INVALID
+        }
+
+        public async Task<string> AddGiamGiaRPC(string id, DateTime tuNgay, DateTime denNgay, decimal tiLe) // Cai Nay them o file Service.cs
+        {
+            try
+            {
+                var result = await client.Rpc("add_giamgia", new
+                {
+                    p_id = id,
+                    p_tungay = tuNgay.ToString("yyyy-MM-dd"),
+                    p_denngay = denNgay.ToString("yyyy-MM-dd"),
+                    p_tile = tiLe
+                });
+
+                return result.Content.Trim('"'); // Trả về SUCCESS hoặc FAILED
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_ADD_GIAMGIA: {ex.Message}";
+            }
+        }
+        public async Task<string> CheckOtp(string email, string otp)
+        {
+            var result = await client.Rpc("check_otp", new { _email = email, _otp = otp });
+            return result.Content.Trim('"'); // Trả về OTP_VALID hoặc OTP_INVALID
+        }
+
 
         // Đăng nhập user (ví dụ)
         public async Task<string> LoginUser(string username, string passwordHash)
@@ -208,6 +252,24 @@ namespace ServerAndService
                 return $"ERROR_GET_REVIEW_SUMMARY: {ex.Message}";
             }
         }
+
+        public async Task<string> DeleteReview(string idReview)
+        {
+            try
+            {
+                var result = await client.Rpc("delete_review", new
+                {
+                    p_idreview = idReview
+                });
+
+                return result.Content.Trim('"'); // SUCCESS hoặc FAILED
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_DELETE_REVIEW: {ex.Message}";
+            }
+        }
+
 
         public async Task<string> PostReview(string idTaiKhoan, string idPhim, string noiDung, int soSao)
         {

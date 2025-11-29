@@ -224,9 +224,15 @@ namespace CinemaManagement
             var dangNhap = new PhanDangNhap();
             this.Hide();
             dangNhap.Show();
- // Đóng form hiện tại thay vì Hide()
+            // Đóng form hiện tại thay vì Hide()
         }
 
+        private void UuDai_Click_1(object sender, EventArgs e)
+        {
+            var danhSachUuDai = new DanhSachUuDai(); // Truyền user hiện tại
+            this.Hide();
+            danhSachUuDai.ShowDialog();
+        }
     }
 
 

@@ -41,19 +41,19 @@
             // 
             // MatKhau
             // 
-            MatKhau.Location = new Point(253, 265);
-            MatKhau.Margin = new Padding(3, 5, 3, 5);
+            MatKhau.Location = new Point(177, 159);
+            MatKhau.Margin = new Padding(2, 3, 2, 3);
             MatKhau.Name = "MatKhau";
             MatKhau.PasswordChar = '*';
-            MatKhau.Size = new Size(445, 31);
+            MatKhau.Size = new Size(313, 23);
             MatKhau.TabIndex = 15;
             // 
             // MatKhauMoi
             // 
-            MatKhauMoi.Location = new Point(253, 169);
-            MatKhauMoi.Margin = new Padding(3, 5, 3, 5);
+            MatKhauMoi.Location = new Point(177, 101);
+            MatKhauMoi.Margin = new Padding(2, 3, 2, 3);
             MatKhauMoi.Name = "MatKhauMoi";
-            MatKhauMoi.Size = new Size(445, 31);
+            MatKhauMoi.Size = new Size(313, 23);
             MatKhauMoi.TabIndex = 14;
             // 
             // NhapLaiMatKhauMoi
@@ -61,9 +61,10 @@
             NhapLaiMatKhauMoi.AutoSize = true;
             NhapLaiMatKhauMoi.Font = new Font("Epilogue", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NhapLaiMatKhauMoi.ForeColor = SystemColors.ControlLightLight;
-            NhapLaiMatKhauMoi.Location = new Point(253, 229);
+            NhapLaiMatKhauMoi.Location = new Point(177, 137);
+            NhapLaiMatKhauMoi.Margin = new Padding(2, 0, 2, 0);
             NhapLaiMatKhauMoi.Name = "NhapLaiMatKhauMoi";
-            NhapLaiMatKhauMoi.Size = new Size(277, 31);
+            NhapLaiMatKhauMoi.Size = new Size(188, 21);
             NhapLaiMatKhauMoi.TabIndex = 13;
             NhapLaiMatKhauMoi.Text = "Nhập Laị Mật Khẩu Mới:";
             // 
@@ -72,9 +73,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Epilogue", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ControlLightLight;
-            label2.Location = new Point(247, 133);
+            label2.Location = new Point(173, 80);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(239, 31);
+            label2.Size = new Size(163, 21);
             label2.TabIndex = 12;
             label2.Text = "Nhập Mật Khẩu Mới:";
             // 
@@ -83,19 +85,20 @@
             label1.AutoSize = true;
             label1.Font = new Font("Epilogue ExtraBold", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gold;
-            label1.Location = new Point(271, 56);
+            label1.Location = new Point(190, 34);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(369, 56);
+            label1.Size = new Size(253, 38);
             label1.TabIndex = 11;
             label1.Text = "Đặt Lại Mật Khẩu";
             // 
             // NutXacNhan
             // 
             NutXacNhan.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NutXacNhan.Location = new Point(365, 335);
-            NutXacNhan.Margin = new Padding(3, 2, 3, 2);
+            NutXacNhan.Location = new Point(256, 201);
+            NutXacNhan.Margin = new Padding(2, 1, 2, 1);
             NutXacNhan.Name = "NutXacNhan";
-            NutXacNhan.Size = new Size(207, 60);
+            NutXacNhan.Size = new Size(145, 36);
             NutXacNhan.TabIndex = 16;
             NutXacNhan.Text = "Xác Nhận";
             NutXacNhan.UseVisualStyleBackColor = true;
@@ -105,18 +108,19 @@
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(758, 28);
+            pictureBox1.Location = new Point(531, 17);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(149, 153);
+            pictureBox1.Size = new Size(104, 92);
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
             // 
             // PhanDatLaiMatKhau
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(961, 527);
+            ClientSize = new Size(673, 316);
             Controls.Add(pictureBox1);
             Controls.Add(NutXacNhan);
             Controls.Add(MatKhau);
@@ -124,6 +128,7 @@
             Controls.Add(NhapLaiMatKhauMoi);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(2);
             Name = "PhanDatLaiMatKhau";
             Text = "PhanDatLaiMatKhau";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

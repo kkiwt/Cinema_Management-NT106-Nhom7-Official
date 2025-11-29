@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,37 +7,62 @@ namespace CinemaManagement
 {
     public partial class PhanDatLaiMatKhau : Form
     {
-        public PhanDatLaiMatKhau()
+        private string email;
+        private string otp;
+
+        public PhanDatLaiMatKhau(string emailPhucHoi, string maOtp)
         {
             InitializeComponent();
+            email = emailPhucHoi;
+            otp = maOtp;
         }
 
-        private void NutXacNhan_Click(object sender, EventArgs e)
+        private async void NutXacNhan_Click(object sender, EventArgs e)
         {
-            // Giả sử bạn có TextBox cho nhập lại mật khẩu mới tên là NhapLaiMatKhauMoiTextBox
-            if (string.IsNullOrWhiteSpace(MatKhau.Text) ||
-                string.IsNullOrWhiteSpace(MatKhauMoi.Text) ||
-                string.IsNullOrWhiteSpace(NhapLaiMatKhauMoi.Text))
+            Cursor = Cursors.WaitCursor;
+            string pass1 = MatKhauMoi.Text;
+            string pass2 = MatKhau.Text;
+
+            if (string.IsNullOrWhiteSpace(pass1) || string.IsNullOrWhiteSpace(pass2))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo");
                 return;
             }
 
-            if (!Regex.IsMatch(MatKhauMoi.Text, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$"))
+            if (pass1 != pass2)
             {
-                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự, chữ hoa, chữ thường, số và ký tự đặc biệt.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            // Kiểm tra mật khẩu mới trùng nhau
-            if (MatKhauMoi.Text != NhapLaiMatKhauMoi.Text)
-            {
-                MessageBox.Show("Mật khẩu mới và nhập lại không khớp!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("2 mật khẩu không khớp!", "Lỗi");
                 return;
             }
 
+            if (!Regex.IsMatch(pass1, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$"))
+            {
+                MessageBox.Show("Mật khẩu phải ít nhất 8 ký tự, có chữ hoa, thường, số và ký tự đặc biệt.");
+                return;
+            }
 
+            string passHash = PhanDangNhap.ToSha256(pass1);
 
+            ClientTCP client = new ClientTCP();
+            string request = $"FORGOT_CONFIRM|{email}|{otp}|{passHash}";
+
+            string response = await client.SendMessageAsync(request);
+            Cursor = Cursors.Default;
+
+            if (response == "RESET_SUCCESS")
+            {
+                MessageBox.Show("Đổi mật khẩu thành công!", "Thành công");
+                this.Hide();
+                new PhanDangNhap().Show();
+            }
+            else if (response == "OTP_INVALID")
+            {
+                MessageBox.Show("OTP không đúng hoặc đã hết hạn!", "Lỗi");
+            }
+            else
+            {
+                MessageBox.Show("Lỗi server: " + response);
+            }
         }
-
     }
 }

@@ -35,20 +35,16 @@
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             pictureBox1 = new PictureBox();
             bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
-            TenUuDai = new ReaLTaiizor.Controls.HopeTextBox();
-            ChonDoiTuongDuocGiam = new ReaLTaiizor.Controls.ComboBoxEdit();
+            MaUuDaiText = new ReaLTaiizor.Controls.HopeTextBox();
             ChonPhanTramGiam = new ReaLTaiizor.Controls.ComboBoxEdit();
             NutThemUuDai = new ReaLTaiizor.Controls.SpaceButton();
             ChonUuDaiTu = new DateTimePicker();
             ChonHetUuDai = new DateTimePicker();
             bigLabel5 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel2 = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel4 = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel6 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel7 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel8 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel9 = new ReaLTaiizor.Controls.BigLabel();
-            ChonPhimDuocGiam = new CheckedListBox();
             parrotGradientPanel1.SuspendLayout();
             nightPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -65,7 +61,7 @@
             parrotGradientPanel1.Controls.Add(nightPanel1);
             parrotGradientPanel1.InterpolationType = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             parrotGradientPanel1.Location = new Point(-2, -1);
-            parrotGradientPanel1.Margin = new Padding(2, 2, 2, 2);
+            parrotGradientPanel1.Margin = new Padding(2);
             parrotGradientPanel1.Name = "parrotGradientPanel1";
             parrotGradientPanel1.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
             parrotGradientPanel1.PrimerColor = Color.IndianRed;
@@ -97,12 +93,12 @@
             nightPanel1.Controls.Add(bigLabel3);
             nightPanel1.ForeColor = Color.White;
             nightPanel1.LeftSideColor = Color.Black;
-            nightPanel1.Location = new Point(-2, 73);
-            nightPanel1.Margin = new Padding(2, 2, 2, 2);
+            nightPanel1.Location = new Point(2, 71);
+            nightPanel1.Margin = new Padding(2);
             nightPanel1.Name = "nightPanel1";
             nightPanel1.RightSideColor = Color.FromArgb(41, 44, 61);
             nightPanel1.Side = ReaLTaiizor.Controls.NightPanel.PanelSide.Right;
-            nightPanel1.Size = new Size(2580, 38);
+            nightPanel1.Size = new Size(959, 38);
             nightPanel1.TabIndex = 4;
             // 
             // materialButton1
@@ -131,7 +127,7 @@
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.Location = new Point(29, 5);
-            pictureBox1.Margin = new Padding(2, 2, 2, 2);
+            pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 31);
             pictureBox1.TabIndex = 5;
@@ -150,49 +146,30 @@
             bigLabel3.TabIndex = 5;
             bigLabel3.Text = "Đường Dẫn > Thêm Ưu Đãi";
             // 
-            // TenUuDai
+            // MaUuDaiText
             // 
-            TenUuDai.BackColor = Color.White;
-            TenUuDai.BaseColor = Color.FromArgb(44, 55, 66);
-            TenUuDai.BorderColorA = Color.FromArgb(64, 158, 255);
-            TenUuDai.BorderColorB = Color.FromArgb(220, 223, 230);
-            TenUuDai.Font = new Font("Segoe UI", 12F);
-            TenUuDai.ForeColor = Color.FromArgb(48, 49, 51);
-            TenUuDai.Hint = "";
-            TenUuDai.Location = new Point(251, 174);
-            TenUuDai.Margin = new Padding(2, 2, 2, 2);
-            TenUuDai.MaxLength = 32767;
-            TenUuDai.Multiline = false;
-            TenUuDai.Name = "TenUuDai";
-            TenUuDai.PasswordChar = '\0';
-            TenUuDai.ScrollBars = ScrollBars.None;
-            TenUuDai.SelectedText = "";
-            TenUuDai.SelectionLength = 0;
-            TenUuDai.SelectionStart = 0;
-            TenUuDai.Size = new Size(551, 38);
-            TenUuDai.TabIndex = 6;
-            TenUuDai.TabStop = false;
-            TenUuDai.Text = "hopeTextBox1";
-            TenUuDai.UseSystemPasswordChar = false;
-            // 
-            // ChonDoiTuongDuocGiam
-            // 
-            ChonDoiTuongDuocGiam.BackColor = Color.FromArgb(246, 246, 246);
-            ChonDoiTuongDuocGiam.DrawMode = DrawMode.OwnerDrawFixed;
-            ChonDoiTuongDuocGiam.DropDownHeight = 100;
-            ChonDoiTuongDuocGiam.DropDownStyle = ComboBoxStyle.DropDownList;
-            ChonDoiTuongDuocGiam.Font = new Font("Segoe UI", 10F);
-            ChonDoiTuongDuocGiam.ForeColor = Color.FromArgb(142, 142, 142);
-            ChonDoiTuongDuocGiam.FormattingEnabled = true;
-            ChonDoiTuongDuocGiam.HoverSelectionColor = Color.FromArgb(241, 241, 241);
-            ChonDoiTuongDuocGiam.IntegralHeight = false;
-            ChonDoiTuongDuocGiam.ItemHeight = 20;
-            ChonDoiTuongDuocGiam.Location = new Point(306, 235);
-            ChonDoiTuongDuocGiam.Margin = new Padding(2, 2, 2, 2);
-            ChonDoiTuongDuocGiam.Name = "ChonDoiTuongDuocGiam";
-            ChonDoiTuongDuocGiam.Size = new Size(497, 26);
-            ChonDoiTuongDuocGiam.StartIndex = 0;
-            ChonDoiTuongDuocGiam.TabIndex = 7;
+            MaUuDaiText.BackColor = Color.White;
+            MaUuDaiText.BaseColor = Color.FromArgb(44, 55, 66);
+            MaUuDaiText.BorderColorA = Color.FromArgb(64, 158, 255);
+            MaUuDaiText.BorderColorB = Color.FromArgb(220, 223, 230);
+            MaUuDaiText.Font = new Font("Segoe UI", 12F);
+            MaUuDaiText.ForeColor = Color.FromArgb(48, 49, 51);
+            MaUuDaiText.Hint = "";
+            MaUuDaiText.Location = new Point(251, 174);
+            MaUuDaiText.Margin = new Padding(2);
+            MaUuDaiText.MaxLength = 32767;
+            MaUuDaiText.Multiline = false;
+            MaUuDaiText.Name = "MaUuDaiText";
+            MaUuDaiText.PasswordChar = '\0';
+            MaUuDaiText.ScrollBars = ScrollBars.None;
+            MaUuDaiText.SelectedText = "";
+            MaUuDaiText.SelectionLength = 0;
+            MaUuDaiText.SelectionStart = 0;
+            MaUuDaiText.Size = new Size(551, 38);
+            MaUuDaiText.TabIndex = 6;
+            MaUuDaiText.TabStop = false;
+            MaUuDaiText.Text = "";
+            MaUuDaiText.UseSystemPasswordChar = false;
             // 
             // ChonPhanTramGiam
             // 
@@ -207,8 +184,8 @@
             ChonPhanTramGiam.IntegralHeight = false;
             ChonPhanTramGiam.ItemHeight = 20;
             ChonPhanTramGiam.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" });
-            ChonPhanTramGiam.Location = new Point(379, 310);
-            ChonPhanTramGiam.Margin = new Padding(2, 2, 2, 2);
+            ChonPhanTramGiam.Location = new Point(251, 232);
+            ChonPhanTramGiam.Margin = new Padding(2);
             ChonPhanTramGiam.Name = "ChonPhanTramGiam";
             ChonPhanTramGiam.Size = new Size(113, 26);
             ChonPhanTramGiam.StartIndex = 0;
@@ -219,8 +196,8 @@
             NutThemUuDai.Customization = "Kioq/zIyMv8yMjL/Kioq/y8vL/8nJyf//v7+/yMjI/8qKir/";
             NutThemUuDai.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutThemUuDai.Image = null;
-            NutThemUuDai.Location = new Point(570, 301);
-            NutThemUuDai.Margin = new Padding(2, 2, 2, 2);
+            NutThemUuDai.Location = new Point(455, 232);
+            NutThemUuDai.Margin = new Padding(2);
             NutThemUuDai.Name = "NutThemUuDai";
             NutThemUuDai.NoRounding = false;
             NutThemUuDai.Size = new Size(141, 32);
@@ -233,7 +210,7 @@
             // ChonUuDaiTu
             // 
             ChonUuDaiTu.Location = new Point(251, 131);
-            ChonUuDaiTu.Margin = new Padding(2, 2, 2, 2);
+            ChonUuDaiTu.Margin = new Padding(2);
             ChonUuDaiTu.Name = "ChonUuDaiTu";
             ChonUuDaiTu.Size = new Size(233, 23);
             ChonUuDaiTu.TabIndex = 47;
@@ -241,7 +218,7 @@
             // ChonHetUuDai
             // 
             ChonHetUuDai.Location = new Point(570, 131);
-            ChonHetUuDai.Margin = new Padding(2, 2, 2, 2);
+            ChonHetUuDai.Margin = new Padding(2);
             ChonHetUuDai.Name = "ChonHetUuDai";
             ChonHetUuDai.Size = new Size(233, 23);
             ChonHetUuDai.TabIndex = 48;
@@ -273,39 +250,13 @@
             bigLabel2.TabIndex = 50;
             bigLabel2.Text = "Tên Ưu Đãi:";
             // 
-            // bigLabel4
-            // 
-            bigLabel4.AutoSize = true;
-            bigLabel4.BackColor = Color.Transparent;
-            bigLabel4.Font = new Font("Microsoft Sans Serif", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel4.ForeColor = Color.White;
-            bigLabel4.Location = new Point(129, 232);
-            bigLabel4.Margin = new Padding(2, 0, 2, 0);
-            bigLabel4.Name = "bigLabel4";
-            bigLabel4.Size = new Size(181, 18);
-            bigLabel4.TabIndex = 51;
-            bigLabel4.Text = "Đối Tượng Được Giảm:";
-            // 
-            // bigLabel6
-            // 
-            bigLabel6.AutoSize = true;
-            bigLabel6.BackColor = Color.Transparent;
-            bigLabel6.Font = new Font("Microsoft Sans Serif", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel6.ForeColor = Color.White;
-            bigLabel6.Location = new Point(129, 277);
-            bigLabel6.Margin = new Padding(2, 0, 2, 0);
-            bigLabel6.Name = "bigLabel6";
-            bigLabel6.Size = new Size(141, 18);
-            bigLabel6.TabIndex = 52;
-            bigLabel6.Text = "Phim Được Giảm:";
-            // 
             // bigLabel7
             // 
             bigLabel7.AutoSize = true;
             bigLabel7.BackColor = Color.Transparent;
             bigLabel7.Font = new Font("Microsoft Sans Serif", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel7.ForeColor = Color.White;
-            bigLabel7.Location = new Point(306, 307);
+            bigLabel7.Location = new Point(173, 240);
             bigLabel7.Margin = new Padding(2, 0, 2, 0);
             bigLabel7.Name = "bigLabel7";
             bigLabel7.Size = new Size(53, 18);
@@ -331,44 +282,31 @@
             bigLabel9.BackColor = Color.Transparent;
             bigLabel9.Font = new Font("Microsoft Sans Serif", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel9.ForeColor = Color.White;
-            bigLabel9.Location = new Point(495, 307);
+            bigLabel9.Location = new Point(377, 240);
             bigLabel9.Margin = new Padding(2, 0, 2, 0);
             bigLabel9.Name = "bigLabel9";
             bigLabel9.Size = new Size(22, 18);
             bigLabel9.TabIndex = 55;
             bigLabel9.Text = "%";
             // 
-            // ChonPhimDuocGiam
-            // 
-            ChonPhimDuocGiam.FormattingEnabled = true;
-            ChonPhimDuocGiam.Location = new Point(306, 277);
-            ChonPhimDuocGiam.Margin = new Padding(2, 2, 2, 2);
-            ChonPhimDuocGiam.Name = "ChonPhimDuocGiam";
-            ChonPhimDuocGiam.Size = new Size(497, 4);
-            ChonPhimDuocGiam.TabIndex = 56;
-            // 
             // PhanThemUuDai
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(967, 377);
-            Controls.Add(ChonPhimDuocGiam);
+            ClientSize = new Size(969, 293);
             Controls.Add(bigLabel9);
             Controls.Add(bigLabel8);
             Controls.Add(bigLabel7);
-            Controls.Add(bigLabel6);
-            Controls.Add(bigLabel4);
             Controls.Add(bigLabel2);
             Controls.Add(bigLabel5);
             Controls.Add(ChonHetUuDai);
             Controls.Add(ChonUuDaiTu);
             Controls.Add(NutThemUuDai);
             Controls.Add(ChonPhanTramGiam);
-            Controls.Add(ChonDoiTuongDuocGiam);
-            Controls.Add(TenUuDai);
+            Controls.Add(MaUuDaiText);
             Controls.Add(parrotGradientPanel1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "PhanThemUuDai";
             Text = "Form1";
             parrotGradientPanel1.ResumeLayout(false);
@@ -387,19 +325,15 @@
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private PictureBox pictureBox1;
         private ReaLTaiizor.Controls.BigLabel bigLabel3;
-        private ReaLTaiizor.Controls.HopeTextBox TenUuDai;
-        private ReaLTaiizor.Controls.ComboBoxEdit ChonDoiTuongDuocGiam;
+        private ReaLTaiizor.Controls.HopeTextBox MaUuDaiText;
         private ReaLTaiizor.Controls.ComboBoxEdit ChonPhanTramGiam;
         private ReaLTaiizor.Controls.SpaceButton NutThemUuDai;
         private DateTimePicker ChonUuDaiTu;
         private DateTimePicker ChonHetUuDai;
         private ReaLTaiizor.Controls.BigLabel bigLabel5;
         private ReaLTaiizor.Controls.BigLabel bigLabel2;
-        private ReaLTaiizor.Controls.BigLabel bigLabel4;
-        private ReaLTaiizor.Controls.BigLabel bigLabel6;
         private ReaLTaiizor.Controls.BigLabel bigLabel7;
         private ReaLTaiizor.Controls.BigLabel bigLabel8;
         private ReaLTaiizor.Controls.BigLabel bigLabel9;
-        private CheckedListBox ChonPhimDuocGiam;
     }
 }

@@ -153,6 +153,7 @@
             UuDai.TabIndex = 1;
             UuDai.Text = "ƯU ĐÃI";
             UuDai.UseVisualStyleBackColor = false;
+            UuDai.Click += UuDai_Click;
             // 
             // MenuTaiKhoan
             // 
@@ -160,6 +161,7 @@
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
             MenuTaiKhoan.Size = new Size(240, 88);
+            MenuTaiKhoan.Opening += MenuTaiKhoan_Opening;
             // 
             // ThongTinTaiKhoan
             // 
@@ -187,6 +189,7 @@
             DangXuat.Name = "DangXuat";
             DangXuat.Size = new Size(239, 28);
             DangXuat.Text = "Đăng xuất";
+            DangXuat.Click += DangXuat_Click_1;
             // 
             // panelDuongDan
             // 
@@ -373,6 +376,7 @@
             Xoa.TabIndex = 35;
             Xoa.Text = "XÓA";
             Xoa.UseVisualStyleBackColor = false;
+            Xoa.Click += Xoa_Click;
             // 
             // NoiDungDanhGia
             // 
@@ -382,6 +386,7 @@
             NoiDungDanhGia.Name = "NoiDungDanhGia";
             NoiDungDanhGia.Size = new Size(482, 372);
             NoiDungDanhGia.TabIndex = 34;
+            NoiDungDanhGia.TextChanged += NoiDungDanhGia_TextChanged;
             // 
             // label1
             // 

@@ -179,7 +179,7 @@ namespace CinemaManagement
 
             foreach (var Review in LocDanhGia)
             {
-                var ReviewItem = new DanhGiaItemControl(Review);
+                var ReviewItem = new DanhGiaItemControl(Review, currentUser.IDUser);
                 ReviewItem.Width = flowLayoutPanel.Width - 5;
                 ReviewItem.Margin = new Padding(0, 0, 0, 10);
                 flowLayoutPanel.Controls.Add(ReviewItem);
@@ -305,6 +305,35 @@ namespace CinemaManagement
 
                 TimKiem.Text = ""; //xoa ndung tim kiem 
             }
+        }
+
+        private void MenuTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void DangXuat_Click_1(object sender, EventArgs e)
+        {
+            var dangNhap = new PhanDangNhap();
+            this.Hide();
+            dangNhap.Show();
+        }
+
+        private void UuDai_Click(object sender, EventArgs e)
+        {
+            var uuDai = new DanhSachUuDai();
+            this.Hide();
+            uuDai.Show();
+        }
+
+        private void Xoa_Click(object sender, EventArgs e)
+        {
+            NoiDungDanhGia.Clear();
+        }
+
+        private void NoiDungDanhGia_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

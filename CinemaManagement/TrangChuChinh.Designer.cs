@@ -111,7 +111,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 110);
+            MenuTaiKhoan.Size = new Size(240, 88);
             // 
             // ThongTinTaiKhoan
             // 
@@ -168,6 +168,7 @@
             UuDai.TabIndex = 1;
             UuDai.Text = "ƯU ĐÃI";
             UuDai.UseVisualStyleBackColor = false;
+            UuDai.Click += UuDai_Click_1;
             // 
             // PanelDuongDan
             // 

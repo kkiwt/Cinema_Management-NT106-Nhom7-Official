@@ -1,4 +1,8 @@
-﻿namespace CinemaManagement
+﻿using System;
+using System.Windows.Forms;
+using System.Text.Json;
+
+namespace CinemaManagement
 {
     public partial class PhanThemUuDai : Form
     {
@@ -24,54 +28,91 @@
             daChonNgayKT = true;
         }
 
-        private void NutThemUuDai_Click(object sender, EventArgs e)
+
+        private async void NutThemUuDai_Click(object sender, EventArgs e)
         {
-            // 1. Validate Tên Ưu Đãi
-            if (string.IsNullOrWhiteSpace(TenUuDai.Text))
+            string id = MaUuDaiText.Text.Trim();
+            DateTime tuNgay = ChonUuDaiTu.Value.Date;
+            DateTime denNgay = ChonHetUuDai.Value.Date;
+            string tiLeStr = ChonPhanTramGiam.SelectedItem?.ToString();
+
+            // --- Validation ---
+            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(tiLeStr))
             {
-                MessageBox.Show("Vui lòng nhập Tên Ưu Đãi!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TenUuDai.Focus();
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
                 return;
             }
-            if (!daChonNgayBD || !daChonNgayKT)
+            if (!decimal.TryParse(tiLeStr, out decimal tiLe) || tiLe <= 0 || tiLe > 100)
             {
-                MessageBox.Show("Chưa nhập ngày bắt đầu ưu đãi hoặc ngày hết ưu đãi",
-                                "Lỗi ngày tháng",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                MessageBox.Show("Tỉ lệ giảm phải là số từ 1 đến 100.");
                 return;
             }
-
-
-
-            // 2. Validate Ngày
-            if (ChonHetUuDai.Value < ChonUuDaiTu.Value)
+            if (denNgay < tuNgay)
             {
-                MessageBox.Show("Ngày kết thúc ưu đãi phải lớn hơn hoặc bằng ngày bắt đầu!", "Lỗi ngày tháng", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.");
                 return;
             }
 
-            // 3. Validate ComboBox: Đối tượng được giảm
-            if (ChonDoiTuongDuocGiam.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("Vui lòng chọn Đối Tượng Được Giảm!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            // 4. Validate phần trăm giảm
-            if (ChonPhanTramGiam.SelectedIndex == -1)
+                // Chia tiLe cho 100 trước khi gửi
+                tiLe = tiLe / 100;
+
+                ClientTCP client = new ClientTCP();
+
+                string message = $"ADD_GIAMGIA|{id}|{tuNgay:yyyy-MM-dd}|{denNgay:yyyy-MM-dd}|{tiLe}";
+
+                string response = await client.SendMessageAsync(message);
+
+                this.Invoke((MethodInvoker)delegate
+                {
+                    string[] parts = null;
+                    try
+                    {
+                        parts = JsonSerializer.Deserialize<string[]>(response);
+                    }
+                    catch
+                    {
+                        string clean = response.Replace("\\\\", "")
+                                               .Replace("[", "")
+                                               .Replace("]", "")
+                                               .Replace("\\\"", "")
+                                               .Trim();
+                        parts = clean.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                    }
+
+                    if (parts == null || parts.Length == 0)
+                    {
+                        MessageBox.Show($"Phản hồi rỗng hoặc không hợp lệ: {response}", "Lỗi");
+                        return;
+                    }
+
+                    string command = parts[0].Trim();
+                    switch (command)
+                    {
+                        case "SUCCESS":
+                            MessageBox.Show("Thêm ưu đãi thành công!", "Thành công");
+                            this.Close(); // hoặc chuyển về dashboard
+                            break;
+                        case "FAILED":
+                            MessageBox.Show("Thêm ưu đãi thất bại.", "Lỗi");
+                            break;
+                        default:
+                            MessageBox.Show($"Phản hồi không xác định: {string.Join(", ", parts)}", "DEBUG");
+                            break;
+                    }
+                });
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng chọn % giảm!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                this.Invoke((Action)(() =>
+                {
+                    MessageBox.Show($"Lỗi gửi dữ liệu đến server: {ex.Message}", "Lỗi");
+                }));
             }
-
-            // 5. Validate phim được giảm
-            if (ChonPhimDuocGiam.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Vui lòng chọn ít nhất 1 phim được giảm!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
         }
+
+
     }
 }

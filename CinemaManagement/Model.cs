@@ -267,6 +267,9 @@ namespace CinemaManagement
     }
     public class ReviewDisplay
     {
+        [JsonPropertyName("idreview")]
+        public string IdReview { get; set; }
+
         [JsonPropertyName("idtaikhoan")]
         public string IdTaiKhoan { get; set; }
 
@@ -278,8 +281,7 @@ namespace CinemaManagement
 
         [JsonPropertyName("sosao")]
         public int SoSao { get; set; }
-
-        
+  
     }
 
     public class ReviewSummary

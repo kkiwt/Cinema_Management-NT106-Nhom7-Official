@@ -30,6 +30,8 @@ namespace ServerAndService
             }
         }
 
+
+
         private async Task HandleClientAsync(TcpClient client)
         {
             try
@@ -95,6 +97,32 @@ namespace ServerAndService
                             response = await service.LoginUser(username, password);
                         }
                         break;
+
+                    case "FORGOT_REQUEST":
+                        {
+                            string email = parts[1];
+                            string otp = await service.RequestPasswordReset(email);
+
+                            if (otp != "EMAIL_NOT_FOUND")
+                            {
+                                EmailService mail = new EmailService();
+                                await mail.SendOtp(email, otp);
+                                response = "OTP_SENT";
+                            }
+                            else response = "EMAIL_NOT_FOUND";
+                            break;
+                        }
+
+                    case "FORGOT_CONFIRM":
+                        {
+                            string email = parts[1];
+                            string otp = parts[2];
+                            string newPass = parts[3];
+
+                            response = await service.ConfirmPasswordReset(email, otp, newPass);
+                            break;
+                        }
+
                     case "GET_LATEST_MOVIES":
                         if (parts.Length < 2 || !int.TryParse(parts[1], out int limitCount) || limitCount < 0)
                         {
@@ -105,6 +133,15 @@ namespace ServerAndService
                             response = await service.GetLatestMoviesRPC(limitCount);
                         }
                         break;
+
+                    case "CHECK_OTP":
+                        {
+                            string email = parts[1];
+                            string otp = parts[2];
+                            response = await service.CheckOtp(email, otp);
+                            break;
+                        }
+
                     case "GET_REVIEW_SUMMARY":
                         if (parts.Length < 2 || string.IsNullOrWhiteSpace(parts[1]))
                         {
@@ -113,9 +150,10 @@ namespace ServerAndService
                         else
                         {
                             string idPhim = parts[1];
-                            response = await service.GetReviewSummary(idPhim); //goi pthu kethop 2 RCP da tao
+                            response = await service.GetReviewSummary(idPhim); //goi pthu ket hop 2 RCP da tao
                         }
                         break;
+
                     case "POST_REVIEW":
                         if (parts.Length < 5 || !int.TryParse(parts[4], out int soSao) || soSao < 1 || soSao > 5)
                         {
@@ -129,6 +167,38 @@ namespace ServerAndService
                             response = await service.PostReview(idTaiKhoan, idPhim, noiDung, soSao);
                         }
                         break;
+
+                    case "ADD_GIAMGIA": // Cai nay them o tron cai Handle file ServerTCP.cs
+                        if (parts.Length < 5)
+                        {
+                            response = "ERROR: ADD_GIAMGIA requires IdGiamGia, TuNgay, DenNgay, TiLeGiam";
+                        }
+                        else
+                        {
+                            string id = parts[1];
+                            if (!DateTime.TryParse(parts[2], out DateTime tuNgay) ||
+                                !DateTime.TryParse(parts[3], out DateTime denNgay) ||
+                                !decimal.TryParse(parts[4], out decimal tiLe))
+                            {
+                                response = "ERROR: Invalid date or numeric format";
+                            }
+                            else
+                            {
+                                response = await service.AddGiamGiaRPC(id, tuNgay, denNgay, tiLe);
+                            }
+                        }
+                        break;
+
+                    case "DELETE_REVIEW":
+                        if (parts.Length < 2)
+                            response = "ERROR: DELETE_REVIEW requires idReview";
+                        else
+                        {
+                            string idReview = parts[1];
+                            response = await service.DeleteReview(idReview);
+                        }
+                        break;
+
                     default:
                         response = "UNKNOWN_COMMAND";
                         break;
