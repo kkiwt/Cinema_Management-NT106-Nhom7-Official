@@ -9,7 +9,7 @@ namespace CinemaManagement
         {
             InitializeComponent();
             this.formTrangChuChinh = parentForm;
-            TimKiem.KeyPress += TimKiem_KeyPress; //Tim kiem
+
         }
         private UserInfo currentUser;
 
@@ -18,7 +18,7 @@ namespace CinemaManagement
             InitializeComponent();
             this.formTrangChuChinh = parentForm;
             this.currentUser = user; // Lưu thông tin người dùng
-            TimKiem.KeyPress += TimKiem_KeyPress;
+
         }
 
         private void DangXuat_Click(object sender, EventArgs e)
@@ -163,32 +163,28 @@ namespace CinemaManagement
             }
         }
 
-        private void TimKiem_KeyPress(object sender, KeyPressEventArgs e)  //Tim kiem
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                e.Handled = true;
-                string TenPhimCanTim = TimKiem.Text.Trim();
-
-                if (formTrangChuChinh != null && !string.IsNullOrEmpty(TenPhimCanTim))
-                {
-                    this.Hide(); //An ChiTietPhim hien tai
-                    formTrangChuChinh.TimKiemVaHienThiChiTiet(TenPhimCanTim); //goi ham tim kiem tren TrangChuChinh
-                }
-                else if (formTrangChuChinh == null)
-                {
-                    MessageBox.Show("Lỗi: Không tìm thấy Trang Chủ Chính để thực hiện tìm kiếm.", "Lỗi");
-                }
-
-                TimKiem.Text = ""; //Xoa ndung tim kiem
-
-            }
-        }
 
         private void MenuTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
+
+
+        private void DatVe_Click(object sender, EventArgs e)
+        {
+            if (PhimHienTai != null && currentUser != null)
+            {
+                this.Hide(); // Ẩn form hiện tại
+                ChonPhongChieu formChonPhong = new ChonPhongChieu(PhimHienTai, currentUser);
+                formChonPhong.ShowDialog(); // Hiển thị form chọn phòng
+                this.Show(); // Hiện lại form sau khi đóng form kia
+            }
+            else
+            {
+                MessageBox.Show("Không thể đặt vé vì thiếu thông tin phim hoặc người dùng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
 

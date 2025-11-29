@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhimHot));
             PanelHeader = new Panel();
             Logo = new PictureBox();
-            TimKiem = new TextBox();
             TaiKhoan = new Button();
             DanhSachPhimHot = new Button();
             UuDai = new Button();
@@ -56,7 +55,6 @@
             // 
             PanelHeader.BackColor = Color.FromArgb(30, 27, 58);
             PanelHeader.Controls.Add(Logo);
-            PanelHeader.Controls.Add(TimKiem);
             PanelHeader.Controls.Add(TaiKhoan);
             PanelHeader.Controls.Add(DanhSachPhimHot);
             PanelHeader.Controls.Add(UuDai);
@@ -75,16 +73,6 @@
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
-            // 
-            // TimKiem
-            // 
-            TimKiem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TimKiem.Location = new Point(394, 28);
-            TimKiem.Margin = new Padding(3, 2, 3, 2);
-            TimKiem.Name = "TimKiem";
-            TimKiem.Size = new Size(181, 26);
-            TimKiem.TabIndex = 3;
-            TimKiem.Text = "Tìm kiếm phim";
             // 
             // TaiKhoan
             // 
@@ -187,7 +175,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 88);
+            MenuTaiKhoan.Size = new Size(240, 110);
             // 
             // ThongTinTaiKhoan
             // 
@@ -231,7 +219,6 @@
             Name = "PhimHot";
             Text = "Solunar Cinema";
             PanelHeader.ResumeLayout(false);
-            PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             PanelDuongDan.ResumeLayout(false);
             PanelDuongDan.PerformLayout();
@@ -245,7 +232,6 @@
 
         private Panel PanelHeader;
         private PictureBox Logo;
-        private TextBox TimKiem;
         private Button TaiKhoan;
         private Button DanhSachPhimHot;
         private Button UuDai;

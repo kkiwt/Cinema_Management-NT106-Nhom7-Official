@@ -18,17 +18,7 @@ namespace CinemaManagement
 
             if (Review.IdTaiKhoan == userId)
             {
-                Button btnXoa = new Button()
-                {
-                    Text = "Xóa",
-                    AutoSize = true,
-                    BackColor = Color.Red,
-                    ForeColor = Color.White,
-                    Cursor = Cursors.Hand
-                };
-                btnXoa.Click += Xoa_Click;
-                Xoa.Visible = true;
-                this.Controls.Add(btnXoa);
+
             }
             else
             {

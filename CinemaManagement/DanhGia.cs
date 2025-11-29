@@ -40,12 +40,9 @@ namespace CinemaManagement
             this.Text = $"Đánh giá phim: {phim.TenPhim}";
             SetupComboBox();
             SetupStarSelection();
-            Gui.Click += Gui_Click;
+
             this.Load += DanhGia_Load;
-            LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
-            LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked;
-            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá";
-            TimKiem.KeyPress += TimKiem_KeyPress;   //Tim kiem
+  //Tim kiem
         }
 
         // Constructor rong cho Designer
@@ -272,7 +269,7 @@ namespace CinemaManagement
 
             if (formTrangChuChinh != null)
             {
-                PhimHot phimhot = new PhimHot(formTrangChuChinh);
+                PhimHot phimhot = new PhimHot(formTrangChuChinh, currentUser);
                 this.Close(); //dong DanhGia
                 GoiChiTietPhim.Hide(); //an ChiTietPhim va goi DanhGia
                 phimhot.ShowDialog(); //Hien thi PhimHot

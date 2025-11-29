@@ -17,6 +17,26 @@ namespace CinemaManagement
             InitializeComponent();
         }
 
-      
+        private Phim phimDuocChon;
+        private UserInfo userHienTai;
+
+        public ChonPhongChieu(Phim phim, UserInfo user)
+        {
+            InitializeComponent();
+            phimDuocChon = phim;
+            userHienTai = user;
+            this.Text = $"Chọn phòng chiếu cho: {phim.TenPhim}";
+            lblTenPhim.Text = phim.TenPhim; // ví dụ hiển thị tên phim
+        }
+
+        private void ChonPhongChieu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnQuaylai_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace CinemaManagement
             this.ParentForm = parentForm;
             this.Load += DanhSachPhim_Load;
             LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
-            TimKiem.KeyPress += TimKiem_KeyPress;  //Tim kiem phim
+
         }
 
         private async void DanhSachPhim_Load(object sender, EventArgs e)
@@ -66,9 +66,27 @@ namespace CinemaManagement
                 var MucPhim = new PhimItemControl();
                 MucPhim.ThongTinPhim(DuLieuPhim);
                 MucPhim.PhimDuocChon += MucPhimDuocChon; //Chuyen sang ChiTietPhim
+                MucPhim.DatVeDuocChon += MucDatVeDuocChon; // Đặt vé
                 flpDanhSachPhim.Controls.Add(MucPhim);
             }
         }
+
+        private void MucDatVeDuocChon(object sender, PhimDuocChonEventArgs e)
+        {
+            Phim phimChon = e.PhimDuocChon;
+            if (phimChon != null && currentUser != null)
+            {
+                ChonPhongChieu formChonPhong = new ChonPhongChieu(phimChon, currentUser);
+                this.Hide();
+                formChonPhong.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Không thể đặt vé vì thiếu thông tin.", "Lỗi");
+            }
+        }
+
 
         private void MucPhimDuocChon(object sender, PhimDuocChonEventArgs e)
         {
@@ -110,34 +128,6 @@ namespace CinemaManagement
             }
         }
 
-        private void TimKiem_KeyPress(object sender, KeyPressEventArgs e)  //Ham tim kiem phim
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                e.Handled = true;
-                string TenPhimCanTim = TimKiem.Text.Trim();
-
-                TrangChuChinh formTrangChuChinh = ParentForm as TrangChuChinh;
-
-                if (ParentForm is ChiTietPhim chiTietPhim)
-                {
-                    formTrangChuChinh = chiTietPhim.GetTrangChuChinh();
-                }
-
-                if (formTrangChuChinh != null && !string.IsNullOrEmpty(TenPhimCanTim))
-                {
-                    this.Close(); //dong PhimHot
-
-                    formTrangChuChinh.TimKiemVaHienThiChiTiet(TenPhimCanTim); //goi ham timkiem o TrangChuChinh
-                }
-                else if (formTrangChuChinh == null)
-                {
-                    MessageBox.Show("Lỗi: Không tìm thấy Trang Chủ Chính để thực hiện tìm kiếm.", "Lỗi");
-                }
-
-                TimKiem.Text = ""; //xoa ndung timkiem
-            }
-        }
 
         private void TaiKhoan_Click(object sender, EventArgs e)
         {
@@ -159,7 +149,7 @@ namespace CinemaManagement
             this.currentUser = user; // Lưu thông tin người dùng
             this.Load += DanhSachPhim_Load;
             LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
-            TimKiem.KeyPress += TimKiem_KeyPress;
+
         }
 
 
@@ -173,6 +163,11 @@ namespace CinemaManagement
         }
 
         private void DanhSachPhimHot_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TimKiem_TextChanged(object sender, EventArgs e)
         {
 
         }

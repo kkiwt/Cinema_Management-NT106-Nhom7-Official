@@ -29,6 +29,7 @@
                 Console.WriteLine($"Lỗi tải poster phim: {ex.Message}");
                 PosterPhim.Image = null;
             }
+
         }
 
         protected virtual void OnPhimDuocChon(Phim phim) //Ham kich hat su kien PhimDuocChon
@@ -36,17 +37,15 @@
             PhimDuocChon?.Invoke(this, new PhimDuocChonEventArgs(phim));
         }
 
+
+        public event EventHandler<PhimDuocChonEventArgs> DatVeDuocChon;
+
         private void DatVePhim_Click(object sender, EventArgs e)
         {
             if (PhimHienTai != null)
-            {
-                OnPhimDuocChon(PhimHienTai);
-            }
-            else
-            {
-                MessageBox.Show($"Đặt vé cho phim: {TenPhim.Text}");
-            }
+                DatVeDuocChon?.Invoke(this, new PhimDuocChonEventArgs(PhimHienTai));
         }
+
 
         private void ChiTiet_Click(object sender, EventArgs e)
         {
@@ -60,7 +59,12 @@
             }
         }
 
-  
+        private void DatVe_Click(object sender, EventArgs e)
+        {
+
+// Khong dung
+
+        }
     }
 
 }

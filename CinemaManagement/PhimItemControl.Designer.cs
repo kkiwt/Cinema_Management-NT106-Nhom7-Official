@@ -78,6 +78,7 @@
             DatVe.TabIndex = 9;
             DatVe.Text = "ĐẶT VÉ";
             DatVe.UseVisualStyleBackColor = false;
+            DatVe.Click += DatVePhim_Click;
             // 
             // PhimItemControl
             // 

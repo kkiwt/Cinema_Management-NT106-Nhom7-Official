@@ -6,6 +6,7 @@ namespace CinemaManagement
 
     public partial class TrangChuChinh : Form
     {
+
         private List<Phim> DanhSachPhim = new List<Phim>();
         private int ViTriBatDauCuaMotPhim = 0;
 
@@ -102,6 +103,7 @@ namespace CinemaManagement
 
                 MucPhim.ThongTinPhim(DuLieuPhim);
                 MucPhim.PhimDuocChon += MucPhimDuocChon;
+                MucPhim.DatVeDuocChon += MucDatVeDuocChon; // Đặt vé
                 BangPhim.Controls.Add(MucPhim);
             }
         }
@@ -190,7 +192,7 @@ namespace CinemaManagement
 
             if (PhimDuocTimThay != null)
             {
-                ChiTietPhim chitietphim = new ChiTietPhim(this); //Chuuyen sang ChiTietPhim
+                ChiTietPhim chitietphim = new ChiTietPhim(this, currentUser); //Chuuyen sang ChiTietPhim
                 chitietphim.HienThiThongTinPhim(PhimDuocTimThay);
                 this.Hide();
                 chitietphim.Show();
@@ -233,6 +235,23 @@ namespace CinemaManagement
             this.Hide();
             danhSachUuDai.ShowDialog();
         }
+
+        private void MucDatVeDuocChon(object sender, PhimDuocChonEventArgs e)
+        {
+            Phim phimChon = e.PhimDuocChon;
+            if (phimChon != null && currentUser != null)
+            {
+                ChonPhongChieu formChonPhong = new ChonPhongChieu(phimChon, currentUser);
+                this.Hide();
+                formChonPhong.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Không thể đặt vé vì thiếu thông tin.", "Lỗi");
+            }
+        }
+
     }
 
 

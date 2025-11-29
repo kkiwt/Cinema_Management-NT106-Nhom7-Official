@@ -60,7 +60,6 @@
             label2 = new Label();
             PanelHeader = new Panel();
             Logo = new PictureBox();
-            TimKiem = new TextBox();
             TaiKhoan = new Button();
             PhimHot = new Button();
             UuDai = new Button();
@@ -195,6 +194,7 @@
             DatVe.Text = "ĐẶT VÉ";
             DatVe.UseCompatibleTextRendering = true;
             DatVe.UseVisualStyleBackColor = false;
+            DatVe.Click += DatVe_Click;
             // 
             // PanelChiTietPhim
             // 
@@ -429,7 +429,6 @@
             // 
             PanelHeader.BackColor = Color.FromArgb(30, 27, 58);
             PanelHeader.Controls.Add(Logo);
-            PanelHeader.Controls.Add(TimKiem);
             PanelHeader.Controls.Add(TaiKhoan);
             PanelHeader.Controls.Add(PhimHot);
             PanelHeader.Controls.Add(UuDai);
@@ -448,16 +447,6 @@
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
-            // 
-            // TimKiem
-            // 
-            TimKiem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TimKiem.Location = new Point(394, 28);
-            TimKiem.Margin = new Padding(3, 2, 3, 2);
-            TimKiem.Name = "TimKiem";
-            TimKiem.Size = new Size(181, 26);
-            TimKiem.TabIndex = 3;
-            TimKiem.Text = "Tìm kiếm phim";
             // 
             // TaiKhoan
             // 
@@ -558,7 +547,6 @@
             PanelChiTietPhim.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PosterPhim).EndInit();
             PanelHeader.ResumeLayout(false);
-            PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             MenuTaiKhoan.ResumeLayout(false);
             ResumeLayout(false);
@@ -575,7 +563,6 @@
         private Button DanhGia;
         private Label NoiDungPhim;
         private Panel PanelHeader;
-        private TextBox TimKiem;
         private Button TaiKhoan;
         private Button PhimHot;
         private Button UuDai;
