@@ -41,6 +41,7 @@
             PhimHot = new Button();
             UuDai = new Button();
             PanelDuongDan = new Panel();
+            NutStaffOnly = new MaterialSkin.Controls.MaterialButton();
             House = new PictureBox();
             LinkTrangChuChinh = new LinkLabel();
             PanelChinh = new Panel();
@@ -173,6 +174,7 @@
             // PanelDuongDan
             // 
             PanelDuongDan.BackColor = Color.LightBlue;
+            PanelDuongDan.Controls.Add(NutStaffOnly);
             PanelDuongDan.Controls.Add(House);
             PanelDuongDan.Controls.Add(LinkTrangChuChinh);
             PanelDuongDan.ForeColor = Color.Transparent;
@@ -181,6 +183,29 @@
             PanelDuongDan.Name = "PanelDuongDan";
             PanelDuongDan.Size = new Size(1117, 49);
             PanelDuongDan.TabIndex = 1;
+            // 
+            // NutStaffOnly
+            // 
+            NutStaffOnly.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            NutStaffOnly.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            NutStaffOnly.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            NutStaffOnly.Depth = 0;
+            NutStaffOnly.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutStaffOnly.HighEmphasis = true;
+            NutStaffOnly.Icon = null;
+            NutStaffOnly.Location = new Point(1011, 5);
+            NutStaffOnly.Margin = new Padding(3, 4, 3, 4);
+            NutStaffOnly.MouseState = MaterialSkin.MouseState.HOVER;
+            NutStaffOnly.Name = "NutStaffOnly";
+            NutStaffOnly.NoAccentTextColor = Color.Empty;
+            NutStaffOnly.Size = new Size(107, 36);
+            NutStaffOnly.TabIndex = 6;
+            NutStaffOnly.Text = "Staff-Only";
+            NutStaffOnly.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            NutStaffOnly.UseAccentColor = false;
+            NutStaffOnly.UseVisualStyleBackColor = true;
+            NutStaffOnly.Visible = false;
+            NutStaffOnly.Click += NutStaffOnly_Click;
             // 
             // House
             // 
@@ -326,5 +351,6 @@
         private LinkLabel LinkTrangChuChinh;
         private PictureBox House;
         private PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialButton NutStaffOnly;
     }
 }

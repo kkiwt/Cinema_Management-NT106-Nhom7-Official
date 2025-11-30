@@ -13,5 +13,6 @@ namespace CinemaManagement
         public string GioiTinh { get; set; }
 
         public string IDUser = "00"; // tam thoi
+        public bool LaNhanVien { get; set; } = false;
     }
 }

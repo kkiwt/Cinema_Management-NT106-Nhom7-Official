@@ -26,7 +26,14 @@ namespace CinemaManagement
         private async void TrangChuChinh_Load(object sender, EventArgs e)
         {
             var tcpClient = new ClientTCP();
-
+            if (currentUser.LaNhanVien ==   true)
+                {
+                NutStaffOnly.Visible = true;
+            }
+            else
+            {
+                NutStaffOnly.Visible = false;
+            }
             int GioiHanPhim = 100;
             string command = $"GET_LATEST_MOVIES|{GioiHanPhim}";
             string response = await tcpClient.SendMessageAsync(command);
@@ -252,6 +259,11 @@ namespace CinemaManagement
             }
         }
 
+        private void NutStaffOnly_Click(object sender, EventArgs e)
+        {
+            StaffOnLy staff = new StaffOnLy();
+            staff.ShowDialog();
+        }
     }
 
 

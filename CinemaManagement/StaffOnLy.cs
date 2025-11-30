@@ -70,5 +70,27 @@ namespace CinemaManagement
         {
 
         }
+
+        private void ThemPhim_Click(object sender, EventArgs e)
+        {
+            PhanThemPhim themphim = new PhanThemPhim();
+            themphim.ShowDialog();
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void NutThemUuDai_Click(object sender, EventArgs e)
+        {
+               PhanThemUuDai uudai = new PhanThemUuDai();
+            uudai.ShowDialog();
+        }
     }
 }

@@ -160,8 +160,10 @@ namespace ServerAndService
                     string gioiTinh = firstRow.GetProperty("gioitinh").GetString();
                     DateTime ngaySinh = DateTime.TryParse(firstRow.GetProperty("ngaysinh").ToString(), out var ns)
                         ? ns : DateTime.MinValue;
+                    bool laNhanVien = firstRow.GetProperty("lanhanvien").GetBoolean();
 
-                    return $"[LOGIN_SUCCESS]|{id}|{hoTen}|{userName}|{email}|{sdt}|{gioiTinh}|{ngaySinh:yyyy-MM-dd}";
+                    return $"[LOGIN_SUCCESS]|{id}|{hoTen}|{userName}|{email}|{sdt}|{gioiTinh}|{ngaySinh:yyyy-MM-dd}|{laNhanVien}";
+
                 }
 
 

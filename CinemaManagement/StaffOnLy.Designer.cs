@@ -30,26 +30,25 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffOnLy));
-            TreeNode treeNode9 = new TreeNode("Số Lượng Vé Thường Đã Bán Ra:");
-            TreeNode treeNode10 = new TreeNode("Số Lượng Vé Vip Đã Bán Ra:");
-            TreeNode treeNode11 = new TreeNode("Số Lượng Vé Couple Đã Bán Ra:");
-            TreeNode treeNode12 = new TreeNode("Số Lượng Vé Đã Bán Ra", new TreeNode[] { treeNode9, treeNode10, treeNode11 });
-            TreeNode treeNode13 = new TreeNode("Phim");
-            TreeNode treeNode14 = new TreeNode("Bắp Nước:");
-            TreeNode treeNode15 = new TreeNode("Tổng Doanh Thu Của Rạp", new TreeNode[] { treeNode13, treeNode14 });
-            TreeNode treeNode16 = new TreeNode("Số Phim Đang Chiếu:");
+            TreeNode treeNode1 = new TreeNode("Số Lượng Vé Thường Đã Bán Ra:");
+            TreeNode treeNode2 = new TreeNode("Số Lượng Vé Vip Đã Bán Ra:");
+            TreeNode treeNode3 = new TreeNode("Số Lượng Vé Couple Đã Bán Ra:");
+            TreeNode treeNode4 = new TreeNode("Số Lượng Vé Đã Bán Ra", new TreeNode[] { treeNode1, treeNode2, treeNode3 });
+            TreeNode treeNode5 = new TreeNode("Phim");
+            TreeNode treeNode6 = new TreeNode("Bắp Nước:");
+            TreeNode treeNode7 = new TreeNode("Tổng Doanh Thu Của Rạp", new TreeNode[] { treeNode5, treeNode6 });
+            TreeNode treeNode8 = new TreeNode("Số Phim Đang Chiếu:");
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
             nightPanel1 = new ReaLTaiizor.Controls.NightPanel();
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             pictureBox1 = new PictureBox();
-            bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             treeView1 = new TreeView();
             metroPanel1 = new MetroFramework.Controls.MetroPanel();
             panelChart = new Panel();
             bindingSource1 = new BindingSource(components);
-            hopeButton1 = new ReaLTaiizor.Controls.HopeButton();
-            hopeButton2 = new ReaLTaiizor.Controls.HopeButton();
+            NutThemPhim = new ReaLTaiizor.Controls.HopeButton();
+            NutThemUuDai = new ReaLTaiizor.Controls.HopeButton();
             parrotGradientPanel1.SuspendLayout();
             nightPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -96,7 +95,6 @@
             nightPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             nightPanel1.Controls.Add(materialButton1);
             nightPanel1.Controls.Add(pictureBox1);
-            nightPanel1.Controls.Add(bigLabel3);
             nightPanel1.ForeColor = Color.White;
             nightPanel1.LeftSideColor = Color.Black;
             nightPanel1.Location = new Point(3, 123);
@@ -127,6 +125,7 @@
             materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             materialButton1.UseAccentColor = false;
             materialButton1.UseVisualStyleBackColor = true;
+            materialButton1.Click += materialButton1_Click;
             // 
             // pictureBox1
             // 
@@ -137,18 +136,7 @@
             pictureBox1.Size = new Size(41, 51);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
-            // 
-            // bigLabel3
-            // 
-            bigLabel3.AutoSize = true;
-            bigLabel3.BackColor = Color.Transparent;
-            bigLabel3.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel3.ForeColor = Color.White;
-            bigLabel3.Location = new Point(97, 21);
-            bigLabel3.Name = "bigLabel3";
-            bigLabel3.Size = new Size(151, 32);
-            bigLabel3.TabIndex = 5;
-            bigLabel3.Text = "Đường Dẫn >";
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // treeView1
             // 
@@ -157,23 +145,23 @@
             treeView1.ForeColor = Color.IndianRed;
             treeView1.Location = new Point(16, 15);
             treeView1.Name = "treeView1";
-            treeNode9.Name = "VeThuongChild";
-            treeNode9.Text = "Số Lượng Vé Thường Đã Bán Ra:";
-            treeNode10.Name = "VeVipChild";
-            treeNode10.Text = "Số Lượng Vé Vip Đã Bán Ra:";
-            treeNode11.Name = "VeCoupleChild";
-            treeNode11.Text = "Số Lượng Vé Couple Đã Bán Ra:";
-            treeNode12.Name = "SoLuongVeRoot";
-            treeNode12.Text = "Số Lượng Vé Đã Bán Ra";
-            treeNode13.Name = "NodePhim";
-            treeNode13.Text = "Phim";
-            treeNode14.Name = "NodeBapNuoc";
-            treeNode14.Text = "Bắp Nước:";
-            treeNode15.Name = "DoanhThuRoot";
-            treeNode15.Text = "Tổng Doanh Thu Của Rạp";
-            treeNode16.Name = "RootSoPhim";
-            treeNode16.Text = "Số Phim Đang Chiếu:";
-            treeView1.Nodes.AddRange(new TreeNode[] { treeNode12, treeNode15, treeNode16 });
+            treeNode1.Name = "VeThuongChild";
+            treeNode1.Text = "Số Lượng Vé Thường Đã Bán Ra:";
+            treeNode2.Name = "VeVipChild";
+            treeNode2.Text = "Số Lượng Vé Vip Đã Bán Ra:";
+            treeNode3.Name = "VeCoupleChild";
+            treeNode3.Text = "Số Lượng Vé Couple Đã Bán Ra:";
+            treeNode4.Name = "SoLuongVeRoot";
+            treeNode4.Text = "Số Lượng Vé Đã Bán Ra";
+            treeNode5.Name = "NodePhim";
+            treeNode5.Text = "Phim";
+            treeNode6.Name = "NodeBapNuoc";
+            treeNode6.Text = "Bắp Nước:";
+            treeNode7.Name = "DoanhThuRoot";
+            treeNode7.Text = "Tổng Doanh Thu Của Rạp";
+            treeNode8.Name = "RootSoPhim";
+            treeNode8.Text = "Số Phim Đang Chiếu:";
+            treeView1.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode7, treeNode8 });
             treeView1.Size = new Size(523, 407);
             treeView1.TabIndex = 0;
             // 
@@ -206,59 +194,61 @@
             panelChart.Size = new Size(540, 521);
             panelChart.TabIndex = 5;
             // 
-            // hopeButton1
+            // NutThemPhim
             // 
-            hopeButton1.BorderColor = Color.FromArgb(220, 223, 230);
-            hopeButton1.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
-            hopeButton1.DangerColor = Color.FromArgb(245, 108, 108);
-            hopeButton1.DefaultColor = Color.FromArgb(255, 255, 255);
-            hopeButton1.Font = new Font("Segoe UI", 12F);
-            hopeButton1.HoverTextColor = Color.FromArgb(48, 49, 51);
-            hopeButton1.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeButton1.Location = new Point(47, 669);
-            hopeButton1.Name = "hopeButton1";
-            hopeButton1.PrimaryColor = Color.SlateBlue;
-            hopeButton1.Size = new Size(175, 61);
-            hopeButton1.SuccessColor = Color.FromArgb(103, 194, 58);
-            hopeButton1.TabIndex = 6;
-            hopeButton1.Text = "Thêm Phim";
-            hopeButton1.TextColor = Color.White;
-            hopeButton1.WarningColor = Color.FromArgb(230, 162, 60);
+            NutThemPhim.BorderColor = Color.FromArgb(220, 223, 230);
+            NutThemPhim.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            NutThemPhim.DangerColor = Color.FromArgb(245, 108, 108);
+            NutThemPhim.DefaultColor = Color.FromArgb(255, 255, 255);
+            NutThemPhim.Font = new Font("Segoe UI", 12F);
+            NutThemPhim.HoverTextColor = Color.FromArgb(48, 49, 51);
+            NutThemPhim.InfoColor = Color.FromArgb(144, 147, 153);
+            NutThemPhim.Location = new Point(47, 669);
+            NutThemPhim.Name = "NutThemPhim";
+            NutThemPhim.PrimaryColor = Color.SlateBlue;
+            NutThemPhim.Size = new Size(175, 61);
+            NutThemPhim.SuccessColor = Color.FromArgb(103, 194, 58);
+            NutThemPhim.TabIndex = 6;
+            NutThemPhim.Text = "Thêm Phim";
+            NutThemPhim.TextColor = Color.White;
+            NutThemPhim.WarningColor = Color.FromArgb(230, 162, 60);
+            NutThemPhim.Click += ThemPhim_Click;
             // 
-            // hopeButton2
+            // NutThemUuDai
             // 
-            hopeButton2.BorderColor = Color.FromArgb(220, 223, 230);
-            hopeButton2.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
-            hopeButton2.DangerColor = Color.FromArgb(245, 108, 108);
-            hopeButton2.DefaultColor = Color.FromArgb(255, 255, 255);
-            hopeButton2.Font = new Font("Segoe UI", 12F);
-            hopeButton2.HoverTextColor = Color.FromArgb(48, 49, 51);
-            hopeButton2.InfoColor = Color.FromArgb(144, 147, 153);
-            hopeButton2.Location = new Point(379, 669);
-            hopeButton2.Name = "hopeButton2";
-            hopeButton2.PrimaryColor = Color.SlateBlue;
-            hopeButton2.Size = new Size(191, 61);
-            hopeButton2.SuccessColor = Color.FromArgb(103, 194, 58);
-            hopeButton2.TabIndex = 7;
-            hopeButton2.Text = "Thêm Ưu Đãi";
-            hopeButton2.TextColor = Color.White;
-            hopeButton2.WarningColor = Color.FromArgb(230, 162, 60);
+            NutThemUuDai.BorderColor = Color.FromArgb(220, 223, 230);
+            NutThemUuDai.ButtonType = ReaLTaiizor.Util.HopeButtonType.Primary;
+            NutThemUuDai.DangerColor = Color.FromArgb(245, 108, 108);
+            NutThemUuDai.DefaultColor = Color.FromArgb(255, 255, 255);
+            NutThemUuDai.Font = new Font("Segoe UI", 12F);
+            NutThemUuDai.HoverTextColor = Color.FromArgb(48, 49, 51);
+            NutThemUuDai.InfoColor = Color.FromArgb(144, 147, 153);
+            NutThemUuDai.Location = new Point(379, 669);
+            NutThemUuDai.Name = "NutThemUuDai";
+            NutThemUuDai.PrimaryColor = Color.SlateBlue;
+            NutThemUuDai.Size = new Size(191, 61);
+            NutThemUuDai.SuccessColor = Color.FromArgb(103, 194, 58);
+            NutThemUuDai.TabIndex = 7;
+            NutThemUuDai.Text = "Thêm Ưu Đãi";
+            NutThemUuDai.TextColor = Color.White;
+            NutThemUuDai.WarningColor = Color.FromArgb(230, 162, 60);
+            NutThemUuDai.Click += NutThemUuDai_Click;
             // 
-            // Form3
+            // StaffOnLy
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoSize = true;
             BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(1205, 782);
-            Controls.Add(hopeButton2);
-            Controls.Add(hopeButton1);
+            Controls.Add(NutThemUuDai);
+            Controls.Add(NutThemPhim);
             Controls.Add(panelChart);
             Controls.Add(metroPanel1);
             Controls.Add(parrotGradientPanel1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
-            Name = "Form3";
+            Name = "StaffOnLy";
             Text = "Form3";
             Load += Form3_Load;
             parrotGradientPanel1.ResumeLayout(false);
@@ -274,14 +264,13 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
         private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel1;
         private ReaLTaiizor.Controls.NightPanel nightPanel1;
-        private ReaLTaiizor.Controls.BigLabel bigLabel3;
         private PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private TreeView treeView1;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private Panel panelChart;
         private BindingSource bindingSource1;
-        private ReaLTaiizor.Controls.HopeButton hopeButton1;
-        private ReaLTaiizor.Controls.HopeButton hopeButton2;
+        private ReaLTaiizor.Controls.HopeButton NutThemPhim;
+        private ReaLTaiizor.Controls.HopeButton NutThemUuDai;
     }
 }

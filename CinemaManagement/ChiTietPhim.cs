@@ -106,8 +106,12 @@ namespace CinemaManagement
             {
                 try
                 {
-                    // Mo trinh duyet
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(PhimHienTai.UrlTrailer) { UseShellExecute = true });
+                    string embedUrl = TrailerForm.GetEmbedUrlFromYouTubeUrl(PhimHienTai.UrlTrailer);
+
+                    using (var trailerForm = new TrailerForm(embedUrl))
+                    {
+                        trailerForm.ShowDialog();
+                    }
                 }
                 catch (Exception ex)
                 {

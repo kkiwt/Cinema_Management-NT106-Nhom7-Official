@@ -57,19 +57,17 @@ namespace CinemaManagement
                 }
 
                 // 🧩 Kiểm tra phản hồi từ server
+
                 if (response.StartsWith("[LOGIN_SUCCESS]"))
                 {
-                    string[] parts = response.Split('|');
-
-                    // Chuẩn dạng: [LOGIN_SUCCESS]|id|hoten|username|email|sdt|gioitinh|ngaysinh
-                    if (parts.Length < 8)
+                    string[] parts = response.Split('|', StringSplitOptions.RemoveEmptyEntries);
+                    if (parts.Length < 9) // giờ cần ít nhất 9 phần tử
                     {
                         MessageBox.Show("Phản hồi từ máy chủ không hợp lệ (thiếu dữ liệu).",
                             "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    // 🧠 Tạo đối tượng UserInfo
                     UserInfo currentUser = new UserInfo
                     {
                         IDUser = parts[1],
@@ -78,7 +76,9 @@ namespace CinemaManagement
                         Email = parts[4],
                         SDT = parts[5],
                         GioiTinh = parts[6],
-                        NgaySinh = DateTime.TryParse(parts[7], out DateTime ns) ? ns : DateTime.MinValue
+                        NgaySinh = DateTime.TryParse(parts[7], out DateTime ns) ? ns : DateTime.MinValue,
+                        LaNhanVien = bool.TryParse(parts[8], out bool nv) && nv
+
                     };
 
                     MessageBox.Show($"Đăng nhập thành công!\nChào mừng {currentUser.HoTen}.",
