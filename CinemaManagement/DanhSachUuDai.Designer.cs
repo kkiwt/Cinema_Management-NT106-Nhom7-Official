@@ -48,12 +48,9 @@
             PhimHot = new Button();
             lbDanhSach = new Label();
             dataGridViewDanhSach = new DataGridView();
-            ColSTT = new DataGridViewTextBoxColumn();
             ColTenUuDai = new DataGridViewTextBoxColumn();
-            ColDoiTuong = new DataGridViewTextBoxColumn();
             ColThoiGian = new DataGridViewTextBoxColumn();
             ColGiamGia = new DataGridViewTextBoxColumn();
-            button1 = new Button();
             MenuTaiKhoan.SuspendLayout();
             PanelDuongDan.SuspendLayout();
             PanelHeader.SuspendLayout();
@@ -263,7 +260,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dataGridViewDanhSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewDanhSach.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDanhSach.Columns.AddRange(new DataGridViewColumn[] { ColSTT, ColTenUuDai, ColDoiTuong, ColThoiGian, ColGiamGia });
+            dataGridViewDanhSach.Columns.AddRange(new DataGridViewColumn[] { ColTenUuDai, ColThoiGian, ColGiamGia });
             dataGridViewDanhSach.Location = new Point(40, 180);
             dataGridViewDanhSach.Name = "dataGridViewDanhSach";
             dataGridViewDanhSach.RowHeadersVisible = false;
@@ -271,22 +268,11 @@
             dataGridViewDanhSach.TabIndex = 6;
             dataGridViewDanhSach.CellContentClick += dataGridViewDanhSach_CellContentClick;
             // 
-            // ColSTT
-            // 
-            ColSTT.HeaderText = "STT";
-            ColSTT.Name = "ColSTT";
-            ColSTT.ReadOnly = true;
-            // 
             // ColTenUuDai
             // 
             ColTenUuDai.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             ColTenUuDai.HeaderText = "TÊN ƯU ĐÃI";
             ColTenUuDai.Name = "ColTenUuDai";
-            // 
-            // ColDoiTuong
-            // 
-            ColDoiTuong.HeaderText = "ĐỐI TƯỢNG";
-            ColDoiTuong.Name = "ColDoiTuong";
             // 
             // ColThoiGian
             // 
@@ -298,22 +284,12 @@
             ColGiamGia.HeaderText = "GIẢM GIÁ";
             ColGiamGia.Name = "ColGiamGia";
             // 
-            // button1
-            // 
-            button1.Location = new Point(476, 563);
-            button1.Name = "button1";
-            button1.Size = new Size(134, 22);
-            button1.TabIndex = 7;
-            button1.Text = "XEM THÊM";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // DanhSachUuDai
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1115, 644);
-            Controls.Add(button1);
             Controls.Add(dataGridViewDanhSach);
             Controls.Add(lbDanhSach);
             Controls.Add(PanelDuongDan);
@@ -351,11 +327,8 @@
         private Button UuDai;
         private Label lbDanhSach;
         private DataGridView dataGridViewDanhSach;
-        private DataGridViewTextBoxColumn ColSTT;
         private DataGridViewTextBoxColumn ColTenUuDai;
-        private DataGridViewTextBoxColumn ColDoiTuong;
         private DataGridViewTextBoxColumn ColThoiGian;
         private DataGridViewTextBoxColumn ColGiamGia;
-        private Button button1;
     }
 }
