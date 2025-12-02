@@ -72,6 +72,11 @@ namespace CinemaManagement
                 return;
             }
 
+            if (ChonNgonNgu.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn ngôn ngữ!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
 
             if (ChonPhongChieu.SelectedIndex < 0 || ChonSuatChieu.CheckedItems.Count == 0)
@@ -113,7 +118,8 @@ namespace CinemaManagement
             string posterBase64 = ImageToBase64(localPosterPath);
 
             string message =
-                $"ADD_PHIM|{TenBoPhim.Text}|{TheLoaiText.Text}|{ChonDoTuoi.Text}|{ThoiLuongText.Text}|{MoTaPhim.Text}|{URLTrailerPhim.Text}|{posterBase64}|{TenDaoDien.Text}|{DanDienVien.Text}|{ChonQuocGia.Text}|{ChieuTu.Value:yyyy-MM-dd}|{ChieuDen.Value:yyyy-MM-dd}|{danhSachGio}|{phongId}";
+            $"ADD_PHIM|{TenBoPhim.Text}|{TheLoaiText.Text}|{ChonDoTuoi.Text}|{ThoiLuongText.Text}|{MoTaPhim.Text}|{URLTrailerPhim.Text}|{posterBase64}|{TenDaoDien.Text}|{DanDienVien.Text}|{ChonNgonNgu.Text}|{ChonQuocGia.Text}|{ChieuTu.Value:yyyy-MM-dd}|{ChieuDen.Value:yyyy-MM-dd}|{danhSachGio}|{phongId}";
+
 
 
             var client = new ClientTCP();

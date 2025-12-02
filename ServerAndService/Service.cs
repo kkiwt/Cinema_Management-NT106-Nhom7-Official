@@ -143,10 +143,12 @@ namespace ServerAndService
 
 
 
-        public async Task<string> AddPhimRPC(string idPhim, string tenPhim, string theLoai, string doTuoi,
-                                             int thoiLuong, string moTa, string urlTrailer, string posterPhim,
-                                             string daoDien, string dienVien, string quocGia,
-                                             DateTime tuNgay, DateTime denNgay)
+
+        public async Task<string> AddPhimRPC(
+            string idPhim, string tenPhim, string theLoai, string doTuoi,
+            int thoiLuong, string moTa, string urlTrailer, string posterPhim,
+            string daoDien, string dienVien, string ngonNgu, string quocGia,
+            DateTime tuNgay, DateTime denNgay)
         {
             var result = await client.Rpc("add_phim", new
             {
@@ -160,12 +162,14 @@ namespace ServerAndService
                 p_posterphim = posterPhim,
                 p_daodien = daoDien,
                 p_dienvien = dienVien,
+                p_ngonngu = ngonNgu, // thêm
                 p_quocgia = quocGia,
                 p_tungay = tuNgay.ToString("yyyy-MM-dd"),
                 p_denngay = denNgay.ToString("yyyy-MM-dd")
             });
             return result.Content.Trim('"');
         }
+
 
 
 
@@ -188,10 +192,11 @@ namespace ServerAndService
         }
 
 
+
         public async Task<string> AddPhimFullFlow(
             string tenPhim, string theLoai, string doTuoi, int thoiLuong, string moTa,
             string urlTrailer, string posterBase64, string daoDien, string dienVien,
-            string quocGia, DateTime tuNgay, DateTime denNgay,
+            string ngonNgu, string quocGia, DateTime tuNgay, DateTime denNgay,
             string danhSachGio, string phongChieu)
         {
             try
@@ -200,16 +205,19 @@ namespace ServerAndService
                 string posterUrl = await UploadPosterBase64Async(posterBase64);
                 if (posterUrl.StartsWith("ERROR")) return posterUrl;
 
+                // Lấy IdPhim mới
                 string idPhim = await GetNextIdPhimAsync();
 
+                // Gọi RPC thêm phim với Ngôn Ngữ
                 string insertResult = await AddPhimRPC(
                     idPhim, tenPhim, theLoai, doTuoi, thoiLuong, moTa,
-                    urlTrailer, posterUrl, daoDien, dienVien, quocGia,
+                    urlTrailer, posterUrl, daoDien, dienVien, ngonNgu, quocGia,
                     tuNgay, denNgay);
 
                 if (!insertResult.Contains("SUCCESS"))
                     return insertResult;
 
+                // Tạo suất chiếu
                 string[] gioArray = danhSachGio.Split('|', StringSplitOptions.RemoveEmptyEntries);
                 string[] phongArray = { phongChieu };
 

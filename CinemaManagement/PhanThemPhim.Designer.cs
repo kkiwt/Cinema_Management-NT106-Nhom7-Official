@@ -61,6 +61,8 @@
             NutThemPhim = new ReaLTaiizor.Controls.SpaceButton();
             ThoiLuongText = new ReaLTaiizor.Controls.HopeTextBox();
             panel1 = new Panel();
+            ChonNgonNgu = new ReaLTaiizor.Controls.HopeComboBox();
+            bigLabel13 = new ReaLTaiizor.Controls.BigLabel();
             ChonPhongChieu = new ReaLTaiizor.Controls.HopeComboBox();
             TheLoaiText = new ReaLTaiizor.Controls.HopeTextBox();
             ChonSuatChieu = new CheckedListBox();
@@ -113,7 +115,7 @@
             materialButton1.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(825, 84);
+            materialButton1.Location = new Point(825, -51);
             materialButton1.Margin = new Padding(3, 4, 3, 4);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
@@ -356,7 +358,6 @@
             MoTaPhim.Size = new Size(508, 123);
             MoTaPhim.TabIndex = 16;
             MoTaPhim.TabStop = false;
-            MoTaPhim.Text = "hopeRichTextBox1";
             MoTaPhim.UseSystemPasswordChar = false;
             // 
             // bigLabel9
@@ -406,7 +407,7 @@
             bigLabel10.BackColor = Color.Transparent;
             bigLabel10.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel10.ForeColor = Color.White;
-            bigLabel10.Location = new Point(400, 445);
+            bigLabel10.Location = new Point(375, 444);
             bigLabel10.Margin = new Padding(2, 0, 2, 0);
             bigLabel10.Name = "bigLabel10";
             bigLabel10.Size = new Size(82, 21);
@@ -434,7 +435,7 @@
             ChonQuocGia.FormattingEnabled = true;
             ChonQuocGia.ItemHeight = 30;
             ChonQuocGia.Items.AddRange(new object[] { "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe" });
-            ChonQuocGia.Location = new Point(507, 431);
+            ChonQuocGia.Location = new Point(467, 433);
             ChonQuocGia.Margin = new Padding(2);
             ChonQuocGia.Name = "ChonQuocGia";
             ChonQuocGia.Size = new Size(183, 36);
@@ -470,7 +471,7 @@
             bigLabel17.BackColor = Color.Transparent;
             bigLabel17.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel17.ForeColor = Color.White;
-            bigLabel17.Location = new Point(27, 597);
+            bigLabel17.Location = new Point(27, 620);
             bigLabel17.Margin = new Padding(2, 0, 2, 0);
             bigLabel17.Name = "bigLabel17";
             bigLabel17.Size = new Size(138, 21);
@@ -483,7 +484,7 @@
             bigLabel20.BackColor = Color.Transparent;
             bigLabel20.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel20.ForeColor = Color.White;
-            bigLabel20.Location = new Point(149, 388);
+            bigLabel20.Location = new Point(124, 394);
             bigLabel20.Margin = new Padding(2, 0, 2, 0);
             bigLabel20.Name = "bigLabel20";
             bigLabel20.Size = new Size(143, 21);
@@ -525,7 +526,7 @@
             NutThemPhim.Customization = "Kioq/zIyMv8yMjL/Kioq/y8vL/8nJyf//v7+/yMjI/8qKir/";
             NutThemPhim.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutThemPhim.Image = null;
-            NutThemPhim.Location = new Point(325, 682);
+            NutThemPhim.Location = new Point(325, 698);
             NutThemPhim.Margin = new Padding(2);
             NutThemPhim.Name = "NutThemPhim";
             NutThemPhim.NoRounding = false;
@@ -545,7 +546,7 @@
             ThoiLuongText.Font = new Font("Segoe UI", 10F);
             ThoiLuongText.ForeColor = Color.FromArgb(48, 49, 51);
             ThoiLuongText.Hint = "";
-            ThoiLuongText.Location = new Point(142, 529);
+            ThoiLuongText.Location = new Point(165, 529);
             ThoiLuongText.Margin = new Padding(2);
             ThoiLuongText.MaxLength = 32767;
             ThoiLuongText.Multiline = false;
@@ -555,7 +556,7 @@
             ThoiLuongText.SelectedText = "";
             ThoiLuongText.SelectionLength = 0;
             ThoiLuongText.SelectionStart = 0;
-            ThoiLuongText.Size = new Size(82, 34);
+            ThoiLuongText.Size = new Size(59, 34);
             ThoiLuongText.TabIndex = 46;
             ThoiLuongText.TabStop = false;
             ThoiLuongText.UseSystemPasswordChar = false;
@@ -563,6 +564,8 @@
             // panel1
             // 
             panel1.AutoScroll = true;
+            panel1.Controls.Add(ChonNgonNgu);
+            panel1.Controls.Add(bigLabel13);
             panel1.Controls.Add(ChonPhongChieu);
             panel1.Controls.Add(TheLoaiText);
             panel1.Controls.Add(ThoiLuongText);
@@ -596,8 +599,35 @@
             panel1.Location = new Point(11, 127);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(929, 481);
+            panel1.Size = new Size(929, 460);
             panel1.TabIndex = 46;
+            // 
+            // ChonNgonNgu
+            // 
+            ChonNgonNgu.DrawMode = DrawMode.OwnerDrawFixed;
+            ChonNgonNgu.FlatStyle = FlatStyle.Flat;
+            ChonNgonNgu.Font = new Font("Segoe UI", 9F);
+            ChonNgonNgu.FormattingEnabled = true;
+            ChonNgonNgu.ItemHeight = 30;
+            ChonNgonNgu.Items.AddRange(new object[] { "English", "Vietnamese", "Lồng Tiếng Tiếng Việt", "Chinese", "Japanese", "Korean", "French", "German", "Spanish", "Portuguese", "Italian", "Russian", "Arabic", "Hindi", "Bengali", "Urdu", "Thai", "Indonesian", "Malay", "Philippine (Tagalog)", "Punjabi", "Turkish", "Dutch", "Polish", "Ukrainian", "Czech", "Slovak", "Swedish", "Norwegian", "Danish", "Finnish", "Greek", "Hebrew", "Hungarian", "Romanian", "Bulgarian", "Serbian", "Croatian", "Slovenian", "Latvian", "Lithuanian", "Estonian", "Icelandic", "Swahili", "Persian (Farsi)", "Tamil", "Telugu", "Marathi", "Gujarati", "Nepali", "Sinhala" });
+            ChonNgonNgu.Location = new Point(165, 567);
+            ChonNgonNgu.Margin = new Padding(2);
+            ChonNgonNgu.Name = "ChonNgonNgu";
+            ChonNgonNgu.Size = new Size(183, 36);
+            ChonNgonNgu.TabIndex = 50;
+            // 
+            // bigLabel13
+            // 
+            bigLabel13.AutoSize = true;
+            bigLabel13.BackColor = Color.Transparent;
+            bigLabel13.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel13.ForeColor = Color.White;
+            bigLabel13.Location = new Point(27, 574);
+            bigLabel13.Margin = new Padding(2, 0, 2, 0);
+            bigLabel13.Name = "bigLabel13";
+            bigLabel13.Size = new Size(87, 21);
+            bigLabel13.TabIndex = 49;
+            bigLabel13.Text = "Ngôn Ngữ:";
             // 
             // ChonPhongChieu
             // 
@@ -622,7 +652,7 @@
             TheLoaiText.Font = new Font("Segoe UI", 10F);
             TheLoaiText.ForeColor = Color.FromArgb(48, 49, 51);
             TheLoaiText.Hint = "";
-            TheLoaiText.Location = new Point(116, 487);
+            TheLoaiText.Location = new Point(165, 487);
             TheLoaiText.Margin = new Padding(2);
             TheLoaiText.MaxLength = 32767;
             TheLoaiText.Multiline = false;
@@ -632,7 +662,7 @@
             TheLoaiText.SelectedText = "";
             TheLoaiText.SelectionLength = 0;
             TheLoaiText.SelectionStart = 0;
-            TheLoaiText.Size = new Size(574, 34);
+            TheLoaiText.Size = new Size(525, 34);
             TheLoaiText.TabIndex = 47;
             TheLoaiText.TabStop = false;
             TheLoaiText.UseSystemPasswordChar = false;
@@ -640,7 +670,7 @@
             // ChonSuatChieu
             // 
             ChonSuatChieu.FormattingEnabled = true;
-            ChonSuatChieu.Location = new Point(182, 584);
+            ChonSuatChieu.Location = new Point(196, 620);
             ChonSuatChieu.Margin = new Padding(2);
             ChonSuatChieu.MultiColumn = true;
             ChonSuatChieu.Name = "ChonSuatChieu";
@@ -652,7 +682,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(946, 655);
+            ClientSize = new Size(946, 639);
             Controls.Add(bigLabel3);
             Controls.Add(materialButton1);
             Controls.Add(parrotGradientPanel1);
@@ -708,5 +738,7 @@
         private CheckedListBox ChonSuatChieu;
         private ReaLTaiizor.Controls.HopeTextBox TheLoaiText;
         private ReaLTaiizor.Controls.HopeComboBox ChonPhongChieu;
+        private ReaLTaiizor.Controls.HopeComboBox ChonNgonNgu;
+        private ReaLTaiizor.Controls.BigLabel bigLabel13;
     }
 }

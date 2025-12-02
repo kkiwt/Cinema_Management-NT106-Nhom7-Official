@@ -138,33 +138,40 @@ namespace ServerAndService
                         response = await service.GetCinemaStats();
                         break;
 
-                case "ADD_PHIM": // Cai nay tui them
-                        {
-                    if (parts.Length < 15)
-                {
-                        response = "ERROR: ADD_PHIM requires all parameters";
-                }
-                    else
-                {
-                        string tenPhim = parts[1];
-                        string theLoai = parts[2];
-                        string doTuoi = parts[3];
-                        int thoiLuong = int.Parse(parts[4]);
-                        string moTa = parts[5];
-                        string urlTrailer = parts[6];
-                        string localPosterPath = parts[7];
-                        string daoDien = parts[8];
-                        string dienVien = parts[9];
-                        string quocGia = parts[10];
-                        DateTime tuNgay = DateTime.Parse(parts[11]);
-                        DateTime denNgay = DateTime.Parse(parts[12]);
-                        string danhSachGio = parts[13];
-                        string phongChieu = parts[14];
 
-                        response = await service.AddPhimFullFlow(tenPhim, theLoai, doTuoi, thoiLuong, moTa, urlTrailer, localPosterPath, daoDien, dienVien, quocGia, tuNgay, denNgay, danhSachGio, phongChieu);
-                }
-                break;
-                }
+                    case "ADD_PHIM":
+                        {
+                            if (parts.Length < 16) // vì có thêm Ngôn Ngữ
+                            {
+                                response = "ERROR: ADD_PHIM requires all parameters";
+                            }
+                            else
+                            {
+                                string tenPhim = parts[1];
+                                string theLoai = parts[2];
+                                string doTuoi = parts[3];
+                                int thoiLuong = int.Parse(parts[4]);
+                                string moTa = parts[5];
+                                string urlTrailer = parts[6];
+                                string localPosterPath = parts[7];
+                                string daoDien = parts[8];
+                                string dienVien = parts[9];
+                                string ngonNgu = parts[10]; // thêm
+                                string quocGia = parts[11];
+                                DateTime tuNgay = DateTime.Parse(parts[12]);
+                                DateTime denNgay = DateTime.Parse(parts[13]);
+                                string danhSachGio = parts[14];
+                                string phongChieu = parts[15];
+
+                                response = await service.AddPhimFullFlow(
+                                    tenPhim, theLoai, doTuoi, thoiLuong, moTa,
+                                    urlTrailer, localPosterPath, daoDien, dienVien,
+                                    ngonNgu, quocGia, tuNgay, denNgay,
+                                    danhSachGio, phongChieu);
+                            }
+                            break;
+                        }
+
 
 
                     case "GET_AVAILABLE_SLOTS":
