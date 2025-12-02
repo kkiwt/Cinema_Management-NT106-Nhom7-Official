@@ -447,44 +447,5 @@ namespace ServerAndService
         }
     }
 
-    public class SuatChieu
-    {
-        public string IdSuatChieu { get; set; }
-        public string TenSuatChieu { get; set; }
-        public TimeSpan? ThoiGianBatDau { get; set; }
-        public TimeSpan? ThoiGianKetThuc { get; set; }
 
-        public SuatChieu() { }
-        public SuatChieu(string id, string ten, TimeSpan? batDau, TimeSpan? ketThuc)
-        {
-            IdSuatChieu = id;
-            TenSuatChieu = ten;
-            ThoiGianBatDau = batDau;
-            ThoiGianKetThuc = ketThuc;
-        }
-
-        public static List<SuatChieu> DanhSachSuatChieu = new List<SuatChieu>();
-        public static Dictionary<string, SuatChieu> MapSuatChieu = new Dictionary<string, SuatChieu>();
-
-        public static void Add(SuatChieu sc)
-        {
-            DanhSachSuatChieu.Add(sc);
-            MapSuatChieu[sc.IdSuatChieu] = sc;
-        }
-
-        public static SuatChieu FindById(string id)
-        {
-            return MapSuatChieu.ContainsKey(id) ? MapSuatChieu[id] : null;
-        }
-
-        public static void Remove(string id)
-        {
-            var sc = FindById(id);
-            if (sc != null)
-            {
-                DanhSachSuatChieu.Remove(sc);
-                MapSuatChieu.Remove(id);
-            }
-        }
-    }
 }

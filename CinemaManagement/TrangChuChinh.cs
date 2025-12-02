@@ -259,11 +259,36 @@ namespace CinemaManagement
             }
         }
 
+
         private void NutStaffOnly_Click(object sender, EventArgs e)
         {
-            StaffOnLy staff = new StaffOnLy();
-            staff.ShowDialog();
+            var staffForm = new StaffOnLy();
+            staffForm.Owner = this; // Quan trọng để StaffOnly biết ai là cha
+            staffForm.ShowDialog();
         }
+
+
+
+        public async void RefreshDanhSachPhim()
+        {
+            var tcpClient = new ClientTCP();
+            string command = "GET_LATEST_MOVIES|100";
+            string response = await tcpClient.SendMessageAsync(command);
+            if (!response.StartsWith("ERROR"))
+            {
+                var Options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    NumberHandling = JsonNumberHandling.AllowReadingFromString
+                };
+                DanhSachPhim = JsonSerializer.Deserialize<List<Phim>>(response, Options);
+                HienThiPhim();
+                CapNhatNutDiChuyen();
+                CapNhatTrang();
+            }
+        }
+
+
     }
 
 

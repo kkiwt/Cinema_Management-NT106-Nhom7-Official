@@ -214,7 +214,7 @@
             // textBox5
             // 
             textBox5.Enabled = false;
-            textBox5.Location = new Point(1, 0);
+            textBox5.Location = new Point(-10, 2);
             textBox5.Margin = new Padding(3, 2, 3, 2);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(452, 23);

@@ -15,28 +15,15 @@ namespace CinemaManagement
         public StaffOnLy()
         {
             InitializeComponent();
-            CreateChart();
+
         }
+
+
 
         private void CreateChart()
         {
 
-            Chart chart = new Chart();
-            chart.Dock = DockStyle.Fill;
 
-            ChartArea chartArea = new ChartArea("MainArea");
-            chart.ChartAreas.Add(chartArea);
-
-            Series series = new Series("DoanhThu");
-            series.ChartType = SeriesChartType.Column;
-            series.Points.AddXY("Tháng 1", 100);
-            series.Points.AddXY("Tháng 2", 150);
-            series.Points.AddXY("Tháng 3", 200);
-
-            chart.Series.Add(series);
-
-            // Thêm Chart vào Panel
-            panelChart.Controls.Add(chart);
 
         }
 
@@ -50,11 +37,51 @@ namespace CinemaManagement
 
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+
+        private ClientTCP client = new ClientTCP();
+
+        private async void StaffOnLy_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
+            await LoadStats();
+        }
+
+        private async Task LoadStats()
+        {
+
+            string response = await client.SendMessageAsync("GET_STATS");
+            if (!string.IsNullOrWhiteSpace(response) && !response.StartsWith("ERROR"))
+            {
+                var json = System.Text.Json.JsonDocument.Parse(response);
+                var root = json.RootElement[0]; // Supabase trả về array
+
+                // Cập nhật theo Name đã khai báo trong Designer
+                ThongKeVeDoanhThu.Nodes["SoLuongVeRoot"].Text =
+                    $"Số Lượng Vé Đã Bán Ra: {root.GetProperty("tong_so_ve").GetInt64()}";
+
+                ThongKeVeDoanhThu.Nodes["SoLuongVeRoot"].Nodes["VeThuongChild"].Text =
+                    $"Số Lượng Vé Thường Đã Bán Ra: {root.GetProperty("ve_thuong").GetInt64()}";
+
+                ThongKeVeDoanhThu.Nodes["SoLuongVeRoot"].Nodes["VeVipChild"].Text =
+                    $"Số Lượng Vé Vip Đã Bán Ra: {root.GetProperty("ve_vip").GetInt64()}";
+
+                ThongKeVeDoanhThu.Nodes["DoanhThuRoot"].Text =
+                    $"Tổng Doanh Thu Của Rạp: {root.GetProperty("doanh_thu").GetDecimal():N0} VND";
+                ThongKeVeDoanhThu.Nodes["DoanhThuRoot"].Nodes["NodePhim"].Text =
+                    $"Doanh Thu Phim: {root.GetProperty("doanh_thu_phim").GetDecimal():N0} VND";
+
+                ThongKeVeDoanhThu.Nodes["DoanhThuRoot"].Nodes["NodeBapNuoc"].Text =
+                    $"Doanh Thu Bắp Nước: {root.GetProperty("doanh_thu_bapnuoc").GetDecimal():N0} VND";
+
+                ThongKeVeDoanhThu.Nodes["RootSoPhim"].Text =
+                    $"Số Phim Đang Chiếu: {root.GetProperty("so_phim").GetInt64()}";
+            }
+            else
+            {
+                MessageBox.Show("Không thể tải thống kê: " + response);
+            }
 
         }
+
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -71,13 +98,28 @@ namespace CinemaManagement
 
         }
 
+
         private void ThemPhim_Click(object sender, EventArgs e)
         {
-            PhanThemPhim themphim = new PhanThemPhim();
+            var themphim = new PhanThemPhim();
+
+            // Đăng ký sự kiện khi thêm phim thành công
+            themphim.PhimDaThemThanhCong += () =>
+            {
+                // Lấy form TrangChuChinh từ Owner
+                var trangChu = this.Owner as TrangChuChinh;
+                if (trangChu != null)
+                {
+                    trangChu.RefreshDanhSachPhim(); // Gọi hàm refresh
+                }
+            };
+
+            // Hiển thị form thêm phim dưới dạng dialog
             themphim.ShowDialog();
         }
 
-        private void materialButton1_Click(object sender, EventArgs e)
+
+        private void NutQuayLai_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -89,8 +131,13 @@ namespace CinemaManagement
 
         private void NutThemUuDai_Click(object sender, EventArgs e)
         {
-               PhanThemUuDai uudai = new PhanThemUuDai();
+            PhanThemUuDai uudai = new PhanThemUuDai();
             uudai.ShowDialog();
+        }
+
+        private void treeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
 }

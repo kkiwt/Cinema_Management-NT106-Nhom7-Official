@@ -81,6 +81,178 @@ namespace ServerAndService
             return result.Content; // Trả về OTP hoặc EMAIL_NOT_FOUND
         }
 
+
+
+        public async Task<string> GetCinemaStats() // Cai ham can gui
+        {
+            try
+            {
+                var result = await client.Rpc("get_cinema_stats", new { });
+                return result.Content?.Trim();
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_STATS: {ex.Message}";
+            }
+        }
+
+
+
+
+
+
+        public async Task<string> UploadPosterBase64Async(string base64String)
+        {
+            try
+            {
+                var bucketName = "Anh";
+                string fileName = "poster_" + Guid.NewGuid() + ".jpg";
+                byte[] bytes = Convert.FromBase64String(base64String);
+
+                var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aGFtcmFubGptZnNyeGZ4ZmxzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTQ2ODMzNCwiZXhwIjoyMDc3MDQ0MzM0fQ.DaDBscqR8J0NrCnOMZZHOfq9LyKqtbM6odoyFIZxAFs";
+
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + key);
+                httpClient.DefaultRequestHeaders.Add("apikey", key);
+
+                var content = new ByteArrayContent(bytes);
+                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/jpeg");
+
+                var url = $"https://qyhamranljmfsrxfxfls.supabase.co/storage/v1/object/{bucketName}/{fileName}";
+                var response = await httpClient.PostAsync(url, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return $"https://qyhamranljmfsrxfxfls.supabase.co/storage/v1/object/public/{bucketName}/{fileName}";
+                }
+                else
+                {
+                    string errorDetail = await response.Content.ReadAsStringAsync();
+                    return $"ERROR_UPLOAD: {response.StatusCode} - {errorDetail}";
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_UPLOAD: {ex.Message}";
+            }
+        }
+
+
+
+
+
+
+
+        public async Task<string> AddPhimRPC(string idPhim, string tenPhim, string theLoai, string doTuoi,
+                                             int thoiLuong, string moTa, string urlTrailer, string posterPhim,
+                                             string daoDien, string dienVien, string quocGia,
+                                             DateTime tuNgay, DateTime denNgay)
+        {
+            var result = await client.Rpc("add_phim", new
+            {
+                p_idphim = idPhim,
+                p_tenphim = tenPhim,
+                p_theloai = theLoai,
+                p_dotuoi = doTuoi,
+                p_thoiluong = thoiLuong,
+                p_mota = moTa,
+                p_urltrailer = urlTrailer,
+                p_posterphim = posterPhim,
+                p_daodien = daoDien,
+                p_dienvien = dienVien,
+                p_quocgia = quocGia,
+                p_tungay = tuNgay.ToString("yyyy-MM-dd"),
+                p_denngay = denNgay.ToString("yyyy-MM-dd")
+            });
+            return result.Content.Trim('"');
+        }
+
+
+
+        public async Task CallTaoSuatChieuRPC(string idPhim, string[] danhSachGio, string[] danhSachPhong)
+        {
+
+            await client.Rpc("TaoSuatChieuChoPhim", new
+            {
+                p_idphim = idPhim,
+                p_danhsachgio = danhSachGio,
+                p_danhsachphong = danhSachPhong
+            });
+
+        }
+
+        public async Task<string> GetNextIdPhimAsync()
+        {
+            var result = await client.Rpc("get_next_idphim", new { });
+            return result.Content.Trim('"');
+        }
+
+
+        public async Task<string> AddPhimFullFlow(
+            string tenPhim, string theLoai, string doTuoi, int thoiLuong, string moTa,
+            string urlTrailer, string posterBase64, string daoDien, string dienVien,
+            string quocGia, DateTime tuNgay, DateTime denNgay,
+            string danhSachGio, string phongChieu)
+        {
+            try
+            {
+                // ⇩ UPLOAD POSTER
+                string posterUrl = await UploadPosterBase64Async(posterBase64);
+                if (posterUrl.StartsWith("ERROR")) return posterUrl;
+
+                string idPhim = await GetNextIdPhimAsync();
+
+                string insertResult = await AddPhimRPC(
+                    idPhim, tenPhim, theLoai, doTuoi, thoiLuong, moTa,
+                    urlTrailer, posterUrl, daoDien, dienVien, quocGia,
+                    tuNgay, denNgay);
+
+                if (!insertResult.Contains("SUCCESS"))
+                    return insertResult;
+
+                string[] gioArray = danhSachGio.Split('|', StringSplitOptions.RemoveEmptyEntries);
+                string[] phongArray = { phongChieu };
+
+                await CallTaoSuatChieuRPC(idPhim, gioArray, phongArray);
+
+                return "SUCCESS";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR: {ex.Message}";
+            }
+        }
+
+
+
+
+
+
+        public async Task<string> GetAvailableSlotsRPC(string phongId, DateTime tuNgay, DateTime denNgay)
+        {
+            try
+            {
+                var result = await client.Rpc("getavailableslots", new
+                {
+                    p_phong_id = phongId,
+                    p_tu_ngay = tuNgay.ToString("yyyy-MM-dd"),
+                    p_den_ngay = denNgay.ToString("yyyy-MM-dd")
+                });
+
+                return result.Content.Trim('"'); // Ví dụ: "G1,G2,G3" hoặc "EMPTY"
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR: {ex.Message}";
+            }
+        }
+
+
+
+
+
+
+
         public async Task<string> ConfirmPasswordReset(string email, string otp, string newPass)
         {
             var result = await client.Rpc("confirm_password_reset", new
@@ -197,8 +369,9 @@ namespace ServerAndService
                 return $"ERROR_GET_MOVIES: {ex.Message}";
             }
         }
+
         
-        public async Task<string> GetLatestMoviesRPC(int limitCount)
+        public async Task<string> GetLatestMoviesRPC(int limitCount) // toi da 100 phim
         {
             try
             {

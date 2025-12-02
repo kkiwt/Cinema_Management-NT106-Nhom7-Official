@@ -26,7 +26,9 @@ namespace CinemaManagement
         {
 
         }
-        private void NutThemPhim_Click(object sender, EventArgs e)
+
+        public event Action PhimDaThemThanhCong;
+        private async void NutThemPhim_Click(object sender, EventArgs e)
         {
             // 1. Kiểm tra tên bộ phim
             if (string.IsNullOrWhiteSpace(TenBoPhim.Text))
@@ -70,14 +72,9 @@ namespace CinemaManagement
                 return;
             }
 
-            // 7. Kiểm tra CheckedListBox
-            if (ChonTheLoai.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Vui lòng chọn ít nhất một thể loại!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            if (ChonPhongChieu.CheckedItems.Count == 0 || ChonSuatChieu.CheckedItems.Count == 0)
+
+            if (ChonPhongChieu.SelectedIndex < 0 || ChonSuatChieu.CheckedItems.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn phòng chiếu và suất chiếu!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -97,30 +94,133 @@ namespace CinemaManagement
                 return;
             }
 
-            // Nếu tất cả hợp lệ
-            MessageBox.Show("Dữ liệu hợp lệ! Tiến hành thêm phim...", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (string.IsNullOrEmpty(localPosterPath) || !File.Exists(localPosterPath))
+            {
+                MessageBox.Show("Đường dẫn ảnh không hợp lệ!", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // TODO: Thực hiện thêm phim vào database
+
+            // Lấy tên phòng từ combobox
+            string tenPhong = ChonPhongChieu.Text; // ví dụ: "Phòng chiếu 1"
+
+
+
+            string phongId = ChonPhongChieu.SelectedValue.ToString(); // Trả về C02 nếu chọn "Phòng chiếu 2"
+
+
+            string danhSachGio = string.Join("|", ChonSuatChieu.CheckedItems.Cast<string>());
+            string posterBase64 = ImageToBase64(localPosterPath);
+
+            string message =
+                $"ADD_PHIM|{TenBoPhim.Text}|{TheLoaiText.Text}|{ChonDoTuoi.Text}|{ThoiLuongText.Text}|{MoTaPhim.Text}|{URLTrailerPhim.Text}|{posterBase64}|{TenDaoDien.Text}|{DanDienVien.Text}|{ChonQuocGia.Text}|{ChieuTu.Value:yyyy-MM-dd}|{ChieuDen.Value:yyyy-MM-dd}|{danhSachGio}|{phongId}";
+
+
+            var client = new ClientTCP();
+            string response = await client.SendMessageAsync(message);
+
+
+
+            if (response.Contains("SUCCESS"))
+            {
+                MessageBox.Show("Thêm phim thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                PhimDaThemThanhCong?.Invoke();
+                this.Close();
+            }
+
+
+            else
+                MessageBox.Show("Lỗi: " + response, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+
+        private string ImageToBase64(string path)
+        {
+            byte[] bytes = File.ReadAllBytes(path); // chuyen anh thanh mang byte
+            return Convert.ToBase64String(bytes);
+        }
+
+
+
+        private string localPosterPath = "";
+
 
         private void NutThemAnh_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-                openFileDialog.Title = "Chọn ảnh poster phim";
-
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Hiển thị ảnh vào HopePictureBox
-                    AnhSeDuocThem.Image = Image.FromFile(openFileDialog.FileName);
-
-                    // Lưu đường dẫn ảnh vào TextBox (nếu bạn muốn)
-                    URLTrailerPhim.Text = openFileDialog.FileName;
-
-                    MessageBox.Show("Ảnh đã được thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AnhSeDuocThem.Image = System.Drawing.Image.FromFile(openFileDialog.FileName);
+                    localPosterPath = openFileDialog.FileName;
                 }
             }
         }
+
+
+        private bool isLoading = true;
+
+        private void PhanThemPhim_Load(object sender, EventArgs e)
+        {
+            isLoading = true;
+            var phongChieuList = new[]
+            {
+        new { Text = "Phòng chiếu 1", Value = "C01" },
+        new { Text = "Phòng chiếu 2", Value = "C02" },
+        new { Text = "Phòng chiếu 3", Value = "C03" },
+        new { Text = "Phòng chiếu 4", Value = "C04" },
+        new { Text = "Phòng chiếu 5", Value = "C05" },
+        new { Text = "Phòng chiếu 6", Value = "C06" }
+    };
+            ChonPhongChieu.DisplayMember = "Text";
+            ChonPhongChieu.ValueMember = "Value";
+            ChonPhongChieu.DataSource = phongChieuList;
+            isLoading = false;
+        }
+
+
+        private void bigLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChonSuatChieu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private async void ChonPhongChieu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isLoading || ChonPhongChieu.SelectedIndex < 0) return;
+
+            ChonSuatChieu.Items.Clear();
+            string phongId = ChonPhongChieu.SelectedValue.ToString();
+            string message = $"GET_AVAILABLE_SLOTS|{phongId}|{ChieuTu.Value:yyyy-MM-dd}|{ChieuDen.Value:yyyy-MM-dd}";
+
+            var client = new ClientTCP();
+            string response = await client.SendMessageAsync(message);
+
+            if (response == "EMPTY")
+            {
+                MessageBox.Show("Không còn khung giờ trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (response.StartsWith("ERROR"))
+            {
+                MessageBox.Show(response, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            foreach (var gio in response.Split(','))
+            {
+                ChonSuatChieu.Items.Add(gio);
+            }
+        }
+
+
     }
 }

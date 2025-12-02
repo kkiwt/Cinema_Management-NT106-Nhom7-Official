@@ -113,6 +113,10 @@ namespace CinemaManagement
             }
         }
 
+        private void NutQuayLai_Click(object sender, EventArgs e)
+        {
+            this.Close();
 
+        }
     }
 }
