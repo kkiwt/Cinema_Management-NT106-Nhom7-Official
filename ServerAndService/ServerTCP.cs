@@ -253,6 +253,20 @@ namespace ServerAndService
                         }
                         break;
 
+                    case "GET_GIAMGIA":
+                        {
+                            try
+                            {
+                                string json = await service.GetGiamGiaRPC(); // hoặc GetGiamGiaSelect()
+                                response = json ?? "[]";
+                            }
+                            catch (Exception ex)
+                            {
+                                response = $"ERROR_GET_GIAMGIA: {ex.Message}";
+                            }
+                            break;
+                        }
+
                     default:
                         response = "UNKNOWN_COMMAND";
                         break;

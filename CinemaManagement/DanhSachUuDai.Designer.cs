@@ -261,6 +261,7 @@
             dataGridViewDanhSach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewDanhSach.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewDanhSach.Columns.AddRange(new DataGridViewColumn[] { ColTenUuDai, ColThoiGian, ColGiamGia });
+            dataGridViewDanhSach.EnableHeadersVisualStyles = false;
             dataGridViewDanhSach.Location = new Point(40, 180);
             dataGridViewDanhSach.Name = "dataGridViewDanhSach";
             dataGridViewDanhSach.RowHeadersVisible = false;

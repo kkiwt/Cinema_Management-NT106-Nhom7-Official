@@ -480,5 +480,20 @@ namespace ServerAndService
                 return $"ERROR_POST_REVIEW_SERVICE: {ex.Message}";
             }
         }
+        public async Task<string> GetGiamGiaRPC()
+        {
+            try
+            {
+                var result = await client.Rpc("get_giamgia", new { });
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null")
+                    return "[]";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_SERVICE_GET_GIAMGIA: {ex.Message}";
+            }
+        }
     }
 }
