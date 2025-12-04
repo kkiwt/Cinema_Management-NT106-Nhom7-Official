@@ -257,12 +257,32 @@ namespace ServerAndService
                         {
                             try
                             {
-                                string json = await service.GetGiamGiaRPC(); // hoặc GetGiamGiaSelect()
+                                string json = await service.GetGiamGiaRPC(); 
                                 response = json ?? "[]";
                             }
                             catch (Exception ex)
                             {
                                 response = $"ERROR_GET_GIAMGIA: {ex.Message}";
+                            }
+                            break;
+                        }
+                    case "GET_VE_DADAT":
+                        {
+                            if (parts.Length < 2 || string.IsNullOrWhiteSpace(parts[1]))
+                            {
+                                response = "ERROR: GET_VE_DADAT requires IdTaiKhoan (e.g., GET_VE_DADAT|T003)";
+                                break;
+                            }
+
+                            string idTaiKhoan = parts[1];
+                            try
+                            {
+                                response = await service.GetVeDaDatRPC(idTaiKhoan);
+                                response ??= "[]";
+                            }
+                            catch (Exception ex)
+                            {
+                                response = $"ERROR_GET_VE_DADAT: {ex.Message}";
                             }
                             break;
                         }

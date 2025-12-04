@@ -26,8 +26,8 @@ namespace CinemaManagement
         private async void TrangChuChinh_Load(object sender, EventArgs e)
         {
             var tcpClient = new ClientTCP();
-            if (currentUser.LaNhanVien ==   true)
-                {
+            if (currentUser.LaNhanVien == true)
+            {
                 NutStaffOnly.Visible = true;
             }
             else
@@ -288,11 +288,13 @@ namespace CinemaManagement
             }
         }
 
-
+        private void VeDaDat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            VeDaDat veDaDatForm = new VeDaDat(currentUser);
+            veDaDatForm.ShowDialog();
+        }
     }
-
-
-
 
     public class PhimDuocChonEventArgs : EventArgs
     {
