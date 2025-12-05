@@ -129,7 +129,7 @@
             // 
             // PanelChinh
             // 
-            PanelChinh.BackColor = Color.FromArgb(21, 3, 27);
+            PanelChinh.BackColor = Color.FromArgb(4, 21, 49);
             PanelChinh.Controls.Add(NoiDungPhim);
             PanelChinh.Controls.Add(DanhGia);
             PanelChinh.Controls.Add(Trailer);
@@ -224,7 +224,7 @@
             // 
             // MoTa
             // 
-            MoTa.BackColor = Color.FromArgb(21, 3, 27);
+            MoTa.BackColor = Color.FromArgb(4, 21, 49);
             MoTa.BorderStyle = BorderStyle.None;
             MoTa.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             MoTa.ForeColor = Color.White;
@@ -239,7 +239,7 @@
             // 
             // DienVien
             // 
-            DienVien.BackColor = Color.FromArgb(21, 3, 27);
+            DienVien.BackColor = Color.FromArgb(4, 21, 49);
             DienVien.BorderStyle = BorderStyle.None;
             DienVien.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DienVien.ForeColor = Color.White;
@@ -488,6 +488,7 @@
             UuDai.TabIndex = 1;
             UuDai.Text = "ƯU ĐÃI";
             UuDai.UseVisualStyleBackColor = false;
+            UuDai.Click += UuDai_Click;
             // 
             // MenuTaiKhoan
             // 
@@ -515,6 +516,7 @@
             VeDaDat.Name = "VeDaDat";
             VeDaDat.Size = new Size(239, 28);
             VeDaDat.Text = "Vé đã đặt";
+            VeDaDat.Click += VeDaDat_Click;
             // 
             // DangXuat
             // 

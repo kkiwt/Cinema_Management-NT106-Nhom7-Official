@@ -27,10 +27,7 @@ namespace CinemaManagement
         }
 
 
-        private void TaiKhoan_Click(object sender, EventArgs e)
-        {
-            MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height)); //Hien thi menu tai khoan de chon 3 tien ich.
-        }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -66,41 +63,9 @@ namespace CinemaManagement
 
         }
 
-        private void MenuTaiKhoan_Opening(object sender, CancelEventArgs e)
+        private void NutQuayLai_Click(object sender, EventArgs e)
         {
-
-        }
-
-
-        private void DangXuat_Click(object sender, EventArgs e)
-        {
-            var dangNhap = new PhanDangNhap();
-            this.Hide();
-            dangNhap.Show();
-
-        }
-        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
-        {
-            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
-            this.Hide();
-            thongTinTaiKhoan.ShowDialog();
-
-
-        }
-
-        private void PhimHot_Click(object sender, EventArgs e)
-        {
-            PhimHot phimhot = new PhimHot(this, currentUser); // 'this' là TrangChuChinh
-            this.Hide();
-            phimhot.ShowDialog();
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
-            this.Hide();
-            thongTinTaiKhoan.ShowDialog();
-
+            this.Close();
         }
     }
 }

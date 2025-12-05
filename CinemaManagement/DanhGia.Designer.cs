@@ -41,11 +41,11 @@
             VeDaDat = new ToolStripMenuItem();
             DangXuat = new ToolStripMenuItem();
             panelDuongDan = new Panel();
+            NutQuayLai = new MaterialSkin.Controls.MaterialButton();
             flowLayoutPanel2 = new FlowLayoutPanel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             House = new PictureBox();
             LinkTenPhim = new LinkLabel();
-            LinkTrangChuChinh = new LinkLabel();
             PanelChinh = new Panel();
             pnlMyStars = new Panel();
             Sao1 = new Button();
@@ -171,6 +171,7 @@
             ThongTinTaiKhoan.Name = "ThongTinTaiKhoan";
             ThongTinTaiKhoan.Size = new Size(239, 28);
             ThongTinTaiKhoan.Text = "Thông tin tài khoản ";
+            ThongTinTaiKhoan.Click += ThongTinTaiKhoan_Click_1;
             // 
             // VeDaDat
             // 
@@ -180,6 +181,7 @@
             VeDaDat.Name = "VeDaDat";
             VeDaDat.Size = new Size(239, 28);
             VeDaDat.Text = "Vé đã đặt";
+            VeDaDat.Click += VeDaDat_Click;
             // 
             // DangXuat
             // 
@@ -194,17 +196,39 @@
             // panelDuongDan
             // 
             panelDuongDan.BackColor = Color.LightBlue;
+            panelDuongDan.Controls.Add(NutQuayLai);
             panelDuongDan.Controls.Add(flowLayoutPanel2);
             panelDuongDan.Controls.Add(flowLayoutPanel1);
             panelDuongDan.Controls.Add(House);
             panelDuongDan.Controls.Add(LinkTenPhim);
-            panelDuongDan.Controls.Add(LinkTrangChuChinh);
             panelDuongDan.ForeColor = Color.Transparent;
             panelDuongDan.Location = new Point(0, 81);
             panelDuongDan.Margin = new Padding(3, 2, 3, 2);
             panelDuongDan.Name = "panelDuongDan";
             panelDuongDan.Size = new Size(1137, 53);
             panelDuongDan.TabIndex = 3;
+            // 
+            // NutQuayLai
+            // 
+            NutQuayLai.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            NutQuayLai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            NutQuayLai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            NutQuayLai.Depth = 0;
+            NutQuayLai.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutQuayLai.HighEmphasis = true;
+            NutQuayLai.Icon = null;
+            NutQuayLai.Location = new Point(999, 8);
+            NutQuayLai.Margin = new Padding(4, 6, 4, 6);
+            NutQuayLai.MouseState = MaterialSkin.MouseState.HOVER;
+            NutQuayLai.Name = "NutQuayLai";
+            NutQuayLai.NoAccentTextColor = Color.Empty;
+            NutQuayLai.Size = new Size(85, 36);
+            NutQuayLai.TabIndex = 10;
+            NutQuayLai.Text = "Quay Lại";
+            NutQuayLai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            NutQuayLai.UseAccentColor = false;
+            NutQuayLai.UseVisualStyleBackColor = true;
+            NutQuayLai.Click += NutQuayLai_Click;
             // 
             // flowLayoutPanel2
             // 
@@ -236,28 +260,17 @@
             LinkTenPhim.AutoSize = true;
             LinkTenPhim.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LinkTenPhim.LinkColor = Color.Navy;
-            LinkTenPhim.Location = new Point(236, 17);
+            LinkTenPhim.Location = new Point(106, 19);
             LinkTenPhim.Name = "LinkTenPhim";
             LinkTenPhim.Size = new Size(167, 18);
             LinkTenPhim.TabIndex = 4;
             LinkTenPhim.TabStop = true;
             LinkTenPhim.Text = "Tên Phim >>  Đánh giá";
-            // 
-            // LinkTrangChuChinh
-            // 
-            LinkTrangChuChinh.AutoSize = true;
-            LinkTrangChuChinh.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LinkTrangChuChinh.LinkColor = Color.Navy;
-            LinkTrangChuChinh.Location = new Point(83, 17);
-            LinkTrangChuChinh.Name = "LinkTrangChuChinh";
-            LinkTrangChuChinh.Size = new Size(136, 18);
-            LinkTrangChuChinh.TabIndex = 3;
-            LinkTrangChuChinh.TabStop = true;
-            LinkTrangChuChinh.Text = "Trang chủ chính >>";
+            LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked_1;
             // 
             // PanelChinh
             // 
-            PanelChinh.BackColor = Color.FromArgb(21, 3, 27);
+            PanelChinh.BackColor = Color.FromArgb(4, 21, 49);
             PanelChinh.Controls.Add(pnlMyStars);
             PanelChinh.Controls.Add(flowLayoutPanel);
             PanelChinh.Controls.Add(Loc);
@@ -528,7 +541,6 @@
         private Panel panelDuongDan;
         private PictureBox House;
         private LinkLabel LinkTenPhim;
-        private LinkLabel LinkTrangChuChinh;
         private FlowLayoutPanel flowLayoutPanel2;
         private FlowLayoutPanel flowLayoutPanel1;
         private Panel PanelChinh;
@@ -553,5 +565,6 @@
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem3;
+        private MaterialSkin.Controls.MaterialButton NutQuayLai;
     }
 }

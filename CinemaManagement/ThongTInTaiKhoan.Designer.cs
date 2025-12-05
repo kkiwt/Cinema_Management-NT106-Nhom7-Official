@@ -29,21 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThongTInTaiKhoan));
             PanelHeader = new Panel();
             Logo = new PictureBox();
-            TaiKhoan = new Button();
-            PhimHot = new Button();
-            UuDai = new Button();
             MenuTaiKhoan = new ContextMenuStrip(components);
             toolStripMenuItem1 = new ToolStripMenuItem();
             VeDaDat = new ToolStripMenuItem();
             DangXuat = new ToolStripMenuItem();
-            PanelDuongDan = new Panel();
-            label2 = new Label();
-            DuongDanTaiKhoan = new Label();
-            label1 = new Label();
-            DuongDanThongTinTaiKhoan = new Label();
-            DuongDanTrangChu = new Label();
             lbThongTinNguoiDung = new Label();
             panel1 = new Panel();
             label5 = new Label();
@@ -60,76 +52,35 @@
             lbHoTen = new Label();
             label4 = new Label();
             label3 = new Label();
+            NutQuayLai = new MaterialSkin.Controls.MaterialButton();
+            label1 = new Label();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             MenuTaiKhoan.SuspendLayout();
-            PanelDuongDan.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(30, 27, 58);
+            PanelHeader.Controls.Add(label1);
             PanelHeader.Controls.Add(Logo);
-            PanelHeader.Controls.Add(TaiKhoan);
-            PanelHeader.Controls.Add(PhimHot);
-            PanelHeader.Controls.Add(UuDai);
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Margin = new Padding(3, 2, 3, 2);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1117, 78);
+            PanelHeader.Size = new Size(1117, 130);
             PanelHeader.TabIndex = 1;
             // 
             // Logo
             // 
-            Logo.Location = new Point(107, 0);
+            Logo.Image = (Image)resources.GetObject("Logo.Image");
+            Logo.Location = new Point(37, 5);
             Logo.Margin = new Padding(3, 2, 3, 2);
             Logo.Name = "Logo";
-            Logo.Size = new Size(91, 71);
+            Logo.Size = new Size(152, 117);
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
-            // 
-            // TaiKhoan
-            // 
-            TaiKhoan.BackColor = Color.FromArgb(255, 87, 87);
-            TaiKhoan.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TaiKhoan.ForeColor = SystemColors.Control;
-            TaiKhoan.Location = new Point(934, 18);
-            TaiKhoan.Margin = new Padding(3, 2, 3, 2);
-            TaiKhoan.Name = "TaiKhoan";
-            TaiKhoan.Size = new Size(136, 42);
-            TaiKhoan.TabIndex = 1;
-            TaiKhoan.Text = "TÀI KHOẢN";
-            TaiKhoan.UseVisualStyleBackColor = false;
-            TaiKhoan.Click += TaiKhoan_Click;
-            // 
-            // PhimHot
-            // 
-            PhimHot.BackColor = Color.FromArgb(230, 57, 70);
-            PhimHot.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PhimHot.ForeColor = SystemColors.Control;
-            PhimHot.Location = new Point(607, 18);
-            PhimHot.Margin = new Padding(3, 2, 3, 2);
-            PhimHot.Name = "PhimHot";
-            PhimHot.Size = new Size(123, 42);
-            PhimHot.TabIndex = 1;
-            PhimHot.Text = "PHIM HOT";
-            PhimHot.UseVisualStyleBackColor = false;
-            PhimHot.Click += PhimHot_Click;
-            // 
-            // UuDai
-            // 
-            UuDai.BackColor = Color.FromArgb(230, 57, 70);
-            UuDai.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            UuDai.ForeColor = SystemColors.Control;
-            UuDai.Location = new Point(769, 18);
-            UuDai.Margin = new Padding(3, 2, 3, 2);
-            UuDai.Name = "UuDai";
-            UuDai.Size = new Size(123, 42);
-            UuDai.TabIndex = 1;
-            UuDai.Text = "ƯU ĐÃI";
-            UuDai.UseVisualStyleBackColor = false;
             // 
             // MenuTaiKhoan
             // 
@@ -137,7 +88,6 @@
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
             MenuTaiKhoan.Size = new Size(240, 88);
-            MenuTaiKhoan.Opening += MenuTaiKhoan_Opening;
             // 
             // toolStripMenuItem1
             // 
@@ -147,7 +97,6 @@
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new Size(239, 28);
             toolStripMenuItem1.Text = "Thông tin tài khoản ";
-            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // VeDaDat
             // 
@@ -166,78 +115,6 @@
             DangXuat.Name = "DangXuat";
             DangXuat.Size = new Size(239, 28);
             DangXuat.Text = "Đăng xuất";
-            DangXuat.Click += DangXuat_Click;
-            // 
-            // PanelDuongDan
-            // 
-            PanelDuongDan.BackColor = Color.LightBlue;
-            PanelDuongDan.Controls.Add(label2);
-            PanelDuongDan.Controls.Add(DuongDanTaiKhoan);
-            PanelDuongDan.Controls.Add(label1);
-            PanelDuongDan.Controls.Add(DuongDanThongTinTaiKhoan);
-            PanelDuongDan.Controls.Add(DuongDanTrangChu);
-            PanelDuongDan.ForeColor = Color.Transparent;
-            PanelDuongDan.Location = new Point(0, 76);
-            PanelDuongDan.Margin = new Padding(3, 2, 3, 2);
-            PanelDuongDan.Name = "PanelDuongDan";
-            PanelDuongDan.Size = new Size(1117, 39);
-            PanelDuongDan.TabIndex = 2;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Navy;
-            label2.Location = new Point(229, 12);
-            label2.Name = "label2";
-            label2.Size = new Size(13, 18);
-            label2.TabIndex = 6;
-            label2.Text = "-";
-            // 
-            // DuongDanTaiKhoan
-            // 
-            DuongDanTaiKhoan.AutoSize = true;
-            DuongDanTaiKhoan.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DuongDanTaiKhoan.ForeColor = Color.Navy;
-            DuongDanTaiKhoan.Location = new Point(147, 12);
-            DuongDanTaiKhoan.Name = "DuongDanTaiKhoan";
-            DuongDanTaiKhoan.Size = new Size(76, 18);
-            DuongDanTaiKhoan.TabIndex = 3;
-            DuongDanTaiKhoan.Text = "Tài khoản";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(128, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(13, 18);
-            label1.TabIndex = 5;
-            label1.Text = "-";
-            label1.Click += label1_Click;
-            // 
-            // DuongDanThongTinTaiKhoan
-            // 
-            DuongDanThongTinTaiKhoan.AutoSize = true;
-            DuongDanThongTinTaiKhoan.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DuongDanThongTinTaiKhoan.ForeColor = Color.Navy;
-            DuongDanThongTinTaiKhoan.Location = new Point(248, 12);
-            DuongDanThongTinTaiKhoan.Name = "DuongDanThongTinTaiKhoan";
-            DuongDanThongTinTaiKhoan.Size = new Size(138, 18);
-            DuongDanThongTinTaiKhoan.TabIndex = 4;
-            DuongDanThongTinTaiKhoan.Text = "Thông tin tài khoản";
-            // 
-            // DuongDanTrangChu
-            // 
-            DuongDanTrangChu.AutoSize = true;
-            DuongDanTrangChu.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DuongDanTrangChu.ForeColor = Color.Navy;
-            DuongDanTrangChu.Location = new Point(47, 12);
-            DuongDanTrangChu.Name = "DuongDanTrangChu";
-            DuongDanTrangChu.Size = new Size(75, 18);
-            DuongDanTrangChu.TabIndex = 2;
-            DuongDanTrangChu.Text = "Trang chủ";
             // 
             // lbThongTinNguoiDung
             // 
@@ -269,7 +146,7 @@
             panel1.Controls.Add(lbHoTen);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
-            panel1.Location = new Point(56, 200);
+            panel1.Location = new Point(47, 196);
             panel1.Name = "panel1";
             panel1.Size = new Size(1003, 341);
             panel1.TabIndex = 8;
@@ -429,25 +306,57 @@
             label3.Size = new Size(0, 15);
             label3.TabIndex = 0;
             // 
+            // NutQuayLai
+            // 
+            NutQuayLai.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            NutQuayLai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            NutQuayLai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            NutQuayLai.Depth = 0;
+            NutQuayLai.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutQuayLai.HighEmphasis = true;
+            NutQuayLai.Icon = null;
+            NutQuayLai.Location = new Point(953, 146);
+            NutQuayLai.Margin = new Padding(4, 6, 4, 6);
+            NutQuayLai.MouseState = MaterialSkin.MouseState.HOVER;
+            NutQuayLai.Name = "NutQuayLai";
+            NutQuayLai.NoAccentTextColor = Color.Empty;
+            NutQuayLai.Size = new Size(85, 36);
+            NutQuayLai.TabIndex = 9;
+            NutQuayLai.Text = "Quay Lại";
+            NutQuayLai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            NutQuayLai.UseAccentColor = false;
+            NutQuayLai.UseVisualStyleBackColor = true;
+            NutQuayLai.Click += NutQuayLai_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Transparent;
+            label1.Location = new Point(333, 42);
+            label1.Name = "label1";
+            label1.Size = new Size(525, 37);
+            label1.TabIndex = 8;
+            label1.Text = "Solunar Cinema User Information";
+            // 
             // ThongTInTaiKhoan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(1119, 644);
+            ClientSize = new Size(1119, 583);
+            Controls.Add(NutQuayLai);
             Controls.Add(panel1);
             Controls.Add(lbThongTinNguoiDung);
-            Controls.Add(PanelDuongDan);
             Controls.Add(PanelHeader);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ThongTInTaiKhoan";
             Text = "ThongTInTaiKhoan";
             Load += ThongTInTaiKhoan_Load;
             PanelHeader.ResumeLayout(false);
+            PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             MenuTaiKhoan.ResumeLayout(false);
-            PanelDuongDan.ResumeLayout(false);
-            PanelDuongDan.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -458,19 +367,10 @@
 
         private Panel PanelHeader;
         private PictureBox Logo;
-        private Button TaiKhoan;
-        private Button PhimHot;
-        private Button UuDai;
         private ContextMenuStrip MenuTaiKhoan;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem VeDaDat;
         private ToolStripMenuItem DangXuat;
-        private Panel PanelDuongDan;
-        private Label DuongDanTrangChu;
-        private Label label2;
-        private Label DuongDanTaiKhoan;
-        private Label label1;
-        private Label DuongDanThongTinTaiKhoan;
         private Label lbThongTinNguoiDung;
         private Panel panel1;
         private Label label3;
@@ -487,5 +387,7 @@
         private Label lbEmail;
         private Label label5;
         private TextBox ID;
+        private MaterialSkin.Controls.MaterialButton NutQuayLai;
+        private Label label1;
     }
 }

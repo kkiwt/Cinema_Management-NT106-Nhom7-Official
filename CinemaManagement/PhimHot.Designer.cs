@@ -114,6 +114,7 @@
             UuDai.TabIndex = 1;
             UuDai.Text = "ƯU ĐÃI";
             UuDai.UseVisualStyleBackColor = false;
+            UuDai.Click += UuDai_Click;
             // 
             // PanelDuongDan
             // 
@@ -175,7 +176,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 110);
+            MenuTaiKhoan.Size = new Size(240, 88);
             // 
             // ThongTinTaiKhoan
             // 
@@ -210,7 +211,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(21, 3, 27);
+            BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(1104, 686);
             Controls.Add(flpDanhSachPhim);
             Controls.Add(DanhSachCacPhim);
@@ -218,6 +219,7 @@
             Controls.Add(PanelHeader);
             Name = "PhimHot";
             Text = "Solunar Cinema";
+            FormClosed += PhimHot_FormClosed;
             PanelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             PanelDuongDan.ResumeLayout(false);

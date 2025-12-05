@@ -214,7 +214,6 @@ namespace CinemaManagement
         private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
         {
             ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
-            this.Hide();
             thongTinTaiKhoan.ShowDialog();
 
 
@@ -230,16 +229,12 @@ namespace CinemaManagement
 
         private void DangXuat_Click(object sender, EventArgs e)
         {
-            var dangNhap = new PhanDangNhap();
-            this.Hide();
-            dangNhap.Show();
-            // Đóng form hiện tại thay vì Hide()
+            Application.Restart();
         }
 
         private void UuDai_Click_1(object sender, EventArgs e)
         {
-            var danhSachUuDai = new DanhSachUuDai(); // Truyền user hiện tại
-            this.Hide();
+            var danhSachUuDai = new DanhSachUuDai();
             danhSachUuDai.ShowDialog();
         }
 
@@ -291,8 +286,12 @@ namespace CinemaManagement
         private void VeDaDat_Click(object sender, EventArgs e)
         {
             VeDaDat FormVe = new VeDaDat(currentUser);
-            this.Hide();
-            FormVe.Show();
+            FormVe.ShowDialog();
+        }
+
+        private void TrangChuChinh_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 

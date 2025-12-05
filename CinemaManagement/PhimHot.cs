@@ -102,9 +102,7 @@ namespace CinemaManagement
             {
                 ChiTietPhim formChiTietPhim = new ChiTietPhim(formTrangChuChinh, currentUser);
                 formChiTietPhim.HienThiThongTinPhim(PhimDaDuocChon);
-                this.Hide();
                 formChiTietPhim.ShowDialog();
-                this.Show();
             }
             else
             {
@@ -135,10 +133,7 @@ namespace CinemaManagement
         }
         private void DangXuat_Click(object sender, EventArgs e)
         {
-            var dangNhap = new PhanDangNhap();
-            this.Hide();
-            dangNhap.Show();
-            // Đóng form hiện tại thay vì Hide()
+            Application.Restart();
         }
         private UserInfo currentUser;
 
@@ -156,7 +151,6 @@ namespace CinemaManagement
         private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
         {
             ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
-            this.Hide();
             thongTinTaiKhoan.ShowDialog();
 
 
@@ -168,6 +162,17 @@ namespace CinemaManagement
         }
 
         private void TimKiem_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UuDai_Click(object sender, EventArgs e)
+        {
+            DanhSachUuDai danhSachUuDai = new DanhSachUuDai();
+            danhSachUuDai.ShowDialog();
+        }
+
+        private void PhimHot_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }

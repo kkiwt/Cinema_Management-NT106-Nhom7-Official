@@ -95,10 +95,7 @@ namespace CinemaManagement
 
         }
 
-        private void TaiKhoan_Click(object sender, EventArgs e)
-        {
-            MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height)); //Hien thi menu tai khoan de chon 3 tien ich.
-        }
+
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -129,6 +126,9 @@ namespace CinemaManagement
             }
         }
 
-       
+        private void NutQuayLai_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

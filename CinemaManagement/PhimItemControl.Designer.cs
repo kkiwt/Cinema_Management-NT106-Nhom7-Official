@@ -84,7 +84,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(21, 3, 27);
+            BackColor = Color.FromArgb(4, 21, 49);
             Controls.Add(DatVe);
             Controls.Add(ChiTiet);
             Controls.Add(TenPhim);

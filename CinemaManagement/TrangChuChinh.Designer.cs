@@ -112,7 +112,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 110);
+            MenuTaiKhoan.Size = new Size(240, 88);
             // 
             // ThongTinTaiKhoan
             // 
@@ -277,7 +277,7 @@
             // 
             // Next
             // 
-            Next.BackColor = Color.FromArgb(21, 3, 27);
+            Next.BackColor = Color.Transparent;
             Next.FlatAppearance.BorderSize = 0;
             Next.FlatStyle = FlatStyle.Flat;
             Next.Font = new Font("Arial Narrow", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -293,7 +293,7 @@
             // 
             // Prev
             // 
-            Prev.BackColor = Color.FromArgb(21, 3, 27);
+            Prev.BackColor = Color.Transparent;
             Prev.FlatAppearance.BorderSize = 0;
             Prev.FlatStyle = FlatStyle.Flat;
             Prev.Font = new Font("Arial Narrow", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -311,7 +311,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(21, 3, 27);
+            BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(1117, 643);
             Controls.Add(PanelChinh);
             Controls.Add(PanelDuongDan);
@@ -319,6 +319,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "TrangChuChinh";
             Text = "Solunar Cinema";
+            FormClosed += TrangChuChinh_FormClosed;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

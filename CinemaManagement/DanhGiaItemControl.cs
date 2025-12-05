@@ -5,27 +5,29 @@ namespace CinemaManagement
     {
         private string currentUserId;
         private string idReview;
-        public DanhGiaItemControl(ReviewDisplay Review, string userId)
+        UserInfo currentUser;
+        public DanhGiaItemControl(ReviewDisplay review, UserInfo currentUser)
         {
             InitializeComponent();
-            LoadReview(Review);
-            currentUserId = userId;
-            this.Controls.Add(TenNguoiDung);
-            this.Controls.Add(Sao);
-            this.Controls.Add(NoiDungDanhGia);
 
-            idReview = Review.IdReview;   // 🔥 GÁN ID REVIEW – QUAN TRỌNG
+            // Gán dữ liệu
+            LoadReview(review);
+            this.currentUser = currentUser; // lưu lại toàn bộ user
+            idReview = review.IdReview;
 
-            if (Review.IdTaiKhoan == userId)
+            // Quyền hiển thị nút Xóa:
+            // - Chủ review: review.IdTaiKhoan == currentUser.IDUser
+            // - Nhân viên: currentUser.LaNhanVien == true
+            if (review.IdTaiKhoan == currentUser.IDUser || currentUser.LaNhanVien)
             {
 
             }
             else
             {
-               Xoa.Visible = false;
+                Xoa.Visible = false; // Ẩn nút xóa
             }
-
         }
+
 
         public void LoadReview(ReviewDisplay Review)
         {

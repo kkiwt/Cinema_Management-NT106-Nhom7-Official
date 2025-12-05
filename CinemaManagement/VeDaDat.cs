@@ -38,7 +38,7 @@ namespace CinemaManagement
         {
             // UI: show loading
             var prevCursor = Cursor;
-            Cursor = Cursors.WaitCursor;
+
 
             try
             {
@@ -118,18 +118,15 @@ namespace CinemaManagement
 
         }
 
-        // =========================
-        // Sự kiện sẵn có trong Designer
-        // =========================
+
         private void UuDai_Click(object sender, EventArgs e)
         {
             // TODO: mở form ưu đãi nếu có
         }
 
-        private void TaiKhoan_Click(object sender, EventArgs e)
+        private void NutQuayLai_Click(object sender, EventArgs e)
         {
-            // Hiển thị menu tài khoản
-            MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height));
+            this.Close();
         }
     }
 

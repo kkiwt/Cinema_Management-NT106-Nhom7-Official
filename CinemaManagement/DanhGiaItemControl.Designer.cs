@@ -39,7 +39,7 @@
             TenNguoiDung.AutoSize = true;
             TenNguoiDung.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             TenNguoiDung.ForeColor = SystemColors.ControlLightLight;
-            TenNguoiDung.Location = new Point(26, 0);
+            TenNguoiDung.Location = new Point(26, 4);
             TenNguoiDung.Name = "TenNguoiDung";
             TenNguoiDung.Size = new Size(161, 22);
             TenNguoiDung.TabIndex = 25;
@@ -72,16 +72,16 @@
             // 
             // NoiDungDanhGia
             // 
-            NoiDungDanhGia.BackColor = Color.FromArgb(21, 3, 27);
+            NoiDungDanhGia.BackColor = Color.FromArgb(4, 21, 49);
             NoiDungDanhGia.BorderStyle = BorderStyle.None;
             NoiDungDanhGia.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             NoiDungDanhGia.ForeColor = Color.White;
-            NoiDungDanhGia.Location = new Point(5, 70);
+            NoiDungDanhGia.Location = new Point(26, 70);
             NoiDungDanhGia.Multiline = true;
             NoiDungDanhGia.Name = "NoiDungDanhGia";
             NoiDungDanhGia.ReadOnly = true;
             NoiDungDanhGia.ScrollBars = ScrollBars.Both;
-            NoiDungDanhGia.Size = new Size(475, 49);
+            NoiDungDanhGia.Size = new Size(454, 49);
             NoiDungDanhGia.TabIndex = 72;
             NoiDungDanhGia.Text = "Konnichiwa";
             // 
@@ -89,11 +89,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(21, 3, 27);
+            BackColor = Color.FromArgb(4, 21, 49);
             Controls.Add(NoiDungDanhGia);
             Controls.Add(Xoa);
-            Controls.Add(Sao);
             Controls.Add(TenNguoiDung);
+            Controls.Add(Sao);
             ForeColor = SystemColors.ControlLightLight;
             Name = "DanhGiaItemControl";
             Size = new Size(499, 132);

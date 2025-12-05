@@ -42,7 +42,7 @@ namespace CinemaManagement
             SetupStarSelection();
 
             this.Load += DanhGia_Load;
-  //Tim kiem
+            //Tim kiem
         }
 
         // Constructor rong cho Designer
@@ -176,7 +176,7 @@ namespace CinemaManagement
 
             foreach (var Review in LocDanhGia)
             {
-                var ReviewItem = new DanhGiaItemControl(Review, currentUser.IDUser);
+                var ReviewItem = new DanhGiaItemControl(Review, currentUser);
                 ReviewItem.Width = flowLayoutPanel.Width - 5;
                 ReviewItem.Margin = new Padding(0, 0, 0, 10);
                 flowLayoutPanel.Controls.Add(ReviewItem);
@@ -311,9 +311,7 @@ namespace CinemaManagement
 
         private void DangXuat_Click_1(object sender, EventArgs e)
         {
-            var dangNhap = new PhanDangNhap();
-            this.Hide();
-            dangNhap.Show();
+            Application.Restart();
         }
 
         private void UuDai_Click(object sender, EventArgs e)
@@ -331,6 +329,29 @@ namespace CinemaManagement
         private void NoiDungDanhGia_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ThongTinTaiKhoan_Click_1(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan TK = new ThongTInTaiKhoan(currentUser);
+            TK.ShowDialog();
+
+        }
+
+        private void VeDaDat_Click(object sender, EventArgs e)
+        {
+            VeDaDat veDaDat = new VeDaDat(currentUser);
+            veDaDat.ShowDialog();
+        }
+
+        private void LinkTenPhim_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void NutQuayLai_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
