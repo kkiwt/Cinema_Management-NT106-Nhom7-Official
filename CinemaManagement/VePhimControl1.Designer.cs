@@ -28,28 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            lbGiaVe = new Label();
             lbGheNgoi = new Label();
             picturePoster = new PictureBox();
             lbGioChieu = new Label();
             lbTenPhim = new Label();
-            lbNgayChieu = new Label();
+            lbMaVe = new Label();
             panel1 = new Panel();
+            lbNgayChieu = new Label();
             ((System.ComponentModel.ISupportInitialize)picturePoster).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // lbGiaVe
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Arial Narrow", 12.8F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(292, 81);
-            label1.Name = "label1";
-            label1.Size = new Size(55, 22);
-            label1.TabIndex = 10;
-            label1.Text = "Giá vé:";
+            lbGiaVe.AutoSize = true;
+            lbGiaVe.BackColor = Color.Transparent;
+            lbGiaVe.Font = new Font("Arial Narrow", 12.8F);
+            lbGiaVe.ForeColor = Color.White;
+            lbGiaVe.Location = new Point(302, 72);
+            lbGiaVe.Name = "lbGiaVe";
+            lbGiaVe.Size = new Size(55, 22);
+            lbGiaVe.TabIndex = 10;
+            lbGiaVe.Text = "Giá vé:";
             // 
             // lbGheNgoi
             // 
@@ -57,7 +58,7 @@
             lbGheNgoi.BackColor = Color.Transparent;
             lbGheNgoi.Font = new Font("Arial Narrow", 12.8F);
             lbGheNgoi.ForeColor = Color.White;
-            lbGheNgoi.Location = new Point(292, 49);
+            lbGheNgoi.Location = new Point(302, 50);
             lbGheNgoi.Name = "lbGheNgoi";
             lbGheNgoi.Size = new Size(76, 22);
             lbGheNgoi.TabIndex = 9;
@@ -79,7 +80,7 @@
             lbGioChieu.BackColor = Color.Transparent;
             lbGioChieu.Font = new Font("Arial Narrow", 12.8F);
             lbGioChieu.ForeColor = Color.White;
-            lbGioChieu.Location = new Point(141, 81);
+            lbGioChieu.Location = new Point(138, 72);
             lbGioChieu.Name = "lbGioChieu";
             lbGioChieu.Size = new Size(78, 22);
             lbGioChieu.TabIndex = 8;
@@ -97,30 +98,43 @@
             lbTenPhim.TabIndex = 6;
             lbTenPhim.Text = "Tên phim";
             // 
+            // lbMaVe
+            // 
+            lbMaVe.AutoSize = true;
+            lbMaVe.BackColor = Color.Transparent;
+            lbMaVe.Font = new Font("Arial Narrow", 12.8F);
+            lbMaVe.ForeColor = Color.White;
+            lbMaVe.Location = new Point(138, 50);
+            lbMaVe.Name = "lbMaVe";
+            lbMaVe.Size = new Size(58, 22);
+            lbMaVe.TabIndex = 7;
+            lbMaVe.Text = "Mã vé: ";
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(lbNgayChieu);
+            panel1.Controls.Add(picturePoster);
+            panel1.Controls.Add(lbGiaVe);
+            panel1.Controls.Add(lbGioChieu);
+            panel1.Controls.Add(lbTenPhim);
+            panel1.Controls.Add(lbMaVe);
+            panel1.Controls.Add(lbGheNgoi);
+            panel1.Location = new Point(2, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(509, 146);
+            panel1.TabIndex = 11;
+            // 
             // lbNgayChieu
             // 
             lbNgayChieu.AutoSize = true;
             lbNgayChieu.BackColor = Color.Transparent;
             lbNgayChieu.Font = new Font("Arial Narrow", 12.8F);
             lbNgayChieu.ForeColor = Color.White;
-            lbNgayChieu.Location = new Point(138, 49);
+            lbNgayChieu.Location = new Point(138, 94);
             lbNgayChieu.Name = "lbNgayChieu";
             lbNgayChieu.Size = new Size(92, 22);
-            lbNgayChieu.TabIndex = 7;
+            lbNgayChieu.TabIndex = 11;
             lbNgayChieu.Text = "Ngày chiếu: ";
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(picturePoster);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(lbGioChieu);
-            panel1.Controls.Add(lbTenPhim);
-            panel1.Controls.Add(lbNgayChieu);
-            panel1.Controls.Add(lbGheNgoi);
-            panel1.Location = new Point(2, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(509, 146);
-            panel1.TabIndex = 11;
             // 
             // VePhimControl1
             // 
@@ -138,12 +152,13 @@
 
         #endregion
 
-        private Label label1;
+        private Label lbGiaVe;
         private Label lbGheNgoi;
         private PictureBox picturePoster;
         private Label lbGioChieu;
         private Label lbTenPhim;
-        private Label lbNgayChieu;
+        private Label lbMaVe;
         private Panel panel1;
+        private Label lbNgayChieu;
     }
 }

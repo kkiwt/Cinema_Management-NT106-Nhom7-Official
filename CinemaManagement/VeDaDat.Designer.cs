@@ -264,6 +264,7 @@
             Controls.Add(PanelHeader);
             Name = "VeDaDat";
             Text = "VeDaDat";
+            Load += VeDaDat_Load;
             PanelDuongDan.ResumeLayout(false);
             PanelDuongDan.PerformLayout();
             PanelHeader.ResumeLayout(false);

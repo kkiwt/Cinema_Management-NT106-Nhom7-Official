@@ -495,5 +495,22 @@ namespace ServerAndService
                 return $"ERROR_SERVICE_GET_GIAMGIA: {ex.Message}";
             }
         }
+        public async Task<string> GetVeDaDatRPC(string idTaiKhoan)
+        {
+            try
+            {
+                var result = await client.Rpc("get_ve_dadat", new { _idtaikhoan = idTaiKhoan });
+                var json = result.Content?.Trim();
+
+                if (string.IsNullOrWhiteSpace(json) || json == "null")
+                    return "[]";
+
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_SERVICE_GET_VE_DADAT: {ex.Message}";
+            }
+        }
     }
 }

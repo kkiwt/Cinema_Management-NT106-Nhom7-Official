@@ -132,6 +132,7 @@
             VeDaDat.Name = "VeDaDat";
             VeDaDat.Size = new Size(239, 28);
             VeDaDat.Text = "Vé đã đặt";
+            VeDaDat.Click += VeDaDat_Click;
             // 
             // DangXuat
             // 
@@ -190,7 +191,7 @@
             NutStaffOnly.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             NutStaffOnly.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             NutStaffOnly.Depth = 0;
-            NutStaffOnly.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutStaffOnly.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutStaffOnly.HighEmphasis = true;
             NutStaffOnly.Icon = null;
             NutStaffOnly.Location = new Point(1011, 5);

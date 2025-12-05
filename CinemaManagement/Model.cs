@@ -491,6 +491,16 @@ namespace CinemaManagement
             }
         }
     }
+    public class VeDat
+    {
+         public string IdVe { get; set; }
+         public DateTime? NgayChieu { get; set; }
+         public TimeSpan? GioChieu { get; set; }
+         public string Ghe { get; set; }
+         public decimal? GiaVe { get; set; }
+         public string TenPhim { get; set; }
+         public string PosterPhim { get; set; }
+    }
 }
 
 
