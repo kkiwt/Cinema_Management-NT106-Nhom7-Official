@@ -112,7 +112,7 @@
             MenuTaiKhoan.ImageScalingSize = new Size(20, 20);
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
-            MenuTaiKhoan.Size = new Size(240, 88);
+            MenuTaiKhoan.Size = new Size(240, 110);
             // 
             // ThongTinTaiKhoan
             // 
@@ -191,7 +191,7 @@
             NutStaffOnly.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             NutStaffOnly.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             NutStaffOnly.Depth = 0;
-            NutStaffOnly.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutStaffOnly.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutStaffOnly.HighEmphasis = true;
             NutStaffOnly.Icon = null;
             NutStaffOnly.Location = new Point(1011, 5);

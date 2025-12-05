@@ -39,12 +39,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffOnLy));
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
             parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
-            NutQuayLai = new MaterialSkin.Controls.MaterialButton();
             ThongKeVeDoanhThu = new TreeView();
             metroPanel1 = new MetroFramework.Controls.MetroPanel();
             bindingSource1 = new BindingSource(components);
             NutThemPhim = new ReaLTaiizor.Controls.HopeButton();
             NutThemUuDai = new ReaLTaiizor.Controls.HopeButton();
+            NutQuayLai = new MaterialSkin.Controls.MaterialButton();
             parrotGradientPanel1.SuspendLayout();
             metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
@@ -82,28 +82,6 @@
             parrotGradientPanel1.TextRenderingType = System.Drawing.Text.TextRenderingHint.AntiAlias;
             parrotGradientPanel1.TopLeft = Color.DeepSkyBlue;
             parrotGradientPanel1.TopRight = Color.FromArgb(0, 0, 64);
-            // 
-            // NutQuayLai
-            // 
-            NutQuayLai.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            NutQuayLai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            NutQuayLai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            NutQuayLai.Depth = 0;
-            NutQuayLai.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NutQuayLai.HighEmphasis = true;
-            NutQuayLai.Icon = null;
-            NutQuayLai.Location = new Point(834, 694);
-            NutQuayLai.Margin = new Padding(4, 6, 4, 6);
-            NutQuayLai.MouseState = MaterialSkin.MouseState.HOVER;
-            NutQuayLai.Name = "NutQuayLai";
-            NutQuayLai.NoAccentTextColor = Color.Empty;
-            NutQuayLai.Size = new Size(85, 36);
-            NutQuayLai.TabIndex = 5;
-            NutQuayLai.Text = "Quay Lại";
-            NutQuayLai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            NutQuayLai.UseAccentColor = false;
-            NutQuayLai.UseVisualStyleBackColor = true;
-            NutQuayLai.Click += NutQuayLai_Click;
             // 
             // ThongKeVeDoanhThu
             // 
@@ -193,6 +171,28 @@
             NutThemUuDai.WarningColor = Color.FromArgb(230, 162, 60);
             NutThemUuDai.Click += NutThemUuDai_Click;
             // 
+            // NutQuayLai
+            // 
+            NutQuayLai.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            NutQuayLai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            NutQuayLai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            NutQuayLai.Depth = 0;
+            NutQuayLai.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutQuayLai.HighEmphasis = true;
+            NutQuayLai.Icon = null;
+            NutQuayLai.Location = new Point(834, 694);
+            NutQuayLai.Margin = new Padding(4, 6, 4, 6);
+            NutQuayLai.MouseState = MaterialSkin.MouseState.HOVER;
+            NutQuayLai.Name = "NutQuayLai";
+            NutQuayLai.NoAccentTextColor = Color.Empty;
+            NutQuayLai.Size = new Size(85, 36);
+            NutQuayLai.TabIndex = 5;
+            NutQuayLai.Text = "Quay Lại";
+            NutQuayLai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            NutQuayLai.UseAccentColor = false;
+            NutQuayLai.UseVisualStyleBackColor = true;
+            NutQuayLai.Click += NutQuayLai_Click;
+            // 
             // StaffOnLy
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -222,11 +222,11 @@
         private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel1;
         private ReaLTaiizor.Controls.NightPanel nightPanel1;
         private PictureBox pictureBox1;
-        private MaterialSkin.Controls.MaterialButton NutQuayLai;
         private TreeView ThongKeVeDoanhThu;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private BindingSource bindingSource1;
         private ReaLTaiizor.Controls.HopeButton NutThemPhim;
         private ReaLTaiizor.Controls.HopeButton NutThemUuDai;
+        private MaterialSkin.Controls.MaterialButton NutQuayLai;
     }
 }

@@ -179,8 +179,8 @@ namespace CinemaManagement
             if (PhimHienTai != null && currentUser != null)
             {
                 this.Hide(); // Ẩn form hiện tại
-                ChonPhongChieu formChonPhong = new ChonPhongChieu(PhimHienTai, currentUser);
-                formChonPhong.ShowDialog(); // Hiển thị form chọn phòng
+                ChonSuatChieu formChonSuat = new ChonSuatChieu(PhimHienTai, currentUser);
+                formChonSuat.ShowDialog(); // Hiển thị form chọn phòng
                 this.Show(); // Hiện lại form sau khi đóng form kia
             }
             else
