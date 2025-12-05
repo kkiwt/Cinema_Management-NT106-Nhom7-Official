@@ -248,9 +248,9 @@ namespace CinemaManagement
             Phim phimChon = e.PhimDuocChon;
             if (phimChon != null && currentUser != null)
             {
-                ChonPhongChieu formChonPhong = new ChonPhongChieu(phimChon, currentUser);
+                ChonSuatChieu formChonSuat = new ChonSuatChieu(phimChon, currentUser);
                 this.Hide();
-                formChonPhong.ShowDialog();
+                formChonSuat.ShowDialog();
                 this.Show();
             }
             else
@@ -290,11 +290,14 @@ namespace CinemaManagement
 
         private void VeDaDat_Click(object sender, EventArgs e)
         {
+            VeDaDat FormVe = new VeDaDat(currentUser);
             this.Hide();
-            VeDaDat veDaDatForm = new VeDaDat(currentUser);
-            veDaDatForm.ShowDialog();
+            FormVe.Show();
         }
     }
+
+
+
 
     public class PhimDuocChonEventArgs : EventArgs
     {

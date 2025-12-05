@@ -30,14 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             PanelDuongDan = new Panel();
-            label2 = new Label();
-            DuongDanTaiKhoan = new Label();
-            label1 = new Label();
-            DuongDanVeDaDat = new Label();
-            DuongDanTrangChu = new Label();
             PanelHeader = new Panel();
             Logo = new PictureBox();
-            TimKiem = new TextBox();
             TaiKhoan = new Button();
             PhimHot = new Button();
             UuDai = new Button();
@@ -47,7 +41,7 @@
             DangXuat = new ToolStripMenuItem();
             label3 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            PanelDuongDan.SuspendLayout();
+            NutQuayLai = new MaterialSkin.Controls.MaterialButton();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             MenuTaiKhoan.SuspendLayout();
@@ -56,11 +50,6 @@
             // PanelDuongDan
             // 
             PanelDuongDan.BackColor = Color.LightBlue;
-            PanelDuongDan.Controls.Add(label2);
-            PanelDuongDan.Controls.Add(DuongDanTaiKhoan);
-            PanelDuongDan.Controls.Add(label1);
-            PanelDuongDan.Controls.Add(DuongDanVeDaDat);
-            PanelDuongDan.Controls.Add(DuongDanTrangChu);
             PanelDuongDan.ForeColor = Color.Transparent;
             PanelDuongDan.Location = new Point(0, 76);
             PanelDuongDan.Margin = new Padding(3, 2, 3, 2);
@@ -68,66 +57,10 @@
             PanelDuongDan.Size = new Size(1117, 39);
             PanelDuongDan.TabIndex = 4;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Navy;
-            label2.Location = new Point(229, 12);
-            label2.Name = "label2";
-            label2.Size = new Size(13, 18);
-            label2.TabIndex = 6;
-            label2.Text = "-";
-            // 
-            // DuongDanTaiKhoan
-            // 
-            DuongDanTaiKhoan.AutoSize = true;
-            DuongDanTaiKhoan.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DuongDanTaiKhoan.ForeColor = Color.Navy;
-            DuongDanTaiKhoan.Location = new Point(147, 12);
-            DuongDanTaiKhoan.Name = "DuongDanTaiKhoan";
-            DuongDanTaiKhoan.Size = new Size(76, 18);
-            DuongDanTaiKhoan.TabIndex = 3;
-            DuongDanTaiKhoan.Text = "Tài khoản";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Navy;
-            label1.Location = new Point(128, 12);
-            label1.Name = "label1";
-            label1.Size = new Size(13, 18);
-            label1.TabIndex = 5;
-            label1.Text = "-";
-            // 
-            // DuongDanVeDaDat
-            // 
-            DuongDanVeDaDat.AutoSize = true;
-            DuongDanVeDaDat.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DuongDanVeDaDat.ForeColor = Color.Navy;
-            DuongDanVeDaDat.Location = new Point(248, 12);
-            DuongDanVeDaDat.Name = "DuongDanVeDaDat";
-            DuongDanVeDaDat.Size = new Size(76, 18);
-            DuongDanVeDaDat.TabIndex = 4;
-            DuongDanVeDaDat.Text = "Vé đã đặt";
-            // 
-            // DuongDanTrangChu
-            // 
-            DuongDanTrangChu.AutoSize = true;
-            DuongDanTrangChu.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DuongDanTrangChu.ForeColor = Color.Navy;
-            DuongDanTrangChu.Location = new Point(47, 12);
-            DuongDanTrangChu.Name = "DuongDanTrangChu";
-            DuongDanTrangChu.Size = new Size(75, 18);
-            DuongDanTrangChu.TabIndex = 2;
-            DuongDanTrangChu.Text = "Trang chủ";
-            // 
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(30, 27, 58);
             PanelHeader.Controls.Add(Logo);
-            PanelHeader.Controls.Add(TimKiem);
             PanelHeader.Controls.Add(TaiKhoan);
             PanelHeader.Controls.Add(PhimHot);
             PanelHeader.Controls.Add(UuDai);
@@ -146,16 +79,6 @@
             Logo.SizeMode = PictureBoxSizeMode.StretchImage;
             Logo.TabIndex = 4;
             Logo.TabStop = false;
-            // 
-            // TimKiem
-            // 
-            TimKiem.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TimKiem.Location = new Point(394, 28);
-            TimKiem.Margin = new Padding(3, 2, 3, 2);
-            TimKiem.Name = "TimKiem";
-            TimKiem.Size = new Size(181, 26);
-            TimKiem.TabIndex = 3;
-            TimKiem.Text = "Tìm kiếm phim";
             // 
             // TaiKhoan
             // 
@@ -252,12 +175,34 @@
             flowLayoutPanel1.Size = new Size(1019, 371);
             flowLayoutPanel1.TabIndex = 6;
             // 
+            // NutQuayLai
+            // 
+            NutQuayLai.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            NutQuayLai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            NutQuayLai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            NutQuayLai.Depth = 0;
+            NutQuayLai.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutQuayLai.HighEmphasis = true;
+            NutQuayLai.Icon = null;
+            NutQuayLai.Location = new Point(945, 131);
+            NutQuayLai.Margin = new Padding(4, 6, 4, 6);
+            NutQuayLai.MouseState = MaterialSkin.MouseState.HOVER;
+            NutQuayLai.Name = "NutQuayLai";
+            NutQuayLai.NoAccentTextColor = Color.Empty;
+            NutQuayLai.Size = new Size(85, 36);
+            NutQuayLai.TabIndex = 7;
+            NutQuayLai.Text = "Quay Lại";
+            NutQuayLai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            NutQuayLai.UseAccentColor = false;
+            NutQuayLai.UseVisualStyleBackColor = true;
+            // 
             // VeDaDat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(1117, 597);
+            Controls.Add(NutQuayLai);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(label3);
             Controls.Add(PanelDuongDan);
@@ -265,10 +210,7 @@
             Name = "VeDaDat";
             Text = "VeDaDat";
             Load += VeDaDat_Load;
-            PanelDuongDan.ResumeLayout(false);
-            PanelDuongDan.PerformLayout();
             PanelHeader.ResumeLayout(false);
-            PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             MenuTaiKhoan.ResumeLayout(false);
             ResumeLayout(false);
@@ -278,14 +220,8 @@
         #endregion
 
         private Panel PanelDuongDan;
-        private Label label2;
-        private Label DuongDanTaiKhoan;
-        private Label label1;
-        private Label DuongDanVeDaDat;
-        private Label DuongDanTrangChu;
         private Panel PanelHeader;
         private PictureBox Logo;
-        private TextBox TimKiem;
         private Button TaiKhoan;
         private Button PhimHot;
         private Button UuDai;
@@ -295,5 +231,6 @@
         private ToolStripMenuItem DangXuat;
         private Label label3;
         private FlowLayoutPanel flowLayoutPanel1;
+        private MaterialSkin.Controls.MaterialButton NutQuayLai;
     }
 }

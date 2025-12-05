@@ -76,7 +76,7 @@ namespace CinemaManagement
             Phim phimChon = e.PhimDuocChon;
             if (phimChon != null && currentUser != null)
             {
-                ChonPhongChieu formChonPhong = new ChonPhongChieu(phimChon, currentUser);
+                ChonSuatChieu formChonPhong = new ChonSuatChieu(phimChon, currentUser);
                 this.Hide();
                 formChonPhong.ShowDialog();
                 this.Show();
