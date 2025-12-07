@@ -366,6 +366,7 @@ namespace ServerAndService
                 var Response = await client.From<Movie>().Get();
 
                 // Serialize danh sách Models thành JSON string
+                // Serialize danh sách Models thành JSON string
                 string json = JsonSerializer.Serialize(Response.Models);
 
                 // Trả về JSON string của danh sách phim
@@ -384,7 +385,7 @@ namespace ServerAndService
             try
             {
                 // Gọi RPC
-                var result = await client.Rpc("get_latest_movies", new
+                var result = await client.Rpc("get_latest_movies2", new
                 {
                     limit_count = limitCount
                 });
@@ -512,5 +513,137 @@ namespace ServerAndService
                 return $"ERROR_SERVICE_GET_VE_DADAT: {ex.Message}";
             }
         }
+        // Lấy thông tin phim theo Id
+        public async Task<string> GetPhimById(string idPhim)
+        {
+            try
+            {
+                var result = await client.Rpc("get_phim_by_id", new { p_idphim = idPhim });
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "[]";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_PHIM: {ex.Message}";
+            }
+        }
+
+        // Lấy danh sách khung giờ cố định của phim
+        public async Task<string> GetLichChieuCoDinh(string idPhim)
+        {
+            try
+            {
+                var result = await client.Rpc("get_lichchieucodinh_by_phim", new { p_idphim = idPhim });
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "[]";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_LICHCHIEU_CODINH: {ex.Message}";
+            }
+        }
+
+        // Lấy toàn bộ khung giờ
+        public async Task<string> GetKhungGio()
+        {
+            try
+            {
+                var result = await client.Rpc("get_khunggio", new { });
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "[]";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_KHUNG_GIO: {ex.Message}";
+            }
+        }
+
+        // Lấy danh sách phòng chiếu
+        public async Task<string> GetPhongChieu()
+        {
+            try
+            {
+                var result = await client.Rpc("get_phongchieu", new { });
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "[]";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_PHONG_CHIEU: {ex.Message}";
+            }
+        }
+        public async Task<string> HoldSeatAsync(string idPhim, string idKhungGio, string idPhongChieu, DateTime ngayDat, string idGhe, string idTaiKhoan)
+        {
+            try
+            {
+                var result = await client.Rpc("hold_seat", new
+                {
+                    p_idphim = idPhim,
+                    p_idkhunggio = idKhungGio,
+                    p_idphongchieu = idPhongChieu,
+                    p_ngaydat = ngayDat.Date,
+                    p_idghe = idGhe,
+                    p_idtaikhoan = idTaiKhoan
+                });
+
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "{}";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_HOLD_SEAT: {ex.Message}";
+            }
+        }
+        public async Task<string> SetVeAsync(string idPhim, string idKhungGio, string idPhongChieu, DateTime ngayDat, string idGhe, string idTaiKhoan, decimal giaVe)
+        {
+            try
+            {
+                var result = await client.Rpc("set_ve", new
+                {
+                    p_idphim = idPhim,
+                    p_idkhunggio = idKhungGio,
+                    p_idphongchieu = idPhongChieu,
+                    p_ngaydat = ngayDat.Date,
+                    p_idghe = idGhe,
+                    p_idtaikhoan = idTaiKhoan,
+                    p_giave = giaVe
+                });
+
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "{}";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_SET_VE: {ex.Message}";
+            }
+        }
+        public async Task<string> GetSeatStatusAsync(string idPhim, string idKhungGio, string idPhongChieu, DateTime ngayDat)
+        {
+            try
+            {
+                var result = await client.Rpc("get_seatstatus", new
+                {
+                    p_idphim = idPhim,
+                    p_idkhunggio = idKhungGio,
+                    p_idphongchieu = idPhongChieu,
+                    p_ngaydat = ngayDat.Date
+                });
+
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "[]";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_SEATSTATUS: {ex.Message}";
+            }
+        }
+
     }
 }

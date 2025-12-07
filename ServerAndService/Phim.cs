@@ -51,6 +51,10 @@ namespace ServerAndService
 
         [Column("QuocGia"), JsonPropertyName("QuocGia")]
         public string QuocGia { get; set; } = string.Empty;
+        [Column("tungay"),JsonPropertyName ("tungay")]
+        public DateTime tungay { get; set; }
+        [Column("denngay"),JsonPropertyName ("denngay")]
+        public DateTime denngay { get; set; }
     }
 
 

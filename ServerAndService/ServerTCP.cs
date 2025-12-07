@@ -1,4 +1,5 @@
 ﻿// ServerTCP.cs
+// ServerTCP.cs
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -286,6 +287,96 @@ namespace ServerAndService
                             }
                             break;
                         }
+                    case "GET_PHIM_BY_ID":
+                        if (parts.Length < 2 || string.IsNullOrWhiteSpace(parts[1]))
+                        {
+                            response = "ERROR: GET_PHIM_BY_ID requires IdPhim (e.g., GET_PHIM_BY_ID|P01)";
+                        }
+                        else
+                        {
+                            string idPhim = parts[1];
+                            response = await service.GetPhimById(idPhim);
+                        }
+                        break;
+
+                    case "GET_LICHCHIEU_CODINH":
+                        if (parts.Length < 2 || string.IsNullOrWhiteSpace(parts[1]))
+                        {
+                            response = "ERROR: GET_LICHCHIEU_CODINH requires IdPhim (e.g., GET_LICHCHIEU_CODINH|P01)";
+                        }
+                        else
+                        {
+                            string idPhim = parts[1];
+                            response = await service.GetLichChieuCoDinh(idPhim);
+                        }
+                        break;
+
+                    case "GET_KHUNGGIO":
+                        response = await service.GetKhungGio();
+                        break;
+
+                    case "GET_PHONGCHIEU":
+                        response = await service.GetPhongChieu();
+                        break;
+                    case "ADD_HOLDSEAT":
+                        {
+                            if (parts.Length < 7) // cần đủ tham số
+                            {
+                                response = "ERROR: ADD_HOLDSEAT requires all parameters";
+                            }
+                            else
+                            {
+                                string idPhim = parts[1];
+                                string idKhungGio = parts[2];
+                                string idPhongChieu = parts[3];
+                                DateTime ngayDat = DateTime.Parse(parts[4]);
+                                string idGhe = parts[5];
+                                string idTaiKhoan = parts[6];
+
+                                response = await service.HoldSeatAsync(
+                                    idPhim, idKhungGio, idPhongChieu, ngayDat, idGhe, idTaiKhoan);
+                            }
+                            break;
+                        }
+                    case "SET_VE":
+                        {
+                            if (parts.Length < 8) // cần đủ tham số
+                            {
+                                response = "ERROR: SET_VE requires all parameters";
+                            }
+                            else
+                            {
+                                string idPhim = parts[1];
+                                string idKhungGio = parts[2];
+                                string idPhongChieu = parts[3];
+                                DateTime ngayDat = DateTime.Parse(parts[4]);
+                                string idGhe = parts[5];
+                                string idTaiKhoan = parts[6];
+                                decimal giaVe = decimal.Parse(parts[7]);
+
+                                response = await service.SetVeAsync(
+                                    idPhim, idKhungGio, idPhongChieu, ngayDat, idGhe, idTaiKhoan, giaVe);
+                            }
+                            break;
+                        }
+                    case "GET_SEATSTATUS":
+                        {
+                            if (parts.Length < 5)
+                            {
+                                response = "ERROR: GET_SEATSTATUS requires parameters";
+                            }
+                            else
+                            {
+                                string idPhim = parts[1];
+                                string idKhungGio = parts[2];
+                                string idPhongChieu = parts[3];
+                                DateTime ngayDat = DateTime.Parse(parts[4]);
+
+                                response = await service.GetSeatStatusAsync(idPhim, idKhungGio, idPhongChieu, ngayDat);
+                            }
+                            break;
+                        }
+
 
                     default:
                         response = "UNKNOWN_COMMAND";

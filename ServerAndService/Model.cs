@@ -404,8 +404,11 @@ namespace ServerAndService
         public string PosterPhim { get; set; }
         public string QuocGia { get; set; }
         public string NgonNgu { get; set; }
+        public DateTime? tungay { get; set; }
+        public DateTime? denngay { get; set; }
+
         public Phim() { }
-        public Phim(string id, string ten, string nhaXB, string Director, string Actor, string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Poster, string Nation, string Language)
+        public Phim(string id, string ten, string nhaXB, string Director, string Actor, string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Poster, string Nation, string Language,DateTime? begin, DateTime? end)
         {
             IdPhim = id;
             TenPhim = ten;
@@ -420,6 +423,8 @@ namespace ServerAndService
             PosterPhim = Poster;
             QuocGia = Nation;
             NgonNgu = Language;
+            tungay = begin;
+            denngay = end;
         }
 
         public static List<Phim> DanhSachPhim = new List<Phim>();
