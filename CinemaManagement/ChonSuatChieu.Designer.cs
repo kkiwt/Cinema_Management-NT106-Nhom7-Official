@@ -30,9 +30,10 @@
         {
             btnQuaylai = new Button();
             panel1 = new Panel();
+            panelKhungGio = new Panel();
+            panelNgay = new Panel();
             lblTenPhim = new Label();
-            flowLayoutPanelNgay = new FlowLayoutPanel();
-            flowLayoutPanelKhungGio = new FlowLayoutPanel();
+            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -40,7 +41,7 @@
             // 
             btnQuaylai.BackColor = SystemColors.Control;
             btnQuaylai.ForeColor = SystemColors.ControlText;
-            btnQuaylai.Location = new Point(784, 11);
+            btnQuaylai.Location = new Point(445, 11);
             btnQuaylai.Margin = new Padding(3, 2, 3, 2);
             btnQuaylai.Name = "btnQuaylai";
             btnQuaylai.Size = new Size(82, 22);
@@ -52,15 +53,31 @@
             // panel1
             // 
             panel1.AccessibleRole = AccessibleRole.None;
-            panel1.Controls.Add(flowLayoutPanelKhungGio);
-            panel1.Controls.Add(flowLayoutPanelNgay);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(panelKhungGio);
+            panel1.Controls.Add(panelNgay);
             panel1.Controls.Add(lblTenPhim);
             panel1.Controls.Add(btnQuaylai);
             panel1.Location = new Point(10, 9);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(879, 510);
+            panel1.Size = new Size(550, 437);
             panel1.TabIndex = 0;
+            // 
+            // panelKhungGio
+            // 
+            panelKhungGio.Location = new Point(34, 210);
+            panelKhungGio.Name = "panelKhungGio";
+            panelKhungGio.Size = new Size(493, 164);
+            panelKhungGio.TabIndex = 24;
+            // 
+            // panelNgay
+            // 
+            panelNgay.BackgroundImageLayout = ImageLayout.None;
+            panelNgay.Location = new Point(34, 38);
+            panelNgay.Name = "panelNgay";
+            panelNgay.Size = new Size(493, 145);
+            panelNgay.TabIndex = 23;
             // 
             // lblTenPhim
             // 
@@ -72,31 +89,27 @@
             lblTenPhim.TabIndex = 22;
             lblTenPhim.Text = "Tên Phim";
             // 
-            // flowLayoutPanelNgay
+            // button1
             // 
-            flowLayoutPanelNgay.Location = new Point(34, 55);
-            flowLayoutPanelNgay.Name = "flowLayoutPanelNgay";
-            flowLayoutPanelNgay.Size = new Size(832, 170);
-            flowLayoutPanelNgay.TabIndex = 23;
-            // 
-            // flowLayoutPanelKhungGio
-            // 
-            flowLayoutPanelKhungGio.Location = new Point(34, 251);
-            flowLayoutPanelKhungGio.Name = "flowLayoutPanelKhungGio";
-            flowLayoutPanelKhungGio.Size = new Size(832, 236);
-            flowLayoutPanelKhungGio.TabIndex = 24;
+            button1.Location = new Point(452, 395);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 25;
+            button1.Text = "Chọn ghế";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // ChonSuatChieu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(901, 530);
+            ClientSize = new Size(583, 457);
             Controls.Add(panel1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ChonSuatChieu";
-            Text = "ChonPhongChieu";
-            Load += ChonPhongChieu_Load;
+            Text = "ChonSuatChieu";
+            Load += ChonSuatChieu_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -107,7 +120,8 @@
         private Button btnQuaylai;
         private Panel panel1;
         private Label lblTenPhim;
-        private FlowLayoutPanel flowLayoutPanelKhungGio;
-        private FlowLayoutPanel flowLayoutPanelNgay;
+        private Panel panelKhungGio;
+        private Panel panelNgay;
+        private Button button1;
     }
 }

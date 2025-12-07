@@ -39,6 +39,7 @@
             button9 = new Button();
             button10 = new Button();
             panel1 = new Panel();
+            lblSoLuongGhe = new Label();
             panel5 = new Panel();
             panel4 = new Panel();
             panel3 = new Panel();
@@ -92,6 +93,7 @@
             button1.TabIndex = 0;
             button1.Text = "A1";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += AllButton_Click;
             // 
             // button2
             // 
@@ -102,6 +104,7 @@
             button2.TabIndex = 1;
             button2.Text = "A2";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += AllButton_Click;
             // 
             // button3
             // 
@@ -112,6 +115,7 @@
             button3.TabIndex = 2;
             button3.Text = "A3";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += AllButton_Click;
             // 
             // button4
             // 
@@ -122,6 +126,7 @@
             button4.TabIndex = 3;
             button4.Text = "A4";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += AllButton_Click;
             // 
             // button5
             // 
@@ -132,6 +137,7 @@
             button5.TabIndex = 4;
             button5.Text = "A5";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += AllButton_Click;
             // 
             // button6
             // 
@@ -142,6 +148,7 @@
             button6.TabIndex = 5;
             button6.Text = "A6";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += AllButton_Click;
             // 
             // button7
             // 
@@ -152,6 +159,7 @@
             button7.TabIndex = 6;
             button7.Text = "A7";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += AllButton_Click;
             // 
             // button8
             // 
@@ -162,6 +170,7 @@
             button8.TabIndex = 7;
             button8.Text = "A8";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += AllButton_Click;
             // 
             // button9
             // 
@@ -172,6 +181,7 @@
             button9.TabIndex = 8;
             button9.Text = "A9";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += AllButton_Click;
             // 
             // button10
             // 
@@ -182,9 +192,11 @@
             button10.TabIndex = 9;
             button10.Text = "A10";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += AllButton_Click;
             // 
             // panel1
             // 
+            panel1.Controls.Add(lblSoLuongGhe);
             panel1.Controls.Add(panel5);
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel3);
@@ -241,6 +253,14 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(679, 320);
             panel1.TabIndex = 10;
+            // 
+            // lblSoLuongGhe
+            // 
+            lblSoLuongGhe.AutoSize = true;
+            lblSoLuongGhe.Location = new Point(116, 26);
+            lblSoLuongGhe.Name = "lblSoLuongGhe";
+            lblSoLuongGhe.Size = new Size(0, 15);
+            lblSoLuongGhe.TabIndex = 50;
             // 
             // panel5
             // 
@@ -303,6 +323,7 @@
             label2.Size = new Size(24, 15);
             label2.TabIndex = 44;
             label2.Text = "Vip";
+            label2.Click += AllButton_Click;
             // 
             // label1
             // 
@@ -312,6 +333,7 @@
             label1.Size = new Size(49, 15);
             label1.TabIndex = 43;
             label1.Text = "Thường";
+            label1.Click += AllButton_Click;
             // 
             // button43
             // 
@@ -322,6 +344,7 @@
             button43.TabIndex = 42;
             button43.Text = "Thanh toán ";
             button43.UseVisualStyleBackColor = true;
+            button43.Click += btnThanhToan_Click;
             // 
             // button42
             // 
@@ -342,6 +365,7 @@
             button41.TabIndex = 40;
             button41.Text = "Quay lại";
             button41.UseVisualStyleBackColor = true;
+            button41.Click += button41_Click;
             // 
             // button31
             // 
@@ -352,6 +376,7 @@
             button31.TabIndex = 39;
             button31.Text = "D10";
             button31.UseVisualStyleBackColor = true;
+            button31.Click += AllButton_Click;
             // 
             // button32
             // 
@@ -362,6 +387,7 @@
             button32.TabIndex = 30;
             button32.Text = "D1";
             button32.UseVisualStyleBackColor = true;
+            button32.Click += AllButton_Click;
             // 
             // button33
             // 
@@ -372,6 +398,7 @@
             button33.TabIndex = 38;
             button33.Text = "D9";
             button33.UseVisualStyleBackColor = true;
+            button33.Click += AllButton_Click;
             // 
             // button34
             // 
@@ -382,6 +409,7 @@
             button34.TabIndex = 31;
             button34.Text = "D2";
             button34.UseVisualStyleBackColor = true;
+            button34.Click += AllButton_Click;
             // 
             // button35
             // 
@@ -392,6 +420,7 @@
             button35.TabIndex = 37;
             button35.Text = "D8";
             button35.UseVisualStyleBackColor = true;
+            button35.Click += AllButton_Click;
             // 
             // button36
             // 
@@ -402,6 +431,7 @@
             button36.TabIndex = 32;
             button36.Text = "D3";
             button36.UseVisualStyleBackColor = true;
+            button36.Click += AllButton_Click;
             // 
             // button37
             // 
@@ -412,6 +442,7 @@
             button37.TabIndex = 36;
             button37.Text = "D7";
             button37.UseVisualStyleBackColor = true;
+            button37.Click += AllButton_Click;
             // 
             // button38
             // 
@@ -422,6 +453,7 @@
             button38.TabIndex = 33;
             button38.Text = "D4";
             button38.UseVisualStyleBackColor = true;
+            button38.Click += AllButton_Click;
             // 
             // button39
             // 
@@ -432,6 +464,7 @@
             button39.TabIndex = 35;
             button39.Text = "D6";
             button39.UseVisualStyleBackColor = true;
+            button39.Click += AllButton_Click;
             // 
             // button40
             // 
@@ -442,6 +475,7 @@
             button40.TabIndex = 34;
             button40.Text = "D5";
             button40.UseVisualStyleBackColor = true;
+            button40.Click += AllButton_Click;
             // 
             // button21
             // 
@@ -452,6 +486,7 @@
             button21.TabIndex = 29;
             button21.Text = "C10";
             button21.UseVisualStyleBackColor = true;
+            button21.Click += AllButton_Click;
             // 
             // button22
             // 
@@ -462,6 +497,7 @@
             button22.TabIndex = 20;
             button22.Text = "C1";
             button22.UseVisualStyleBackColor = true;
+            button22.Click += AllButton_Click;
             // 
             // button23
             // 
@@ -472,6 +508,7 @@
             button23.TabIndex = 28;
             button23.Text = "C9";
             button23.UseVisualStyleBackColor = true;
+            button23.Click += AllButton_Click;
             // 
             // button24
             // 
@@ -482,6 +519,7 @@
             button24.TabIndex = 21;
             button24.Text = "C2";
             button24.UseVisualStyleBackColor = true;
+            button24.Click += AllButton_Click;
             // 
             // button25
             // 
@@ -492,6 +530,7 @@
             button25.TabIndex = 27;
             button25.Text = "C8";
             button25.UseVisualStyleBackColor = true;
+            button25.Click += AllButton_Click;
             // 
             // button26
             // 
@@ -502,6 +541,7 @@
             button26.TabIndex = 22;
             button26.Text = "C3";
             button26.UseVisualStyleBackColor = true;
+            button26.Click += AllButton_Click;
             // 
             // button27
             // 
@@ -512,6 +552,7 @@
             button27.TabIndex = 26;
             button27.Text = "C7";
             button27.UseVisualStyleBackColor = true;
+            button27.Click += AllButton_Click;
             // 
             // button28
             // 
@@ -522,6 +563,7 @@
             button28.TabIndex = 23;
             button28.Text = "C4";
             button28.UseVisualStyleBackColor = true;
+            button28.Click += AllButton_Click;
             // 
             // button29
             // 
@@ -532,6 +574,7 @@
             button29.TabIndex = 25;
             button29.Text = "C6";
             button29.UseVisualStyleBackColor = true;
+            button29.Click += AllButton_Click;
             // 
             // button30
             // 
@@ -542,6 +585,7 @@
             button30.TabIndex = 24;
             button30.Text = "C5";
             button30.UseVisualStyleBackColor = true;
+            button30.Click += AllButton_Click;
             // 
             // button11
             // 
@@ -552,6 +596,7 @@
             button11.TabIndex = 19;
             button11.Text = "B10";
             button11.UseVisualStyleBackColor = true;
+            button11.Click += AllButton_Click;
             // 
             // button12
             // 
@@ -562,6 +607,7 @@
             button12.TabIndex = 10;
             button12.Text = "B1";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += AllButton_Click;
             // 
             // button13
             // 
@@ -572,6 +618,7 @@
             button13.TabIndex = 18;
             button13.Text = "B9";
             button13.UseVisualStyleBackColor = true;
+            button13.Click += AllButton_Click;
             // 
             // button14
             // 
@@ -582,6 +629,7 @@
             button14.TabIndex = 11;
             button14.Text = "B2";
             button14.UseVisualStyleBackColor = true;
+            button14.Click += AllButton_Click;
             // 
             // button15
             // 
@@ -592,6 +640,7 @@
             button15.TabIndex = 17;
             button15.Text = "B8";
             button15.UseVisualStyleBackColor = true;
+            button15.Click += AllButton_Click;
             // 
             // button16
             // 
@@ -602,6 +651,7 @@
             button16.TabIndex = 12;
             button16.Text = "B3";
             button16.UseVisualStyleBackColor = true;
+            button16.Click += AllButton_Click;
             // 
             // button17
             // 
@@ -612,6 +662,7 @@
             button17.TabIndex = 16;
             button17.Text = "B7";
             button17.UseVisualStyleBackColor = true;
+            button17.Click += AllButton_Click;
             // 
             // button18
             // 
@@ -622,6 +673,7 @@
             button18.TabIndex = 13;
             button18.Text = "B4";
             button18.UseVisualStyleBackColor = true;
+            button18.Click += AllButton_Click;
             // 
             // button19
             // 
@@ -632,6 +684,7 @@
             button19.TabIndex = 15;
             button19.Text = "B6";
             button19.UseVisualStyleBackColor = true;
+            button19.Click += AllButton_Click;
             // 
             // button20
             // 
@@ -642,6 +695,7 @@
             button20.TabIndex = 14;
             button20.Text = "B5";
             button20.UseVisualStyleBackColor = true;
+            button20.Click += AllButton_Click;
             // 
             // ChonGheNgoi
             // 
@@ -653,6 +707,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "ChonGheNgoi";
             Text = "ChonGheNgoi";
+            Load += ChonGheNgoi_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -712,5 +767,6 @@
         private Panel panel5;
         private Panel panel4;
         private Panel panel3;
+        private Label lblSoLuongGhe;
     }
 }

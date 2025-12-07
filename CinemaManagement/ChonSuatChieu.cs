@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Supabase;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,103 +10,192 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Supabase;
-using Postgrest.Models;
-using Postgrest.Attributes;
-
+using System.Text.Json;
 
 namespace CinemaManagement
 {
     public partial class ChonSuatChieu : Form
     {
-        public ChonSuatChieu()
-        {
-            InitializeComponent();
-        }
+        private Phim currentFilm;
+        private UserInfo currentUser;
+
+        private DateTime selectedDate;
+        private LichChieuCoDinh selectedSlot;
+
+        private List<KhungGio> khungGioList = new();
+        private List<PhongChieu> phongChieuList = new();
+        private List<LichChieuCoDinh> lichChieuList = new();
 
         public ChonSuatChieu(Phim phim, UserInfo user)
         {
             InitializeComponent();
             currentFilm = phim;
-            curentUser = user;
-            this.Text = $"Chọn phòng chiếu cho: {phim.TenPhim}";
+            currentUser = user;
+            this.Text = $"Chọn suất chiếu cho: {phim.TenPhim}";
             lblTenPhim.Text = phim.TenPhim;
         }
-        private Supabase.Client supabase;
-        private Phim currentFilm;
-        private UserInfo curentUser;
-        public class Phim : BaseModel
+
+        private async void ChonSuatChieu_Load(object sender, EventArgs e)
         {
-            [PrimaryKey("IdPhim")]
-            public string IdPhim { get; set; }
-
-            [Column("TenPhim")]
-            public string TenPhim { get; set; }
-
-            [Column("tungay")]
-            public DateTime TuNgay { get; set; }
-
-            [Column("denngay")]
-            public DateTime DenNgay { get; set; }
-        }
-        public class KhungGio : BaseModel
-        {
-            [PrimaryKey("idKG")]
-            public string IdKG { get; set; }
-
-            [Column("tgbatdau")]
-            public TimeSpan TGBatDau { get; set; }
-
-            [Column("tgketthuc")]
-            public TimeSpan TGKetThuc { get; set; }
-        }
-        private async void ChonPhongChieu_Load(object sender, EventArgs e)
-        {
-            supabase = new Supabase.Client("https://qyhamranljmfsrxfxfls.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5aGFtcmFubGptZnNyeGZ4ZmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0NjgzMzQsImV4cCI6MjA3NzA0NDMzNH0.Qtd4vxXBsDlx7ZDWFV92WTmHqXUpJrbyOqW8D5yIBJs");
-            await supabase.InitializeAsync();
-            DateTime today = DateTime.Today;
-            DateTime startDate = currentFilm.TuNgay > today ? currentFilm.TuNgay : today;
-            DateTime endDate = currentFilm.DenNgay;
-
-            for (DateTime d = startDate; d <= endDate; d = d.AddDays(1))
-            {
-                Button btnNgay = new Button();
-                btnNgay.Text = d.ToString("dd/MM/yyyy");
-                btnNgay.Width = 100;
-                btnNgay.Height = 40;
-                btnNgay.Tag = d;
-
-                btnNgay.Click += (s, e2) =>
-                {
-                    DateTime selectedDate = (DateTime)((Button)s).Tag;
-                    MessageBox.Show($"Chọn ngày: {selectedDate:dd/MM/yyyy}");
-                };
-
-                flowLayoutPanelNgay.Controls.Add(btnNgay);
-            }
-            var khungGioList = await supabase.From<KhungGio>().Get();
-
-            foreach (var kg in khungGioList.Models)
-            {
-                Button btnKG = new Button();
-                btnKG.Text = $"{kg.TGBatDau:hh\\:mm} - {kg.TGKetThuc:hh\\:mm}";
-                btnKG.Width = 120;
-                btnKG.Height = 40;
-                btnKG.Tag = kg;
-
-                btnKG.Click += (s, e3) =>
-                {
-                    var selectedKG = (KhungGio)((Button)s).Tag;
-                    MessageBox.Show($"Chọn khung giờ: {selectedKG.IdKG}");
-                };
-
-                flowLayoutPanelKhungGio.Controls.Add(btnKG);
-            }
+            await LoadDuLieuTuServer();
+            InitNgayButtons();
         }
 
         private void btnQuaylai_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private async Task LoadDuLieuTuServer()
+        {
+            try
+            {
+                var client = new ClientTCP();
+
+                // Lấy khung giờ
+                string jsonKG = await client.SendMessageAsync("GET_KHUNGGIO");
+                khungGioList = JsonSerializer.Deserialize<List<KhungGio>>(jsonKG);
+
+                // Lấy phòng chiếu
+                string jsonPhong = await client.SendMessageAsync("GET_PHONGCHIEU");
+                phongChieuList = JsonSerializer.Deserialize<List<PhongChieu>>(jsonPhong);
+
+                // Lấy lịch chiếu cố định
+                string jsonLich = await client.SendMessageAsync($"GET_LICHCHIEU_CODINH|{currentFilm.IdPhim}");
+                lichChieuList = JsonSerializer.Deserialize<List<LichChieuCoDinh>>(jsonLich);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi tải dữ liệu từ server: {ex.Message}");
+            }
+        }
+
+        private void InitNgayButtons()
+        {
+            panelNgay.Controls.Clear();
+            int x = 8, y = 8;
+            int colCount = 0;
+            int maxCols = 5;
+
+            DateTime tuNgay = currentFilm.tungay ?? DateTime.Today;
+            DateTime denNgay = currentFilm.denngay ?? DateTime.Today;
+
+            for (DateTime date = tuNgay; date <= denNgay; date = date.AddDays(1))
+            {
+                var btnDate = new Button
+                {
+                    Text = date.ToString("dd/MM/yyyy"),
+                    Width = 100,
+                    Height = 40,
+                    Tag = date,
+                    BackColor = Color.White,
+                    Enabled = date >= DateTime.Today,
+                    Location = new Point(x, y)
+                };
+                btnDate.Tag = date;
+
+                btnDate.Click += (s, ev) =>
+                {
+                    var clicked = (Button)s;
+                    selectedDate = (DateTime)clicked.Tag;
+                    HighlightSelectedDateButton(clicked);
+                    LoadKhungGioTheoNgay(selectedDate);
+                };
+
+                panelNgay.Controls.Add(btnDate);
+
+                x += btnDate.Width + 8;
+                colCount++;
+                if (colCount >= maxCols)
+                {
+                    colCount = 0;
+                    x = 8;
+                    y += btnDate.Height + 8;
+                }
+            }
+            panelNgay.AutoScroll = true;
+        }
+
+        private void LoadKhungGioTheoNgay(DateTime ngay)
+        {
+            panelKhungGio.Controls.Clear();
+
+            int x = 8, y = 8;
+            int colCount = 0;
+            int maxCols = 5;
+
+            foreach (var slot in lichChieuList)
+            {
+
+                var kg = khungGioList.Find(k => k.idKG == slot.idkhunggio);
+                var phong = phongChieuList.Find(p => p.IdPhongChieu == slot.idphongchieu);
+                if (kg == null || phong == null) continue;
+                TimeSpan TGKetThuc = kg.TGBatDau.Add(TimeSpan.FromMinutes((long)(currentFilm.ThoiLuong ?? 0)));
+
+                string text = $"{kg.TGBatDau:hh\\:mm}-{TGKetThuc:hh\\:mm}";
+
+                var btnSlot = new Button
+                {
+                    Text = text,
+                    Width = 100,
+                    Height = 40,
+                    Tag = slot,
+                    BackColor = Color.White,
+                    Location = new Point(x, y)
+                };
+
+                // Disable nếu suất chiếu đã qua trong ngày hôm nay
+                if (ngay.Date == DateTime.Today && kg.TGBatDau < DateTime.Now.TimeOfDay)
+                {
+                    btnSlot.Enabled = false;
+                    btnSlot.BackColor = Color.LightGray;
+                }
+
+                btnSlot.Click += (s, ev) =>
+                {
+                    selectedSlot = (LichChieuCoDinh)((Button)s).Tag;
+                    HighlightSelectedSlotButton((Button)s);
+                };
+
+                panelKhungGio.Controls.Add(btnSlot);
+
+                x += btnSlot.Width + 8;
+                colCount++;
+                if (colCount >= maxCols)
+                {
+                    colCount = 0;
+                    x = 8;
+                    y += btnSlot.Height + 8;
+                }
+            }
+
+            panelKhungGio.AutoScroll = true;
+        }
+
+        private void HighlightSelectedDateButton(Button selected)
+        {
+            foreach (Control c in panelNgay.Controls)
+                if (c is Button b) b.BackColor = Color.White;
+            selected.BackColor = Color.LightGreen;
+        }
+
+        private void HighlightSelectedSlotButton(Button selected)
+        {
+            foreach (Control c in panelKhungGio.Controls)
+                if (c is Button b) b.BackColor = Color.White;
+            selected.BackColor = Color.LightGreen;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(selectedDate == default || selectedSlot == null)
+            {
+                MessageBox.Show("Vui lòng chọn ngày và khung giờ chiếu.");
+                return;
+            }
+            ChonGheNgoi chonGhe = new ChonGheNgoi(currentFilm, currentUser, selectedDate, selectedSlot, khungGioList,phongChieuList,lichChieuList);
+            chonGhe.ShowDialog();
+        }
     }
 }
+

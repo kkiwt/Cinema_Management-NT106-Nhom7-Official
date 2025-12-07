@@ -57,45 +57,6 @@ namespace CinemaManagement
         }
     }
 
-    public class PhongChieu
-    {
-        public string IdPhongChieu { get; set; }
-        public string TenPhongChieu { get; set; }
-        public int SoLuongGhe { get; set; }
-
-        public PhongChieu() { }
-        public PhongChieu(string id, string ten, int soLuong)
-        {
-            IdPhongChieu = id;
-            TenPhongChieu = ten;
-            SoLuongGhe = soLuong;
-        }
-
-        public static List<PhongChieu> DanhSachPhongChieu = new List<PhongChieu>();
-        public static Dictionary<string, PhongChieu> MapPhongChieu = new Dictionary<string, PhongChieu>();
-
-        public static void Add(PhongChieu pc)
-        {
-            DanhSachPhongChieu.Add(pc);
-            MapPhongChieu[pc.IdPhongChieu] = pc;
-        }
-
-        public static PhongChieu FindById(string id)
-        {
-            return MapPhongChieu.ContainsKey(id) ? MapPhongChieu[id] : null;
-        }
-
-        public static void Remove(string id)
-        {
-            var pc = FindById(id);
-            if (pc != null)
-            {
-                DanhSachPhongChieu.Remove(pc);
-                MapPhongChieu.Remove(id);
-            }
-        }
-    }
-
     public class Ve
     {
         public string IdVe { get; set; }
@@ -408,8 +369,11 @@ namespace CinemaManagement
         public string PosterPhim { get; set; }
         public string QuocGia { get; set; }
         public string NgonNgu { get; set; }
+        public DateTime? tungay { get; set; }
+        public DateTime? denngay { get; set; }
+
         public Phim() { }
-        public Phim(string id, string ten,string Director ,string Actor,string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Poster,string Nation, string Language)
+        public Phim(string id, string ten,string Director ,string Actor,string theLoai, string doTuoi, decimal? giaVe, int? thoiLuong, string moTa, string url, string Poster,string Nation, string Language, DateTime? begin, DateTime? end)
         {
             IdPhim = id;
             TenPhim = ten;
@@ -424,6 +388,8 @@ namespace CinemaManagement
             PosterPhim = Poster;
             QuocGia = Nation;
             NgonNgu = Language;
+            tungay = begin;
+            denngay = end;
         }
 
         public static List<Phim> DanhSachPhim = new List<Phim>();
@@ -490,6 +456,30 @@ namespace CinemaManagement
                 MapSuatChieu.Remove(id);
             }
         }
+    }
+    public class LichChieuCoDinh
+    {
+        public string idphim { get; set; }
+        public string idkhunggio { get; set; }
+        public string idphongchieu { get; set; }
+    }
+
+    public class KhungGio
+    {
+        public string idKG { get; set; }
+        public TimeSpan TGBatDau { get; set; }
+    }
+
+    public class PhongChieu
+    {
+        public string IdPhongChieu { get; set; }
+        public string TenPhongChieu { get; set; }
+        public int SoLuongGhe { get; set; }
+    }
+    public class SeatStatus
+    {
+        public string idghe { get; set; }
+        public string status { get; set; } // available | holding | sold
     }
 }
 

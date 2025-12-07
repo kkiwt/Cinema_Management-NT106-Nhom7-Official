@@ -102,6 +102,7 @@
             btnTiepTheo.TabIndex = 22;
             btnTiepTheo.Text = "Tiếp Theo";
             btnTiepTheo.UseVisualStyleBackColor = true;
+            btnTiepTheo.Click += btnTiepTheo_Click;
             // 
             // btnQuayLai
             // 
@@ -112,6 +113,7 @@
             btnQuayLai.TabIndex = 21;
             btnQuayLai.Text = "Quay Lại";
             btnQuayLai.UseVisualStyleBackColor = true;
+            btnQuayLai.Click += btnQuayLai_Click;
             // 
             // numericUpDown4
             // 

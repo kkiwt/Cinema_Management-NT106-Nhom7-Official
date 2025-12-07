@@ -16,5 +16,15 @@ namespace CinemaManagement
         {
             InitializeComponent();
         }
+
+        private void btnTiepTheo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
