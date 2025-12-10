@@ -1,14 +1,15 @@
-﻿using System;
+﻿using ControlzEx.Standard;
+using Supabase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.Json;
-using Supabase;
 
 namespace CinemaManagement
 {
@@ -22,9 +23,25 @@ namespace CinemaManagement
         private List<KhungGio> khungGioList = new List<KhungGio>();
         private List<PhongChieu> phongChieuList = new List<PhongChieu>();
         private List<LichChieuCoDinh> lichChieuList = new List<LichChieuCoDinh>();
-        private readonly List<string> _selectedSeats = new List<string>();
 
-        public ChonGheNgoi(Phim phim, UserInfo user, DateTime date, LichChieuCoDinh slot, List<KhungGio> kg, List<PhongChieu> pc, List<LichChieuCoDinh> lc)
+        private readonly List<string> _selectedSeats = new List<string>();
+        private ClientTCP _client = new ClientTCP();
+
+        private System.Windows.Forms.Timer _seatTimer;
+        private bool _loading = false;
+        private System.Windows.Forms.Timer _paymentTimer;
+        private Form _currentQrPopup;
+        private int _paymentCountdown = 300;
+        private System.Windows.Forms.Timer _countdownTimer;
+
+        public ChonGheNgoi(
+            Phim phim,
+            UserInfo user,
+            DateTime date,
+            LichChieuCoDinh slot,
+            List<KhungGio> kg,
+            List<PhongChieu> pc,
+            List<LichChieuCoDinh> lc)
         {
             InitializeComponent();
             _phim = phim;
@@ -38,52 +55,96 @@ namespace CinemaManagement
 
         private async void ChonGheNgoi_Load(object sender, EventArgs e)
         {
+            _seatTimer = new System.Windows.Forms.Timer();
+            _seatTimer.Interval = 1000;
+            _seatTimer.Tick += async (s, ev) => await LoadSeatStatus();
+            _seatTimer.Start();
+
             await LoadSeatStatus();
         }
+
         private async Task LoadSeatStatus()
         {
+            if (_loading) return;
+            _loading = true;
+
             try
             {
-                var client = new ClientTCP();
-                string jsonSeats = await client.SendMessageAsync(
+                string jsonSeats = await _client.SendMessageAsync(
                     $"GET_SEATSTATUS|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}");
+
                 if (jsonSeats.StartsWith("ERROR")) return;
 
                 var seatStatusList = JsonSerializer.Deserialize<List<SeatStatus>>(jsonSeats);
 
-                foreach (Control ctrl in this.Controls)
+                foreach (Control ctrl in panel1.Controls)
                 {
-                    if (ctrl is Button btn && btn.Text != null)
+                    if (ctrl is Button btn)
                     {
-                        string seatText = btn.Text;
-                        string seatId = MapSeatId(seatText);
+                        string seatId = MapSeatId(btn.Text);
+                        var seat = seatStatusList.FirstOrDefault(s => s.idghe == seatId);
 
-                        var status = seatStatusList.Find(s => s.idghe == seatId)?.status;
-
-                        if (status == "available") btn.BackColor = Color.LightGreen;
-                        else if (status == "holding") btn.BackColor = Color.Yellow;
-                        else if (status == "sold") btn.BackColor = Color.Red;
+                        if (seat.status == "paid")
+                        {
+                            if (_selectedSeats.Contains(seatId)) continue;
+                            btn.BackColor = Color.Red;
+                        }
+                        else if (seat.status == "holding")
+                        {
+                            if (seat.userid == _user.IDUser)
+                                btn.BackColor = Color.Yellow;
+                            else
+                                btn.BackColor = Color.Gold;
+                        }
+                        else if (seat.status == "pending")
+                        {
+                            btn.BackColor = Color.Gray;
+                        }
+                        else
+                        {
+                            btn.BackColor = Color.LightGreen;
+                        }
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi tải trạng thái ghế: {ex.Message}");
+                Console.WriteLine($"Lỗi tải trạng thái ghế: {ex.Message}");
+            }
+            finally
+            {
+                _loading = false;
             }
         }
+
         private async void AllButton_Click(object sender, EventArgs e)
         {
             var btn = sender as Button;
             if (btn == null) return;
 
-            string seatText = btn.Text;             // "A1"
-            string seatId = MapSeatId(seatText);    // "GA01"
+            string seatText = btn.Text;
+            string seatId = MapSeatId(seatText);
 
             if (btn.BackColor == Color.Red) return;
 
-            var client = new ClientTCP();
-            string resHold = await client.SendMessageAsync(
+            if (btn.BackColor == Color.Yellow)
+            {
+                string resRemove = await _client.SendMessageAsync(
+                    $"REMOVE_HOLDSEAT|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}|{seatId}|{_user.IDUser}");
+
+                if (resRemove.StartsWith("ERROR"))
+                {
+                    MessageBox.Show($"Không thể bỏ giữ ghế {seatText} ({seatId}): {resRemove}");
+                }
+                else
+                {
+                    _selectedSeats.Remove(seatId);
+                    btn.BackColor = Color.LightGreen;
+                }
+                return;
+            }
+
+            string resHold = await _client.SendMessageAsync(
                 $"ADD_HOLDSEAT|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}|{seatId}|{_user.IDUser}");
 
             if (resHold.StartsWith("ERROR"))
@@ -96,45 +157,329 @@ namespace CinemaManagement
                 btn.BackColor = Color.Yellow;
             }
         }
+
         private async void btnThanhToan_Click(object sender, EventArgs e)
         {
-            var client = new ClientTCP();
+            await CreatePaymentQRCode();
+        }
+
+        private async void RecreatePayment()
+        {
+            await CreatePaymentQRCode();
+        }
+
+        private async Task CreatePaymentQRCode()
+        {
+            var account = "0979151133";
+            var bank = "MBBank";
+            decimal totalAmount = 0;
+
+            var vnTime = DateTime.UtcNow.AddHours(7);
+            var idThanhToan = $"TT{vnTime:yyyyMMddHHmmss}";
+
+            // Lấy danh sách ghế
+            string jsonSeats = await _client.SendMessageAsync(
+                $"GET_SEATSTATUS|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}");
+
+            if (jsonSeats.StartsWith("ERROR")) return;
+
+            var seatStatusList = JsonSerializer.Deserialize<List<SeatStatus>>(jsonSeats);
 
             foreach (var seatId in _selectedSeats)
             {
-                string resVe = await client.SendMessageAsync(
-                    $"SET_VE|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}|{seatId}|{_user.IDUser}|100000");
+                var seat = seatStatusList.FirstOrDefault(s => s.idghe == seatId);
+                if (seat == null) continue;
 
-                if (resVe.StartsWith("ERROR"))
-                {
-                    MessageBox.Show($"Ghế {seatId} mua thất bại: {resVe}");
-                }
-                else
-                {
-                    MarkSeatSold(seatId);
-                }
+                var giaVe = (Int32)((_phim.GiaVeChuan ?? 10000m) * (seat.hesoghe ?? 1m));
+                totalAmount += giaVe;
+
+                if (seat.status == "pending") continue;
+
+                await _client.SendMessageAsync(
+                    $"SET_VE|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}|{seatId}|{_user.IDUser}|{giaVe}|{idThanhToan}");
+
+                MarkSeatPending(seatId);
             }
+
+            StartPaymentPolling(idThanhToan);
+
+            var url = $"https://qr.sepay.vn/img?acc={account}&bank={bank}&amount={totalAmount}&des={idThanhToan}&template=compact&download=false";
+
+            using var http = new HttpClient();
+            using var ms = new MemoryStream(await http.GetByteArrayAsync(url));
+
+            string paymentInfo = $"ID Thanh toán: {idThanhToan}\r\nTổng tiền: {totalAmount} VND";
+            var img = Image.FromStream(ms);
+
+            var popup = ShowImagePopup(img, "QR Thanh Toán", RecreatePayment, ResetPendingSeatsToHolding, paymentInfo);
+            popup.Owner = this;
+            _currentQrPopup = popup;
+            popup.Show();
+
+            _seatTimer.Stop();
         }
-        private void MarkSeatSold(string seatId)
+
+        public void ResumeSeatTimer()
         {
-            foreach (Control ctrl in this.Controls)
-            {
-                if (ctrl is Button btn && btn.Tag?.ToString() == seatId)
-                {
-                    btn.BackColor = Color.Red;
-                }
-            }
-        }
-        private string MapSeatId(string text)
-        {
-            char row = text[0];
-            int col = int.Parse(text.Substring(1)); 
-            return $"G{row}{col:D2}";
+            _seatTimer?.Start();
         }
 
         private void button41_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void StartPaymentPolling(string idThanhToan)
+        {
+            _paymentTimer = new System.Windows.Forms.Timer();
+            _paymentTimer.Interval = 5000;
+
+            _paymentTimer.Tick += async (s, e) =>
+            {
+                _paymentTimer.Stop(); // tránh chồng tick
+
+                string res = await _client.SendMessageAsync($"CHECK_PAYMENT|{idThanhToan}");
+                if (res.StartsWith("ERROR"))
+                {
+                    Console.WriteLine("Lỗi check_payment: " + res);
+                    _paymentTimer.Start();
+                    return;
+                }
+
+                try
+                {
+                    var result = JsonSerializer.Deserialize<Dictionary<string, object>>(res);
+                    if (result != null && result.ContainsKey("trangthai"))
+                    {
+                        string trangThai = result["trangthai"].ToString();
+
+                        if (trangThai == "paid")
+                        {
+                            this.BeginInvoke(new Action(() =>
+                            {
+                                // Đóng popup trước
+                                if (_currentQrPopup != null && !_currentQrPopup.IsDisposed)
+                                {
+                                    _currentQrPopup.Close();
+                                    _currentQrPopup = null;
+                                }
+
+                                // Dừng countdown timer
+                                _countdownTimer?.Stop();
+
+                                // Cập nhật ghế
+                                foreach (var seatId in _selectedSeats)
+                                    MarkSeatSold(seatId);
+
+                                // Resume seat timer
+                                ResumeSeatTimer();
+
+                                // Thông báo
+                                MessageBox.Show(this, "Thanh toán thành công!");
+                            }));
+                        }
+                        else if (trangThai == "pending")
+                        {
+                            Console.WriteLine("Đang chờ thanh toán...");
+                            _paymentTimer.Start();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Parse check_payment error: " + ex.Message);
+                    _paymentTimer.Start();
+                }
+            };
+
+            _paymentTimer.Start();
+        }
+
+        private void StartCountdownTimer()
+        {
+            if (_countdownTimer == null)
+            {
+                _countdownTimer = new System.Windows.Forms.Timer();
+                _countdownTimer.Interval = 1000; // 1 giây
+                _countdownTimer.Tick += CountdownTick;
+            }
+            _countdownTimer.Start();
+        }
+
+        private void CountdownTick(object sender, EventArgs e)
+        {
+            _paymentCountdown--;
+
+            if (_paymentCountdown <= 0)
+            {
+                _countdownTimer.Stop();
+
+                if (_currentQrPopup != null && !_currentQrPopup.IsDisposed)
+                {
+                    _currentQrPopup.Close();
+                    _currentQrPopup = null;
+                }
+
+                ResetPendingSeatsToHolding();
+                ResumeSeatTimer();
+
+                MessageBox.Show("Hết thời gian thanh toán. Vui lòng thực hiện lại.");
+            }
+        }
+
+        private async void ResetPendingSeatsToHolding()
+        {
+            foreach (var seatId in _selectedSeats)
+            {
+                string resDelete = await _client.SendMessageAsync(
+                    $"DELETE_TICKET|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}|{seatId}|{_user.IDUser}");
+
+                if (resDelete.StartsWith("ERROR"))
+                {
+                    Console.WriteLine($"Không thể xóa vé {seatId}: {resDelete}");
+                }
+                else
+                {
+                    Console.WriteLine($"Đã xóa vé ghế {seatId}: {resDelete}");
+                }
+
+                string resHold = await _client.SendMessageAsync(
+                    $"ADD_HOLDSEAT|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}|{seatId}|{_user.IDUser}");
+
+                if (resHold.StartsWith("ERROR"))
+                {
+                    Console.WriteLine($"Không thể khôi phục ghế {seatId}: {resHold}");
+                    continue;
+                }
+
+                foreach (Control ctrl in panel1.Controls)
+                {
+                    if (ctrl is Button btn)
+                    {
+                        if (MapSeatId(btn.Text) == seatId && btn.BackColor == Color.Gray)
+                        {
+                            btn.BackColor = Color.Yellow;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void MarkSeatSold(string seatId)
+        {
+            foreach (Control ctrl in panel1.Controls)
+            {
+                if (ctrl is Button btn)
+                {
+                    string mapped = MapSeatId(btn.Text);
+                    if (mapped == seatId)
+                        btn.BackColor = Color.Red;
+                }
+            }
+        }
+
+        private void MarkSeatPending(string seatId)
+        {
+            foreach (Control ctrl in panel1.Controls)
+            {
+                if (ctrl is Button btn)
+                {
+                    string mapped = MapSeatId(btn.Text);
+                    if (mapped == seatId)
+                        btn.BackColor = Color.Gray;
+                }
+            }
+        }
+
+        private string MapSeatId(string text)
+        {
+            if (text.StartsWith("G")) return text; // đã đúng format
+
+            char row = text[0];
+            if (!int.TryParse(text.Substring(1), out int col)) return null;
+
+            return $"G{row}{col:D2}";
+        }
+
+        public static Form ShowImagePopup(
+            Image img,
+            string title,
+            Action onRecreatePayment,
+            Action onCloseKeepHolding,
+            string paymentInfo = "")
+        {
+            Form popup = new Form
+            {
+                Text = title,
+                StartPosition = FormStartPosition.CenterParent,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                MaximizeBox = false,
+                MinimizeBox = false,
+                ClientSize = new Size(350, 450)
+            };
+
+            // PictureBox hiển thị QR
+            PictureBox pb = new PictureBox
+            {
+                Dock = DockStyle.Top,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Height = 300,
+                Image = img
+            };
+
+            // TextBox hiển thị thông tin thanh toán
+            TextBox txtInfo = new TextBox
+            {
+                Multiline = true,
+                ReadOnly = true,
+                ScrollBars = ScrollBars.Vertical,
+                Height = 80,
+                Top = 310,
+                Left = 10,
+                Width = 330,
+                Text = paymentInfo,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                Font = new Font("Segoe UI", 10, FontStyle.Regular)
+            };
+
+            // Nút quay lại
+            Button btnOk = new Button
+            {
+                Text = "Quay lại",
+                Width = 120,
+                Height = 35,
+                Left = 30,
+                Top = 400
+            };
+            btnOk.Click += (s, e) =>
+            {
+                popup.Close();
+                onCloseKeepHolding?.Invoke();
+            };
+
+            // Nút tạo mới thanh toán
+            Button btnBack = new Button
+            {
+                Text = "Tạo mới thanh toán",
+                Width = 150,
+                Height = 35,
+                Left = 180,
+                Top = 400
+            };
+            btnBack.Click += (s, e) =>
+            {
+                popup.Close();
+                onRecreatePayment?.Invoke();
+            };
+
+            popup.Controls.Add(pb);
+            popup.Controls.Add(txtInfo);
+            popup.Controls.Add(btnOk);
+            popup.Controls.Add(btnBack);
+
+            return popup;
+        }
+
     }
 }

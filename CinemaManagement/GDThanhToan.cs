@@ -12,14 +12,28 @@ namespace CinemaManagement
 {
     public partial class GDThanhToan : Form
     {
-        UserInfo currentUser = new UserInfo();
-        Phim currentPhim = new Phim();
+        private readonly Phim _phim;
+        private readonly UserInfo _user;
+        private readonly DateTime _date;
+        private readonly LichChieuCoDinh _slot;
 
-        public GDThanhToan(UserInfo user, Phim phim)
+        private List<KhungGio> khungGioList = new List<KhungGio>();
+        private List<PhongChieu> phongChieuList = new List<PhongChieu>();
+        private List<LichChieuCoDinh> lichChieuList = new List<LichChieuCoDinh>();
+        private readonly List<string> _selectedSeats = new List<string>();
+        private ClientTCP _client = new ClientTCP();
+
+        public GDThanhToan(Phim phim, UserInfo user, DateTime date, LichChieuCoDinh slot, List<KhungGio> kg, List<PhongChieu> pc, List<LichChieuCoDinh> lc)
         {
-            currentUser = user;
-            currentPhim = phim;
+            
             InitializeComponent();
+            _user = user;
+            _phim = phim;
+            _date = date;
+            _slot = slot;
+            khungGioList = kg;
+            phongChieuList = pc;
+            lichChieuList = lc;
         }
 
         private async void btnLoadQR_Click(object sender, EventArgs e)

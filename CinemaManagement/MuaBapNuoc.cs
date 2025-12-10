@@ -24,7 +24,12 @@ namespace CinemaManagement
 
         private void btnQuayLai_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void MuaBapNuoc_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

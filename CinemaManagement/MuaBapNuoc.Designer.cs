@@ -322,6 +322,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "MuaBapNuoc";
             Text = "MuaBapNuoc";
+            Load += MuaBapNuoc_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();

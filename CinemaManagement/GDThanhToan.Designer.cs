@@ -98,7 +98,7 @@
             button1.Location = new Point(690, 9);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(84, 25);
+            button1.Size = new Size(82, 25);
             button1.TabIndex = 0;
             button1.Text = "Quay lại";
             button1.UseVisualStyleBackColor = false;
@@ -132,7 +132,7 @@
             GD.Location = new Point(287, 45);
             GD.Margin = new Padding(3, 2, 3, 2);
             GD.Name = "GD";
-            GD.Size = new Size(514, 384);
+            GD.Size = new Size(498, 384);
             GD.TabIndex = 1;
             // 
             // label12
@@ -156,11 +156,11 @@
             // 
             // textBox14
             // 
-            textBox14.Enabled = false;
             textBox14.Font = new Font("Segoe UI", 13F);
             textBox14.Location = new Point(0, 0);
             textBox14.Margin = new Padding(3, 2, 3, 2);
             textBox14.Name = "textBox14";
+            textBox14.ReadOnly = true;
             textBox14.Size = new Size(232, 31);
             textBox14.TabIndex = 0;
             // 
@@ -203,10 +203,10 @@
             // 
             // textBox6
             // 
-            textBox6.Enabled = false;
             textBox6.Location = new Point(0, 0);
             textBox6.Margin = new Padding(3, 2, 3, 2);
             textBox6.Name = "textBox6";
+            textBox6.ReadOnly = true;
             textBox6.Size = new Size(378, 23);
             textBox6.TabIndex = 0;
             // 
@@ -221,10 +221,10 @@
             // 
             // textBox5
             // 
-            textBox5.Enabled = false;
             textBox5.Location = new Point(2, 0);
             textBox5.Margin = new Padding(3, 2, 3, 2);
             textBox5.Name = "textBox5";
+            textBox5.ReadOnly = true;
             textBox5.Size = new Size(452, 23);
             textBox5.TabIndex = 25;
             // 
@@ -239,10 +239,10 @@
             // 
             // textBox4
             // 
-            textBox4.Enabled = false;
-            textBox4.Location = new Point(0, 1);
+            textBox4.Location = new Point(1, 0);
             textBox4.Margin = new Padding(3, 2, 3, 2);
             textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
             textBox4.Size = new Size(454, 23);
             textBox4.TabIndex = 0;
             // 
@@ -257,10 +257,10 @@
             // 
             // textBox3
             // 
-            textBox3.Enabled = false;
             textBox3.Location = new Point(0, 0);
             textBox3.Margin = new Padding(3, 2, 3, 2);
             textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
             textBox3.Size = new Size(56, 23);
             textBox3.TabIndex = 0;
             // 
@@ -275,10 +275,10 @@
             // 
             // textBox1
             // 
-            textBox1.Enabled = false;
             textBox1.Location = new Point(0, 1);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(259, 23);
             textBox1.TabIndex = 0;
             // 
@@ -308,19 +308,19 @@
             // 
             // textBox12
             // 
-            textBox12.Enabled = false;
             textBox12.Location = new Point(3, 2);
             textBox12.Margin = new Padding(3, 2, 3, 2);
             textBox12.Name = "textBox12";
+            textBox12.ReadOnly = true;
             textBox12.Size = new Size(68, 23);
             textBox12.TabIndex = 0;
             // 
             // textBox13
             // 
-            textBox13.Enabled = false;
             textBox13.Location = new Point(77, 2);
             textBox13.Margin = new Padding(3, 2, 3, 2);
             textBox13.Name = "textBox13";
+            textBox13.ReadOnly = true;
             textBox13.Size = new Size(69, 23);
             textBox13.TabIndex = 1;
             // 
@@ -397,28 +397,28 @@
             // 
             // textBox7
             // 
-            textBox7.Enabled = false;
             textBox7.Location = new Point(3, 2);
             textBox7.Margin = new Padding(3, 2, 3, 2);
             textBox7.Name = "textBox7";
+            textBox7.ReadOnly = true;
             textBox7.Size = new Size(71, 23);
             textBox7.TabIndex = 0;
             // 
             // textBox9
             // 
-            textBox9.Enabled = false;
             textBox9.Location = new Point(143, 2);
             textBox9.Margin = new Padding(3, 2, 3, 2);
             textBox9.Name = "textBox9";
+            textBox9.ReadOnly = true;
             textBox9.Size = new Size(90, 23);
             textBox9.TabIndex = 2;
             // 
             // textBox8
             // 
-            textBox8.Enabled = false;
             textBox8.Location = new Point(80, 2);
             textBox8.Margin = new Padding(3, 2, 3, 2);
             textBox8.Name = "textBox8";
+            textBox8.ReadOnly = true;
             textBox8.Size = new Size(57, 23);
             textBox8.TabIndex = 1;
             // 
@@ -436,25 +436,25 @@
             LoaiSoGhe.Name = "LoaiSoGhe";
             LoaiSoGhe.RowCount = 1;
             LoaiSoGhe.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            LoaiSoGhe.Size = new Size(149, 22);
+            LoaiSoGhe.Size = new Size(133, 22);
             LoaiSoGhe.TabIndex = 4;
             // 
             // textBox10
             // 
-            textBox10.Enabled = false;
             textBox10.Location = new Point(3, 2);
             textBox10.Margin = new Padding(3, 2, 3, 2);
             textBox10.Name = "textBox10";
-            textBox10.Size = new Size(68, 23);
+            textBox10.ReadOnly = true;
+            textBox10.Size = new Size(60, 23);
             textBox10.TabIndex = 0;
             // 
             // textBox11
             // 
-            textBox11.Enabled = false;
-            textBox11.Location = new Point(77, 2);
+            textBox11.Location = new Point(69, 2);
             textBox11.Margin = new Padding(3, 2, 3, 2);
             textBox11.Name = "textBox11";
-            textBox11.Size = new Size(69, 23);
+            textBox11.ReadOnly = true;
+            textBox11.Size = new Size(61, 23);
             textBox11.TabIndex = 1;
             // 
             // label1
@@ -477,10 +477,10 @@
             // 
             // textBox2
             // 
-            textBox2.Enabled = false;
             textBox2.Location = new Point(0, 0);
             textBox2.Margin = new Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
             textBox2.Size = new Size(84, 23);
             textBox2.TabIndex = 0;
             // 
@@ -503,28 +503,28 @@
             // 
             // textBox17
             // 
-            textBox17.Enabled = false;
             textBox17.Location = new Point(80, 74);
             textBox17.Margin = new Padding(3, 2, 3, 2);
             textBox17.Name = "textBox17";
+            textBox17.ReadOnly = true;
             textBox17.Size = new Size(120, 23);
             textBox17.TabIndex = 7;
             // 
             // textBox16
             // 
-            textBox16.Enabled = false;
             textBox16.Location = new Point(80, 45);
             textBox16.Margin = new Padding(3, 2, 3, 2);
             textBox16.Name = "textBox16";
+            textBox16.ReadOnly = true;
             textBox16.Size = new Size(120, 23);
             textBox16.TabIndex = 6;
             // 
             // textBox15
             // 
-            textBox15.Enabled = false;
             textBox15.Location = new Point(80, 16);
             textBox15.Margin = new Padding(3, 2, 3, 2);
             textBox15.Name = "textBox15";
+            textBox15.ReadOnly = true;
             textBox15.Size = new Size(120, 23);
             textBox15.TabIndex = 5;
             // 
@@ -579,7 +579,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(836, 453);
+            ClientSize = new Size(834, 453);
             Controls.Add(panel9);
             Controls.Add(GD);
             Controls.Add(button1);

@@ -479,7 +479,9 @@ namespace CinemaManagement
     public class SeatStatus
     {
         public string idghe { get; set; }
-        public string status { get; set; } // available | holding | sold
+        public string status { get; set; }
+        public string userid { get; set; }
+        public decimal? hesoghe { get; set; }
     }
 }
 

@@ -40,17 +40,6 @@
             button10 = new Button();
             panel1 = new Panel();
             lblSoLuongGhe = new Label();
-            panel5 = new Panel();
-            panel4 = new Panel();
-            panel3 = new Panel();
-            panel2 = new Panel();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            button43 = new Button();
-            button42 = new Button();
-            button41 = new Button();
             button31 = new Button();
             button32 = new Button();
             button33 = new Button();
@@ -81,12 +70,14 @@
             button18 = new Button();
             button19 = new Button();
             button20 = new Button();
+            button43 = new Button();
+            button41 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(116, 74);
+            button1.Location = new Point(35, 59);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(39, 34);
@@ -97,7 +88,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(160, 74);
+            button2.Location = new Point(79, 59);
             button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
             button2.Size = new Size(39, 34);
@@ -108,7 +99,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(205, 74);
+            button3.Location = new Point(124, 59);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
             button3.Size = new Size(39, 34);
@@ -119,7 +110,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(249, 74);
+            button4.Location = new Point(168, 59);
             button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
             button4.Size = new Size(39, 34);
@@ -130,7 +121,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(294, 74);
+            button5.Location = new Point(213, 59);
             button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
             button5.Size = new Size(39, 34);
@@ -141,7 +132,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(339, 74);
+            button6.Location = new Point(258, 59);
             button6.Margin = new Padding(3, 2, 3, 2);
             button6.Name = "button6";
             button6.Size = new Size(39, 34);
@@ -152,7 +143,7 @@
             // 
             // button7
             // 
-            button7.Location = new Point(383, 74);
+            button7.Location = new Point(302, 59);
             button7.Margin = new Padding(3, 2, 3, 2);
             button7.Name = "button7";
             button7.Size = new Size(39, 34);
@@ -163,7 +154,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(428, 74);
+            button8.Location = new Point(347, 59);
             button8.Margin = new Padding(3, 2, 3, 2);
             button8.Name = "button8";
             button8.Size = new Size(39, 34);
@@ -174,7 +165,7 @@
             // 
             // button9
             // 
-            button9.Location = new Point(472, 74);
+            button9.Location = new Point(391, 59);
             button9.Margin = new Padding(3, 2, 3, 2);
             button9.Name = "button9";
             button9.Size = new Size(39, 34);
@@ -185,7 +176,7 @@
             // 
             // button10
             // 
-            button10.Location = new Point(517, 74);
+            button10.Location = new Point(436, 59);
             button10.Margin = new Padding(3, 2, 3, 2);
             button10.Name = "button10";
             button10.Size = new Size(39, 34);
@@ -197,17 +188,6 @@
             // panel1
             // 
             panel1.Controls.Add(lblSoLuongGhe);
-            panel1.Controls.Add(panel5);
-            panel1.Controls.Add(panel4);
-            panel1.Controls.Add(panel3);
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(button43);
-            panel1.Controls.Add(button42);
-            panel1.Controls.Add(button41);
             panel1.Controls.Add(button31);
             panel1.Controls.Add(button32);
             panel1.Controls.Add(button33);
@@ -251,125 +231,20 @@
             panel1.Location = new Point(10, 9);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(679, 320);
+            panel1.Size = new Size(501, 278);
             panel1.TabIndex = 10;
             // 
             // lblSoLuongGhe
             // 
             lblSoLuongGhe.AutoSize = true;
-            lblSoLuongGhe.Location = new Point(116, 26);
+            lblSoLuongGhe.Location = new Point(114, 60);
             lblSoLuongGhe.Name = "lblSoLuongGhe";
             lblSoLuongGhe.Size = new Size(0, 15);
             lblSoLuongGhe.TabIndex = 50;
             // 
-            // panel5
-            // 
-            panel5.BackColor = Color.Red;
-            panel5.Location = new Point(26, 290);
-            panel5.Margin = new Padding(3, 2, 3, 2);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(22, 19);
-            panel5.TabIndex = 48;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = SystemColors.ScrollBar;
-            panel4.Location = new Point(26, 267);
-            panel4.Margin = new Padding(3, 2, 3, 2);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(22, 19);
-            panel4.TabIndex = 49;
-            // 
-            // panel3
-            // 
-            panel3.Location = new Point(26, 245);
-            panel3.Margin = new Padding(3, 2, 3, 2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(22, 19);
-            panel3.TabIndex = 48;
-            // 
-            // panel2
-            // 
-            panel2.ForeColor = SystemColors.ControlLight;
-            panel2.Location = new Point(26, 222);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(22, 19);
-            panel2.TabIndex = 47;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(53, 290);
-            label4.Name = "label4";
-            label4.Size = new Size(40, 15);
-            label4.TabIndex = 46;
-            label4.Text = "Check";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(53, 267);
-            label3.Name = "label3";
-            label3.Size = new Size(51, 15);
-            label3.TabIndex = 45;
-            label3.Text = "Đã chọn";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(53, 245);
-            label2.Name = "label2";
-            label2.Size = new Size(24, 15);
-            label2.TabIndex = 44;
-            label2.Text = "Vip";
-            label2.Click += AllButton_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(53, 226);
-            label1.Name = "label1";
-            label1.Size = new Size(49, 15);
-            label1.TabIndex = 43;
-            label1.Text = "Thường";
-            label1.Click += AllButton_Click;
-            // 
-            // button43
-            // 
-            button43.Location = new Point(474, 264);
-            button43.Margin = new Padding(3, 2, 3, 2);
-            button43.Name = "button43";
-            button43.Size = new Size(82, 22);
-            button43.TabIndex = 42;
-            button43.Text = "Thanh toán ";
-            button43.UseVisualStyleBackColor = true;
-            button43.Click += btnThanhToan_Click;
-            // 
-            // button42
-            // 
-            button42.Location = new Point(294, 264);
-            button42.Margin = new Padding(3, 2, 3, 2);
-            button42.Name = "button42";
-            button42.Size = new Size(108, 22);
-            button42.TabIndex = 41;
-            button42.Text = "Chọn bắp nước";
-            button42.UseVisualStyleBackColor = true;
-            // 
-            // button41
-            // 
-            button41.Location = new Point(121, 264);
-            button41.Margin = new Padding(3, 2, 3, 2);
-            button41.Name = "button41";
-            button41.Size = new Size(82, 22);
-            button41.TabIndex = 40;
-            button41.Text = "Quay lại";
-            button41.UseVisualStyleBackColor = true;
-            button41.Click += button41_Click;
-            // 
             // button31
             // 
-            button31.Location = new Point(517, 189);
+            button31.Location = new Point(436, 174);
             button31.Margin = new Padding(3, 2, 3, 2);
             button31.Name = "button31";
             button31.Size = new Size(39, 34);
@@ -380,7 +255,7 @@
             // 
             // button32
             // 
-            button32.Location = new Point(116, 189);
+            button32.Location = new Point(35, 174);
             button32.Margin = new Padding(3, 2, 3, 2);
             button32.Name = "button32";
             button32.Size = new Size(39, 34);
@@ -391,7 +266,7 @@
             // 
             // button33
             // 
-            button33.Location = new Point(472, 189);
+            button33.Location = new Point(391, 174);
             button33.Margin = new Padding(3, 2, 3, 2);
             button33.Name = "button33";
             button33.Size = new Size(39, 34);
@@ -402,7 +277,7 @@
             // 
             // button34
             // 
-            button34.Location = new Point(160, 189);
+            button34.Location = new Point(79, 174);
             button34.Margin = new Padding(3, 2, 3, 2);
             button34.Name = "button34";
             button34.Size = new Size(39, 34);
@@ -413,7 +288,7 @@
             // 
             // button35
             // 
-            button35.Location = new Point(428, 189);
+            button35.Location = new Point(347, 174);
             button35.Margin = new Padding(3, 2, 3, 2);
             button35.Name = "button35";
             button35.Size = new Size(39, 34);
@@ -424,7 +299,7 @@
             // 
             // button36
             // 
-            button36.Location = new Point(205, 189);
+            button36.Location = new Point(124, 174);
             button36.Margin = new Padding(3, 2, 3, 2);
             button36.Name = "button36";
             button36.Size = new Size(39, 34);
@@ -435,7 +310,7 @@
             // 
             // button37
             // 
-            button37.Location = new Point(383, 189);
+            button37.Location = new Point(302, 174);
             button37.Margin = new Padding(3, 2, 3, 2);
             button37.Name = "button37";
             button37.Size = new Size(39, 34);
@@ -446,7 +321,7 @@
             // 
             // button38
             // 
-            button38.Location = new Point(249, 189);
+            button38.Location = new Point(168, 174);
             button38.Margin = new Padding(3, 2, 3, 2);
             button38.Name = "button38";
             button38.Size = new Size(39, 34);
@@ -457,7 +332,7 @@
             // 
             // button39
             // 
-            button39.Location = new Point(339, 189);
+            button39.Location = new Point(258, 174);
             button39.Margin = new Padding(3, 2, 3, 2);
             button39.Name = "button39";
             button39.Size = new Size(39, 34);
@@ -468,7 +343,7 @@
             // 
             // button40
             // 
-            button40.Location = new Point(294, 189);
+            button40.Location = new Point(213, 174);
             button40.Margin = new Padding(3, 2, 3, 2);
             button40.Name = "button40";
             button40.Size = new Size(39, 34);
@@ -479,7 +354,7 @@
             // 
             // button21
             // 
-            button21.Location = new Point(517, 151);
+            button21.Location = new Point(436, 136);
             button21.Margin = new Padding(3, 2, 3, 2);
             button21.Name = "button21";
             button21.Size = new Size(39, 34);
@@ -490,7 +365,7 @@
             // 
             // button22
             // 
-            button22.Location = new Point(116, 151);
+            button22.Location = new Point(35, 136);
             button22.Margin = new Padding(3, 2, 3, 2);
             button22.Name = "button22";
             button22.Size = new Size(39, 34);
@@ -501,7 +376,7 @@
             // 
             // button23
             // 
-            button23.Location = new Point(472, 151);
+            button23.Location = new Point(391, 136);
             button23.Margin = new Padding(3, 2, 3, 2);
             button23.Name = "button23";
             button23.Size = new Size(39, 34);
@@ -512,7 +387,7 @@
             // 
             // button24
             // 
-            button24.Location = new Point(160, 151);
+            button24.Location = new Point(79, 136);
             button24.Margin = new Padding(3, 2, 3, 2);
             button24.Name = "button24";
             button24.Size = new Size(39, 34);
@@ -523,7 +398,7 @@
             // 
             // button25
             // 
-            button25.Location = new Point(428, 151);
+            button25.Location = new Point(347, 136);
             button25.Margin = new Padding(3, 2, 3, 2);
             button25.Name = "button25";
             button25.Size = new Size(39, 34);
@@ -534,7 +409,7 @@
             // 
             // button26
             // 
-            button26.Location = new Point(205, 151);
+            button26.Location = new Point(124, 136);
             button26.Margin = new Padding(3, 2, 3, 2);
             button26.Name = "button26";
             button26.Size = new Size(39, 34);
@@ -545,7 +420,7 @@
             // 
             // button27
             // 
-            button27.Location = new Point(383, 151);
+            button27.Location = new Point(302, 136);
             button27.Margin = new Padding(3, 2, 3, 2);
             button27.Name = "button27";
             button27.Size = new Size(39, 34);
@@ -556,7 +431,7 @@
             // 
             // button28
             // 
-            button28.Location = new Point(249, 151);
+            button28.Location = new Point(168, 136);
             button28.Margin = new Padding(3, 2, 3, 2);
             button28.Name = "button28";
             button28.Size = new Size(39, 34);
@@ -567,7 +442,7 @@
             // 
             // button29
             // 
-            button29.Location = new Point(339, 151);
+            button29.Location = new Point(258, 136);
             button29.Margin = new Padding(3, 2, 3, 2);
             button29.Name = "button29";
             button29.Size = new Size(39, 34);
@@ -578,7 +453,7 @@
             // 
             // button30
             // 
-            button30.Location = new Point(294, 151);
+            button30.Location = new Point(213, 136);
             button30.Margin = new Padding(3, 2, 3, 2);
             button30.Name = "button30";
             button30.Size = new Size(39, 34);
@@ -589,7 +464,7 @@
             // 
             // button11
             // 
-            button11.Location = new Point(517, 112);
+            button11.Location = new Point(436, 97);
             button11.Margin = new Padding(3, 2, 3, 2);
             button11.Name = "button11";
             button11.Size = new Size(39, 34);
@@ -600,7 +475,7 @@
             // 
             // button12
             // 
-            button12.Location = new Point(116, 112);
+            button12.Location = new Point(35, 97);
             button12.Margin = new Padding(3, 2, 3, 2);
             button12.Name = "button12";
             button12.Size = new Size(39, 34);
@@ -611,7 +486,7 @@
             // 
             // button13
             // 
-            button13.Location = new Point(472, 112);
+            button13.Location = new Point(391, 97);
             button13.Margin = new Padding(3, 2, 3, 2);
             button13.Name = "button13";
             button13.Size = new Size(39, 34);
@@ -622,7 +497,7 @@
             // 
             // button14
             // 
-            button14.Location = new Point(160, 112);
+            button14.Location = new Point(79, 97);
             button14.Margin = new Padding(3, 2, 3, 2);
             button14.Name = "button14";
             button14.Size = new Size(39, 34);
@@ -633,7 +508,7 @@
             // 
             // button15
             // 
-            button15.Location = new Point(428, 112);
+            button15.Location = new Point(347, 97);
             button15.Margin = new Padding(3, 2, 3, 2);
             button15.Name = "button15";
             button15.Size = new Size(39, 34);
@@ -644,7 +519,7 @@
             // 
             // button16
             // 
-            button16.Location = new Point(205, 112);
+            button16.Location = new Point(124, 97);
             button16.Margin = new Padding(3, 2, 3, 2);
             button16.Name = "button16";
             button16.Size = new Size(39, 34);
@@ -655,7 +530,7 @@
             // 
             // button17
             // 
-            button17.Location = new Point(383, 112);
+            button17.Location = new Point(302, 97);
             button17.Margin = new Padding(3, 2, 3, 2);
             button17.Name = "button17";
             button17.Size = new Size(39, 34);
@@ -666,7 +541,7 @@
             // 
             // button18
             // 
-            button18.Location = new Point(249, 112);
+            button18.Location = new Point(168, 97);
             button18.Margin = new Padding(3, 2, 3, 2);
             button18.Name = "button18";
             button18.Size = new Size(39, 34);
@@ -677,7 +552,7 @@
             // 
             // button19
             // 
-            button19.Location = new Point(339, 112);
+            button19.Location = new Point(258, 97);
             button19.Margin = new Padding(3, 2, 3, 2);
             button19.Name = "button19";
             button19.Size = new Size(39, 34);
@@ -688,7 +563,7 @@
             // 
             // button20
             // 
-            button20.Location = new Point(294, 112);
+            button20.Location = new Point(213, 97);
             button20.Margin = new Padding(3, 2, 3, 2);
             button20.Name = "button20";
             button20.Size = new Size(39, 34);
@@ -697,13 +572,37 @@
             button20.UseVisualStyleBackColor = true;
             button20.Click += AllButton_Click;
             // 
+            // button43
+            // 
+            button43.Location = new Point(405, 291);
+            button43.Margin = new Padding(3, 2, 3, 2);
+            button43.Name = "button43";
+            button43.Size = new Size(82, 22);
+            button43.TabIndex = 42;
+            button43.Text = "Thanh toán ";
+            button43.UseVisualStyleBackColor = true;
+            button43.Click += btnThanhToan_Click;
+            // 
+            // button41
+            // 
+            button41.Location = new Point(47, 291);
+            button41.Margin = new Padding(3, 2, 3, 2);
+            button41.Name = "button41";
+            button41.Size = new Size(82, 22);
+            button41.TabIndex = 40;
+            button41.Text = "Quay lại";
+            button41.UseVisualStyleBackColor = true;
+            button41.Click += button41_Click;
+            // 
             // ChonGheNgoi
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(541, 350);
             Controls.Add(panel1);
+            Controls.Add(button43);
+            Controls.Add(button41);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ChonGheNgoi";
             Text = "ChonGheNgoi";
@@ -756,17 +655,8 @@
         private Button button28;
         private Button button29;
         private Button button30;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label label1;
         private Button button43;
-        private Button button42;
         private Button button41;
-        private Panel panel2;
-        private Panel panel5;
-        private Panel panel4;
-        private Panel panel3;
         private Label lblSoLuongGhe;
     }
 }

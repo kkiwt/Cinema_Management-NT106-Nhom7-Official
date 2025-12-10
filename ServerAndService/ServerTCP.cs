@@ -340,7 +340,7 @@ namespace ServerAndService
                         }
                     case "SET_VE":
                         {
-                            if (parts.Length < 8) // cần đủ tham số
+                            if (parts.Length < 9)
                             {
                                 response = "ERROR: SET_VE requires all parameters";
                             }
@@ -353,12 +353,15 @@ namespace ServerAndService
                                 string idGhe = parts[5];
                                 string idTaiKhoan = parts[6];
                                 decimal giaVe = decimal.Parse(parts[7]);
+                                string idThanhToan = parts[8]; 
 
                                 response = await service.SetVeAsync(
-                                    idPhim, idKhungGio, idPhongChieu, ngayDat, idGhe, idTaiKhoan, giaVe);
+                                    idPhim, idKhungGio, idPhongChieu, ngayDat,
+                                    idGhe, idTaiKhoan, giaVe, idThanhToan);
                             }
                             break;
                         }
+
                     case "GET_SEATSTATUS":
                         {
                             if (parts.Length < 5)
@@ -376,6 +379,61 @@ namespace ServerAndService
                             }
                             break;
                         }
+                    case "REMOVE_HOLDSEAT":
+                        {
+                            if (parts.Length < 7)
+                            {
+                                response = "ERROR: REMOVE_HOLDSEAT requires all parameters";
+                            }
+                            else
+                            {
+                                string idPhim = parts[1];
+                                string idKhungGio = parts[2];
+                                string idPhongChieu = parts[3];
+                                DateTime ngayDat = DateTime.Parse(parts[4]);
+                                string idGhe = parts[5];
+                                string idTaiKhoan = parts[6];
+
+                                response = await service.RemoveHoldSeatAsync(
+                                    idPhim, idKhungGio, idPhongChieu, ngayDat, idGhe, idTaiKhoan);
+                            }
+                            break;
+                        }
+                    case "CHECK_PAYMENT":
+                        {
+                            if (parts.Length < 2)
+                            {
+                                response = "ERROR: CHECK_PAYMENT requires IdThanhToan";
+                            }
+                            else
+                            {
+                                string idThanhToan = parts[1];
+                                response = await service.CheckPaymentAsync(idThanhToan);
+                            }
+                            break;
+                        }
+                    case "DELETE_TICKET":
+                        {
+                            if (parts.Length < 7)
+                            {
+                                response = "ERROR: DELETE_TICKET requires all parameters";
+                            }
+                            else
+                            {
+                                string idPhim = parts[1];
+                                string idKhungGio = parts[2];
+                                string idPhongChieu = parts[3];
+                                DateTime ngayDat = DateTime.Parse(parts[4]);
+                                string idGhe = parts[5];
+                                string idTaiKhoan = parts[6];
+
+                                response = await service.DeleteTicketAsync(
+                                    idPhim, idKhungGio, idPhongChieu, ngayDat, idGhe, idTaiKhoan);
+                            }
+                            break;
+                        }
+
+
 
 
                     default:

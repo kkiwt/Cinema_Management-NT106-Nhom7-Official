@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace ServerAndService
 {
-
     internal class Service
     {
         private static Client client;
@@ -599,7 +598,10 @@ namespace ServerAndService
                 return $"ERROR_HOLD_SEAT: {ex.Message}";
             }
         }
-        public async Task<string> SetVeAsync(string idPhim, string idKhungGio, string idPhongChieu, DateTime ngayDat, string idGhe, string idTaiKhoan, decimal giaVe)
+        public async Task<string> SetVeAsync(
+    string idPhim, string idKhungGio, string idPhongChieu,
+    DateTime ngayDat, string idGhe, string idTaiKhoan,
+    decimal giaVe, string idThanhToan)
         {
             try
             {
@@ -611,7 +613,8 @@ namespace ServerAndService
                     p_ngaydat = ngayDat.Date,
                     p_idghe = idGhe,
                     p_idtaikhoan = idTaiKhoan,
-                    p_giave = giaVe
+                    p_giave = giaVe,
+                    p_idthanhtoan = idThanhToan,
                 });
 
                 var json = result.Content?.Trim();
@@ -623,6 +626,7 @@ namespace ServerAndService
                 return $"ERROR_SET_VE: {ex.Message}";
             }
         }
+
         public async Task<string> GetSeatStatusAsync(string idPhim, string idKhungGio, string idPhongChieu, DateTime ngayDat)
         {
             try
@@ -642,6 +646,60 @@ namespace ServerAndService
             catch (Exception ex)
             {
                 return $"ERROR_GET_SEATSTATUS: {ex.Message}";
+            }
+        }
+        public async Task<string> RemoveHoldSeatAsync(
+            string idPhim, string idKhungGio, string idPhongChieu,
+            DateTime ngayDat, string idGhe, string idTaiKhoan)
+        {
+            var result = await client.Rpc("remove_holdseat", new Dictionary<string, object>
+            {
+            { "p_idphim", idPhim },
+            { "p_idkhunggio", idKhungGio },
+            { "p_idphongchieu", idPhongChieu },
+            { "p_ngaydat", ngayDat },
+            { "p_idghe", idGhe },
+            { "p_idtaikhoan", idTaiKhoan }
+            });
+
+            return result?.ToString() ?? "ERROR: remove_holdseat failed";
+        }
+
+        public async Task<string> CheckPaymentAsync(string idThanhToan)
+        {
+            var response = await client.Rpc("check_payment", new Dictionary<string, object>
+            {
+                { "p_idthanhtoan", idThanhToan }
+            });
+
+            var json = response.Content;
+            if (string.IsNullOrEmpty(json))
+                return "{\"error\":\"check_payment failed\"}";
+
+            return json;
+        }
+
+        public async Task<string> DeleteTicketAsync(string idPhim, string idKhungGio, string idPhongChieu, DateTime ngayDat, string idGhe, string idTaiKhoan)
+        {
+            try
+            {
+                var result = await client.Rpc("delete_ticket", new
+                {
+                    p_idphim = idPhim,
+                    p_idkhunggio = idKhungGio,
+                    p_idphongchieu = idPhongChieu,
+                    p_ngaydat = ngayDat.Date,
+                    p_idghe = idGhe,
+                    p_idtaikhoan = idTaiKhoan
+                });
+
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "{\"success\":false,\"message\":\"Lỗi xóa vé\"}";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_DELETE_TICKET: {ex.Message}";
             }
         }
 
