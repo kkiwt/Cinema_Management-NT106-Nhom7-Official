@@ -24,7 +24,7 @@ namespace CinemaManagement
         private List<PhongChieu> phongChieuList = new List<PhongChieu>();
         private List<LichChieuCoDinh> lichChieuList = new List<LichChieuCoDinh>();
 
-        private readonly List<string> _selectedSeats = new List<string>();
+        private List<string> _selectedSeats = new List<string>();
         private ClientTCP _client = new ClientTCP();
 
         private System.Windows.Forms.Timer _seatTimer;
@@ -33,6 +33,8 @@ namespace CinemaManagement
         private Form _currentQrPopup;
         private int _paymentCountdown = 300;
         private System.Windows.Forms.Timer _countdownTimer;
+        private GiamGia GiamGia;
+        string maGiamGia = "";
 
         public ChonGheNgoi(
             Phim phim,
@@ -55,6 +57,7 @@ namespace CinemaManagement
 
         private async void ChonGheNgoi_Load(object sender, EventArgs e)
         {
+            maGiamGia = textBox1.Text;
             _seatTimer = new System.Windows.Forms.Timer();
             _seatTimer.Interval = 1000;
             _seatTimer.Tick += async (s, ev) => await LoadSeatStatus();
@@ -92,7 +95,10 @@ namespace CinemaManagement
                         else if (seat.status == "holding")
                         {
                             if (seat.userid == _user.IDUser)
+                            {
                                 btn.BackColor = Color.Yellow;
+                                if (!_selectedSeats.Contains(seatId)) _selectedSeats.Add(seatId);
+                            }
                             else
                                 btn.BackColor = Color.Gold;
                         }
@@ -102,6 +108,7 @@ namespace CinemaManagement
                         }
                         else
                         {
+                            if (_selectedSeats.Contains(seatId)) _selectedSeats.Remove(seatId);
                             btn.BackColor = Color.LightGreen;
                         }
                     }
@@ -160,9 +167,52 @@ namespace CinemaManagement
 
         private async void btnThanhToan_Click(object sender, EventArgs e)
         {
-            await CreatePaymentQRCode();
-        }
+            maGiamGia = textBox1.Text.Trim();
+            if (_selectedSeats.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ghế trước khi thanh toán.");
+                return;
+            }
+            string json = await _client.SendMessageAsync($"GET_GIAMGIA|{maGiamGia}");
 
+            if (json.StartsWith("ERROR"))
+            {
+                GiamGia = null;
+            }
+            else
+            {
+                try
+                {
+                    GiamGia = JsonSerializer.Deserialize<GiamGia>(json);
+                }
+                catch
+                {
+                    var list = JsonSerializer.Deserialize<List<GiamGia>>(json);
+                    GiamGia = list?.FirstOrDefault();
+                }
+
+                if (GiamGiaApDung())
+                {
+                    MessageBox.Show($"Mã giảm giá hợp lệ! Giảm {GiamGia.tilegiam * 100}%.");
+                }
+                else if (maGiamGia == "")
+                {
+                    GiamGia = null;
+                }
+                else
+                {
+                    GiamGia = null;
+                    MessageBox.Show("Mã giảm giá không hợp lệ hoặc đã hết hạn.");
+                }
+            }
+
+            await CreatePaymentQRCode();
+
+        }
+        private bool GiamGiaApDung()
+        {
+            return GiamGia != null && GiamGia.denngay > DateTime.Now;
+        }
         private async void RecreatePayment()
         {
             await CreatePaymentQRCode();
@@ -190,7 +240,12 @@ namespace CinemaManagement
                 var seat = seatStatusList.FirstOrDefault(s => s.idghe == seatId);
                 if (seat == null) continue;
 
-                var giaVe = (Int32)((_phim.GiaVeChuan ?? 10000m) * (seat.hesoghe ?? 1m));
+                decimal tileGiam = GiamGia?.tilegiam ?? 0m;
+
+                var giaVe = (int)((_phim.GiaVeChuan ?? 10000m)
+                                  * (seat.hesoghe ?? 1m)
+                                  * (1 - tileGiam));
+
                 totalAmount += giaVe;
 
                 if (seat.status == "pending") continue;
@@ -209,9 +264,17 @@ namespace CinemaManagement
             using var ms = new MemoryStream(await http.GetByteArrayAsync(url));
 
             string paymentInfo = $"ID Thanh toán: {idThanhToan}\r\nTổng tiền: {totalAmount} VND";
+            if (maGiamGia != "")
+            {
+                string json = await _client.SendMessageAsync($"SET_GIAMGIA_TAIKHOAN|{GiamGia.idgiamgia}|{_user.IDUser}");
+            }
             var img = Image.FromStream(ms);
 
-            var popup = ShowImagePopup(img, "QR Thanh Toán", RecreatePayment, ResetPendingSeatsToHolding, paymentInfo);
+            var popup = ShowImagePopup(img, "QR Thanh Toán", RecreatePayment, () =>
+            {
+                ResetPendingSeatsToHolding();
+                ResumeSeatTimer();
+            }, paymentInfo);
             popup.Owner = this;
             _currentQrPopup = popup;
             popup.Show();
@@ -270,7 +333,9 @@ namespace CinemaManagement
                                 // Cập nhật ghế
                                 foreach (var seatId in _selectedSeats)
                                     MarkSeatSold(seatId);
-
+                                _selectedSeats.Clear();
+                                textBox1.Text = "";
+                                maGiamGia = "";
                                 // Resume seat timer
                                 ResumeSeatTimer();
 
@@ -319,7 +384,6 @@ namespace CinemaManagement
                     _currentQrPopup.Close();
                     _currentQrPopup = null;
                 }
-
                 ResetPendingSeatsToHolding();
                 ResumeSeatTimer();
 
@@ -351,7 +415,11 @@ namespace CinemaManagement
                     Console.WriteLine($"Không thể khôi phục ghế {seatId}: {resHold}");
                     continue;
                 }
-
+                if (maGiamGia != "")
+                {
+                    string res = await _client.SendMessageAsync(
+                        $"UNSET_GIAMGIA_TAIKHOAN|{maGiamGia}|{_user.IDUser}");
+                }
                 foreach (Control ctrl in panel1.Controls)
                 {
                     if (ctrl is Button btn)
@@ -481,5 +549,9 @@ namespace CinemaManagement
             return popup;
         }
 
+        private void button42_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

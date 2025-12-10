@@ -702,6 +702,50 @@ namespace ServerAndService
                 return $"ERROR_DELETE_TICKET: {ex.Message}";
             }
         }
+        public async Task<string> GetGiamGiaAsync(string idGiamGia)
+        {
+            var response = await client.Rpc("getgiamgia", new Dictionary<string, object>
+    {
+        { "p_idgiamgia", idGiamGia }
+    });
+
+            var json = response.Content;
+
+            if (string.IsNullOrEmpty(json))
+                return "{\"error\":\"get_giamgia failed\"}";
+
+            return json;
+        }
+        public async Task<string> SetGiamGiaTaiKhoanAsync(string idGiamGia, string idTaiKhoan)
+        {
+            var response = await client.Rpc("setgiamgiataikhoan", new Dictionary<string, object>
+    {
+        { "p_idgiamgia", idGiamGia },
+        { "p_idtaikhoan", idTaiKhoan }
+    });
+
+            var json = response.Content;
+
+            if (string.IsNullOrEmpty(json))
+                return "{\"error\":\"set_giamgia_taikhoan failed\"}";
+
+            return json;
+        }
+        public async Task<string> UnsetGiamGiaTaiKhoanAsync(string idGiamGia, string idTaiKhoan)
+        {
+            var response = await client.Rpc("unsetgiamgiataikhoan", new Dictionary<string, object>
+    {
+        { "p_idgiamgia", idGiamGia },
+        { "p_idtaikhoan", idTaiKhoan }
+    });
+
+            var json = response.Content;
+
+            if (string.IsNullOrEmpty(json))
+                return "{\"error\":\"unset_giamgia_taikhoan failed\"}";
+
+            return json;
+        }
 
     }
 }

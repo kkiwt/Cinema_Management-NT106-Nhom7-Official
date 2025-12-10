@@ -253,20 +253,6 @@ namespace ServerAndService
                             response = await service.DeleteReview(idReview);
                         }
                         break;
-
-                    case "GET_GIAMGIA":
-                        {
-                            try
-                            {
-                                string json = await service.GetGiamGiaRPC(); 
-                                response = json ?? "[]";
-                            }
-                            catch (Exception ex)
-                            {
-                                response = $"ERROR_GET_GIAMGIA: {ex.Message}";
-                            }
-                            break;
-                        }
                     case "GET_VE_DADAT":
                         {
                             if (parts.Length < 2 || string.IsNullOrWhiteSpace(parts[1]))
@@ -432,6 +418,51 @@ namespace ServerAndService
                             }
                             break;
                         }
+                    case "GET_GIAMGIA":
+                        {
+                            if (parts.Length < 2)
+                            {
+                                response = "ERROR: GET_GIAMGIA requires IdGiamGia";
+                            }
+                            else
+                            {
+                                string idGiamGia = parts[1];
+                                response = await service.GetGiamGiaAsync(idGiamGia);
+                            }
+                            break;
+                        }
+
+                    case "SET_GIAMGIA_TAIKHOAN":
+                        {
+                            if (parts.Length < 3)
+                            {
+                                response = "ERROR: SET_GIAMGIA_TAIKHOAN requires IdGiamGia|IdTaiKhoan";
+                            }
+                            else
+                            {
+                                string idGiamGia = parts[1];
+                                string idTaiKhoan = parts[2];
+
+                                response = await service.SetGiamGiaTaiKhoanAsync(idGiamGia, idTaiKhoan);
+                            }
+                            break;
+                        }
+                    case "UNSET_GIAMGIA_TAIKHOAN":
+                        {
+                            if (parts.Length < 3)
+                            {
+                                response = "ERROR: UNSET_GIAMGIA_TAIKHOAN requires IdGiamGia|IdTaiKhoan";
+                            }
+                            else
+                            {
+                                string idGiamGia = parts[1];
+                                string idTaiKhoan = parts[2];
+
+                                response = await service.UnsetGiamGiaTaiKhoanAsync(idGiamGia, idTaiKhoan);
+                            }
+                            break;
+                        }
+
 
 
 

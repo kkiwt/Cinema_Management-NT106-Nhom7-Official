@@ -258,51 +258,6 @@ namespace CinemaManagement
     }
     
 
-    public class GiamGia
-    {
-        public string IdGiamGia { get; set; }
-        public string LoaiGiamGia { get; set; }
-        public DateTime? TuNgay { get; set; }
-        public DateTime? DenNgay { get; set; }
-        public decimal? TiLeGiam { get; set; }
-        public string IdPhim { get; set; }
-
-        public GiamGia() { }
-        public GiamGia(string id, string loai, DateTime? tuNgay, DateTime? denNgay, decimal? tiLe, string idPhim)
-        {
-            IdGiamGia = id;
-            LoaiGiamGia = loai;
-            TuNgay = tuNgay;
-            DenNgay = denNgay;
-            TiLeGiam = tiLe;
-            IdPhim = idPhim;
-        }
-
-        public static List<GiamGia> DanhSachGiamGia = new List<GiamGia>();
-        public static Dictionary<string, GiamGia> MapGiamGia = new Dictionary<string, GiamGia>();
-
-        public static void Add(GiamGia gg)
-        {
-            DanhSachGiamGia.Add(gg);
-            MapGiamGia[gg.IdGiamGia] = gg;
-        }
-
-        public static GiamGia FindById(string id)
-        {
-            return MapGiamGia.ContainsKey(id) ? MapGiamGia[id] : null;
-        }
-
-        public static void Remove(string id)
-        {
-            var gg = FindById(id);
-            if (gg != null)
-            {
-                DanhSachGiamGia.Remove(gg);
-                MapGiamGia.Remove(id);
-            }
-        }
-    }
-
     public class ThanhToan
     {
         public string IdThanhToan { get; set; }
@@ -482,6 +437,13 @@ namespace CinemaManagement
         public string status { get; set; }
         public string userid { get; set; }
         public decimal? hesoghe { get; set; }
+    }
+    public class GiamGia
+    {
+        public string idgiamgia { get; set; }
+        public DateTime tungay { get; set; }
+        public DateTime denngay { get; set; }
+        public decimal? tilegiam { get; set; }
     }
 }
 
