@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MuaBapNuoc));
             panel1 = new Panel();
-            btnTiepTheo = new Button();
+            btnThanhToan = new Button();
             btnQuayLai = new Button();
             numericUpDown4 = new NumericUpDown();
             label7 = new Label();
@@ -65,7 +65,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnTiepTheo);
+            panel1.Controls.Add(btnThanhToan);
             panel1.Controls.Add(btnQuayLai);
             panel1.Controls.Add(numericUpDown4);
             panel1.Controls.Add(label7);
@@ -93,26 +93,30 @@
             panel1.Size = new Size(679, 320);
             panel1.TabIndex = 0;
             // 
-            // btnTiepTheo
+            // btnThanhToan
             // 
-            btnTiepTheo.Location = new Point(399, 296);
-            btnTiepTheo.Margin = new Padding(3, 2, 3, 2);
-            btnTiepTheo.Name = "btnTiepTheo";
-            btnTiepTheo.Size = new Size(82, 22);
-            btnTiepTheo.TabIndex = 22;
-            btnTiepTheo.Text = "Tiếp Theo";
-            btnTiepTheo.UseVisualStyleBackColor = true;
-            btnTiepTheo.Click += btnTiepTheo_Click;
+            btnThanhToan.BackColor = Color.White;
+            btnThanhToan.ForeColor = SystemColors.ActiveCaptionText;
+            btnThanhToan.Location = new Point(399, 296);
+            btnThanhToan.Margin = new Padding(3, 2, 3, 2);
+            btnThanhToan.Name = "btnThanhToan";
+            btnThanhToan.Size = new Size(105, 22);
+            btnThanhToan.TabIndex = 22;
+            btnThanhToan.Text = "Thanh Toán";
+            btnThanhToan.UseVisualStyleBackColor = false;
+            btnThanhToan.Click += btnThanhToan_Click;
             // 
             // btnQuayLai
             // 
+            btnQuayLai.BackColor = Color.White;
+            btnQuayLai.ForeColor = SystemColors.ActiveCaptionText;
             btnQuayLai.Location = new Point(158, 296);
             btnQuayLai.Margin = new Padding(3, 2, 3, 2);
             btnQuayLai.Name = "btnQuayLai";
-            btnQuayLai.Size = new Size(82, 22);
+            btnQuayLai.Size = new Size(96, 22);
             btnQuayLai.TabIndex = 21;
             btnQuayLai.Text = "Quay Lại";
-            btnQuayLai.UseVisualStyleBackColor = true;
+            btnQuayLai.UseVisualStyleBackColor = false;
             btnQuayLai.Click += btnQuayLai_Click;
             // 
             // numericUpDown4
@@ -128,9 +132,9 @@
             label7.AutoSize = true;
             label7.Location = new Point(349, 241);
             label7.Name = "label7";
-            label7.Size = new Size(94, 15);
+            label7.Size = new Size(73, 15);
             label7.TabIndex = 18;
-            label7.Text = "Giá: 135.000,00 ₫";
+            label7.Text = "Giá: 13.500 ₫";
             // 
             // textBox4
             // 
@@ -177,9 +181,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(24, 241);
             label5.Name = "label5";
-            label5.Size = new Size(94, 15);
+            label5.Size = new Size(73, 15);
             label5.TabIndex = 13;
-            label5.Text = "Giá: 125.000,00 ₫";
+            label5.Text = "Giá: 12.500 ₫";
             // 
             // textBox3
             // 
@@ -226,9 +230,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(349, 100);
             label3.Name = "label3";
-            label3.Size = new Size(94, 15);
+            label3.Size = new Size(73, 15);
             label3.TabIndex = 8;
-            label3.Text = "Giá: 115.000,00 ₫";
+            label3.Text = "Giá: 11.500 ₫";
             // 
             // textBox2
             // 
@@ -275,9 +279,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(24, 100);
             label2.Name = "label2";
-            label2.Size = new Size(88, 15);
+            label2.Size = new Size(67, 15);
             label2.TabIndex = 3;
-            label2.Text = "Giá: 95.000,00 ₫";
+            label2.Text = "Giá: 9.500 ₫";
             // 
             // textBox1
             // 
@@ -349,7 +353,7 @@
         private TextBox textBox1;
         private Label label1;
         private PictureBox pictureBox1;
-        private Button btnTiepTheo;
+        private Button btnThanhToan;
         private Button btnQuayLai;
         private NumericUpDown numericUpDown4;
         private Label label7;

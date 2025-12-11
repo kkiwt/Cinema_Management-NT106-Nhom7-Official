@@ -462,11 +462,37 @@ namespace ServerAndService
                             }
                             break;
                         }
-
-
-
-
-
+                    case "REMOVE_THANHTOAN_BAPNUOC":
+                        {
+                            if (parts.Length < 1)
+                            {
+                                response = "ERROR: REMOVE_THANHTOAN_BAPNUOC requires IdThanhToan";
+                            }
+                            else
+                            {
+                                string idThanhToan = parts[1];
+                                response = await service.RemoveThanhToanBapNuocAsync(idThanhToan);
+                            }
+                            break;
+                        }
+                    case "ADD_THANHTOAN_BAPNUOC":
+                        {
+                            if (parts.Length < 6)
+                            {
+                                response = "ERROR";
+                            }
+                            else
+                            {
+                                string idThanhToan = parts[1];
+                                string idTaiKhoan = parts[2];
+                                string idBapNuoc = parts[3];
+                                decimal tongtien = decimal.Parse(parts[4]);
+                                string trangthai = parts[5];
+                                DateTime ngaydat = DateTime.Parse(parts[6]);
+                                response = await service.AddThanhToanBapNuocAsync(idThanhToan, idTaiKhoan, idBapNuoc,tongtien,trangthai,ngaydat);
+                            }
+                            break;
+                        }
                     default:
                         response = "UNKNOWN_COMMAND";
                         break;

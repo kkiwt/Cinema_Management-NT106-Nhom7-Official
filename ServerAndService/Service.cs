@@ -6,6 +6,7 @@ using Supabase.Postgrest.Models;
 using System;
 using System.Text.Json; 
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace ServerAndService
 {
@@ -356,7 +357,7 @@ namespace ServerAndService
 
         }
 
-        
+
         public async Task<string> GetMovies()
         {
             try
@@ -378,7 +379,7 @@ namespace ServerAndService
             }
         }
 
-        
+
         public async Task<string> GetLatestMoviesRPC(int limitCount) // toi da 100 phim
         {
             try
@@ -746,6 +747,35 @@ namespace ServerAndService
 
             return json;
         }
-
+        public async Task<string> RemoveThanhToanBapNuocAsync(string idThanhToan)
+        {
+            var response = await client.Rpc("rm_thanhtoan_bapnuoc", new Dictionary<string, object>
+    {
+        { "p_idthanhtoan", idThanhToan }
+    });
+            var json = response.Content;
+            if (string.IsNullOrEmpty(json))
+                return "NO_RESPONSE";
+            else if (json.Contains("NOT_FOUND"))
+                return "NOT_FOUND";
+            return json;
+        }
+        public async Task<string> AddThanhToanBapNuocAsync(string idThanhToan, string idTaiKhoan, string idBapNuoc, decimal tongtien, string trangthai, DateTime ngaydat)
+        {
+            var response = await client.Rpc("add_thanhtoan_bapnuoc", new Dictionary<string, object>
+            {
+                { "p_idthanhtoan", idThanhToan },
+                { "p_idtaikhoan", idTaiKhoan },
+                { "p_idbapnuoc", idBapNuoc },
+                { "p_tongtien", tongtien },
+                { "p_trangthai", trangthai },
+                { "p_ngaydat", ngaydat }
+            });
+            var json = response.Content;
+            if (json.Contains("FAILED") || string.IsNullOrEmpty(json))
+                return "FAILED";
+            return json;
+        }
     }
+
 }

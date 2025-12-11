@@ -293,6 +293,12 @@ namespace CinemaManagement
         {
             Application.Exit();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MuaBapNuoc buy = new MuaBapNuoc(currentUser);
+            buy.ShowDialog();
+        }
     }
 
 
