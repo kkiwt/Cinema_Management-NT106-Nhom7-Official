@@ -110,7 +110,7 @@ namespace CinemaManagement
 
                 MucPhim.ThongTinPhim(DuLieuPhim);
                 MucPhim.PhimDuocChon += MucPhimDuocChon;
-                MucPhim.DatVeDuocChon += MucDatVeDuocChon; // Đặt vé
+                MucPhim.DatVeDuocChon += MucDatVeDuocChon;
                 BangPhim.Controls.Add(MucPhim);
             }
         }
