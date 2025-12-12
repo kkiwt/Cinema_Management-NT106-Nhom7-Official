@@ -135,16 +135,16 @@ namespace ServerAndService
                         }
                         break;
 
-                    case "GET_STATS": // Cai nay tui them
-                        response = await service.GetCinemaStats();
-                        break;
 
 
-                    case "ADD_PHIM":
+
+
+                    case "ADD_PHIM": // Them cai nay, xoa di cai case GetAvalableSlots di
                         {
-                            if (parts.Length < 16) // vì có thêm Ngôn Ngữ
+                            // CHỈ CẦN 14 tham số: tenPhim..denNgay
+                            if (parts.Length < 14)
                             {
-                                response = "ERROR: ADD_PHIM requires all parameters";
+                                response = "ERROR: ADD_PHIM requires parameters up to denNgay (14 lines)";
                             }
                             else
                             {
@@ -154,38 +154,73 @@ namespace ServerAndService
                                 int thoiLuong = int.Parse(parts[4]);
                                 string moTa = parts[5];
                                 string urlTrailer = parts[6];
-                                string localPosterPath = parts[7];
+                                string localPosterB64 = parts[7];  // client gửi base64 ảnh
                                 string daoDien = parts[8];
                                 string dienVien = parts[9];
-                                string ngonNgu = parts[10]; // thêm
+                                string ngonNgu = parts[10];
                                 string quocGia = parts[11];
                                 DateTime tuNgay = DateTime.Parse(parts[12]);
                                 DateTime denNgay = DateTime.Parse(parts[13]);
-                                string danhSachGio = parts[14];
-                                string phongChieu = parts[15];
 
+                                // GỌI FLOW MỚI: thêm phim + sinh lịch cố định
                                 response = await service.AddPhimFullFlow(
                                     tenPhim, theLoai, doTuoi, thoiLuong, moTa,
-                                    urlTrailer, localPosterPath, daoDien, dienVien,
-                                    ngonNgu, quocGia, tuNgay, denNgay,
-                                    danhSachGio, phongChieu);
+                                    urlTrailer, localPosterB64, daoDien, dienVien,
+                                    ngonNgu, quocGia, tuNgay, denNgay
+                                );
                             }
                             break;
                         }
 
 
+                    // ServerTCP.cs — trong switch(command)
 
-                    case "GET_AVAILABLE_SLOTS":
-                        if (parts.Length < 4)
-                            response = "ERROR: Missing parameters";
-                        else
+                    case "GET_HISTORY": // Cai moi them
                         {
-                            string phongId = parts[1];
-                            DateTime tuNgay = DateTime.Parse(parts[2]);
-                            DateTime denNgay = DateTime.Parse(parts[3]);
-                            response = await service.GetAvailableSlotsRPC(phongId, tuNgay, denNgay);
+                            // Không cần tham số, lấy toàn bộ lịch sử
+                            string json = await service.GetLichSuVeAllRPC();
+                            response = string.IsNullOrWhiteSpace(json) ? "[]" : json;
+                            break;
                         }
+
+
+                    case "GET_MOVIES_LIST": // cai moi them
+                        {
+                            // Cho phép client truyền limit ở dòng 2, nếu không có thì mặc định 100
+                            int limitcount = 100;
+                            if (parts.Length >= 2 && int.TryParse(parts[1], out var n) && n >= 0)
+                                limitcount = n;
+
+                            // Gọi service (RPC Supabase) để lấy JSON danh sách phim
+                            response = await service.GetMoviesListRPC(limitcount); // Trả về JSON array
+                            break;
+                        }
+
+
+
+                    case "DELETE_MOVIE": // cai moi them
+                        {
+                            if (parts.Length < 2 || string.IsNullOrWhiteSpace(parts[1]))
+                            {
+                                response = "ERROR: DELETE_MOVIE requires IdPhim";
+                            }
+                            else
+                            {
+                                string idPhim = parts[1].Trim();
+                                string rpcResult = await service.XoaPhimRPC(idPhim);
+
+                                if (rpcResult == "SUCCESS")
+                                    response = "OK: DELETED";
+                                else
+                                    response = rpcResult; // Trả về thông báo lỗi nếu có
+                            }
+                            break;
+                        }
+
+                    case "GET_STATS2": // Cai nay tui them // so 2 la cai chinh thuc
+                        response = await service.GetCinemaStats2();
                         break;
+
 
 
 
@@ -432,6 +467,20 @@ namespace ServerAndService
                             break;
                         }
 
+                    case "GET_GIAMGIA_STAT":
+                        {
+                            try
+                            {
+                                string json = await service.GetGiamGiaRPC();
+                                response = json ?? "[]";
+                            }
+                            catch (Exception ex)
+                            {
+                                response = $"ERROR_GET_GIAMGIA: {ex.Message}";
+                            }
+                            break;
+                        }
+
                     case "SET_GIAMGIA_TAIKHOAN":
                         {
                             if (parts.Length < 3)
@@ -475,6 +524,7 @@ namespace ServerAndService
                             }
                             break;
                         }
+
                     case "ADD_THANHTOAN_BAPNUOC":
                         {
                             if (parts.Length < 6)

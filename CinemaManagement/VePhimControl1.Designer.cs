@@ -35,6 +35,7 @@
             lbTenPhim = new Label();
             lbNgayChieu = new Label();
             panel1 = new Panel();
+            lbTenPhongChieu = new Label();
             lbIDVe = new Label();
             ((System.ComponentModel.ISupportInitialize)picturePoster).BeginInit();
             panel1.SuspendLayout();
@@ -46,7 +47,7 @@
             lbGiaVe.BackColor = Color.Transparent;
             lbGiaVe.Font = new Font("Epilogue SemiBold", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbGiaVe.ForeColor = Color.White;
-            lbGiaVe.Location = new Point(449, 81);
+            lbGiaVe.Location = new Point(570, 81);
             lbGiaVe.Name = "lbGiaVe";
             lbGiaVe.Size = new Size(72, 26);
             lbGiaVe.TabIndex = 10;
@@ -58,7 +59,7 @@
             lbGheNgoi.BackColor = Color.Transparent;
             lbGheNgoi.Font = new Font("Epilogue SemiBold", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbGheNgoi.ForeColor = Color.White;
-            lbGheNgoi.Location = new Point(449, 49);
+            lbGheNgoi.Location = new Point(413, 81);
             lbGheNgoi.Name = "lbGheNgoi";
             lbGheNgoi.Size = new Size(97, 26);
             lbGheNgoi.TabIndex = 9;
@@ -113,6 +114,7 @@
             // panel1
             // 
             panel1.BackColor = Color.SlateBlue;
+            panel1.Controls.Add(lbTenPhongChieu);
             panel1.Controls.Add(lbIDVe);
             panel1.Controls.Add(picturePoster);
             panel1.Controls.Add(lbGiaVe);
@@ -124,6 +126,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(743, 149);
             panel1.TabIndex = 11;
+            // 
+            // lbTenPhongChieu
+            // 
+            lbTenPhongChieu.AutoSize = true;
+            lbTenPhongChieu.BackColor = Color.Transparent;
+            lbTenPhongChieu.Font = new Font("Epilogue SemiBold", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbTenPhongChieu.ForeColor = Color.White;
+            lbTenPhongChieu.Location = new Point(413, 49);
+            lbTenPhongChieu.Name = "lbTenPhongChieu";
+            lbTenPhongChieu.Size = new Size(165, 26);
+            lbTenPhongChieu.TabIndex = 12;
+            lbTenPhongChieu.Text = "Tên Phòng Chiếu:";
+            lbTenPhongChieu.Click += lbTenPhongChieu_Click;
             // 
             // lbIDVe
             // 
@@ -161,5 +176,6 @@
         private Label lbNgayChieu;
         private Panel panel1;
         private Label lbIDVe;
+        private Label lbTenPhongChieu;
     }
 }

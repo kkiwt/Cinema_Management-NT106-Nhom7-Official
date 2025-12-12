@@ -9,7 +9,7 @@ namespace ServerAndService
         public async Task SendOtp(string email, string otp)
         {
             var senderEmail = "nkiet0651@gmail.com";
-            var appPassword = "kmxxkhekyilrmclr";  // 16 ký tự - KHÔNG khoảng trắng
+            var appPassword = "obpjapgduwetufgp";  // 16 ký tự - KHÔNG khoảng trắng
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
             {

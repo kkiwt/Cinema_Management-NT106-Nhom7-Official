@@ -148,6 +148,7 @@ namespace CinemaManagement
 
         private void LinkTrangChuChinh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            TrangChuChinh_Load(sender, e);
             //An vao thi tro ve trang dau tien
             ViTriBatDauCuaMotPhim = 0;
             HienThiPhim();

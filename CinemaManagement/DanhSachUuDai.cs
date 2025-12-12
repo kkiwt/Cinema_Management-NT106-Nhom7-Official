@@ -21,7 +21,7 @@ namespace CinemaManagement
         private async void DanhSachUuDai_Load(object sender, EventArgs e)
         {
             var client = new ClientTCP();
-            string response = await client.SendMessageAsync("GET_GIAMGIA");
+            string response = await client.SendMessageAsync("GET_GIAMGIA_STAT");
 
             if (string.IsNullOrWhiteSpace(response) || response.StartsWith("ERROR"))
             {

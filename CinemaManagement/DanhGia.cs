@@ -42,7 +42,10 @@ namespace CinemaManagement
             SetupStarSelection();
 
             this.Load += DanhGia_Load;
-            //Tim kiem
+            LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked;
+            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá";
+            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá";
+
         }
 
         // Constructor rong cho Designer
@@ -53,6 +56,7 @@ namespace CinemaManagement
 
         private async void DanhGia_Load(object sender, EventArgs e)
         {
+            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá";
             if (PhimHienTai != null && !string.IsNullOrEmpty(PhimHienTai.IdPhim))
             {
                 await LoadReviewDataAsync(PhimHienTai.IdPhim);
@@ -280,29 +284,7 @@ namespace CinemaManagement
             }
         }
 
-        private void TimKiem_KeyPress(object sender, KeyPressEventArgs e) //Tim kiem
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                e.Handled = true;
-                string TenPhimCanTim = TimKiem.Text.Trim();
 
-                TrangChuChinh formTrangChuChinh = GoiChiTietPhim?.GetTrangChuChinh();
-
-                if (formTrangChuChinh != null && !string.IsNullOrEmpty(TenPhimCanTim))
-                {
-                    this.Close(); //dong DanhGia hien tai
-                    GoiChiTietPhim.Close(); //an ChiTietPhim
-                    formTrangChuChinh.TimKiemVaHienThiChiTiet(TenPhimCanTim); //goi ham timkiem tren TrangChuChinh
-                }
-                else if (formTrangChuChinh == null)
-                {
-                    MessageBox.Show("Lỗi: Không tìm thấy Trang Chủ Chính để thực hiện tìm kiếm.", "Lỗi");
-                }
-
-                TimKiem.Text = ""; //xoa ndung tim kiem 
-            }
-        }
 
         private void MenuTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {

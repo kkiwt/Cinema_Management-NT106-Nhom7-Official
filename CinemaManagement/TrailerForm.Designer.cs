@@ -53,6 +53,7 @@ namespace CinemaManagement
             NutQuayLai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             NutQuayLai.UseAccentColor = false;
             NutQuayLai.UseVisualStyleBackColor = true;
+            NutQuayLai.Click += NutQuayLai_Click;
             // 
             // TrailerForm
             // 

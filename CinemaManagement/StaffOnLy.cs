@@ -58,11 +58,7 @@ namespace CinemaManagement
                 ThongKeVeDoanhThu.Nodes["SoLuongVeRoot"].Text =
                     $"Số Lượng Vé Đã Bán Ra: {root.GetProperty("tong_so_ve").GetInt64()}";
 
-                ThongKeVeDoanhThu.Nodes["SoLuongVeRoot"].Nodes["VeThuongChild"].Text =
-                    $"Số Lượng Vé Thường Đã Bán Ra: {root.GetProperty("ve_thuong").GetInt64()}";
 
-                ThongKeVeDoanhThu.Nodes["SoLuongVeRoot"].Nodes["VeVipChild"].Text =
-                    $"Số Lượng Vé Vip Đã Bán Ra: {root.GetProperty("ve_vip").GetInt64()}";
 
                 ThongKeVeDoanhThu.Nodes["DoanhThuRoot"].Text =
                     $"Tổng Doanh Thu Của Rạp: {root.GetProperty("doanh_thu").GetDecimal():N0} VND";
@@ -138,6 +134,18 @@ namespace CinemaManagement
         private void treeView1_AfterSelect_1(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void NutLichSu_Click(object sender, EventArgs e)
+        {
+            PhanLichSu lichsu = new PhanLichSu();
+            lichsu.ShowDialog();
+        }
+
+        private void NutXemDanhSachPhim_Click(object sender, EventArgs e)
+        {
+            PhanDanhSachPhim ds = new PhanDanhSachPhim();
+            ds.ShowDialog();
         }
     }
 }

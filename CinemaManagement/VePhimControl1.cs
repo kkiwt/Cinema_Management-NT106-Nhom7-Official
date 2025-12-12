@@ -19,27 +19,45 @@ namespace CinemaManagement
         /// Set dữ liệu cho control từ model VeDat.
         /// Nếu thiếu TenPhim/PosterUrl, hiển thị placeholder.
         /// </summary>
+
         public void SetData(VeDat ve)
         {
-            // Tên phim: nếu chưa có trong JSON thì placeholder
+            // Tên phim
             lbTenPhim.Text = string.IsNullOrWhiteSpace(ve.TenPhim)
                 ? "Phim (đang cập nhật)"
                 : ve.TenPhim;
 
+            // Mã vé, ghế, giá vé
             lbIDVe.Text = $"Mã vé: {ve.IdVe}";
-            lbGheNgoi.Text = $"Ghế ngồi: {ve.Ghe}";
-
-            // Giá vé: format theo tiền Việt
-            // Bạn có thể cập nhật theo format mong muốn
-            lbGiaVe.Text = $"Giá vé: {ve.GiaVe:#,0} đ";
+            lbGheNgoi.Text = $"Ghế ngồi: {(!string.IsNullOrWhiteSpace(ve.Ghe) ? ve.Ghe : "—")}";
+            lbGiaVe.Text = $"Giá vé: {(ve.GiaVe.HasValue ? $"{ve.GiaVe.Value:#,0} đ" : "—")}";
 
             // Giờ & Ngày chiếu
             lbGioChieu.Text = $"Giờ chiếu: {FormatGio(ve.GioChieu)}";
             lbNgayChieu.Text = $"Ngày chiếu: {FormatNgay(ve.NgayChieu)}";
 
-            // Poster: nếu có PosterUrl => load async, nếu không, để nền trắng hoặc icon mặc định
+            // Tên phòng chiếu: ghép IdPhongChieu + IdPhim (ví dụ C01P04)
+            string tenPhong = BuildTenPhongChieu(ve.IdPhongChieu, ve.IdPhim);
+            lbTenPhongChieu.Text = $"Phòng chiếu: {tenPhong}";
+
+            // Poster
             _ = LoadPosterAsync(ve.PosterUrl);
         }
+
+        private static string BuildTenPhongChieu(string idPhongChieu, string idPhim)
+        {
+            if (string.IsNullOrWhiteSpace(idPhongChieu) && string.IsNullOrWhiteSpace(idPhim))
+                return "—";
+
+            if (string.IsNullOrWhiteSpace(idPhongChieu))
+                return idPhim ?? "—";
+
+            if (string.IsNullOrWhiteSpace(idPhim))
+                return idPhongChieu ?? "—";
+
+            return idPhongChieu + idPhim; // ví dụ: C01 + P04 => C01P04
+        }
+
 
         private static string FormatGio(TimeSpan? gio)
             => gio.HasValue ? $"{gio.Value.Hours:00}:{gio.Value.Minutes:00}" : "—";
@@ -59,17 +77,18 @@ namespace CinemaManagement
                     return;
                 }
 
-                using var http = new HttpClient();
-                var bytes = await http.GetByteArrayAsync(posterUrl);
-                using var ms = new System.IO.MemoryStream(bytes);
-                var img = Image.FromStream(ms);
-                picturePoster.Image = img;
+                picturePoster.LoadAsync(posterUrl);
             }
             catch
             {
                 // Không nên làm vỡ UI nếu ảnh lỗi
                 picturePoster.BackColor = Color.White;
             }
+        }
+
+        private void lbTenPhongChieu_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

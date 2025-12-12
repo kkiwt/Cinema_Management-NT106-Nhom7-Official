@@ -30,7 +30,7 @@
         {
             parrotGradientPanel1 = new ReaLTaiizor.Controls.ParrotGradientPanel();
             bigLabel1 = new ReaLTaiizor.Controls.BigLabel();
-            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            NutQuayLai = new MaterialSkin.Controls.MaterialButton();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             bigLabel3 = new ReaLTaiizor.Controls.BigLabel();
             ChieuTu = new DateTimePicker();
@@ -51,10 +51,8 @@
             bigLabel14 = new ReaLTaiizor.Controls.BigLabel();
             ChonDoTuoi = new ReaLTaiizor.Controls.HopeComboBox();
             bigLabel10 = new ReaLTaiizor.Controls.BigLabel();
-            bigLabel16 = new ReaLTaiizor.Controls.BigLabel();
             ChonQuocGia = new ReaLTaiizor.Controls.HopeComboBox();
             URLTrailerPhim = new ReaLTaiizor.Controls.HopeTextBox();
-            bigLabel17 = new ReaLTaiizor.Controls.BigLabel();
             bigLabel20 = new ReaLTaiizor.Controls.BigLabel();
             AnhSeDuocThem = new ReaLTaiizor.Controls.HopePictureBox();
             NutThemAnh = new ReaLTaiizor.Controls.SpaceButton();
@@ -63,9 +61,7 @@
             panel1 = new Panel();
             ChonNgonNgu = new ReaLTaiizor.Controls.HopeComboBox();
             bigLabel13 = new ReaLTaiizor.Controls.BigLabel();
-            ChonPhongChieu = new ReaLTaiizor.Controls.HopeComboBox();
             TheLoaiText = new ReaLTaiizor.Controls.HopeTextBox();
-            ChonSuatChieu = new CheckedListBox();
             parrotGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AnhSeDuocThem).BeginInit();
             panel1.SuspendLayout();
@@ -106,26 +102,27 @@
             bigLabel1.Text = "Solunar Cinema Management System";
             bigLabel1.Click += bigLabel1_Click;
             // 
-            // materialButton1
+            // NutQuayLai
             // 
-            materialButton1.Anchor = AnchorStyles.None;
-            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton1.Depth = 0;
-            materialButton1.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            materialButton1.HighEmphasis = true;
-            materialButton1.Icon = null;
-            materialButton1.Location = new Point(825, -51);
-            materialButton1.Margin = new Padding(3, 4, 3, 4);
-            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton1.Name = "materialButton1";
-            materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(85, 36);
-            materialButton1.TabIndex = 5;
-            materialButton1.Text = "Quay Lại";
-            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton1.UseAccentColor = false;
-            materialButton1.UseVisualStyleBackColor = true;
+            NutQuayLai.Anchor = AnchorStyles.None;
+            NutQuayLai.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            NutQuayLai.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            NutQuayLai.Depth = 0;
+            NutQuayLai.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutQuayLai.HighEmphasis = true;
+            NutQuayLai.Icon = null;
+            NutQuayLai.Location = new Point(799, 85);
+            NutQuayLai.Margin = new Padding(3, 4, 3, 4);
+            NutQuayLai.MouseState = MaterialSkin.MouseState.HOVER;
+            NutQuayLai.Name = "NutQuayLai";
+            NutQuayLai.NoAccentTextColor = Color.Empty;
+            NutQuayLai.Size = new Size(85, 36);
+            NutQuayLai.TabIndex = 5;
+            NutQuayLai.Text = "Quay Lại";
+            NutQuayLai.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            NutQuayLai.UseAccentColor = false;
+            NutQuayLai.UseVisualStyleBackColor = true;
+            NutQuayLai.Click += NutQuayLai_Click;
             // 
             // sqlCommand1
             // 
@@ -140,7 +137,7 @@
             bigLabel3.BackColor = Color.Transparent;
             bigLabel3.Font = new Font("Noto Sans SC", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel3.ForeColor = Color.White;
-            bigLabel3.Location = new Point(447, 91);
+            bigLabel3.Location = new Point(420, 93);
             bigLabel3.Margin = new Padding(2, 0, 2, 0);
             bigLabel3.Name = "bigLabel3";
             bigLabel3.Size = new Size(138, 32);
@@ -414,19 +411,6 @@
             bigLabel10.TabIndex = 19;
             bigLabel10.Text = "Quốc Gia:";
             // 
-            // bigLabel16
-            // 
-            bigLabel16.AutoSize = true;
-            bigLabel16.BackColor = Color.Transparent;
-            bigLabel16.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel16.ForeColor = Color.White;
-            bigLabel16.Location = new Point(320, 536);
-            bigLabel16.Margin = new Padding(2, 0, 2, 0);
-            bigLabel16.Name = "bigLabel16";
-            bigLabel16.Size = new Size(110, 21);
-            bigLabel16.TabIndex = 31;
-            bigLabel16.Text = "Phòng Chiếu:";
-            // 
             // ChonQuocGia
             // 
             ChonQuocGia.DrawMode = DrawMode.OwnerDrawFixed;
@@ -465,19 +449,6 @@
             URLTrailerPhim.TabStop = false;
             URLTrailerPhim.UseSystemPasswordChar = false;
             // 
-            // bigLabel17
-            // 
-            bigLabel17.AutoSize = true;
-            bigLabel17.BackColor = Color.Transparent;
-            bigLabel17.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bigLabel17.ForeColor = Color.White;
-            bigLabel17.Location = new Point(27, 620);
-            bigLabel17.Margin = new Padding(2, 0, 2, 0);
-            bigLabel17.Name = "bigLabel17";
-            bigLabel17.Size = new Size(138, 21);
-            bigLabel17.TabIndex = 33;
-            bigLabel17.Text = "Chọn Suất Chiếu:";
-            // 
             // bigLabel20
             // 
             bigLabel20.AutoSize = true;
@@ -494,7 +465,7 @@
             // AnhSeDuocThem
             // 
             AnhSeDuocThem.BackColor = Color.FromArgb(192, 196, 204);
-            AnhSeDuocThem.Location = new Point(738, 482);
+            AnhSeDuocThem.Location = new Point(682, 469);
             AnhSeDuocThem.Margin = new Padding(2);
             AnhSeDuocThem.Name = "AnhSeDuocThem";
             AnhSeDuocThem.PixelOffsetType = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
@@ -510,7 +481,7 @@
             NutThemAnh.Customization = "Kioq/zIyMv8yMjL/Kioq/y8vL/8nJyf//v7+/yMjI/8qKir/";
             NutThemAnh.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutThemAnh.Image = null;
-            NutThemAnh.Location = new Point(758, 433);
+            NutThemAnh.Location = new Point(693, 433);
             NutThemAnh.Margin = new Padding(2);
             NutThemAnh.Name = "NutThemAnh";
             NutThemAnh.NoRounding = false;
@@ -526,7 +497,7 @@
             NutThemPhim.Customization = "Kioq/zIyMv8yMjL/Kioq/y8vL/8nJyf//v7+/yMjI/8qKir/";
             NutThemPhim.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutThemPhim.Image = null;
-            NutThemPhim.Location = new Point(325, 698);
+            NutThemPhim.Location = new Point(335, 586);
             NutThemPhim.Margin = new Padding(2);
             NutThemPhim.Name = "NutThemPhim";
             NutThemPhim.NoRounding = false;
@@ -566,18 +537,14 @@
             panel1.AutoScroll = true;
             panel1.Controls.Add(ChonNgonNgu);
             panel1.Controls.Add(bigLabel13);
-            panel1.Controls.Add(ChonPhongChieu);
             panel1.Controls.Add(TheLoaiText);
             panel1.Controls.Add(ThoiLuongText);
             panel1.Controls.Add(NutThemPhim);
             panel1.Controls.Add(NutThemAnh);
             panel1.Controls.Add(AnhSeDuocThem);
-            panel1.Controls.Add(ChonSuatChieu);
             panel1.Controls.Add(bigLabel20);
-            panel1.Controls.Add(bigLabel17);
             panel1.Controls.Add(URLTrailerPhim);
             panel1.Controls.Add(ChonQuocGia);
-            panel1.Controls.Add(bigLabel16);
             panel1.Controls.Add(bigLabel10);
             panel1.Controls.Add(ChonDoTuoi);
             panel1.Controls.Add(bigLabel14);
@@ -599,7 +566,7 @@
             panel1.Location = new Point(11, 127);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(929, 460);
+            panel1.Size = new Size(929, 377);
             panel1.TabIndex = 46;
             // 
             // ChonNgonNgu
@@ -610,7 +577,7 @@
             ChonNgonNgu.FormattingEnabled = true;
             ChonNgonNgu.ItemHeight = 30;
             ChonNgonNgu.Items.AddRange(new object[] { "English", "Vietnamese", "Lồng Tiếng Tiếng Việt", "Chinese", "Japanese", "Korean", "French", "German", "Spanish", "Portuguese", "Italian", "Russian", "Arabic", "Hindi", "Bengali", "Urdu", "Thai", "Indonesian", "Malay", "Philippine (Tagalog)", "Punjabi", "Turkish", "Dutch", "Polish", "Ukrainian", "Czech", "Slovak", "Swedish", "Norwegian", "Danish", "Finnish", "Greek", "Hebrew", "Hungarian", "Romanian", "Bulgarian", "Serbian", "Croatian", "Slovenian", "Latvian", "Lithuanian", "Estonian", "Icelandic", "Swahili", "Persian (Farsi)", "Tamil", "Telugu", "Marathi", "Gujarati", "Nepali", "Sinhala" });
-            ChonNgonNgu.Location = new Point(165, 567);
+            ChonNgonNgu.Location = new Point(467, 529);
             ChonNgonNgu.Margin = new Padding(2);
             ChonNgonNgu.Name = "ChonNgonNgu";
             ChonNgonNgu.Size = new Size(183, 36);
@@ -622,26 +589,12 @@
             bigLabel13.BackColor = Color.Transparent;
             bigLabel13.Font = new Font("Noto Sans SC", 10.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel13.ForeColor = Color.White;
-            bigLabel13.Location = new Point(27, 574);
+            bigLabel13.Location = new Point(335, 536);
             bigLabel13.Margin = new Padding(2, 0, 2, 0);
             bigLabel13.Name = "bigLabel13";
             bigLabel13.Size = new Size(87, 21);
             bigLabel13.TabIndex = 49;
             bigLabel13.Text = "Ngôn Ngữ:";
-            // 
-            // ChonPhongChieu
-            // 
-            ChonPhongChieu.DrawMode = DrawMode.OwnerDrawFixed;
-            ChonPhongChieu.FlatStyle = FlatStyle.Flat;
-            ChonPhongChieu.Font = new Font("Segoe UI", 9F);
-            ChonPhongChieu.FormattingEnabled = true;
-            ChonPhongChieu.ItemHeight = 30;
-            ChonPhongChieu.Location = new Point(436, 529);
-            ChonPhongChieu.Margin = new Padding(2);
-            ChonPhongChieu.Name = "ChonPhongChieu";
-            ChonPhongChieu.Size = new Size(254, 36);
-            ChonPhongChieu.TabIndex = 48;
-            ChonPhongChieu.SelectedIndexChanged += ChonPhongChieu_SelectedIndexChanged;
             // 
             // TheLoaiText
             // 
@@ -662,29 +615,19 @@
             TheLoaiText.SelectedText = "";
             TheLoaiText.SelectionLength = 0;
             TheLoaiText.SelectionStart = 0;
-            TheLoaiText.Size = new Size(525, 34);
+            TheLoaiText.Size = new Size(485, 34);
             TheLoaiText.TabIndex = 47;
             TheLoaiText.TabStop = false;
             TheLoaiText.UseSystemPasswordChar = false;
-            // 
-            // ChonSuatChieu
-            // 
-            ChonSuatChieu.FormattingEnabled = true;
-            ChonSuatChieu.Location = new Point(196, 620);
-            ChonSuatChieu.Margin = new Padding(2);
-            ChonSuatChieu.MultiColumn = true;
-            ChonSuatChieu.Name = "ChonSuatChieu";
-            ChonSuatChieu.Size = new Size(454, 58);
-            ChonSuatChieu.TabIndex = 34;
             // 
             // PhanThemPhim
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(946, 639);
+            ClientSize = new Size(946, 538);
             Controls.Add(bigLabel3);
-            Controls.Add(materialButton1);
+            Controls.Add(NutQuayLai);
             Controls.Add(parrotGradientPanel1);
             Controls.Add(panel1);
             ForeColor = Color.Coral;
@@ -704,7 +647,7 @@
 
         private ReaLTaiizor.Controls.ParrotGradientPanel parrotGradientPanel1;
         private ReaLTaiizor.Controls.BigLabel bigLabel1;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton NutQuayLai;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private ReaLTaiizor.Controls.BigLabel bigLabel3;
         private DateTimePicker ChieuTu;
@@ -725,19 +668,15 @@
         private ReaLTaiizor.Controls.BigLabel bigLabel14;
         private ReaLTaiizor.Controls.HopeComboBox ChonDoTuoi;
         private ReaLTaiizor.Controls.BigLabel bigLabel10;
-        private ReaLTaiizor.Controls.BigLabel bigLabel16;
         private ReaLTaiizor.Controls.HopeComboBox ChonQuocGia;
         private ReaLTaiizor.Controls.HopeTextBox URLTrailerPhim;
-        private ReaLTaiizor.Controls.BigLabel bigLabel17;
         private ReaLTaiizor.Controls.BigLabel bigLabel20;
         private ReaLTaiizor.Controls.HopePictureBox AnhSeDuocThem;
         private ReaLTaiizor.Controls.SpaceButton NutThemAnh;
         private ReaLTaiizor.Controls.SpaceButton NutThemPhim;
         private ReaLTaiizor.Controls.HopeTextBox ThoiLuongText;
         private Panel panel1;
-        private CheckedListBox ChonSuatChieu;
         private ReaLTaiizor.Controls.HopeTextBox TheLoaiText;
-        private ReaLTaiizor.Controls.HopeComboBox ChonPhongChieu;
         private ReaLTaiizor.Controls.HopeComboBox ChonNgonNgu;
         private ReaLTaiizor.Controls.BigLabel bigLabel13;
     }

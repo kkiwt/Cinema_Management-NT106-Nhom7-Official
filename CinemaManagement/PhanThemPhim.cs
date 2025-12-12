@@ -79,11 +79,6 @@ namespace CinemaManagement
             }
 
 
-            if (ChonPhongChieu.SelectedIndex < 0 || ChonSuatChieu.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Vui lòng chọn phòng chiếu và suất chiếu!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             // 8. Kiểm tra thời gian chiếu
             if (ChieuTu.Value > ChieuDen.Value)
@@ -106,19 +101,12 @@ namespace CinemaManagement
             }
 
 
-            // Lấy tên phòng từ combobox
-            string tenPhong = ChonPhongChieu.Text; // ví dụ: "Phòng chiếu 1"
 
 
-
-            string phongId = ChonPhongChieu.SelectedValue.ToString(); // Trả về C02 nếu chọn "Phòng chiếu 2"
-
-
-            string danhSachGio = string.Join("|", ChonSuatChieu.CheckedItems.Cast<string>());
             string posterBase64 = ImageToBase64(localPosterPath);
 
             string message =
-            $"ADD_PHIM|{TenBoPhim.Text}|{TheLoaiText.Text}|{ChonDoTuoi.Text}|{ThoiLuongText.Text}|{MoTaPhim.Text}|{URLTrailerPhim.Text}|{posterBase64}|{TenDaoDien.Text}|{DanDienVien.Text}|{ChonNgonNgu.Text}|{ChonQuocGia.Text}|{ChieuTu.Value:yyyy-MM-dd}|{ChieuDen.Value:yyyy-MM-dd}|{danhSachGio}|{phongId}";
+            $"ADD_PHIM|{TenBoPhim.Text}|{TheLoaiText.Text}|{ChonDoTuoi.Text}|{ThoiLuongText.Text}|{MoTaPhim.Text}|{URLTrailerPhim.Text}|{posterBase64}|{TenDaoDien.Text}|{DanDienVien.Text}|{ChonNgonNgu.Text}|{ChonQuocGia.Text}|{ChieuTu.Value:yyyy-MM-dd}|{ChieuDen.Value:yyyy-MM-dd}"; // Bo di danh sach gio va phongId
 
 
 
@@ -165,24 +153,12 @@ namespace CinemaManagement
         }
 
 
-        private bool isLoading = true;
+
 
         private void PhanThemPhim_Load(object sender, EventArgs e)
         {
-            isLoading = true;
-            var phongChieuList = new[]
-            {
-        new { Text = "Phòng chiếu 1", Value = "C01" },
-        new { Text = "Phòng chiếu 2", Value = "C02" },
-        new { Text = "Phòng chiếu 3", Value = "C03" },
-        new { Text = "Phòng chiếu 4", Value = "C04" },
-        new { Text = "Phòng chiếu 5", Value = "C05" },
-        new { Text = "Phòng chiếu 6", Value = "C06" }
-    };
-            ChonPhongChieu.DisplayMember = "Text";
-            ChonPhongChieu.ValueMember = "Value";
-            ChonPhongChieu.DataSource = phongChieuList;
-            isLoading = false;
+
+
         }
 
 
@@ -200,33 +176,12 @@ namespace CinemaManagement
 
         private async void ChonPhongChieu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (isLoading || ChonPhongChieu.SelectedIndex < 0) return;
 
-            ChonSuatChieu.Items.Clear();
-            string phongId = ChonPhongChieu.SelectedValue.ToString();
-            string message = $"GET_AVAILABLE_SLOTS|{phongId}|{ChieuTu.Value:yyyy-MM-dd}|{ChieuDen.Value:yyyy-MM-dd}";
-
-            var client = new ClientTCP();
-            string response = await client.SendMessageAsync(message);
-
-            if (response == "EMPTY")
-            {
-                MessageBox.Show("Không còn khung giờ trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (response.StartsWith("ERROR"))
-            {
-                MessageBox.Show(response, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            foreach (var gio in response.Split(','))
-            {
-                ChonSuatChieu.Items.Add(gio);
-            }
         }
 
-
+        private void NutQuayLai_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

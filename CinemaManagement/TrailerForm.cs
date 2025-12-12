@@ -160,5 +160,10 @@ namespace CinemaManagement
             var m = Regex.Match(url, @"(?<=v=)[\w-]{11}|(?<=be/)[\w-]{11}|(?<=embed/)[\w-]{11}");
             return m.Value;
         }
+
+        private void NutQuayLai_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

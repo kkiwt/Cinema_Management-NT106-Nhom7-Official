@@ -173,55 +173,49 @@ namespace ServerAndService
 
 
 
-        public async Task CallTaoSuatChieuRPC(string idPhim, string[] danhSachGio, string[] danhSachPhong)
+
+
+
+
+        // Service.cs — THÊM HÀM RPC tạo lịch cố định
+        public async Task<string> CreateLichCoDinhForPhim(string idPhim)
         {
 
-            await client.Rpc("TaoSuatChieuChoPhim", new
-            {
-                p_idphim = idPhim,
-                p_danhsachgio = danhSachGio,
-                p_danhsachphong = danhSachPhong
-            });
+            var result = await client.Rpc("tao_lich_codinh_roundrobin_10phong",
+                                          new { p_idphim = idPhim });
+            return result.Content?.Trim('\"');
 
         }
 
-        public async Task<string> GetNextIdPhimAsync()
-        {
-            var result = await client.Rpc("get_next_idphim", new { });
-            return result.Content.Trim('"');
-        }
-
-
-
+        // Service.cs — SỬA CHỮA AddPhimFullFlow: KHÔNG CẦN danhSachGio/phongChieu nữa
         public async Task<string> AddPhimFullFlow(
             string tenPhim, string theLoai, string doTuoi, int thoiLuong, string moTa,
             string urlTrailer, string posterBase64, string daoDien, string dienVien,
-            string ngonNgu, string quocGia, DateTime tuNgay, DateTime denNgay,
-            string danhSachGio, string phongChieu)
+            string ngonNgu, string quocGia, DateTime tuNgay, DateTime denNgay
+        )
         {
             try
             {
-                // ⇩ UPLOAD POSTER
+                // 1) Upload poster
                 string posterUrl = await UploadPosterBase64Async(posterBase64);
                 if (posterUrl.StartsWith("ERROR")) return posterUrl;
 
-                // Lấy IdPhim mới
+                // 2) Lấy IdPhim mới
                 string idPhim = await GetNextIdPhimAsync();
 
-                // Gọi RPC thêm phim với Ngôn Ngữ
+                // 3) Gọi RPC add_phim
                 string insertResult = await AddPhimRPC(
                     idPhim, tenPhim, theLoai, doTuoi, thoiLuong, moTa,
                     urlTrailer, posterUrl, daoDien, dienVien, ngonNgu, quocGia,
-                    tuNgay, denNgay);
-
+                    tuNgay, denNgay
+                );
                 if (!insertResult.Contains("SUCCESS"))
                     return insertResult;
 
-                // Tạo suất chiếu
-                string[] gioArray = danhSachGio.Split('|', StringSplitOptions.RemoveEmptyEntries);
-                string[] phongArray = { phongChieu };
-
-                await CallTaoSuatChieuRPC(idPhim, gioArray, phongArray);
+                // 4) Sinh lịch cố định cho phim (10 phòng riêng, round-robin khung giờ)
+                string lichResult = await CreateLichCoDinhForPhim(idPhim);
+                if (string.IsNullOrWhiteSpace(lichResult) || lichResult.StartsWith("ERROR"))
+                    return $"ERROR_CREATE_SCHEDULE: {lichResult ?? "NULL"}";
 
                 return "SUCCESS";
             }
@@ -230,6 +224,84 @@ namespace ServerAndService
                 return $"ERROR: {ex.Message}";
             }
         }
+
+
+        public async Task<string> GetNextIdPhimAsync()
+        {
+            var result = await client.Rpc("get_next_idphim", new { });
+            return result.Content.Trim('"');
+        }
+        // Service.cs
+
+        public async Task<string> GetLichSuVeAllRPC() // Cai nay moi them
+        {
+            try
+            {
+                var result = await client.Rpc("get_lichsu_ve_all", new { });
+                var json = result.Content?.Trim();
+                if (string.IsNullOrWhiteSpace(json) || json == "null") return "[]";
+                return json;
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_SERVICE_GET_HISTORY_ALL: {ex.Message}";
+            }
+        }
+
+        public async Task<string> GetMoviesListRPC(int limitCount = 100) // Cai nay moi them
+        {
+            try
+            {
+                var result = await client.Rpc("get_movies_list", new
+                {
+                    limit_count = limitCount
+                });
+
+                var json = result.Content?.Trim();
+                // Phòng trường hợp Supabase trả null/rỗng
+                if (string.IsNullOrWhiteSpace(json) || json == "null")
+                    return "[]";
+
+                return json; // JSON array: [{IdPhim, TenPhim, ChieuTu, DenNgay}, ...]
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_MOVIES_LIST: {ex.Message}";
+            }
+        }
+
+
+        public async Task<string> XoaPhimRPC(string idPhim) // cai moi them
+        {
+            try
+            {
+                var result = await client.Rpc("xoa_phim", new { p_idphim = idPhim });
+                // Vì hàm trả về VOID, Supabase trả về chuỗi rỗng hoặc null
+                return "SUCCESS";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_XOA_PHIM: {ex.Message}";
+            }
+        }
+
+
+        public async Task<string> GetCinemaStats2() // Cai ham can gui // cai so 2 la cai chinh thuc
+        {
+            try
+            {
+                var result = await client.Rpc("get_cinema_stats", new { });
+                return result.Content?.Trim();
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_GET_STATS: {ex.Message}";
+            }
+        }
+
+
+
+
 
 
 
