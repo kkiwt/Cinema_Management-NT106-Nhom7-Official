@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThongTInTaiKhoan));
             PanelHeader = new Panel();
+            label1 = new Label();
             Logo = new PictureBox();
             MenuTaiKhoan = new ContextMenuStrip(components);
             toolStripMenuItem1 = new ToolStripMenuItem();
@@ -53,7 +54,6 @@
             label4 = new Label();
             label3 = new Label();
             NutQuayLai = new MaterialSkin.Controls.MaterialButton();
-            label1 = new Label();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             MenuTaiKhoan.SuspendLayout();
@@ -70,6 +70,17 @@
             PanelHeader.Name = "PanelHeader";
             PanelHeader.Size = new Size(1117, 130);
             PanelHeader.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Transparent;
+            label1.Location = new Point(333, 42);
+            label1.Name = "label1";
+            label1.Size = new Size(525, 37);
+            label1.TabIndex = 8;
+            label1.Text = "Solunar Cinema User Information";
             // 
             // Logo
             // 
@@ -155,11 +166,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
             label5.Location = new Point(669, 70);
             label5.Name = "label5";
-            label5.Size = new Size(21, 20);
+            label5.Size = new Size(25, 19);
             label5.TabIndex = 20;
             label5.Text = "ID";
             // 
@@ -167,6 +178,7 @@
             // 
             ID.BackColor = Color.DimGray;
             ID.BorderStyle = BorderStyle.FixedSingle;
+            ID.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ID.ForeColor = Color.White;
             ID.Location = new Point(671, 93);
             ID.Multiline = true;
@@ -178,6 +190,7 @@
             // 
             tbNgaySinh.BackColor = Color.DimGray;
             tbNgaySinh.BorderStyle = BorderStyle.FixedSingle;
+            tbNgaySinh.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tbNgaySinh.ForeColor = Color.White;
             tbNgaySinh.Location = new Point(671, 206);
             tbNgaySinh.Multiline = true;
@@ -188,18 +201,19 @@
             // lbNgaySinh
             // 
             lbNgaySinh.AutoSize = true;
-            lbNgaySinh.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbNgaySinh.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbNgaySinh.ForeColor = Color.White;
             lbNgaySinh.Location = new Point(671, 183);
             lbNgaySinh.Name = "lbNgaySinh";
-            lbNgaySinh.Size = new Size(68, 20);
+            lbNgaySinh.Size = new Size(88, 19);
             lbNgaySinh.TabIndex = 17;
-            lbNgaySinh.Text = "Ngày sinh";
+            lbNgaySinh.Text = "Ngày Sinh";
             // 
             // tbEmail
             // 
             tbEmail.BackColor = Color.DimGray;
             tbEmail.BorderStyle = BorderStyle.FixedSingle;
+            tbEmail.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tbEmail.ForeColor = Color.White;
             tbEmail.Location = new Point(346, 206);
             tbEmail.Multiline = true;
@@ -210,11 +224,11 @@
             // lbEmail
             // 
             lbEmail.AutoSize = true;
-            lbEmail.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbEmail.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbEmail.ForeColor = Color.White;
             lbEmail.Location = new Point(346, 183);
             lbEmail.Name = "lbEmail";
-            lbEmail.Size = new Size(42, 20);
+            lbEmail.Size = new Size(51, 19);
             lbEmail.TabIndex = 15;
             lbEmail.Text = "Email";
             // 
@@ -222,6 +236,7 @@
             // 
             tbUsername.BackColor = Color.DimGray;
             tbUsername.BorderStyle = BorderStyle.FixedSingle;
+            tbUsername.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tbUsername.ForeColor = Color.White;
             tbUsername.Location = new Point(346, 93);
             tbUsername.Multiline = true;
@@ -233,11 +248,11 @@
             // lbUsername
             // 
             lbUsername.AutoSize = true;
-            lbUsername.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbUsername.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbUsername.ForeColor = Color.White;
             lbUsername.Location = new Point(346, 70);
             lbUsername.Name = "lbUsername";
-            lbUsername.Size = new Size(70, 20);
+            lbUsername.Size = new Size(87, 19);
             lbUsername.TabIndex = 13;
             lbUsername.Text = "Username";
             // 
@@ -245,6 +260,7 @@
             // 
             tbSDT.BackColor = Color.DimGray;
             tbSDT.BorderStyle = BorderStyle.FixedSingle;
+            tbSDT.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tbSDT.ForeColor = Color.White;
             tbSDT.Location = new Point(26, 206);
             tbSDT.Multiline = true;
@@ -255,18 +271,19 @@
             // lbSoDienThoai
             // 
             lbSoDienThoai.AutoSize = true;
-            lbSoDienThoai.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbSoDienThoai.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbSoDienThoai.ForeColor = Color.White;
             lbSoDienThoai.Location = new Point(26, 183);
             lbSoDienThoai.Name = "lbSoDienThoai";
-            lbSoDienThoai.Size = new Size(92, 20);
+            lbSoDienThoai.Size = new Size(116, 19);
             lbSoDienThoai.TabIndex = 11;
-            lbSoDienThoai.Text = "Số điện thoại";
+            lbSoDienThoai.Text = "Số Điện Thoại";
             // 
             // tbHovaTen
             // 
             tbHovaTen.BackColor = Color.DimGray;
             tbHovaTen.BorderStyle = BorderStyle.FixedSingle;
+            tbHovaTen.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tbHovaTen.ForeColor = Color.White;
             tbHovaTen.Location = new Point(26, 93);
             tbHovaTen.Multiline = true;
@@ -277,13 +294,13 @@
             // lbHoTen
             // 
             lbHoTen.AutoSize = true;
-            lbHoTen.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbHoTen.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbHoTen.ForeColor = Color.White;
             lbHoTen.Location = new Point(26, 70);
             lbHoTen.Name = "lbHoTen";
-            lbHoTen.Size = new Size(71, 20);
+            lbHoTen.Size = new Size(88, 19);
             lbHoTen.TabIndex = 9;
-            lbHoTen.Text = "Họ và Tên";
+            lbHoTen.Text = "Họ Và Tên";
             lbHoTen.Click += label5_Click;
             // 
             // label4
@@ -327,17 +344,6 @@
             NutQuayLai.UseAccentColor = false;
             NutQuayLai.UseVisualStyleBackColor = true;
             NutQuayLai.Click += NutQuayLai_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Transparent;
-            label1.Location = new Point(333, 42);
-            label1.Name = "label1";
-            label1.Size = new Size(525, 37);
-            label1.TabIndex = 8;
-            label1.Text = "Solunar Cinema User Information";
             // 
             // ThongTInTaiKhoan
             // 

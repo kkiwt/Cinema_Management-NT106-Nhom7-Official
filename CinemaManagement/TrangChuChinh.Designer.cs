@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrangChuChinh));
             PanelHeader = new Panel();
+            NutBapNuoc = new Button();
             pictureBox1 = new PictureBox();
             TimKiem = new TextBox();
             TaiKhoan = new Button();
@@ -50,7 +51,6 @@
             PhimDangChieu = new Label();
             Next = new Button();
             Prev = new Button();
-            button1 = new Button();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             MenuTaiKhoan.SuspendLayout();
@@ -62,7 +62,7 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(30, 27, 58);
-            PanelHeader.Controls.Add(button1);
+            PanelHeader.Controls.Add(NutBapNuoc);
             PanelHeader.Controls.Add(pictureBox1);
             PanelHeader.Controls.Add(TimKiem);
             PanelHeader.Controls.Add(TaiKhoan);
@@ -73,6 +73,20 @@
             PanelHeader.Name = "PanelHeader";
             PanelHeader.Size = new Size(1117, 78);
             PanelHeader.TabIndex = 0;
+            // 
+            // NutBapNuoc
+            // 
+            NutBapNuoc.BackColor = Color.FromArgb(230, 57, 70);
+            NutBapNuoc.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutBapNuoc.ForeColor = SystemColors.Control;
+            NutBapNuoc.Location = new Point(616, 18);
+            NutBapNuoc.Margin = new Padding(3, 2, 3, 2);
+            NutBapNuoc.Name = "NutBapNuoc";
+            NutBapNuoc.Size = new Size(146, 42);
+            NutBapNuoc.TabIndex = 5;
+            NutBapNuoc.Text = "BẮP NƯỚC";
+            NutBapNuoc.UseVisualStyleBackColor = false;
+            NutBapNuoc.Click += NutBapNuoc_Click;
             // 
             // pictureBox1
             // 
@@ -151,7 +165,7 @@
             PhimHot.BackColor = Color.FromArgb(230, 57, 70);
             PhimHot.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PhimHot.ForeColor = SystemColors.Control;
-            PhimHot.Location = new Point(456, 18);
+            PhimHot.Location = new Point(467, 18);
             PhimHot.Margin = new Padding(3, 2, 3, 2);
             PhimHot.Name = "PhimHot";
             PhimHot.Size = new Size(123, 42);
@@ -165,7 +179,7 @@
             UuDai.BackColor = Color.FromArgb(230, 57, 70);
             UuDai.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UuDai.ForeColor = SystemColors.Control;
-            UuDai.Location = new Point(769, 18);
+            UuDai.Location = new Point(791, 18);
             UuDai.Margin = new Padding(3, 2, 3, 2);
             UuDai.Name = "UuDai";
             UuDai.Size = new Size(123, 42);
@@ -196,7 +210,7 @@
             NutStaffOnly.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutStaffOnly.HighEmphasis = true;
             NutStaffOnly.Icon = null;
-            NutStaffOnly.Location = new Point(1011, 5);
+            NutStaffOnly.Location = new Point(989, 4);
             NutStaffOnly.Margin = new Padding(3, 4, 3, 4);
             NutStaffOnly.MouseState = MaterialSkin.MouseState.HOVER;
             NutStaffOnly.Name = "NutStaffOnly";
@@ -309,20 +323,6 @@
             Prev.UseVisualStyleBackColor = false;
             Prev.Click += Prev_Click;
             // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(230, 57, 70);
-            button1.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.Control;
-            button1.Location = new Point(601, 18);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(146, 42);
-            button1.TabIndex = 5;
-            button1.Text = "BẮP NƯỚC";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
-            // 
             // TrangChuChinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -370,6 +370,6 @@
         private PictureBox House;
         private PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialButton NutStaffOnly;
-        private Button button1;
+        private Button NutBapNuoc;
     }
 }

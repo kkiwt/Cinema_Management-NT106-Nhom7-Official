@@ -128,10 +128,10 @@ namespace CinemaManagement
                         if (trangThai == "paid")
                         {
                             _idThanhToan= null;
-                            numericUpDown1.Value = 0;
-                            numericUpDown2.Value = 0;
-                            numericUpDown3.Value = 0;
-                            numericUpDown4.Value = 0;
+                            Combo1Numeric.Value = 0;
+                            Combo2Numeric.Value = 0;
+                            Combo3Numeric.Value = 0;
+                            Combo4Numering.Value = 0;
                             this.BeginInvoke(new Action(() =>
                             {
                                 if (_currentQrPopup != null && !_currentQrPopup.IsDisposed)
@@ -165,10 +165,10 @@ namespace CinemaManagement
         private int countAllBapNuoc()
         {
             int count = 0;
-            count += (int)numericUpDown1.Value;
-            count += (int)numericUpDown2.Value;
-            count += (int)numericUpDown3.Value;
-            count += (int)numericUpDown4.Value;
+            count += (int)Combo1Numeric.Value;
+            count += (int)Combo2Numeric.Value;
+            count += (int)Combo3Numeric.Value;
+            count += (int)Combo4Numering.Value;
             return count;
         }
         private string CreateIdBapNuoc()
@@ -178,21 +178,21 @@ namespace CinemaManagement
             string cb3 = "BUIT";
             string cb4 = "BUITP";
             string result = "";
-            if (numericUpDown1.Value > 0)
+            if (Combo1Numeric.Value > 0)
             {
-                result += $"{numericUpDown1.Value}{cb1}";
+                result += $"{Combo1Numeric.Value}{cb1}";
             }
-            if (numericUpDown2.Value > 0)
+            if (Combo2Numeric.Value > 0)
             {
-                result += $"{numericUpDown2.Value}{cb2}";
+                result += $"{Combo2Numeric.Value}{cb2}";
             }
-            if (numericUpDown3.Value > 0)
+            if (Combo3Numeric.Value > 0)
             {
-                result += $"{numericUpDown3.Value}{cb3}";
+                result += $"{Combo3Numeric.Value}{cb3}";
             }
-            if (numericUpDown4.Value > 0)
+            if (Combo4Numering.Value > 0)
             {
-                result += $"{numericUpDown4.Value}{cb4}";
+                result += $"{Combo4Numering.Value}{cb4}";
             }
             return result;
         }
@@ -203,10 +203,10 @@ namespace CinemaManagement
             decimal price3 = 12500;
             decimal price4 = 13500;
             decimal total = 0;
-            total += price1 * numericUpDown1.Value;
-            total += price2 * numericUpDown2.Value;
-            total += price3 * numericUpDown3.Value;
-            total += price4 * numericUpDown4.Value;
+            total += price1 * Combo1Numeric.Value;
+            total += price2 * Combo2Numeric.Value;
+            total += price3 * Combo3Numeric.Value;
+            total += price4 * Combo4Numering.Value;
             return total;
         }
         private async Task CreatePaymentQRCode()

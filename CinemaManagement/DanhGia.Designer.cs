@@ -67,6 +67,7 @@
             toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             toolStripMenuItem3 = new ToolStripMenuItem();
+            NutReload = new ReaLTaiizor.Controls.AirButton();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             MenuTaiKhoan.SuspendLayout();
@@ -184,6 +185,7 @@
             // panelDuongDan
             // 
             panelDuongDan.BackColor = Color.LightBlue;
+            panelDuongDan.Controls.Add(NutReload);
             panelDuongDan.Controls.Add(NutQuayLai);
             panelDuongDan.Controls.Add(flowLayoutPanel2);
             panelDuongDan.Controls.Add(flowLayoutPanel1);
@@ -488,6 +490,20 @@
             toolStripMenuItem3.Size = new Size(239, 28);
             toolStripMenuItem3.Text = "Đăng xuất";
             // 
+            // NutReload
+            // 
+            NutReload.Customization = "7e3t//Ly8v/r6+v/5ubm/+vr6//f39//p6en/zw8PP8UFBT/gICA/w==";
+            NutReload.Font = new Font("Segoe UI", 9F);
+            NutReload.Image = null;
+            NutReload.Location = new Point(909, 11);
+            NutReload.Name = "NutReload";
+            NutReload.NoRounding = false;
+            NutReload.Size = new Size(82, 30);
+            NutReload.TabIndex = 53;
+            NutReload.Text = "Reload";
+            NutReload.Transparent = false;
+            NutReload.Click += NutReload_Click;
+            // 
             // DanhGia
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -552,5 +568,6 @@
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem3;
         private MaterialSkin.Controls.MaterialButton NutQuayLai;
+        private ReaLTaiizor.Controls.AirButton NutReload;
     }
 }

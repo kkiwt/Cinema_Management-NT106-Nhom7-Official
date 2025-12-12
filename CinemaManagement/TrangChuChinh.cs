@@ -292,13 +292,20 @@ namespace CinemaManagement
 
         private void TrangChuChinh_FormClosed(object sender, FormClosedEventArgs e)
         {
+            
             Application.Exit();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void NutBapNuoc_Click(object sender, EventArgs e)
+        {
             MuaBapNuoc buy = new MuaBapNuoc(currentUser);
             buy.ShowDialog();
+
         }
     }
 

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -11,8 +10,8 @@ namespace CinemaManagement
 {
     public partial class PhanLichSu : Form
     {
-        private DataTable _allData;  // dữ liệu gốc đã load
-        private DataView _view;      // view để filter và bind
+        private DataTable _allData;  
+        private DataView _view;      
 
         public PhanLichSu()
         {
@@ -111,7 +110,7 @@ namespace CinemaManagement
                         string tenPhim = item.TryGetProperty("tenphim", out var x3) ? x3.GetString() : "";
                         string ghe = item.TryGetProperty("tenghe", out var x4) ? x4.GetString() : "";
                         string phongChieu = item.TryGetProperty("tenphongchieu", out var x5) ? x5.GetString() : "";
-                     //   string bapNuoc = item.TryGetProperty("tenbapnuoc", out var x6) ? x6.GetString() : "";
+                        string bapNuoc = item.TryGetProperty("tenbapnuoc", out var x6) ? x6.GetString() : "";
                         string ngayDatStr = item.TryGetProperty("ngaydat", out var x7) ? x7.GetString() : null;
                         string gioBD = item.TryGetProperty("tgbatdau", out var x8) ? x8.GetString() : "";
 
@@ -120,7 +119,7 @@ namespace CinemaManagement
                         if (DateTime.TryParse(ngayDatStr, out var d))
                             ngayHienThi = d.ToString("dd/MM/yyyy");
 
-                        dt.Rows.Add(maKH, tenKH, tenPhim, ghe, phongChieu, "", ngayHienThi, gioBD);
+                        dt.Rows.Add(maKH, tenKH, tenPhim, ghe, phongChieu, bapNuoc, ngayHienThi, gioBD);
                     }
                 }
             }

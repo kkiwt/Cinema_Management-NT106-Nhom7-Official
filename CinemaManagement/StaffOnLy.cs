@@ -48,7 +48,7 @@ namespace CinemaManagement
         private async Task LoadStats()
         {
 
-            string response = await client.SendMessageAsync("GET_STATS");
+            string response = await client.SendMessageAsync("GET_STATS2");
             if (!string.IsNullOrWhiteSpace(response) && !response.StartsWith("ERROR"))
             {
                 var json = System.Text.Json.JsonDocument.Parse(response);

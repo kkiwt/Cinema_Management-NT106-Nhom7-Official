@@ -111,7 +111,7 @@
             NutQuayLai.Font = new Font("Noto Sans SC", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             NutQuayLai.HighEmphasis = true;
             NutQuayLai.Icon = null;
-            NutQuayLai.Location = new Point(799, 85);
+            NutQuayLai.Location = new Point(799, 82);
             NutQuayLai.Margin = new Padding(3, 4, 3, 4);
             NutQuayLai.MouseState = MaterialSkin.MouseState.HOVER;
             NutQuayLai.Name = "NutQuayLai";
@@ -392,7 +392,7 @@
             ChonDoTuoi.FormattingEnabled = true;
             ChonDoTuoi.ItemHeight = 30;
             ChonDoTuoi.Items.AddRange(new object[] { "Mọi Đối Tượng", "6+", "13+", "16+", "18+" });
-            ChonDoTuoi.Location = new Point(165, 433);
+            ChonDoTuoi.Location = new Point(165, 437);
             ChonDoTuoi.Margin = new Padding(2);
             ChonDoTuoi.Name = "ChonDoTuoi";
             ChonDoTuoi.Size = new Size(188, 36);
@@ -419,7 +419,7 @@
             ChonQuocGia.FormattingEnabled = true;
             ChonQuocGia.ItemHeight = 30;
             ChonQuocGia.Items.AddRange(new object[] { "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe" });
-            ChonQuocGia.Location = new Point(467, 433);
+            ChonQuocGia.Location = new Point(477, 437);
             ChonQuocGia.Margin = new Padding(2);
             ChonQuocGia.Name = "ChonQuocGia";
             ChonQuocGia.Size = new Size(183, 36);
@@ -566,7 +566,7 @@
             panel1.Location = new Point(11, 127);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(929, 377);
+            panel1.Size = new Size(929, 429);
             panel1.TabIndex = 46;
             // 
             // ChonNgonNgu
@@ -625,7 +625,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
-            ClientSize = new Size(946, 538);
+            ClientSize = new Size(946, 570);
             Controls.Add(bigLabel3);
             Controls.Add(NutQuayLai);
             Controls.Add(parrotGradientPanel1);

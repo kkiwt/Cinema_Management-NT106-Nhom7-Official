@@ -72,9 +72,8 @@
             button20 = new Button();
             button43 = new Button();
             button41 = new Button();
-            textBox1 = new TextBox();
+            MaGiamGiaText = new TextBox();
             label1 = new Label();
-            button42 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -595,14 +594,14 @@
             button41.TabIndex = 40;
             button41.Text = "Quay lại";
             button41.UseVisualStyleBackColor = true;
-            button41.Click += button41_Click;
+            button41.Click += NutQuayLai_Click;
             // 
-            // textBox1
+            // MaGiamGiaText
             // 
-            textBox1.Location = new Point(240, 244);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(247, 23);
-            textBox1.TabIndex = 51;
+            MaGiamGiaText.Location = new Point(240, 244);
+            MaGiamGiaText.Name = "MaGiamGiaText";
+            MaGiamGiaText.Size = new Size(247, 23);
+            MaGiamGiaText.TabIndex = 51;
             // 
             // label1
             // 
@@ -616,25 +615,14 @@
             label1.TabIndex = 52;
             label1.Text = "Nhập mã giảm giá(nếu có)";
             // 
-            // button42
-            // 
-            button42.Location = new Point(47, 290);
-            button42.Name = "button42";
-            button42.Size = new Size(127, 23);
-            button42.TabIndex = 53;
-            button42.Text = "Quay về trang chủ";
-            button42.UseVisualStyleBackColor = true;
-            button42.Click += button42_Click;
-            // 
             // ChonGheNgoi
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(517, 350);
-            Controls.Add(button42);
             Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(MaGiamGiaText);
             Controls.Add(panel1);
             Controls.Add(button43);
             Controls.Add(button41);
@@ -694,8 +682,7 @@
         private Button button43;
         private Button button41;
         private Label lblSoLuongGhe;
-        private TextBox textBox1;
+        private TextBox MaGiamGiaText;
         private Label label1;
-        private Button button42;
     }
 }

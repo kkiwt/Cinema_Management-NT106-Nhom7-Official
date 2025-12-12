@@ -136,7 +136,7 @@
             NutThemPhim.Font = new Font("Segoe UI", 12F);
             NutThemPhim.HoverTextColor = Color.FromArgb(48, 49, 51);
             NutThemPhim.InfoColor = Color.FromArgb(144, 147, 153);
-            NutThemPhim.Location = new Point(239, 439);
+            NutThemPhim.Location = new Point(226, 439);
             NutThemPhim.Name = "NutThemPhim";
             NutThemPhim.PrimaryColor = Color.SlateBlue;
             NutThemPhim.Size = new Size(142, 61);
@@ -156,7 +156,7 @@
             NutThemUuDai.Font = new Font("Segoe UI", 12F);
             NutThemUuDai.HoverTextColor = Color.FromArgb(48, 49, 51);
             NutThemUuDai.InfoColor = Color.FromArgb(144, 147, 153);
-            NutThemUuDai.Location = new Point(412, 442);
+            NutThemUuDai.Location = new Point(411, 439);
             NutThemUuDai.Name = "NutThemUuDai";
             NutThemUuDai.PrimaryColor = Color.SlateBlue;
             NutThemUuDai.Size = new Size(142, 61);
@@ -218,7 +218,7 @@
             NutXemDanhSachPhim.Font = new Font("Segoe UI", 12F);
             NutXemDanhSachPhim.HoverTextColor = Color.FromArgb(48, 49, 51);
             NutXemDanhSachPhim.InfoColor = Color.FromArgb(144, 147, 153);
-            NutXemDanhSachPhim.Location = new Point(587, 442);
+            NutXemDanhSachPhim.Location = new Point(590, 439);
             NutXemDanhSachPhim.Name = "NutXemDanhSachPhim";
             NutXemDanhSachPhim.PrimaryColor = Color.SlateBlue;
             NutXemDanhSachPhim.Size = new Size(142, 61);

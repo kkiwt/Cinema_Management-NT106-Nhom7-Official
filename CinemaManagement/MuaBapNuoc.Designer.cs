@@ -32,34 +32,34 @@
             panel1 = new Panel();
             btnThanhToan = new Button();
             btnQuayLai = new Button();
-            numericUpDown4 = new NumericUpDown();
+            Combo4Numering = new NumericUpDown();
             label7 = new Label();
             textBox4 = new TextBox();
             label8 = new Label();
             pictureBox4 = new PictureBox();
-            numericUpDown3 = new NumericUpDown();
+            Combo3Numeric = new NumericUpDown();
             label5 = new Label();
             textBox3 = new TextBox();
             label6 = new Label();
             pictureBox3 = new PictureBox();
-            numericUpDown2 = new NumericUpDown();
+            Combo2Numeric = new NumericUpDown();
             label3 = new Label();
             textBox2 = new TextBox();
             label4 = new Label();
             pictureBox2 = new PictureBox();
-            numericUpDown1 = new NumericUpDown();
+            Combo1Numeric = new NumericUpDown();
             label2 = new Label();
             textBox1 = new TextBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Combo4Numering).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Combo3Numeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Combo2Numeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Combo1Numeric).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -67,22 +67,22 @@
             // 
             panel1.Controls.Add(btnThanhToan);
             panel1.Controls.Add(btnQuayLai);
-            panel1.Controls.Add(numericUpDown4);
+            panel1.Controls.Add(Combo4Numering);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(textBox4);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(pictureBox4);
-            panel1.Controls.Add(numericUpDown3);
+            panel1.Controls.Add(Combo3Numeric);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(pictureBox3);
-            panel1.Controls.Add(numericUpDown2);
+            panel1.Controls.Add(Combo2Numeric);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(numericUpDown1);
+            panel1.Controls.Add(Combo1Numeric);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
@@ -119,13 +119,13 @@
             btnQuayLai.UseVisualStyleBackColor = false;
             btnQuayLai.Click += btnQuayLai_Click;
             // 
-            // numericUpDown4
+            // Combo4Numering
             // 
-            numericUpDown4.Location = new Point(374, 258);
-            numericUpDown4.Margin = new Padding(3, 2, 3, 2);
-            numericUpDown4.Name = "numericUpDown4";
-            numericUpDown4.Size = new Size(44, 23);
-            numericUpDown4.TabIndex = 19;
+            Combo4Numering.Location = new Point(374, 258);
+            Combo4Numering.Margin = new Padding(3, 2, 3, 2);
+            Combo4Numering.Name = "Combo4Numering";
+            Combo4Numering.Size = new Size(44, 23);
+            Combo4Numering.TabIndex = 19;
             // 
             // label7
             // 
@@ -168,13 +168,13 @@
             pictureBox4.TabIndex = 15;
             pictureBox4.TabStop = false;
             // 
-            // numericUpDown3
+            // Combo3Numeric
             // 
-            numericUpDown3.Location = new Point(48, 258);
-            numericUpDown3.Margin = new Padding(3, 2, 3, 2);
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(44, 23);
-            numericUpDown3.TabIndex = 14;
+            Combo3Numeric.Location = new Point(48, 258);
+            Combo3Numeric.Margin = new Padding(3, 2, 3, 2);
+            Combo3Numeric.Name = "Combo3Numeric";
+            Combo3Numeric.Size = new Size(44, 23);
+            Combo3Numeric.TabIndex = 14;
             // 
             // label5
             // 
@@ -217,13 +217,13 @@
             pictureBox3.TabIndex = 10;
             pictureBox3.TabStop = false;
             // 
-            // numericUpDown2
+            // Combo2Numeric
             // 
-            numericUpDown2.Location = new Point(374, 118);
-            numericUpDown2.Margin = new Padding(3, 2, 3, 2);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(44, 23);
-            numericUpDown2.TabIndex = 9;
+            Combo2Numeric.Location = new Point(374, 118);
+            Combo2Numeric.Margin = new Padding(3, 2, 3, 2);
+            Combo2Numeric.Name = "Combo2Numeric";
+            Combo2Numeric.Size = new Size(44, 23);
+            Combo2Numeric.TabIndex = 9;
             // 
             // label3
             // 
@@ -266,13 +266,13 @@
             pictureBox2.TabIndex = 5;
             pictureBox2.TabStop = false;
             // 
-            // numericUpDown1
+            // Combo1Numeric
             // 
-            numericUpDown1.Location = new Point(48, 118);
-            numericUpDown1.Margin = new Padding(3, 2, 3, 2);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(44, 23);
-            numericUpDown1.TabIndex = 4;
+            Combo1Numeric.Location = new Point(48, 118);
+            Combo1Numeric.Margin = new Padding(3, 2, 3, 2);
+            Combo1Numeric.Name = "Combo1Numeric";
+            Combo1Numeric.Size = new Size(44, 23);
+            Combo1Numeric.TabIndex = 4;
             // 
             // label2
             // 
@@ -329,13 +329,13 @@
             Load += MuaBapNuoc_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Combo4Numering).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Combo3Numeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Combo2Numeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Combo1Numeric).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -343,24 +343,24 @@
         #endregion
 
         private Panel panel1;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown Combo2Numeric;
         private Label label3;
         private TextBox textBox2;
         private Label label4;
         private PictureBox pictureBox2;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown Combo1Numeric;
         private Label label2;
         private TextBox textBox1;
         private Label label1;
         private PictureBox pictureBox1;
         private Button btnThanhToan;
         private Button btnQuayLai;
-        private NumericUpDown numericUpDown4;
+        private NumericUpDown Combo4Numering;
         private Label label7;
         private TextBox textBox4;
         private Label label8;
         private PictureBox pictureBox4;
-        private NumericUpDown numericUpDown3;
+        private NumericUpDown Combo3Numeric;
         private Label label5;
         private TextBox textBox3;
         private Label label6;

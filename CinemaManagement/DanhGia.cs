@@ -335,5 +335,10 @@ namespace CinemaManagement
         {
             this.Close();
         }
+
+        private void NutReload_Click(object sender, EventArgs e)
+        {
+            DanhGia_Load(sender, e);
+        }
     }
 }

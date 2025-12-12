@@ -176,5 +176,11 @@ namespace CinemaManagement
         {
 
         }
+
+        private void NutBapNuoc_Click(object sender, EventArgs e)
+        {
+            MuaBapNuoc buy = new MuaBapNuoc(currentUser);
+            buy.ShowDialog();
+        }
     }
 }

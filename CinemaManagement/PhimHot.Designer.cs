@@ -44,6 +44,7 @@
             ThongTinTaiKhoan = new ToolStripMenuItem();
             VeDaDat = new ToolStripMenuItem();
             DangXuat = new ToolStripMenuItem();
+            NutBapNuoc = new Button();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Logo).BeginInit();
             PanelDuongDan.SuspendLayout();
@@ -54,6 +55,7 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(30, 27, 58);
+            PanelHeader.Controls.Add(NutBapNuoc);
             PanelHeader.Controls.Add(Logo);
             PanelHeader.Controls.Add(TaiKhoan);
             PanelHeader.Controls.Add(DanhSachPhimHot);
@@ -93,7 +95,7 @@
             DanhSachPhimHot.BackColor = Color.FromArgb(230, 57, 70);
             DanhSachPhimHot.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DanhSachPhimHot.ForeColor = SystemColors.Control;
-            DanhSachPhimHot.Location = new Point(607, 18);
+            DanhSachPhimHot.Location = new Point(480, 18);
             DanhSachPhimHot.Margin = new Padding(3, 2, 3, 2);
             DanhSachPhimHot.Name = "DanhSachPhimHot";
             DanhSachPhimHot.Size = new Size(123, 42);
@@ -107,7 +109,7 @@
             UuDai.BackColor = Color.FromArgb(230, 57, 70);
             UuDai.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UuDai.ForeColor = SystemColors.Control;
-            UuDai.Location = new Point(769, 18);
+            UuDai.Location = new Point(790, 18);
             UuDai.Margin = new Padding(3, 2, 3, 2);
             UuDai.Name = "UuDai";
             UuDai.Size = new Size(123, 42);
@@ -207,6 +209,20 @@
             DangXuat.Text = "Đăng xuất";
             DangXuat.Click += DangXuat_Click;
             // 
+            // NutBapNuoc
+            // 
+            NutBapNuoc.BackColor = Color.FromArgb(230, 57, 70);
+            NutBapNuoc.Font = new Font("Arial Narrow", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NutBapNuoc.ForeColor = SystemColors.Control;
+            NutBapNuoc.Location = new Point(624, 18);
+            NutBapNuoc.Margin = new Padding(3, 2, 3, 2);
+            NutBapNuoc.Name = "NutBapNuoc";
+            NutBapNuoc.Size = new Size(146, 42);
+            NutBapNuoc.TabIndex = 6;
+            NutBapNuoc.Text = "BẮP NƯỚC";
+            NutBapNuoc.UseVisualStyleBackColor = false;
+            NutBapNuoc.Click += NutBapNuoc_Click;
+            // 
             // PhimHot
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -246,5 +262,6 @@
         private ToolStripMenuItem ThongTinTaiKhoan;
         private ToolStripMenuItem VeDaDat;
         private ToolStripMenuItem DangXuat;
+        private Button NutBapNuoc;
     }
 }
