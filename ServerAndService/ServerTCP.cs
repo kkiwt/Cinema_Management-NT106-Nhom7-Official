@@ -513,7 +513,7 @@ namespace ServerAndService
                         }
                     case "REMOVE_THANHTOAN_BAPNUOC":
                         {
-                            if (parts.Length < 1)
+                            if (parts.Length < 2)
                             {
                                 response = "ERROR: REMOVE_THANHTOAN_BAPNUOC requires IdThanhToan";
                             }
@@ -527,7 +527,7 @@ namespace ServerAndService
 
                     case "ADD_THANHTOAN_BAPNUOC":
                         {
-                            if (parts.Length < 6)
+                            if (parts.Length < 7)
                             {
                                 response = "ERROR";
                             }
@@ -540,6 +540,32 @@ namespace ServerAndService
                                 string trangthai = parts[5];
                                 DateTime ngaydat = DateTime.Parse(parts[6]);
                                 response = await service.AddThanhToanBapNuocAsync(idThanhToan, idTaiKhoan, idBapNuoc,tongtien,trangthai,ngaydat);
+                            }
+                            break;
+                        }
+                    case "SET_GIAMGIA":
+                        {
+                            if (parts.Length < 2)
+                            {
+                                response = "ERROR";
+                            }
+                            else
+                            {
+                                string idGiamGia = parts[1];
+                                response = await service.SetGiamGiaAsync(idGiamGia);
+                            }
+                            break;
+                        }
+                    case "UNSET_GIAMGIA":
+                        {
+                            if (parts.Length < 2)
+                            {
+                                response = "ERROR";
+                            }
+                            else
+                            {
+                                string idGiamGia = parts[1];
+                                response = await service.UnsetGiamGiaAsync(idGiamGia);
                             }
                             break;
                         }

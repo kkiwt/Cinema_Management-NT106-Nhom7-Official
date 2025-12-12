@@ -16,4 +16,5 @@ public class GiamGia : BaseModel
 
     [Column("TiLeGiam")]
     public decimal? TiLeGiam { get; set; }
+    
 }

@@ -4,14 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static CinemaManagement.ThongTinVe;
 
 namespace CinemaManagement
 {
@@ -195,7 +193,7 @@ namespace CinemaManagement
 
                 if (GiamGiaApDung())
                 {
-                        MessageBox.Show($"Mã giảm giá hợp lệ! Giảm {GiamGia.tilegiam * 100}%.");
+                    MessageBox.Show($"Mã giảm giá hợp lệ! Giảm {GiamGia.tilegiam * 100}%.");
                 }
                 else if (maGiamGia == "")
                 {
@@ -203,7 +201,7 @@ namespace CinemaManagement
                 }
                 else
                 {
-
+                    GiamGia = null;
                     MessageBox.Show("Mã giảm giá không hợp lệ hoặc đã hết hạn.");
                 }
             }
@@ -213,15 +211,12 @@ namespace CinemaManagement
         }
         private bool GiamGiaApDung()
         {
-            return GiamGia != null && GiamGia.denngay > DateTime.Now;
+            return GiamGia != null && GiamGia.denngay > DateTime.Now && GiamGia.trangthai == "available";
         }
         private async void RecreatePayment()
         {
             await CreatePaymentQRCode();
         }
-
-        // ChonGheNgoi.cs - thêm field
-        private string _lastPaymentId;
 
         private async Task CreatePaymentQRCode()
         {
@@ -231,7 +226,6 @@ namespace CinemaManagement
 
             var vnTime = DateTime.UtcNow.AddHours(7);
             var idThanhToan = $"TT{vnTime:yyyyMMddHHmmss}";
-            _lastPaymentId = idThanhToan; // <-- thêm dòng này
 
             // Lấy danh sách ghế
             string jsonSeats = await _client.SendMessageAsync(
@@ -245,9 +239,11 @@ namespace CinemaManagement
             {
                 var seat = seatStatusList.FirstOrDefault(s => s.idghe == seatId);
                 if (seat == null) continue;
-
                 decimal tileGiam = GiamGia?.tilegiam ?? 0m;
-
+                if (!GiamGiaApDung()) 
+                {
+                    tileGiam= 0m;
+                }
                 var giaVe = (int)((_phim.GiaVeChuan ?? 10000m)
                                   * (seat.hesoghe ?? 1m)
                                   * (1 - tileGiam));
@@ -270,12 +266,10 @@ namespace CinemaManagement
             using var ms = new MemoryStream(await http.GetByteArrayAsync(url));
 
             string paymentInfo = $"ID Thanh toán: {idThanhToan}\r\nTổng tiền: {totalAmount} VND";
-            if (maGiamGia != "" && GiamGia != null) 
+            if (GiamGiaApDung())
             {
-                string json = await _client.SendMessageAsync($"SET_GIAMGIA_TAIKHOAN|{GiamGia.idgiamgia}|{_user.IDUser}");
-
+                string json = await _client.SendMessageAsync($"SET_GIAMGIA|{GiamGia.idgiamgia}");
             }
-  
             var img = Image.FromStream(ms);
 
             var popup = ShowImagePopup(img, "QR Thanh Toán", RecreatePayment, () =>
@@ -341,19 +335,6 @@ namespace CinemaManagement
                                 // Cập nhật ghế
                                 foreach (var seatId in _selectedSeats)
                                     MarkSeatSold(seatId);
-
-                                var ticket = new TicketInfo
-                                {
-                                    IdThanhToan = _lastPaymentId,           // đã lưu khi tạo QR
-                                    TenPhim = _phim?.TenPhim ?? "N/A",
-                                    // Ghép ngày chiếu (_date) + giờ từ slot/khung giờ. Nếu slot có giờ bắt đầu, thay thế dưới đây cho đúng:
-                                    ThoiGian = _date.Date + khungGioList.First(x => x.idKG == _slot.idkhunggio).TGBatDau, // ví dụ: nếu có giờ trong _slot hoặc khungGioList, cộng thêm ở đây
-                                                      // .AddHours( ... ) .AddMinutes( ... ),
-                                    PhongChieu = $"{_slot.idphongchieu:D2}{_phim.IdPhim:D2}",
-                                    DanhSachSeatIds = _selectedSeats.ToList()
-
-                                };
-
                                 _selectedSeats.Clear();
                                 MaGiamGiaText.Text = "";
                                 maGiamGia = "";
@@ -362,16 +343,6 @@ namespace CinemaManagement
 
                                 // Thông báo
                                 MessageBox.Show(this, "Thanh toán thành công!");
-
-                                var frmVe = new ThongTinVe(ticket);
-                                frmVe.StartPosition = FormStartPosition.CenterScreen;
-
-                                frmVe.ShowDialog();          // Show non-modal (hoặc dùng ShowDialog nếu muốn chặn)
-
-
-
-
-
                             }));
                         }
                         else if (trangThai == "pending")
@@ -445,11 +416,6 @@ namespace CinemaManagement
                 {
                     Console.WriteLine($"Không thể khôi phục ghế {seatId}: {resHold}");
                     continue;
-                }
-                if (maGiamGia != "")
-                {
-                    string res = await _client.SendMessageAsync(
-                        $"UNSET_GIAMGIA_TAIKHOAN|{maGiamGia}|{_user.IDUser}");
                 }
                 foreach (Control ctrl in panel1.Controls)
                 {
@@ -580,11 +546,9 @@ namespace CinemaManagement
             return popup;
         }
 
-
-
         private void NutQuayLai_Click(object sender, EventArgs e)
         {
-            this.Close();  
+            this.Close();
         }
     }
 }

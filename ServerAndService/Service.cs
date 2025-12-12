@@ -777,7 +777,7 @@ namespace ServerAndService
         }
         public async Task<string> GetGiamGiaAsync(string idGiamGia)
         {
-            var response = await client.Rpc("getgiamgia", new Dictionary<string, object>
+            var response = await client.Rpc("get_giamgia", new Dictionary<string, object>
     {
         { "p_idgiamgia", idGiamGia }
     });
@@ -847,6 +847,36 @@ namespace ServerAndService
             if (json.Contains("FAILED") || string.IsNullOrEmpty(json))
                 return "FAILED";
             return json;
+        }
+        public async Task<string> SetGiamGiaAsync(string idGiamGia)
+        {
+            try
+            {
+                var result = await client.Rpc("setgiamgia", new
+                {
+                    p_idgiamgia = idGiamGia
+                });
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_SET_GIAMGIA: {ex.Message}";
+            }
+        }
+        public async Task<string> UnsetGiamGiaAsync(string idGiamGia)
+        {
+            try
+            {
+                var result = await client.Rpc("unsetgiamgia", new
+                {
+                    p_idgiamgia = idGiamGia
+                });
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                return $"ERROR_UNSET_GIAMGIA: {ex.Message}";
+            }
         }
     }
 

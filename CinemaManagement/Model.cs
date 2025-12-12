@@ -444,6 +444,8 @@ namespace CinemaManagement
         public DateTime tungay { get; set; }
         public DateTime denngay { get; set; }
         public decimal? tilegiam { get; set; }
+        public string trangthai { get; set; }
+
     }
 }
 
