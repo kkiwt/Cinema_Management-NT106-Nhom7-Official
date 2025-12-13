@@ -72,16 +72,16 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 
 ## 3. Thử nghiệm các chức năng:
 
-* Đăng ký / Đăng nhập.
-* Nếu quên mật khẩu thì có thể đặt lại.
-* Xem các phim hiện có trên hệ thống rạp.
-* Xem thông tin phim, trailer.
-* Xem và viết đánh giá phim.
-* Xem ưu đãi hiện có của rạp.
-* Xem thông tin tài khoản.
-* Đặt vé(chọn ngày chiếu, suất chiếu, ghế, mua bắp nước(nếu có)).
-* Thanh toán.
-* Đăng xuất.
+* **Đăng ký / Đăng nhập.
+* **Nếu quên mật khẩu thì có thể đặt lại.
+* **Xem các phim hiện có trên hệ thống rạp.
+* **Xem thông tin phim, trailer.
+* **Xem và viết đánh giá phim.
+* **Xem ưu đãi hiện có của rạp.
+* **Xem thông tin tài khoản.
+* **Đặt vé(chọn ngày chiếu, suất chiếu, ghế, mua bắp nước(nếu có)).
+* **Thanh toán.
+* **Đăng xuất.
 * **Đối với tài khoản là nhân viên có thêm các chức năng:
       * Thực hiện việc thêm và xóa phim, đánh giá.
       * Xem được doanh thu phim.
