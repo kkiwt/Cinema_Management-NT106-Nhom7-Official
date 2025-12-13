@@ -43,34 +43,39 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 | 15 | Xem tất cả vé đã đặt của người dùng | dành cho nhân viên |
 
 ## ⚙️ Hướng dẫn cài đặt và sử dụng;
-##1. Yêu cầu hệ thống:
-   *Cài đặt .NET 8 SDK / Runtime.
-   *Cài đặt Visual Studio 2022 trở lên.
-##2. Clone repository về máy:
-Sao chép repository từ GitHub về máy:
 
-https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git
+## 1. Yêu Cầu Hệ Thống
 
-##3. Mở Solution:
-   *Mở solution trong Visual Studio.
+* **IDE:** Cài đặt **Visual Studio 2022** trở lên.
+* **Runtime:** Cài đặt **.NET 8 SDK / Runtime**.
 
-##4. Chạy server:
-   *Chọn folder ServerAndService.
-   *Chạy chương trình.
+## 2. Hướng Dẫn Cài Đặt và Khởi Chạy
 
-##5. Chạy client:
-   *Chọn folder CinemaManagement.
-   *Chạy chương trình.
-   *Có thể dùng nhiều instance để mô phỏng có nhiều khách vào đặt vé.
+### 2.1. Thiết Lập Dự Án
 
-##6. Thực hiện tính năng:
-   *Đăng ký hoặc đăng nhập vào tài khoản. Nếu quên mật khẩu thì có thể thực hiện việc đặt lại mật khẩu.
-   *Xem các phim hiện có trên rạp.
-   *Xem chi tiết của từng bộ phim.
-   *Xem trailer giới thiệu phim.
-   *Xem, viết đánh giá cho phim, có thể xóa đánh giá của bản thân.
-   *Đặt vé xem phim (chọn suất chiếu, ngày chiếu, ghế, mua bắp nước,...)
-   *Thanh toán.
-   *Xem các ưu đãi.
-   *Xem thông tin tài khoản.
-   *Đăng xuất.
+1.  **Clone Repository:**
+    ```
+    git clone [https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git](https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git)
+    ```
+2.  **Mở Solution:** Mở file `.sln` trong Visual Studio.
+
+### 2.2. Khởi Chạy Ứng Dụng
+
+* **Bước 1: Chạy Server (Back-end)**
+    * Chọn project **`ServerAndService`**.
+    * Chạy chương trình.
+* **Bước 2: Chạy Client (Front-end)**
+    * Chọn project **`CinemaManagement`**.
+    * Chạy chương trình.
+    * Có thể dùng nhiều instance để mô phỏng có nhiều khách vào đặt vé.
+---
+
+## 3. Các Chức Năng Chính
+
+* Đăng ký / Đăng nhập / Đặt lại mật khẩu / Đăng xuất.
+* Xem thông tin phim, trailer.
+* Xem và viết đánh giá phim.
+* Xem ưu đãi hiện có.
+* Xem thông tin tài khoản.
+* Đặt vé, thanh toán.
+* Đăng xuất.
