@@ -557,7 +557,7 @@ namespace ServerAndService
         {
             try
             {
-                var result = await client.Rpc("get_giamgia", new { });
+                var result = await client.Rpc("getuudai", new { });
                 var json = result.Content?.Trim();
                 if (string.IsNullOrWhiteSpace(json) || json == "null")
                     return "[]";
