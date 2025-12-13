@@ -53,6 +53,7 @@
             MatKhauMoi.Location = new Point(177, 101);
             MatKhauMoi.Margin = new Padding(2, 3, 2, 3);
             MatKhauMoi.Name = "MatKhauMoi";
+            MatKhauMoi.PasswordChar = '*';
             MatKhauMoi.Size = new Size(313, 23);
             MatKhauMoi.TabIndex = 14;
             // 

@@ -78,10 +78,14 @@ namespace CinemaManagement
         }
 
 
-        private void materialButton1_Click(object sender, EventArgs e)
+
+
+        private void NutQuayLai_Click(object sender, EventArgs e)
         {
             this.Hide();
             new PhanDangNhap().Show();
+
+
         }
     }
 }

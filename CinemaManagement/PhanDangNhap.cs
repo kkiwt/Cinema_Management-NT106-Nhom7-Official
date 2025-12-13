@@ -136,6 +136,7 @@ namespace CinemaManagement
             var quenmatkhau = new PhanQuenMatKhau();
             this.Hide();
             quenmatkhau.ShowDialog();
+            quenmatkhau.FormClosed += (s, args) => this.Close();
 
 
         }

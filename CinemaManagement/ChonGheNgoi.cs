@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CinemaManagement.ThongTinVe;
 
 namespace CinemaManagement
 {
@@ -35,6 +36,7 @@ namespace CinemaManagement
         private System.Windows.Forms.Timer _countdownTimer;
         private GiamGia GiamGia;
         string maGiamGia = "";
+        private string _lastPaymentId;
 
         public ChonGheNgoi(
             Phim phim,
@@ -226,7 +228,7 @@ namespace CinemaManagement
 
             var vnTime = DateTime.UtcNow.AddHours(7);
             var idThanhToan = $"TT{vnTime:yyyyMMddHHmmss}";
-
+            _lastPaymentId = idThanhToan;
             // Lấy danh sách ghế
             string jsonSeats = await _client.SendMessageAsync(
                 $"GET_SEATSTATUS|{_phim.IdPhim}|{_slot.idkhunggio}|{_slot.idphongchieu}|{_date:yyyy-MM-dd}");
@@ -332,6 +334,9 @@ namespace CinemaManagement
                                 // Dừng countdown timer
                                 _countdownTimer?.Stop();
 
+                                // === BIẾN TẠM: chụp danh sách ghế hiện tại ===
+                                var seatsForTicket = _selectedSeats.ToList();
+
                                 // Cập nhật ghế
                                 foreach (var seatId in _selectedSeats)
                                     MarkSeatSold(seatId);
@@ -340,9 +345,26 @@ namespace CinemaManagement
                                 maGiamGia = "";
                                 // Resume seat timer
                                 ResumeSeatTimer();
+                                var ticket = new TicketInfo
+                                {
+                                    IdThanhToan = _lastPaymentId,           // đã lưu khi tạo QR
+                                    TenPhim = _phim?.TenPhim ?? "N/A",
+                                    // Ghép ngày chiếu (_date) + giờ từ slot/khung giờ. Nếu slot có giờ bắt đầu, thay thế dưới đây cho đúng:
+                                    ThoiGian = _date.Date + khungGioList.First(x => x.idKG == _slot.idkhunggio).TGBatDau, // ví dụ: nếu có giờ trong _slot hoặc khungGioList, cộng thêm ở đây
+                                                                                                                          // .AddHours( ... ) .AddMinutes( ... ),
+                                    PhongChieu = $"{_slot.idphongchieu:D2}{_phim.IdPhim:D2}",
+                                    DanhSachSeatIds = seatsForTicket
+
+                                };
 
                                 // Thông báo
                                 MessageBox.Show(this, "Thanh toán thành công!");
+
+                                var frmVe = new ThongTinVe(ticket);
+                                frmVe.StartPosition = FormStartPosition.CenterScreen;
+
+                                frmVe.ShowDialog();          // Show non-modal (hoặc dùng ShowDialog nếu muốn chặn)
+
                             }));
                         }
                         else if (trangThai == "pending")
