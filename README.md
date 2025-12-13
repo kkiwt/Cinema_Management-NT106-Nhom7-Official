@@ -1,6 +1,6 @@
 #Đồ án Lập trình mạng căn bản NT106.Q14 - Nhóm 7 - Cinema_Management
 ---
-Đề tài: **ỨNG DỤNG QUẢN LÝ RẠP CHIẾU PHIM - SOLUNAR **
+Đề tài: ỨNG DỤNG QUẢN LÝ RẠP CHIẾU PHIM - SOLUNAR CINEMA 
 
 ## 🧾 Thông tin môn học
 | Mục | Thông tin |
@@ -11,7 +11,7 @@
 | **Nhóm thực hiện** | Nhóm 7 |
 | **Nhóm trưởng** | Nguyễn Tuấn Kiệt |
 
-## 👨‍💻 Thành viên Nhóm 7
+## 👨‍💻 Thành viên nhóm 7
 | STT | Họ và tên | MSSV |
 | :--- | :--- | :--- |
 | 1 | Nguyễn Tuấn Kiệt (**Nhóm trưởng**) | 24520907 |
@@ -19,5 +19,27 @@
 | 3 | Nguyễn Nhật Thanh | 24521633 |
 | 4 | Nguyễn Thái Hùng | 24520613 |
 | 5 | Nguyễn Hữu Chiến | 24520218 |
+
+## 📌 Giới thiệu đề tài
+Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép người dùng có thể đăng ký, đăng nhập vào bên trong ứng dụng để xem các bộ phim mà rạp Solunar (một rạp phim giả định) đang chiếu và có thể đặt vé, bắp nước và thanh toán online trên ứng dụng thay vì phải ra trực tiếp rạp để thanh toán tại quầy. Ngoài ra, có các tài khoản là tài khoản của nhân viên và các tài khoản ấy có thể thêm/xóa phim, ưu đãi hay xem thống kê về doanh thu của các bộ phim đang chiếu,…
+
+## 🖥Các chức năng chính 
+| STT | Chức năng | Ghi chú |
+| :--- | :--- | :--- |
+| 01 | Đăng ký | |
+| 02 | Đăng nhập | |
+| 03 | Đăng xuất | |
+| 04 | Xem thông tin tài khoản | |
+| 05 | Xem ưu đãi | |
+| 06 | Đặt vé | |
+| 07 | Mua bắp nước | |
+| 08 | Thanh toán | |
+| 09 | Xem thông tin vé đã đặt | |
+| 10 | Xem / viết đánh giá | |
+| 11 | Xóa đánh giá |  |
+| 12 | Xem thống kê về doanh thu phim | dành cho nhân viên |
+| 13 | Thêm / xóa phim | dành cho nhân viên |
+| 14 | Thêm ưu đãi | dành cho nhân viên |
+| 15 | Xem tất cả vé đã đặt của người dùng | dành cho nhân viên |
 
 
