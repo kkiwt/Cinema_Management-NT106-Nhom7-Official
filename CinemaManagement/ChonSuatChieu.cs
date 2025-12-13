@@ -186,15 +186,20 @@ namespace CinemaManagement
             selected.BackColor = Color.LightGreen;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+ 
+
+        private void NutChonGhe_Click(object sender, EventArgs e)
         {
-            if(selectedDate == default || selectedSlot == null)
+            if (selectedDate == default || selectedSlot == null)
             {
                 MessageBox.Show("Vui lòng chọn ngày và khung giờ chiếu.");
                 return;
             }
-            ChonGheNgoi chonGhe = new ChonGheNgoi(currentFilm, currentUser, selectedDate, selectedSlot, khungGioList,phongChieuList,lichChieuList);
+
+            var chonGhe = new ChonGheNgoi(currentFilm, currentUser, selectedDate, selectedSlot, khungGioList, phongChieuList, lichChieuList);
+            chonGhe.Owner = this;              // QUAN TRỌNG
             chonGhe.ShowDialog();
+
         }
     }
 }

@@ -357,13 +357,63 @@ namespace CinemaManagement
 
                                 };
 
+
                                 // Thông báo
                                 MessageBox.Show(this, "Thanh toán thành công!");
 
-                                var frmVe = new ThongTinVe(ticket);
-                                frmVe.StartPosition = FormStartPosition.CenterScreen;
 
-                                frmVe.ShowDialog();          // Show non-modal (hoặc dùng ShowDialog nếu muốn chặn)
+
+                                // === Định nghĩa hàm quay về Trang Chủ ===
+
+                                Action goHome = () =>
+                                {
+                                    try
+                                    {
+                                        // B1: lấy hoặc tạo TrangChuChinh
+                                        var home = Application.OpenForms.OfType<TrangChuChinh>().FirstOrDefault();
+                                        if (home == null)
+                                        {
+                                            home = new TrangChuChinh(_user)
+                                            {
+                                                StartPosition = FormStartPosition.CenterScreen
+                                            };
+                                            home.Show();
+                                        }
+                                        else
+                                        {
+                                            // Show trước để đảm bảo có form "sống"
+                                            home.Show();
+                                            home.BringToFront();
+                                        }
+
+                                        // B2: đóng các form trung gian theo chuỗi Owner, dừng ở TrangChuChinh
+                                        // Điểm bắt đầu là form hiện tại (ChonGheNgoi) hoặc form vừa đóng (ThongTinVe)
+                                        Form cur = this; // nếu đang gọi từ ChonGheNgoi
+                                        while (cur != null && !(cur is TrangChuChinh))
+                                        {
+                                            var next = cur.Owner;  // lấy cấp trên trước
+                                            try { cur.Close(); } catch { /* ignore */ }
+                                            cur = next;            // leo lên cấp trên
+                                        }
+
+                                        // B3: đảm bảo TrangChuChinh còn hiển thị
+                                        home.Show();
+                                        home.BringToFront();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show($"Không thể về Trang Chủ: {ex.Message}", "Lỗi",
+                                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                };
+
+
+
+                                var frmVe = new ThongTinVe(ticket, goHome) { Owner = this }; // QUAN TRỌNG
+                                frmVe.StartPosition = FormStartPosition.CenterParent;
+                                frmVe.ShowDialog();
+
+
 
                             }));
                         }

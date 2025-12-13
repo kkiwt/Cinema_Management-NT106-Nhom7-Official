@@ -71,6 +71,7 @@ namespace CinemaManagement
             }
         }
 
+
         private void MucDatVeDuocChon(object sender, PhimDuocChonEventArgs e)
         {
             Phim phimChon = e.PhimDuocChon;
@@ -88,42 +89,36 @@ namespace CinemaManagement
         }
 
 
+
         private void MucPhimDuocChon(object sender, PhimDuocChonEventArgs e)
         {
-            Phim PhimDaDuocChon = e.PhimDuocChon;
-            TrangChuChinh formTrangChuChinh = ParentForm as TrangChuChinh; // Lay TrangChuChinh de truyen vao ChiTietPhim
-
+            var phimDaDuocChon = e.PhimDuocChon;
+            // Lấy TrangChuChinh từ ParentForm (TrangChuChinh) hoặc từ ChiTietPhim
+            var formTrangChuChinh = ParentForm as TrangChuChinh;
             if (ParentForm is ChiTietPhim chiTietPhim)
-            {
                 formTrangChuChinh = chiTietPhim.GetTrangChuChinh();
-            }
 
-            if (formTrangChuChinh != null)
-            {
-                ChiTietPhim formChiTietPhim = new ChiTietPhim(formTrangChuChinh, currentUser);
-                formChiTietPhim.HienThiThongTinPhim(PhimDaDuocChon);
-                formChiTietPhim.ShowDialog();
-            }
-            else
+            if (formTrangChuChinh == null)
             {
                 MessageBox.Show("Không thể chuyển đến trang chi tiết vì không có Form Trang Chủ Chính.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            var formChiTietPhim = new ChiTietPhim(formTrangChuChinh, currentUser)
+            {
+                Owner = this // QUAN TRỌNG: gán Owner để sau về home đóng theo owner chain
+            };
+            formChiTietPhim.HienThiThongTinPhim(phimDaDuocChon);
+
+            // Ẩn PhimHot khi mở ChiTietPhim (tuỳ bạn muốn Hide hay không)
+            this.Hide();
+            formChiTietPhim.ShowDialog();
+            this.Show();
         }
 
         private void LinkTrangChuChinh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Parent form co phai la TrangChuChinh hay khong
-            TrangChuChinh formTrangChuChinh = ParentForm as TrangChuChinh;
-
-            if (formTrangChuChinh != null)
-            {
-                this.Close(); //Dong PhimHot
-                formTrangChuChinh.Show(); // Hien TrangChuChinh
-            }
-            else
-            {
-                MessageBox.Show("Lỗi định tuyến. Không tìm thấy Trang Chủ Chính.", "Lỗi");
-            }
+            this.Close();
         }
 
 

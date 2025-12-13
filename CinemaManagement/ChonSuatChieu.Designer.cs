@@ -30,10 +30,10 @@
         {
             btnQuaylai = new Button();
             panel1 = new Panel();
+            NutChonGhe = new Button();
             panelKhungGio = new Panel();
             panelNgay = new Panel();
             lblTenPhim = new Label();
-            button1 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             // panel1
             // 
             panel1.AccessibleRole = AccessibleRole.None;
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(NutChonGhe);
             panel1.Controls.Add(panelKhungGio);
             panel1.Controls.Add(panelNgay);
             panel1.Controls.Add(lblTenPhim);
@@ -63,6 +63,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(550, 437);
             panel1.TabIndex = 0;
+            // 
+            // NutChonGhe
+            // 
+            NutChonGhe.Location = new Point(452, 395);
+            NutChonGhe.Name = "NutChonGhe";
+            NutChonGhe.Size = new Size(75, 23);
+            NutChonGhe.TabIndex = 25;
+            NutChonGhe.Text = "Chọn ghế";
+            NutChonGhe.UseVisualStyleBackColor = true;
+            NutChonGhe.Click += NutChonGhe_Click;
             // 
             // panelKhungGio
             // 
@@ -89,16 +99,6 @@
             lblTenPhim.TabIndex = 22;
             lblTenPhim.Text = "Tên Phim";
             // 
-            // button1
-            // 
-            button1.Location = new Point(452, 395);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 25;
-            button1.Text = "Chọn ghế";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // ChonSuatChieu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -122,6 +122,6 @@
         private Label lblTenPhim;
         private Panel panelKhungGio;
         private Panel panelNgay;
-        private Button button1;
+        private Button NutChonGhe;
     }
 }

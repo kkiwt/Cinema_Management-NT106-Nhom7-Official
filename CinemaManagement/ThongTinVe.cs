@@ -17,6 +17,7 @@ namespace CinemaManagement
             InitializeComponent();
         }
         private TicketInfo _ticket;
+        private Action _goHome;
         public class TicketInfo
         {
             public string IdThanhToan { get; set; }
@@ -25,6 +26,15 @@ namespace CinemaManagement
             public string PhongChieu { get; set; }
             public List<string> DanhSachSeatIds { get; set; } = new List<string>();
         }
+
+
+        public ThongTinVe(TicketInfo ticket, Action goHome) : this()
+        {
+            _ticket = ticket;
+            _goHome = goHome;
+            BindData();
+        }
+
 
         public ThongTinVe(TicketInfo ticket) : this()
         {
@@ -36,11 +46,11 @@ namespace CinemaManagement
         {
             if (_ticket == null) return;
 
-            TenPhimText.Text = _ticket.TenPhim;                                         
-            ThoiGianNgayThangNamGioPhutGiay.Text = _ticket.ThoiGian.ToString("dd/MM/yyyy HH:mm"); 
-            DanhSachSoGheText.Text = string.Join(", ", _ticket.DanhSachSeatIds);        
-            TenPhongChieuText.Text = _ticket.PhongChieu;                                 
-            MaThanhToanText.Text = _ticket.IdThanhToan;                                  
+            TenPhimText.Text = _ticket.TenPhim;
+            ThoiGianNgayThangNamGioPhutGiay.Text = _ticket.ThoiGian.ToString("dd/MM/yyyy HH:mm");
+            DanhSachSoGheText.Text = string.Join(", ", _ticket.DanhSachSeatIds);
+            TenPhongChieuText.Text = _ticket.PhongChieu;
+            MaThanhToanText.Text = _ticket.IdThanhToan;
         }
 
 
@@ -61,6 +71,23 @@ namespace CinemaManagement
 
         private void TenPhongChieuText_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void QuayLaiTrangChu_Click(object sender, EventArgs e)
+        {
+
+
+            try
+            {
+                this.Close();         // đóng form ThongTinVe
+                _goHome?.Invoke();    // gọi hành động về Trang Chủ
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể quay về Trang Chủ: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
     }

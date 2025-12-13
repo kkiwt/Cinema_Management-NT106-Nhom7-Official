@@ -150,18 +150,16 @@ namespace CinemaManagement
             return formTrangChuChinh;
         }
 
+
         private void PhimHot_Click(object sender, EventArgs e)
         {
-            if (formTrangChuChinh != null)
+            var phimhot = new PhimHot(this, currentUser)
             {
-                PhimHot phimhot = new PhimHot(formTrangChuChinh, currentUser);
-                this.Hide(); //An ChiTietPhim
-                phimhot.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Không thể chuyển hướng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                Owner = this // QUAN TRỌNG: PhimHot có Owner là TrangChuChinh
+            };
+            this.Hide();
+            phimhot.ShowDialog();
+            this.Show();
         }
 
 
@@ -175,10 +173,11 @@ namespace CinemaManagement
         {
             if (PhimHienTai != null && currentUser != null)
             {
-                this.Hide(); // Ẩn form hiện tại
-                ChonSuatChieu formChonSuat = new ChonSuatChieu(PhimHienTai, currentUser);
-                formChonSuat.ShowDialog(); // Hiển thị form chọn phòng
-                this.Show(); // Hiện lại form sau khi đóng form kia
+
+                var formChonSuat = new ChonSuatChieu(PhimHienTai, currentUser);
+                formChonSuat.Owner = this;         // QUAN TRỌNG
+                formChonSuat.ShowDialog();
+
             }
             else
             {
