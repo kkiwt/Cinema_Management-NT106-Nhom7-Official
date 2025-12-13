@@ -206,7 +206,7 @@
             QuayLaiTrangChu.Customization = "Kioq/zIyMv8yMjL/Kioq/y8vL/8nJyf//v7+/yMjI/8qKir/";
             QuayLaiTrangChu.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             QuayLaiTrangChu.Image = null;
-            QuayLaiTrangChu.Location = new Point(193, 402);
+            QuayLaiTrangChu.Location = new Point(195, 402);
             QuayLaiTrangChu.Name = "QuayLaiTrangChu";
             QuayLaiTrangChu.NoRounding = false;
             QuayLaiTrangChu.Size = new Size(193, 39);

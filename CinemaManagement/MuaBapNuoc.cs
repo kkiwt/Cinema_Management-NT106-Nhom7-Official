@@ -5,14 +5,18 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.Json;
 
 namespace CinemaManagement
 {
+
     public partial class MuaBapNuoc : Form
     {
+
+        public PaymentResult _lastPaymentResult;
         public UserInfo _user;
         private ClientTCP _client = new ClientTCP();
         private string _idThanhToan;
@@ -127,7 +131,14 @@ namespace CinemaManagement
 
                         if (trangThai == "paid")
                         {
-                            _idThanhToan= null;
+
+                            // Lấy chuỗi mã NGAY LÚC NÀY, TRƯỚC KHI RESET
+                            string TempThanhToanId = _idThanhToan;
+                            string idBapNuoc = CreateIdBapNuoc();
+                            string moTa = SummarizeIdBapNuoc(idBapNuoc);
+                            DateTime nowVN = DateTime.UtcNow.AddHours(7);
+
+                            _idThanhToan = null;
                             Combo1Numeric.Value = 0;
                             Combo2Numeric.Value = 0;
                             Combo3Numeric.Value = 0;
@@ -142,6 +153,19 @@ namespace CinemaManagement
                                 _paymentTimer?.Stop();
 
                                 MessageBox.Show(this, "Thanh toán thành công!");
+
+
+                                _lastPaymentResult = new PaymentResult
+                                {
+                                    IdThanhToan = TempThanhToanId,
+                                    IdBapNuoc = idBapNuoc,
+                                    MoTaChiTiet = moTa,
+                                    ThoiGianVN = nowVN
+                                };
+
+                                new ThongTinBap(_lastPaymentResult.IdThanhToan,_lastPaymentResult.IdBapNuoc,_lastPaymentResult.MoTaChiTiet,_lastPaymentResult.ThoiGianVN).ShowDialog(this);
+
+
                             }));
                         }
                         else if (trangThai == "pending")
@@ -173,10 +197,10 @@ namespace CinemaManagement
         }
         private string CreateIdBapNuoc()
         {
-            string cb1 = "B01";
-            string cb2 = "B01P";
-            string cb3 = "BUIT";
-            string cb4 = "BUITP";
+            string cb1 = "B01"; // Combo 1
+            string cb2 = "B01P"; // Combo 1 Premium
+            string cb3 = "BUIT"; // Combo UIT
+            string cb4 = "BUITP"; // Combo UIT Premium
             string result = "";
             if (Combo1Numeric.Value > 0)
             {
@@ -250,6 +274,62 @@ namespace CinemaManagement
             this.Close();
         }
 
+
+        // đặt trong cùng class MuaBapNuoc
+        private static readonly Regex _rxBapNuoc =
+            new Regex(@"(?:(\d+))?(B01P|BUITP|B01|BUIT)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        private static readonly Dictionary<string, string> _nameByCode =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["B01"] = "Combo 1",
+                ["B01P"] = "Combo 1 Premium",
+                ["BUIT"] = "Combo UIT",
+                ["BUITP"] = "Combo UIT Premium"
+            };
+
+
+        /// Đếm số lượng theo mã (key = code) từ chuỗi id, ví dụ "6B012B01P3BUIT1BUITP"
+      
+        private Dictionary<string, int> CountByCode(string input)
+        {
+            var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            if (string.IsNullOrEmpty(input)) return counts;
+
+            foreach (Match m in _rxBapNuoc.Matches(input))
+            {
+                int qty = m.Groups[1].Success ? int.Parse(m.Groups[1].Value) : 1;
+                string code = m.Groups[2].Value.ToUpperInvariant();
+
+                if (!counts.ContainsKey(code)) counts[code] = 0;
+                counts[code] += qty;
+            }
+            return counts;
+        }
+
+        private string SummarizeIdBapNuoc(string input)
+        {
+            var counts = CountByCode(input);
+            if (counts.Count == 0) return "Không tìm thấy mã combo hợp lệ";
+
+            string[] order = { "B01", "B01P", "BUIT", "BUITP" };
+            var parts = order
+                .Where(code => counts.ContainsKey(code))
+                .Select(code => $"{counts[code]} {_nameByCode[code]}");
+
+            return string.Join(", ", parts);
+        }
+
+
+        private void FillControlsFromId(string input)
+        {
+            var counts = CountByCode(input);
+
+            Combo1Numeric.Value = counts.TryGetValue("B01", out var v1) ? v1 : 0;
+            Combo2Numeric.Value = counts.TryGetValue("B01P", out var v2) ? v2 : 0;
+            Combo3Numeric.Value = counts.TryGetValue("BUIT", out var v3) ? v3 : 0;
+            Combo4Numering.Value = counts.TryGetValue("BUITP", out var v4) ? v4 : 0;
+        }
 
         private void MuaBapNuoc_Load(object sender, EventArgs e)
         {

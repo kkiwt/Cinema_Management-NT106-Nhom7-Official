@@ -36,11 +36,11 @@ namespace CinemaManagement
         {
             if (_ticket == null) return;
 
-            TenPhimText.Text = _ticket.TenPhim;                                         // đã có trong Designer
-            ThoiGianNgayThangNamGioPhutGiay.Text = _ticket.ThoiGian.ToString("dd/MM/yyyy HH:mm"); // đã có trong Designer
-            DanhSachSoGheText.Text = string.Join(", ", _ticket.DanhSachSeatIds);        // đã có trong Designer
-            TenPhongChieuText.Text = _ticket.PhongChieu;                                 // đã có trong Designer
-            MaThanhToanText.Text = _ticket.IdThanhToan;                                  // đã có trong Designer
+            TenPhimText.Text = _ticket.TenPhim;                                         
+            ThoiGianNgayThangNamGioPhutGiay.Text = _ticket.ThoiGian.ToString("dd/MM/yyyy HH:mm"); 
+            DanhSachSoGheText.Text = string.Join(", ", _ticket.DanhSachSeatIds);        
+            TenPhongChieuText.Text = _ticket.PhongChieu;                                 
+            MaThanhToanText.Text = _ticket.IdThanhToan;                                  
         }
 
 
