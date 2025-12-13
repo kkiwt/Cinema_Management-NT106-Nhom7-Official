@@ -226,7 +226,7 @@
             Controls.Add(QuayLaiTrangChu);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ThongTinVe";
-            Text = "ThongTinVe";
+            Text = "Thông Tin Vé";
             GD.ResumeLayout(false);
             GD.PerformLayout();
             ResumeLayout(false);

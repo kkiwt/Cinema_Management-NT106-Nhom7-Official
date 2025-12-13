@@ -92,10 +92,11 @@
             // lblTenPhim
             // 
             lblTenPhim.AutoSize = true;
+            lblTenPhim.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTenPhim.ForeColor = SystemColors.Control;
-            lblTenPhim.Location = new Point(34, 18);
+            lblTenPhim.Location = new Point(34, 14);
             lblTenPhim.Name = "lblTenPhim";
-            lblTenPhim.Size = new Size(57, 15);
+            lblTenPhim.Size = new Size(72, 20);
             lblTenPhim.TabIndex = 22;
             lblTenPhim.Text = "Tên Phim";
             // 

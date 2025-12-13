@@ -215,7 +215,7 @@
             Controls.Add(bigLabel3);
             Controls.Add(parrotGradientPanel1);
             Name = "PhanLichSu";
-            Text = "PhanLichSu";
+            Text = "Lịch Sử Các Vé Đã Đặt Của Khách Hàng";
             Load += PhanLichSu_Load;
             parrotGradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)BangLichSu).EndInit();

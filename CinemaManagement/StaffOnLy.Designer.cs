@@ -53,11 +53,11 @@
             // bigLabel1
             // 
             bigLabel1.BackColor = Color.Transparent;
-            bigLabel1.Font = new Font("Epilogue", 13.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bigLabel1.Font = new Font("Epilogue", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bigLabel1.ForeColor = Color.White;
             bigLabel1.Location = new Point(227, 26);
             bigLabel1.Name = "bigLabel1";
-            bigLabel1.Size = new Size(595, 71);
+            bigLabel1.Size = new Size(488, 71);
             bigLabel1.TabIndex = 0;
             bigLabel1.Text = "Solunar Cinema Management System";
             bigLabel1.Click += bigLabel1_Click;
@@ -246,7 +246,7 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "StaffOnLy";
-            Text = "Form3";
+            Text = "Solunar Cinema Management System";
             Load += StaffOnLy_Load;
             parrotGradientPanel1.ResumeLayout(false);
             metroPanel1.ResumeLayout(false);

@@ -183,7 +183,7 @@
             Controls.Add(label1);
             Margin = new Padding(2);
             Name = "PhanQuenMatKhau";
-            Text = "Form2";
+            Text = "Quên Mật Khẩu";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

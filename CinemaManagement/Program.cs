@@ -1,4 +1,4 @@
-namespace CinemaManagement
+﻿namespace CinemaManagement
 {
     internal static class Program
     {
@@ -10,6 +10,7 @@ namespace CinemaManagement
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            // Application.SetHighDpiMode(HighDpiMode.DpiUnaware); // Ai may mac dinh la zoom 150% thi bat cai nay len
             ApplicationConfiguration.Initialize();
             Application.Run(new PhanDangNhap());
         }

@@ -357,7 +357,7 @@
             Controls.Add(PanelHeader);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ThongTInTaiKhoan";
-            Text = "ThongTInTaiKhoan";
+            Text = "Thông Tin Tài Khoản";
             Load += ThongTInTaiKhoan_Load;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();

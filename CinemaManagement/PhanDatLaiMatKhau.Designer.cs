@@ -131,7 +131,7 @@
             Controls.Add(label1);
             Margin = new Padding(2);
             Name = "PhanDatLaiMatKhau";
-            Text = "PhanDatLaiMatKhau";
+            Text = "Đặt Lại Mật Khẩu";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -55,6 +55,8 @@ namespace CinemaManagement
             khungGioList = kg;
             phongChieuList = pc;
             lichChieuList = lc;
+            this.Text = $"Chọn Ghế Ngồi - {_phim.TenPhim} - {date:yyyy-MM-dd} - Khung giờ {_slot.idkhunggio} - Phòng {_slot.idphongchieu}{_phim.IdPhim}";
+            ThongTinLabel.Text = $"Phim: {_phim.TenPhim} | Ngày: {_date:yyyy-MM-dd} | Khung giờ: {_slot.idkhunggio} | Phòng: {_slot.idphongchieu}{_phim.IdPhim}";
         }
 
         private async void ChonGheNgoi_Load(object sender, EventArgs e)

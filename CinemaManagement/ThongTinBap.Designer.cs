@@ -197,7 +197,7 @@
             Controls.Add(QuayLai);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ThongTinBap";
-            Text = "ThongTinVe";
+            Text = "Thông Tin Hóa Đơn Bắp Nước";
             GD.ResumeLayout(false);
             GD.PerformLayout();
             ResumeLayout(false);

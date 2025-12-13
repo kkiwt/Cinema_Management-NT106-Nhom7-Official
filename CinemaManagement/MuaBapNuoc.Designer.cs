@@ -325,7 +325,7 @@
             ForeColor = SystemColors.ControlLightLight;
             Margin = new Padding(3, 2, 3, 2);
             Name = "MuaBapNuoc";
-            Text = "MuaBapNuoc";
+            Text = "Mua Bắp Nước";
             Load += MuaBapNuoc_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

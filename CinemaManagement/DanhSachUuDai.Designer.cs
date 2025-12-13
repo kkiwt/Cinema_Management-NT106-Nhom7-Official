@@ -206,7 +206,7 @@
             Controls.Add(dataGridViewDanhSach);
             Controls.Add(PanelHeader);
             Name = "DanhSachUuDai";
-            Text = "DanhSachUuDai";
+            Text = "Danh Sách Ưu Đãi";
             Load += DanhSachUuDai_Load;
             MenuTaiKhoan.ResumeLayout(false);
             PanelHeader.ResumeLayout(false);

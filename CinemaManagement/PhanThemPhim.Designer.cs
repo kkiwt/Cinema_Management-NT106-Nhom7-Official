@@ -633,7 +633,7 @@
             ForeColor = Color.Coral;
             Margin = new Padding(2);
             Name = "PhanThemPhim";
-            Text = "Form4";
+            Text = "Giao Diện Thêm Phim";
             Load += PhanThemPhim_Load;
             parrotGradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)AnhSeDuocThem).EndInit();

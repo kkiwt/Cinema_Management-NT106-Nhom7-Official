@@ -74,6 +74,11 @@
             button41 = new Button();
             MaGiamGiaText = new TextBox();
             label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            ThongTinLabel = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -576,7 +581,7 @@
             // 
             // button43
             // 
-            button43.Location = new Point(405, 291);
+            button43.Location = new Point(356, 303);
             button43.Margin = new Padding(3, 2, 3, 2);
             button43.Name = "button43";
             button43.Size = new Size(82, 22);
@@ -587,7 +592,7 @@
             // 
             // button41
             // 
-            button41.Location = new Point(240, 291);
+            button41.Location = new Point(182, 303);
             button41.Margin = new Padding(3, 2, 3, 2);
             button41.Name = "button41";
             button41.Size = new Size(82, 22);
@@ -598,22 +603,77 @@
             // 
             // MaGiamGiaText
             // 
-            MaGiamGiaText.Location = new Point(240, 244);
+            MaGiamGiaText.Location = new Point(182, 266);
             MaGiamGiaText.Name = "MaGiamGiaText";
-            MaGiamGiaText.Size = new Size(247, 23);
+            MaGiamGiaText.Size = new Size(300, 23);
             MaGiamGiaText.TabIndex = 51;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.FromArgb(4, 21, 49);
-            label1.Font = new Font("Segoe UI", 9F);
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(47, 247);
+            label1.Location = new Point(12, 269);
             label1.Name = "label1";
-            label1.Size = new Size(149, 15);
+            label1.Size = new Size(150, 15);
             label1.TabIndex = 52;
             label1.Text = "Nhập mã giảm giá(nếu có)";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Yellow;
+            label2.Location = new Point(480, 126);
+            label2.Name = "label2";
+            label2.Size = new Size(27, 15);
+            label2.TabIndex = 51;
+            label2.Text = "VIP";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Yellow;
+            label3.Location = new Point(480, 164);
+            label3.Name = "label3";
+            label3.Size = new Size(27, 15);
+            label3.TabIndex = 52;
+            label3.Text = "VIP";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Yellow;
+            label4.Location = new Point(1, 164);
+            label4.Name = "label4";
+            label4.Size = new Size(27, 15);
+            label4.TabIndex = 53;
+            label4.Text = "VIP";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Yellow;
+            label5.Location = new Point(1, 126);
+            label5.Name = "label5";
+            label5.Size = new Size(27, 15);
+            label5.TabIndex = 54;
+            label5.Text = "VIP";
+            // 
+            // ThongTinLabel
+            // 
+            ThongTinLabel.AutoSize = true;
+            ThongTinLabel.Font = new Font("Epilogue SemiBold", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ThongTinLabel.ForeColor = SystemColors.ButtonFace;
+            ThongTinLabel.Location = new Point(12, 237);
+            ThongTinLabel.Name = "ThongTinLabel";
+            ThongTinLabel.Size = new Size(58, 16);
+            ThongTinLabel.TabIndex = 55;
+            ThongTinLabel.Text = "thông tin";
             // 
             // ChonGheNgoi
             // 
@@ -621,6 +681,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(4, 21, 49);
             ClientSize = new Size(517, 350);
+            Controls.Add(ThongTinLabel);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(MaGiamGiaText);
             Controls.Add(panel1);
@@ -684,5 +749,10 @@
         private Label lblSoLuongGhe;
         private TextBox MaGiamGiaText;
         private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label ThongTinLabel;
     }
 }

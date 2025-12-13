@@ -189,7 +189,7 @@
             Controls.Add(bigLabel3);
             Controls.Add(parrotGradientPanel1);
             Name = "PhanDanhSachPhim";
-            Text = "PhanDanhSachPhim";
+            Text = "Danh Sách Các Phim Đang Chiếu";
             Load += PhanDanhSachPhim_Load;
             parrotGradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

@@ -277,7 +277,7 @@
             Controls.Add(parrotGradientPanel1);
             Margin = new Padding(2);
             Name = "PhanThemUuDai";
-            Text = "Form1";
+            Text = "Giao Diện Thêm Ưu Đãi";
             parrotGradientPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

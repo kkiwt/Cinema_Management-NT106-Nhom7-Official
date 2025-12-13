@@ -218,7 +218,7 @@
             Controls.Add(PanelDuongDan);
             Controls.Add(PanelHeader);
             Name = "PhimHot";
-            Text = "Solunar Cinema";
+            Text = "Phim Hot";
             FormClosed += PhimHot_FormClosed;
             PanelHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();

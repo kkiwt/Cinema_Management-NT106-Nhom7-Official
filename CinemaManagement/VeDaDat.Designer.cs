@@ -141,7 +141,7 @@
             Controls.Add(label3);
             ForeColor = Color.Coral;
             Name = "VeDaDat";
-            Text = "VeDaDat";
+            Text = "Danh Sách Vé Đã Đặt Của Khách Hàng";
             Load += VeDaDat_Load;
             ((System.ComponentModel.ISupportInitialize)Logo).EndInit();
             MenuTaiKhoan.ResumeLayout(false);
