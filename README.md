@@ -42,9 +42,35 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 | 14 | Thêm ưu đãi | dành cho nhân viên |
 | 15 | Xem tất cả vé đã đặt của người dùng | dành cho nhân viên |
 
-## ⚙️ Hướng dẫn cài đặt
+## ⚙️ Hướng dẫn cài đặt và sử dụng;
 ##1. Yêu cầu hệ thống:
-   Cài đặt .NET 8 SDK / Runtime
-   Cài đặt Visual Studio 2022 trở lên
-2. Clone repository về máy:
-3. 
+   *Cài đặt .NET 8 SDK / Runtime.
+   *Cài đặt Visual Studio 2022 trở lên.
+##2. Clone repository về máy:
+Sao chép repository từ GitHub về máy:
+
+https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git
+
+##3. Mở Solution:
+   *Mở solution trong Visual Studio.
+
+##4. Chạy server:
+   *Chọn folder ServerAndService.
+   *Chạy chương trình.
+
+##5. Chạy client:
+   *Chọn folder CinemaManagement.
+   *Chạy chương trình.
+   *Có thể dùng nhiều instance để mô phỏng có nhiều khách vào đặt vé.
+
+##6. Thực hiện tính năng:
+   *Đăng ký hoặc đăng nhập vào tài khoản. Nếu quên mật khẩu thì có thể thực hiện việc đặt lại mật khẩu.
+   *Xem các phim hiện có trên rạp.
+   *Xem chi tiết của từng bộ phim.
+   *Xem trailer giới thiệu phim.
+   *Xem, viết đánh giá cho phim, có thể xóa đánh giá của bản thân.
+   *Đặt vé xem phim (chọn suất chiếu, ngày chiếu, ghế, mua bắp nước,...)
+   *Thanh toán.
+   *Xem các ưu đãi.
+   *Xem thông tin tài khoản.
+   *Đăng xuất.
