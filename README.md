@@ -52,12 +52,12 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 ## 2. Hướng Dẫn Cài Đặt và Khởi Chạy
 
 ### 2.1. Thiết Lập Dự Án
+* Mở Visual Studio và chọn **`Clone a Repository`**.
+* Gán link bên dưới và tạo thư mục để lưu dự án.
 
-1.  **Clone Repository:**
     ```
-    git clone [https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git](https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git)
+    https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git
     ```
-2.  **Mở Solution:** Mở file `.sln` trong Visual Studio.
 
 ### 2.2. Khởi Chạy Ứng Dụng
 
