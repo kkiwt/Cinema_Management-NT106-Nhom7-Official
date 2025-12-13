@@ -163,7 +163,48 @@ namespace CinemaManagement
                                     ThoiGianVN = nowVN
                                 };
 
-                                new ThongTinBap(_lastPaymentResult.IdThanhToan,_lastPaymentResult.IdBapNuoc,_lastPaymentResult.MoTaChiTiet,_lastPaymentResult.ThoiGianVN).ShowDialog(this);
+                                Action goHome = () =>
+                                {
+                                    try
+                                    {
+                                        // B1: lấy hoặc tạo TrangChuChinh
+                                        var home = Application.OpenForms.OfType<TrangChuChinh>().FirstOrDefault();
+                                        if (home == null)
+                                        {
+                                            home = new TrangChuChinh(_user)
+                                            {
+                                                StartPosition = FormStartPosition.CenterScreen
+                                            };
+                                            home.Show();
+                                        }
+                                        else
+                                        {
+                                            home.Show();
+                                            home.BringToFront();
+                                        }
+
+                                        // B2: đóng theo owner-chain, dừng ở TrangChuChinh
+                                        // Điểm xuất phát: form hiện tại là MuaBapNuoc (vì goHome nằm trong lớp này)
+                                        Form cur = this; // MuaBapNuoc
+                                        while (cur != null && !(cur is TrangChuChinh))
+                                        {
+                                            var next = cur.Owner;
+                                            try { cur.Close(); } catch { /* ignore */ }
+                                            cur = next;
+                                        }
+
+                                        // B3: đảm bảo TrangChuChinh trên cùng
+                                        home.Show();
+                                        home.BringToFront();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show($"Không thể về Trang Chủ: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                };
+
+
+                                new ThongTinBap(_lastPaymentResult.IdThanhToan,_lastPaymentResult.IdBapNuoc,_lastPaymentResult.MoTaChiTiet,_lastPaymentResult.ThoiGianVN, goHome).ShowDialog(this);
 
 
                             }));

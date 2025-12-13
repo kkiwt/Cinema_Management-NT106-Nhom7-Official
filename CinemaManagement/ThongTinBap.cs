@@ -21,7 +21,7 @@ namespace CinemaManagement
         {
             InitializeComponent();
         }
-
+        private Action _goHome;
 
 
         public ThongTinBap(string maThanhToan, string maBapNuoc, string noiDungChiTiet, DateTime ngayThanhToan) : this()
@@ -32,11 +32,31 @@ namespace CinemaManagement
             MaThanhToanText.Text = maThanhToan ?? "";
         }
 
+        public ThongTinBap(string maThanhToan, string maBapNuoc, string noiDungChiTiet, DateTime ngayThanhToan, Action goHome) : this()
+        {
+            NoiDungBapNuocText.Text = noiDungChiTiet ?? "";
+            MaBapNuocText.Text = maBapNuoc ?? "";
+            NgayThanhToanText.Text = ngayThanhToan.ToString("yyyy-MM-dd HH:mm:ss");
+            MaThanhToanText.Text = maThanhToan ?? "";
+            _goHome = goHome;
+        }
+
+
 
 
         private void QuayLai_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            try
+            {
+                this.Close();      // Đóng ThongTinBap
+                _goHome?.Invoke(); // Gọi hành động về Trang chủ
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể về Trang Chủ: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
     public class PaymentResult

@@ -142,10 +142,15 @@ namespace CinemaManagement
             lichsu.ShowDialog();
         }
 
+
         private void NutXemDanhSachPhim_Click(object sender, EventArgs e)
         {
-            PhanDanhSachPhim ds = new PhanDanhSachPhim();
+            var ds = new PhanDanhSachPhim
+            {
+                Owner = this   // QUAN TRỌNG: để có Owner-chain StaffOnLy -> PhanDanhSachPhim
+            };
             ds.ShowDialog();
+
         }
     }
 }

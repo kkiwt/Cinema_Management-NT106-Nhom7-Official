@@ -89,6 +89,7 @@ namespace CinemaManagement
         }
 
 
+
         private async void NutXoaPhim_Click(object sender, EventArgs e)
         {
             try
@@ -122,21 +123,48 @@ namespace CinemaManagement
                 if (confirm != DialogResult.Yes)
                     return;
 
-                // 4) Gửi lệnh xoá theo protocol 2 dòng: DELETE_MOVIE\n{IdPhim}
+                // 4) Gửi lệnh xoá (đúng protocol của bạn)
+                // Nếu server dùng phân cách bằng '|' như bạn đang ghi, giữ nguyên:
                 string request = $"DELETE_MOVIE|{idPhim}";
-                // dùng _client đã khởi tạo ở đầu class
+                // Nếu server dùng xuống dòng: $"DELETE_MOVIE\n{idPhim}"
                 string response = await _client.SendMessageAsync(request);
 
                 // 5) Xử lý phản hồi
-                // Server sẽ trả "OK: DELETED" nếu thành công, hoặc chuỗi bắt đầu bằng "ERROR..."
                 if (!string.IsNullOrWhiteSpace(response) &&
                     response.Trim().StartsWith("OK", StringComparison.OrdinalIgnoreCase))
                 {
                     MessageBox.Show($"Đã xoá phim '{tenPhim ?? idPhim}'.", "Thành công",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 6) Reload lại danh sách
+                    // 6) Reload lại danh sách ở form quản trị
                     await LoadMoviesAsync();
+
+                    // 7) Báo cho TrangChuChinh reload bằng owner-chain
+                    // Owner-chain: PhanDanhSachPhim -> StaffOnLy -> TrangChuChinh
+                    Form cur = this.Owner; // StaffOnLy (nếu đã gán Owner khi mở)
+                    while (cur != null && !(cur is TrangChuChinh))
+                    {
+                        cur = cur.Owner; // leo lên TrangChuChinh
+                    }
+
+                    if (cur is TrangChuChinh home)
+                    {
+                        // Gọi refresh ở TrangChuChinh
+                        home.RefreshDanhSachPhim();
+                        // (tuỳ chọn) đưa TrangChuChinh lên trước
+                        home.Show();
+                        home.BringToFront();
+                    }
+                    else
+                    {
+                        // Fallback: nếu Owner chưa được gán, thử OpenForms
+                        var home2 = Application.OpenForms.OfType<TrangChuChinh>().FirstOrDefault();
+                        if (home2 != null)
+                        {
+                            home2.RefreshDanhSachPhim();
+                            home2.BringToFront();
+                        }
+                    }
                 }
                 else
                 {
@@ -150,6 +178,7 @@ namespace CinemaManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
     }
 }

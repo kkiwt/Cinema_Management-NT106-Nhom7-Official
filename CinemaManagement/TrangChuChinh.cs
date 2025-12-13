@@ -300,18 +300,30 @@ namespace CinemaManagement
 
         }
 
+
         private void NutBapNuoc_Click(object sender, EventArgs e)
         {
-            MuaBapNuoc buy = new MuaBapNuoc(currentUser);
+            // Tạo form MuaBapNuoc với user hiện tại
+            var buy = new MuaBapNuoc(currentUser)
+            {
+                Owner = this // GÁN OWNER CHO BUY, không phải cho TrangChuChinh
+            };
+
+
+            // Mở dạng modal để giữ chuỗi owner-chain đúng
+            buy.StartPosition = FormStartPosition.CenterParent;
             buy.ShowDialog();
 
-        }
+            // Khi đóng MuaBapNuoc, hiện lại TrangChuChinh
+            this.Show();
+            this.BringToFront();
+         }
     }
 
 
 
 
-    public class PhimDuocChonEventArgs : EventArgs
+        public class PhimDuocChonEventArgs : EventArgs
     {
         public Phim PhimDuocChon { get; private set; }
 
