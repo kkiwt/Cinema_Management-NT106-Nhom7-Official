@@ -1,4 +1,4 @@
-#Đồ án Lập trình mạng căn bản NT106.Q14 - Nhóm 7 - Cinema_Management
+Đồ án Lập trình mạng căn bản NT106.Q14 - Nhóm 7 - Cinema_Management
 ---
 Đề tài: ỨNG DỤNG QUẢN LÝ RẠP CHIẾU PHIM - SOLUNAR CINEMA 
 
@@ -23,8 +23,8 @@
 ## 📌 Giới thiệu đề tài
 Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép người dùng có thể đăng ký, đăng nhập vào bên trong ứng dụng để xem các bộ phim mà rạp Solunar (một rạp phim giả định) đang chiếu và có thể đặt vé, bắp nước và thanh toán online trên ứng dụng thay vì phải ra trực tiếp rạp để thanh toán tại quầy. Ngoài ra, có các tài khoản là tài khoản của nhân viên và các tài khoản ấy có thể thêm/xóa phim, ưu đãi hay xem thống kê về doanh thu của các bộ phim đang chiếu,…
 
-## 🖥Các chức năng chính 
-| STT | Chức năng | Ghi chú |
+## 🖥Các tính năng chính 
+| STT | Tính năng | Ghi chú |
 | :--- | :--- | :--- |
 | 01 | Đăng ký | |
 | 02 | Đăng nhập | |
@@ -42,4 +42,9 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 | 14 | Thêm ưu đãi | dành cho nhân viên |
 | 15 | Xem tất cả vé đã đặt của người dùng | dành cho nhân viên |
 
-
+## ⚙️ Hướng dẫn cài đặt
+1. Yêu cầu hệ thống:
+   Cài đặt .NET 8 SDK / Runtime
+   Cài đặt Visual Studio 2022 trở lên
+2. Clone repository về máy:
+3. 
