@@ -70,8 +70,6 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
     * Có thể dùng nhiều instance để mô phỏng có nhiều khách vào đặt vé.
 ---
 
----
-
 ## 3. Thử nghiệm các chức năng:
 
 * Đăng ký / Đăng nhập.
