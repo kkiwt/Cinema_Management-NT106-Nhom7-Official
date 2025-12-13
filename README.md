@@ -83,7 +83,7 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 * Thanh toán.
 * Đăng xuất.
 * Đối với tài khoản là nhân viên có thêm các chức năng:
-      + Thực hiện việc thêm và xóa phim, đánh giá.
-      + Xem được doanh thu phim.
-      + Thực hiện việc thêm ưu đãi.
-      + Xem tất cả các vé mà người dùng đã đặt.
+     * + Thực hiện việc thêm và xóa phim, đánh giá.
+     * + Xem được doanh thu phim.
+     * + Thực hiện việc thêm ưu đãi.
+     * + Xem tất cả các vé mà người dùng đã đặt.
