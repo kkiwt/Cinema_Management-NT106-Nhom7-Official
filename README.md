@@ -43,7 +43,7 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 | 15 | Xem tất cả vé đã đặt của người dùng | dành cho nhân viên |
 
 ## ⚙️ Hướng dẫn cài đặt
-1. Yêu cầu hệ thống:
+##1. Yêu cầu hệ thống:
    Cài đặt .NET 8 SDK / Runtime
    Cài đặt Visual Studio 2022 trở lên
 2. Clone repository về máy:
