@@ -56,26 +56,34 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 * Gán link bên dưới và tạo thư mục để lưu dự án.
 
     ```
-    https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official.git
+    https://github.com/kkiwt/Cinema_Management-NT106-Nhom7-Official
     ```
 
 ### 2.2. Khởi Chạy Ứng Dụng
 
-* **Bước 1: Chạy Server (Back-end)**
+* **Bước 1: Chạy Server**
     * Chọn project **`ServerAndService`**.
     * Chạy chương trình.
-* **Bước 2: Chạy Client (Front-end)**
+* **Bước 2: Chạy Client**
     * Chọn project **`CinemaManagement`**.
     * Chạy chương trình.
     * Có thể dùng nhiều instance để mô phỏng có nhiều khách vào đặt vé.
 ---
 
-## 3. Các Chức Năng Chính
+## 3. Thử nghiệm các chức năng:
 
-* Đăng ký / Đăng nhập / Đặt lại mật khẩu / Đăng xuất.
+* Đăng ký / Đăng nhập.
+* Nếu quên mật khẩu thì có thể đặt lại.
+* Xem các phim hiện có trên hệ thống rạp.
 * Xem thông tin phim, trailer.
 * Xem và viết đánh giá phim.
-* Xem ưu đãi hiện có.
+* Xem ưu đãi hiện có của rạp.
 * Xem thông tin tài khoản.
-* Đặt vé, thanh toán.
+* Đặt vé(chọn ngày chiếu, suất chiếu, ghế, mua bắp nước(nếu có)).
+* Thanh toán.
 * Đăng xuất.
+* Đối với tài khoản là nhân viên có thêm các chức năng:
+      + Thực hiện việc thêm và xóa phim, đánh giá.
+      + Xem được doanh thu phim.
+      + Thực hiện việc thêm ưu đãi.
+      + Xem tất cả các vé mà người dùng đã đặt.
