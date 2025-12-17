@@ -1,6 +1,7 @@
 Đồ án Lập trình mạng căn bản NT106.Q14 - Nhóm 7 - Cinema_Management
 ---
 Đề tài: ỨNG DỤNG QUẢN LÝ RẠP CHIẾU PHIM - SOLUNAR CINEMA 
+---
 Link video demo: https://youtu.be/09UY32gEisw 
 ## 🧾 Thông tin môn học
 | Mục | Thông tin |
