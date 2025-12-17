@@ -1,7 +1,7 @@
 Đồ án Lập trình mạng căn bản NT106.Q14 - Nhóm 7 - Cinema_Management
 ---
 Đề tài: ỨNG DỤNG QUẢN LÝ RẠP CHIẾU PHIM - SOLUNAR CINEMA 
-
+Link video demo: https://youtu.be/09UY32gEisw 
 ## 🧾 Thông tin môn học
 | Mục | Thông tin |
 | :--- | :--- |
@@ -50,8 +50,8 @@ Solunar Cinema, một ứng dụng quản lý rạp chiếu phim cho phép ngư�
 * **Runtime:** Cài đặt **.NET 8 SDK / Runtime**.
 
 ## 2. Hướng Dẫn Cài Đặt và Khởi Chạy
-
-### 2.1. Thiết Lập Dự Án
+### 2.1. Cách 1: Tải Và Giải Nén File Rar Từ Link: https://drive.google.com/file/d/1RY8Ruzc6uCZqO0f1GoFxWysH5_LkGGXo/view?usp=drive_link (chạy online)
+### 2.1. Cách 2: Thiết Lập Dự Án (chạy local)
 * Mở Visual Studio và chọn **`Clone a Repository`**.
 * Gán link bên dưới và tạo thư mục để lưu dự án.
 
