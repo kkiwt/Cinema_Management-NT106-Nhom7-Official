@@ -147,7 +147,7 @@ namespace CinemaManagement
         {
             var ds = new PhanDanhSachPhim
             {
-                Owner = this   // QUAN TRỌNG: để có Owner-chain StaffOnLy -> PhanDanhSachPhim
+                Owner = this   
             };
             ds.ShowDialog();
 

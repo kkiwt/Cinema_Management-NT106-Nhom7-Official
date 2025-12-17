@@ -183,6 +183,7 @@
             ID.Location = new Point(671, 93);
             ID.Multiline = true;
             ID.Name = "ID";
+            ID.ReadOnly = true;
             ID.Size = new Size(319, 42);
             ID.TabIndex = 19;
             // 
@@ -195,6 +196,7 @@
             tbNgaySinh.Location = new Point(671, 206);
             tbNgaySinh.Multiline = true;
             tbNgaySinh.Name = "tbNgaySinh";
+            tbNgaySinh.ReadOnly = true;
             tbNgaySinh.Size = new Size(319, 42);
             tbNgaySinh.TabIndex = 18;
             // 
@@ -218,6 +220,7 @@
             tbEmail.Location = new Point(346, 206);
             tbEmail.Multiline = true;
             tbEmail.Name = "tbEmail";
+            tbEmail.ReadOnly = true;
             tbEmail.Size = new Size(319, 42);
             tbEmail.TabIndex = 16;
             // 
@@ -241,6 +244,7 @@
             tbUsername.Location = new Point(346, 93);
             tbUsername.Multiline = true;
             tbUsername.Name = "tbUsername";
+            tbUsername.ReadOnly = true;
             tbUsername.Size = new Size(319, 42);
             tbUsername.TabIndex = 14;
             tbUsername.TextChanged += tbUsername_TextChanged;
@@ -265,6 +269,7 @@
             tbSDT.Location = new Point(26, 206);
             tbSDT.Multiline = true;
             tbSDT.Name = "tbSDT";
+            tbSDT.ReadOnly = true;
             tbSDT.Size = new Size(314, 42);
             tbSDT.TabIndex = 12;
             // 
@@ -288,6 +293,7 @@
             tbHovaTen.Location = new Point(26, 93);
             tbHovaTen.Multiline = true;
             tbHovaTen.Name = "tbHovaTen";
+            tbHovaTen.ReadOnly = true;
             tbHovaTen.Size = new Size(314, 42);
             tbHovaTen.TabIndex = 10;
             // 

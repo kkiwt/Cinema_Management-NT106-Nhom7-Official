@@ -131,7 +131,7 @@ namespace CinemaManagement
         private string ImageToBase64(string path)
         {
             byte[] bytes = File.ReadAllBytes(path); // chuyen anh thanh mang byte
-            return Convert.ToBase64String(bytes);
+            return Convert.ToBase64String(bytes); // chuyen sang base64
         }
 
 

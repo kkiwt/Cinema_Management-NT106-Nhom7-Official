@@ -15,14 +15,9 @@ namespace CinemaManagement
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Set dữ liệu cho control từ model VeDat.
-        /// Nếu thiếu TenPhim/PosterUrl, hiển thị placeholder.
-        /// </summary>
-
         public void SetData(VeDat ve)
         {
-            // Tên phim
+    
             lbTenPhim.Text = string.IsNullOrWhiteSpace(ve.TenPhim)
                 ? "Phim (đang cập nhật)"
                 : ve.TenPhim;
@@ -36,7 +31,7 @@ namespace CinemaManagement
             lbGioChieu.Text = $"Giờ chiếu: {FormatGio(ve.GioChieu)}";
             lbNgayChieu.Text = $"Ngày chiếu: {FormatNgay(ve.NgayChieu)}";
 
-            // Tên phòng chiếu: ghép IdPhongChieu + IdPhim (ví dụ C01P04)
+            // Tên phòng chiếu
             string tenPhong = BuildTenPhongChieu(ve.IdPhongChieu, ve.IdPhim);
             lbTenPhongChieu.Text = $"Phòng chiếu: {tenPhong}";
 
@@ -55,7 +50,7 @@ namespace CinemaManagement
             if (string.IsNullOrWhiteSpace(idPhim))
                 return idPhongChieu ?? "—";
 
-            return idPhongChieu + idPhim; // ví dụ: C01 + P04 => C01P04
+            return idPhongChieu + idPhim; 
         }
 
 
@@ -71,9 +66,8 @@ namespace CinemaManagement
             {
                 if (string.IsNullOrWhiteSpace(posterUrl))
                 {
-                    // Placeholder: màu nền hoặc ảnh mặc định
+          
                     picturePoster.BackColor = Color.White;
-                    // TODO: set ảnh mặc định từ resources nếu có
                     return;
                 }
 
@@ -81,7 +75,7 @@ namespace CinemaManagement
             }
             catch
             {
-                // Không nên làm vỡ UI nếu ảnh lỗi
+
                 picturePoster.BackColor = Color.White;
             }
         }

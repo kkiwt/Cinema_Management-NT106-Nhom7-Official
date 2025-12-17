@@ -121,7 +121,7 @@ namespace CinemaManagement
             }
             else
             {
-                // đảm bảo chữ đen cả khi không chọn
+                
                 cell.Style.ForeColor = Color.Black;
             }
         }

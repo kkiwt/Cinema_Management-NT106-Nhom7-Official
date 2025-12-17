@@ -35,7 +35,7 @@ namespace CinemaManagement
                     byte[] lengthBytes = new byte[4];
                     int totalLengthRead = 0;
 
-                    // Đảm bảo đọc đủ 4 byte độ dài
+                    // Đảm bảo đọc đủ 4 byte 
                     while (totalLengthRead < 4)
                     {
                         int bytesRead = await stream.ReadAsync(lengthBytes, totalLengthRead, 4 - totalLengthRead);
@@ -43,9 +43,9 @@ namespace CinemaManagement
                         totalLengthRead += bytesRead;
                     }
 
-                    int totalLength = BitConverter.ToInt32(lengthBytes, 0); // Lấy độ dài JSON thực tế
+                    int totalLength = BitConverter.ToInt32(lengthBytes, 0);
 
-                    //Đọc toàn bộ tin nhắn dựa trên totalLength
+                    
                     byte[] messageBuffer = new byte[totalLength];
                     int totalBytesRead = 0;
 
@@ -68,7 +68,7 @@ namespace CinemaManagement
                     // Chuyển đổi và trả về
                     string response = Encoding.UTF8.GetString(messageBuffer, 0, totalBytesRead);
 
-                    // Giữ lại các thao tác replace cũ
+                   
                     response = response
                         .Replace("\0", "")
                         .Replace("\r", "")

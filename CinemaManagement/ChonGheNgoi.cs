@@ -336,7 +336,7 @@ namespace CinemaManagement
                                 // Dừng countdown timer
                                 _countdownTimer?.Stop();
 
-                                // === BIẾN TẠM: chụp danh sách ghế hiện tại ===
+                 
                                 var seatsForTicket = _selectedSeats.ToList();
 
                                 // Cập nhật ghế
@@ -349,11 +349,11 @@ namespace CinemaManagement
                                 ResumeSeatTimer();
                                 var ticket = new TicketInfo
                                 {
-                                    IdThanhToan = _lastPaymentId,           // đã lưu khi tạo QR
+                                    IdThanhToan = _lastPaymentId,           
                                     TenPhim = _phim?.TenPhim ?? "N/A",
-                                    // Ghép ngày chiếu (_date) + giờ từ slot/khung giờ. Nếu slot có giờ bắt đầu, thay thế dưới đây cho đúng:
-                                    ThoiGian = _date.Date + khungGioList.First(x => x.idKG == _slot.idkhunggio).TGBatDau, // ví dụ: nếu có giờ trong _slot hoặc khungGioList, cộng thêm ở đây
-                                                                                                                          // .AddHours( ... ) .AddMinutes( ... ),
+                                    
+                                    ThoiGian = _date.Date + khungGioList.First(x => x.idKG == _slot.idkhunggio).TGBatDau, 
+                                                                                                                        
                                     PhongChieu = $"{_slot.idphongchieu:D2}{_phim.IdPhim:D2}",
                                     DanhSachSeatIds = seatsForTicket
 
@@ -365,13 +365,13 @@ namespace CinemaManagement
 
 
 
-                                // === Định nghĩa hàm quay về Trang Chủ ===
+                                // quay ve TrangChuChinh
 
                                 Action goHome = () =>
                                 {
                                     try
                                     {
-                                        // B1: lấy hoặc tạo TrangChuChinh
+                                        // lấy hoặc tạo TrangChuChinh
                                         var home = Application.OpenForms.OfType<TrangChuChinh>().FirstOrDefault();
                                         if (home == null)
                                         {
@@ -383,22 +383,22 @@ namespace CinemaManagement
                                         }
                                         else
                                         {
-                                            // Show trước để đảm bảo có form "sống"
+    
                                             home.Show();
                                             home.BringToFront();
                                         }
 
-                                        // B2: đóng các form trung gian theo chuỗi Owner, dừng ở TrangChuChinh
+           
                                         // Điểm bắt đầu là form hiện tại (ChonGheNgoi) hoặc form vừa đóng (ThongTinVe)
                                         Form cur = this; // nếu đang gọi từ ChonGheNgoi
                                         while (cur != null && !(cur is TrangChuChinh))
                                         {
-                                            var next = cur.Owner;  // lấy cấp trên trước
-                                            try { cur.Close(); } catch { /* ignore */ }
-                                            cur = next;            // leo lên cấp trên
+                                            var next = cur.Owner;  
+                                            try { cur.Close(); } catch { }
+                                            cur = next;            
                                         }
 
-                                        // B3: đảm bảo TrangChuChinh còn hiển thị
+                                        
                                         home.Show();
                                         home.BringToFront();
                                     }
@@ -411,7 +411,7 @@ namespace CinemaManagement
 
 
 
-                                var frmVe = new ThongTinVe(ticket, goHome) { Owner = this }; // QUAN TRỌNG
+                                var frmVe = new ThongTinVe(ticket, goHome) { Owner = this }; 
                                 frmVe.StartPosition = FormStartPosition.CenterParent;
                                 frmVe.ShowDialog();
 
@@ -532,7 +532,7 @@ namespace CinemaManagement
 
         private string MapSeatId(string text)
         {
-            if (text.StartsWith("G")) return text; // đã đúng format
+            if (text.StartsWith("G")) return text;
 
             char row = text[0];
             if (!int.TryParse(text.Substring(1), out int col)) return null;

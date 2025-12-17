@@ -197,7 +197,7 @@ namespace CinemaManagement
             }
 
             var chonGhe = new ChonGheNgoi(currentFilm, currentUser, selectedDate, selectedSlot, khungGioList, phongChieuList, lichChieuList);
-            chonGhe.Owner = this;              // QUAN TRỌNG
+            chonGhe.Owner = this;              
             chonGhe.ShowDialog();
 
         }

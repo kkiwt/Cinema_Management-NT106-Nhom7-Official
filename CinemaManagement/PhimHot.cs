@@ -93,7 +93,7 @@ namespace CinemaManagement
         private void MucPhimDuocChon(object sender, PhimDuocChonEventArgs e)
         {
             var phimDaDuocChon = e.PhimDuocChon;
-            // Lấy TrangChuChinh từ ParentForm (TrangChuChinh) hoặc từ ChiTietPhim
+
             var formTrangChuChinh = ParentForm as TrangChuChinh;
             if (ParentForm is ChiTietPhim chiTietPhim)
                 formTrangChuChinh = chiTietPhim.GetTrangChuChinh();
@@ -106,11 +106,10 @@ namespace CinemaManagement
 
             var formChiTietPhim = new ChiTietPhim(formTrangChuChinh, currentUser)
             {
-                Owner = this // QUAN TRỌNG: gán Owner để sau về home đóng theo owner chain
+                Owner = this 
             };
             formChiTietPhim.HienThiThongTinPhim(phimDaDuocChon);
 
-            // Ẩn PhimHot khi mở ChiTietPhim (tuỳ bạn muốn Hide hay không)
             this.Hide();
             formChiTietPhim.ShowDialog();
             this.Show();
@@ -136,7 +135,7 @@ namespace CinemaManagement
         {
             InitializeComponent();
             this.ParentForm = parentForm;
-            this.currentUser = user; // Lưu thông tin người dùng
+            this.currentUser = user; 
             this.Load += DanhSachPhim_Load;
             LinkTrangChuChinh.LinkClicked += LinkTrangChuChinh_LinkClicked;
 

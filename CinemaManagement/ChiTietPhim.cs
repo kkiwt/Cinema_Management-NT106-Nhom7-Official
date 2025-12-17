@@ -175,7 +175,7 @@ namespace CinemaManagement
             {
 
                 var formChonSuat = new ChonSuatChieu(PhimHienTai, currentUser);
-                formChonSuat.Owner = this;         // QUAN TRỌNG
+                formChonSuat.Owner = this;         
                 formChonSuat.ShowDialog();
 
             }

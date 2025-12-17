@@ -13,7 +13,7 @@ namespace CinemaManagement
             InitializeComponent();
         }
 
-        // 🔒 Mã hóa SHA256
+        // Mã hóa SHA256
         public static string ToSha256(string input)
         {
             using (var sha256 = SHA256.Create())
@@ -24,8 +24,8 @@ namespace CinemaManagement
             }
         }
 
-        // 🟢 Xử lý khi nhấn nút "Đăng nhập"
-        private async void button1_Click(object sender, EventArgs e)
+ 
+        private async void NutDangNhap_Click(object sender, EventArgs e)
         {
             string username = TenDangNhap.Text.Trim();
             string password = MatKhau.Text;
@@ -37,7 +37,7 @@ namespace CinemaManagement
                 return;
             }
 
-            // 🔐 Băm mật khẩu trước khi gửi
+            // Băm mật khẩu trước khi gửi
             string passwordHash = ToSha256(password);
             string message = $"LOGIN|{username}|{passwordHash}";
 
@@ -56,12 +56,11 @@ namespace CinemaManagement
                     return;
                 }
 
-                // 🧩 Kiểm tra phản hồi từ server
 
                 if (response.StartsWith("[LOGIN_SUCCESS]"))
                 {
                     string[] parts = response.Split('|', StringSplitOptions.RemoveEmptyEntries);
-                    if (parts.Length < 9) // giờ cần ít nhất 9 phần tử
+                    if (parts.Length < 9) 
                     {
                         MessageBox.Show("Phản hồi từ máy chủ không hợp lệ (thiếu dữ liệu).",
                             "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -84,7 +83,7 @@ namespace CinemaManagement
                     MessageBox.Show($"Đăng nhập thành công!\nChào mừng {currentUser.HoTen}.",
                         "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 🔄 Chuyển sang giao diện chính
+       
                     var dashboard = new TrangChuChinh(currentUser);
                     this.Hide();
                     dashboard.Show();
@@ -140,5 +139,7 @@ namespace CinemaManagement
 
 
         }
+
+
     }
 }

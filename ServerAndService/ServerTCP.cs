@@ -18,7 +18,7 @@ namespace ServerAndService
             service = new Service();
         }
 
-        public async Task StartAsync(int port = 5000)
+        public async Task StartAsync(int port = 7000)
         {
             listener = new TcpListener(IPAddress.Any, port);
             listener.Start();

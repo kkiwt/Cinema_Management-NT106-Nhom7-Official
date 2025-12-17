@@ -48,7 +48,7 @@ namespace CinemaManagement
 
         }
 
-        // Constructor rong cho Designer
+        
         public DanhGia()
         {
             InitializeComponent();
@@ -223,7 +223,7 @@ namespace CinemaManagement
                 {
                     NoiDungDanhGia.Text = "";
                     ChonSaoDanhGia = 0;
-                    SetupStarSelection(); // dat lai starempty
+                    SetupStarSelection(); 
                 });
                 // tai lai data
                 await LoadReviewDataAsync(PhimHienTai.IdPhim);
@@ -274,9 +274,9 @@ namespace CinemaManagement
             if (formTrangChuChinh != null)
             {
                 PhimHot phimhot = new PhimHot(formTrangChuChinh, currentUser);
-                this.Close(); //dong DanhGia
-                GoiChiTietPhim.Hide(); //an ChiTietPhim va goi DanhGia
-                phimhot.ShowDialog(); //Hien thi PhimHot
+                this.Close(); 
+                GoiChiTietPhim.Hide(); 
+                phimhot.ShowDialog();
             }
             else
             {

@@ -102,7 +102,7 @@ namespace CinemaManagement
 
             _currentQrPopup.Show();
 
-            // --- Bắt đầu polling kiểm tra thanh toán ---
+            // Bắt đầu polling kiểm tra thanh toán 
             StartPaymentPolling(_idThanhToan);
         }
         private void StartPaymentPolling(string idThanhToan)
@@ -167,7 +167,7 @@ namespace CinemaManagement
                                 {
                                     try
                                     {
-                                        // B1: lấy hoặc tạo TrangChuChinh
+                                        // lấy hoặc tạo TrangChuChinh
                                         var home = Application.OpenForms.OfType<TrangChuChinh>().FirstOrDefault();
                                         if (home == null)
                                         {
@@ -183,17 +183,16 @@ namespace CinemaManagement
                                             home.BringToFront();
                                         }
 
-                                        // B2: đóng theo owner-chain, dừng ở TrangChuChinh
-                                        // Điểm xuất phát: form hiện tại là MuaBapNuoc (vì goHome nằm trong lớp này)
+                                        // đóng theo owner-chain, dừng ở TrangChuChinh
+    
                                         Form cur = this; // MuaBapNuoc
                                         while (cur != null && !(cur is TrangChuChinh))
                                         {
                                             var next = cur.Owner;
-                                            try { cur.Close(); } catch { /* ignore */ }
+                                            try { cur.Close(); } catch {  }
                                             cur = next;
                                         }
 
-                                        // B3: đảm bảo TrangChuChinh trên cùng
                                         home.Show();
                                         home.BringToFront();
                                     }

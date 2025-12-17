@@ -11,8 +11,6 @@ using System.Windows.Forms;
 namespace CinemaManagement
 {
 
-    // Model gói thông tin hiển thị sau thanh toán
-
 
 
     public partial class ThongTinBap : Form

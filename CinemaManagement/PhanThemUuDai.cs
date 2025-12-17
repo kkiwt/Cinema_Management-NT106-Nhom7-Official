@@ -36,7 +36,7 @@ namespace CinemaManagement
             DateTime denNgay = ChonHetUuDai.Value.Date;
             string tiLeStr = ChonPhanTramGiam.SelectedItem?.ToString();
 
-            // --- Validation ---
+
             if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(tiLeStr))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");

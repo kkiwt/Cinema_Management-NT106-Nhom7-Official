@@ -45,7 +45,7 @@ namespace CinemaManagement
                     var Options = new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true,
-                        // Cho phep doc so tu chuoi neu can, khac phuc loi dinh dang locale 
+ 
                         NumberHandling = JsonNumberHandling.AllowReadingFromString
                     };
 
@@ -118,7 +118,7 @@ namespace CinemaManagement
         private void MucPhimDuocChon(object sender, PhimDuocChonEventArgs e)
         {
             Phim PhimDaDuocChon = e.PhimDuocChon;
-            ChiTietPhim formChiTiet = new ChiTietPhim(this, currentUser); // Truyền user
+            ChiTietPhim formChiTiet = new ChiTietPhim(this, currentUser); 
             formChiTiet.HienThiThongTinPhim(PhimDaDuocChon);
             this.Hide();
             formChiTiet.Show();
@@ -177,7 +177,7 @@ namespace CinemaManagement
         {
             if (e.KeyChar == (char)Keys.Enter) //An enter
             {
-                e.Handled = true; //chan tieng bệp cua window
+                e.Handled = true; 
 
                 string TenPhimCanTim = TimKiem.Text.Trim();
                 if (!string.IsNullOrEmpty(TenPhimCanTim))
@@ -258,7 +258,7 @@ namespace CinemaManagement
         private void NutStaffOnly_Click(object sender, EventArgs e)
         {
             var staffForm = new StaffOnLy();
-            staffForm.Owner = this; // Quan trọng để StaffOnly biết ai là cha
+            staffForm.Owner = this; 
             staffForm.ShowDialog();
         }
 
@@ -303,18 +303,15 @@ namespace CinemaManagement
 
         private void NutBapNuoc_Click(object sender, EventArgs e)
         {
-            // Tạo form MuaBapNuoc với user hiện tại
+           
             var buy = new MuaBapNuoc(currentUser)
             {
-                Owner = this // GÁN OWNER CHO BUY, không phải cho TrangChuChinh
+                Owner = this 
             };
 
-
-            // Mở dạng modal để giữ chuỗi owner-chain đúng
             buy.StartPosition = FormStartPosition.CenterParent;
             buy.ShowDialog();
 
-            // Khi đóng MuaBapNuoc, hiện lại TrangChuChinh
             this.Show();
             this.BringToFront();
          }

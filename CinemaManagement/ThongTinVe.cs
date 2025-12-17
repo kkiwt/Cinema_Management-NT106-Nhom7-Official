@@ -80,8 +80,8 @@ namespace CinemaManagement
 
             try
             {
-                this.Close();         // đóng form ThongTinVe
-                _goHome?.Invoke();    // gọi hành động về Trang Chủ
+                this.Close();         
+                _goHome?.Invoke();    
             }
             catch (Exception ex)
             {

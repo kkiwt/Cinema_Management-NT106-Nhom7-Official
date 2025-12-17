@@ -64,7 +64,7 @@
             NutDangNhap.TabIndex = 3;
             NutDangNhap.Text = "Đăng Nhập";
             NutDangNhap.UseVisualStyleBackColor = true;
-            NutDangNhap.Click += button1_Click;
+            NutDangNhap.Click += NutDangNhap_Click;
             // 
             // DangKyLinkLabel
             // 
