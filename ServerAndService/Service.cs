@@ -83,7 +83,7 @@ namespace ServerAndService
 
 
 
-        public async Task<string> GetCinemaStats() // Cai ham can gui
+        public async Task<string> GetCinemaStats() 
         {
             try
             {
@@ -162,7 +162,7 @@ namespace ServerAndService
                 p_posterphim = posterPhim,
                 p_daodien = daoDien,
                 p_dienvien = dienVien,
-                p_ngonngu = ngonNgu, // thêm
+                p_ngonngu = ngonNgu, 
                 p_quocgia = quocGia,
                 p_tungay = tuNgay.ToString("yyyy-MM-dd"),
                 p_denngay = denNgay.ToString("yyyy-MM-dd")
@@ -177,7 +177,7 @@ namespace ServerAndService
 
 
 
-        // Service.cs — THÊM HÀM RPC tạo lịch cố định
+        
         public async Task<string> CreateLichCoDinhForPhim(string idPhim)
         {
 
@@ -187,7 +187,7 @@ namespace ServerAndService
 
         }
 
-        // Service.cs — SỬA CHỮA AddPhimFullFlow: KHÔNG CẦN danhSachGio/phongChieu nữa
+       
         public async Task<string> AddPhimFullFlow(
             string tenPhim, string theLoai, string doTuoi, int thoiLuong, string moTa,
             string urlTrailer, string posterBase64, string daoDien, string dienVien,
@@ -196,14 +196,14 @@ namespace ServerAndService
         {
             try
             {
-                // 1) Upload poster
+                // Upload poster
                 string posterUrl = await UploadPosterBase64Async(posterBase64);
                 if (posterUrl.StartsWith("ERROR")) return posterUrl;
 
-                // 2) Lấy IdPhim mới
+                // Lấy IdPhim mới
                 string idPhim = await GetNextIdPhimAsync();
 
-                // 3) Gọi RPC add_phim
+                // Gọi RPC add_phim
                 string insertResult = await AddPhimRPC(
                     idPhim, tenPhim, theLoai, doTuoi, thoiLuong, moTa,
                     urlTrailer, posterUrl, daoDien, dienVien, ngonNgu, quocGia,
@@ -212,7 +212,7 @@ namespace ServerAndService
                 if (!insertResult.Contains("SUCCESS"))
                     return insertResult;
 
-                // 4) Sinh lịch cố định cho phim (10 phòng riêng, round-robin khung giờ)
+                // Sinh lịch cố định cho phim (10 phòng riêng, round-robin khung giờ)
                 string lichResult = await CreateLichCoDinhForPhim(idPhim);
                 if (string.IsNullOrWhiteSpace(lichResult) || lichResult.StartsWith("ERROR"))
                     return $"ERROR_CREATE_SCHEDULE: {lichResult ?? "NULL"}";
@@ -231,9 +231,9 @@ namespace ServerAndService
             var result = await client.Rpc("get_next_idphim", new { });
             return result.Content.Trim('"');
         }
-        // Service.cs
+      
 
-        public async Task<string> GetLichSuVeAllRPC() // Cai nay moi them
+        public async Task<string> GetLichSuVeAllRPC() 
         {
             try
             {
@@ -248,7 +248,7 @@ namespace ServerAndService
             }
         }
 
-        public async Task<string> GetMoviesListRPC(int limitCount = 100) // Cai nay moi them
+        public async Task<string> GetMoviesListRPC(int limitCount = 100) 
         {
             try
             {
@@ -258,11 +258,11 @@ namespace ServerAndService
                 });
 
                 var json = result.Content?.Trim();
-                // Phòng trường hợp Supabase trả null/rỗng
+              
                 if (string.IsNullOrWhiteSpace(json) || json == "null")
                     return "[]";
 
-                return json; // JSON array: [{IdPhim, TenPhim, ChieuTu, DenNgay}, ...]
+                return json; 
             }
             catch (Exception ex)
             {
@@ -271,12 +271,12 @@ namespace ServerAndService
         }
 
 
-        public async Task<string> XoaPhimRPC(string idPhim) // cai moi them
+        public async Task<string> XoaPhimRPC(string idPhim) 
         {
             try
             {
                 var result = await client.Rpc("xoa_phim", new { p_idphim = idPhim });
-                // Vì hàm trả về VOID, Supabase trả về chuỗi rỗng hoặc null
+                
                 return "SUCCESS";
             }
             catch (Exception ex)
@@ -286,7 +286,7 @@ namespace ServerAndService
         }
 
 
-        public async Task<string> GetCinemaStats2() // Cai ham can gui // cai so 2 la cai chinh thuc
+        public async Task<string> GetCinemaStats2() 
         {
             try
             {
@@ -319,7 +319,7 @@ namespace ServerAndService
                     p_den_ngay = denNgay.ToString("yyyy-MM-dd")
                 });
 
-                return result.Content.Trim('"'); // Ví dụ: "G1,G2,G3" hoặc "EMPTY"
+                return result.Content.Trim('"'); 
             }
             catch (Exception ex)
             {
@@ -345,7 +345,7 @@ namespace ServerAndService
             return result.Content.Trim('"'); // RESET_SUCCESS hoặc OTP_INVALID
         }
 
-        public async Task<string> AddGiamGiaRPC(string id, DateTime tuNgay, DateTime denNgay, decimal tiLe) // Cai Nay them o file Service.cs
+        public async Task<string> AddGiamGiaRPC(string id, DateTime tuNgay, DateTime denNgay, decimal tiLe) 
         {
             try
             {
@@ -371,7 +371,7 @@ namespace ServerAndService
         }
 
 
-        // Đăng nhập user (ví dụ)
+      
         public async Task<string> LoginUser(string username, string passwordHash)
         {
             try
@@ -430,23 +430,20 @@ namespace ServerAndService
         }
 
 
-        public async Task<string> GetMovies()
+        public async Task<string> GetMovies() // hnhu ham nay khong con su dung nua
         {
             try
             {
-                // Sử dụng client đã được khởi tạo tĩnh
+          
                 var Response = await client.From<Movie>().Get();
 
-                // Serialize danh sách Models thành JSON string
-                // Serialize danh sách Models thành JSON string
+ 
                 string json = JsonSerializer.Serialize(Response.Models);
 
-                // Trả về JSON string của danh sách phim
                 return json;
             }
             catch (Exception ex)
             {
-                // Trả về chuỗi lỗi nếu có vấn đề
                 return $"ERROR_GET_MOVIES: {ex.Message}";
             }
         }
@@ -456,7 +453,7 @@ namespace ServerAndService
         {
             try
             {
-                // Gọi RPC
+              
                 var result = await client.Rpc("get_latest_movies2", new
                 {
                     limit_count = limitCount
@@ -482,7 +479,7 @@ namespace ServerAndService
         {
             try
             {
-                // Chỉ gọi một hàm RPC duy nhất
+                
                 var result = await client.Rpc("get_review_summary", new
                 {
                     p_idphim = idPhim
@@ -585,7 +582,7 @@ namespace ServerAndService
                 return $"ERROR_SERVICE_GET_VE_DADAT: {ex.Message}";
             }
         }
-        // Lấy thông tin phim theo Id
+
         public async Task<string> GetPhimById(string idPhim)
         {
             try

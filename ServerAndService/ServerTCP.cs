@@ -1,6 +1,4 @@
-﻿// ServerTCP.cs
-// ServerTCP.cs
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -141,7 +139,7 @@ namespace ServerAndService
 
                     case "ADD_PHIM": // Them cai nay, xoa di cai case GetAvalableSlots di
                         {
-                            // CHỈ CẦN 14 tham số: tenPhim..denNgay
+                           
                             if (parts.Length < 14)
                             {
                                 response = "ERROR: ADD_PHIM requires parameters up to denNgay (14 lines)";
