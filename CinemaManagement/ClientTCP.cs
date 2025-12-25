@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bai4
+namespace CinemaManagement
 {
     internal class ClientTCP
     {
