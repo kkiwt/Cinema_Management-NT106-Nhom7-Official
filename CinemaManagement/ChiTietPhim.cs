@@ -5,12 +5,6 @@ namespace CinemaManagement
     {
         private TrangChuChinh formTrangChuChinh;
         private Phim PhimHienTai;
-        public ChiTietPhim(TrangChuChinh parentForm)
-        {
-            InitializeComponent();
-            this.formTrangChuChinh = parentForm;
-
-        }
         private UserInfo currentUser;
 
         public ChiTietPhim(TrangChuChinh parentForm, UserInfo user)
@@ -18,22 +12,8 @@ namespace CinemaManagement
             InitializeComponent();
             this.formTrangChuChinh = parentForm;
             this.currentUser = user; // Lưu thông tin người dùng
-
         }
 
-        private void DangXuat_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
-
-        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
-        {
-            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
-
-            thongTinTaiKhoan.ShowDialog();
-
-
-        }
 
         public void HienThiThongTinPhim(Phim phim)
         {
@@ -78,8 +58,8 @@ namespace CinemaManagement
         {
             if (formTrangChuChinh != null)
             {
-                this.Hide(); //An form chi tiet hien tai 
-                formTrangChuChinh.Show(); //Hien thi TrangChuChinh
+                this.Hide(); 
+                formTrangChuChinh.Show(); 
             }
             else
             {
@@ -162,13 +142,19 @@ namespace CinemaManagement
             this.Show();
         }
 
-
-        private void MenuTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void DangXuat_Click(object sender, EventArgs e)
         {
-
+            Application.Restart();
         }
 
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
 
+            thongTinTaiKhoan.ShowDialog();
+
+
+        }
         private void DatVe_Click(object sender, EventArgs e)
         {
             if (PhimHienTai != null && currentUser != null)

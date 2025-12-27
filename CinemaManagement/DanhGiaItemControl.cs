@@ -3,7 +3,6 @@ namespace CinemaManagement
 {
     public partial class DanhGiaItemControl : UserControl
     {
-        private string currentUserId;
         private string idReview;
         UserInfo currentUser;
         public DanhGiaItemControl(ReviewDisplay review, UserInfo currentUser)

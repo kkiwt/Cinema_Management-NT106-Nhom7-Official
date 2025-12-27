@@ -9,27 +9,9 @@ namespace CinemaManagement
         private ReviewSummary TongDanhGiaHienTai;
         private int ChonSaoDanhGia = 0;
         private ChiTietPhim GoiChiTietPhim;
-        private readonly string UserIdHienTai = "ID_NGUOI_DUNG_HIEN_TAI"; // Cần lấy từ Session/Login
-        private readonly string UserNameHienTai = "Tên Của Tôi"; // Cần lấy từ Session/Login
-
-
         private UserInfo currentUser;
 
-        private void DangXuat_Click(object sender, EventArgs e)
-        {
-            var dangNhap = new PhanDangNhap();
-            this.Hide();
-            dangNhap.Show();
-
-        }
-        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
-        {
-            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
-            this.Hide();
-            thongTinTaiKhoan.ShowDialog();
-
-
-        }
+       
         public DanhGia(Phim phim, ChiTietPhim GoiForm, UserInfo user)
         {
             InitializeComponent();
@@ -44,14 +26,7 @@ namespace CinemaManagement
             this.Load += DanhGia_Load;
             LinkTenPhim.LinkClicked += LinkTenPhim_LinkClicked;
             LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá";
-            LinkTenPhim.Text = PhimHienTai.TenPhim + " >> Đánh giá";
 
-        }
-
-        
-        public DanhGia()
-        {
-            InitializeComponent();
         }
 
         private async void DanhGia_Load(object sender, EventArgs e)
@@ -132,7 +107,6 @@ namespace CinemaManagement
             try
             {
                 TongDanhGiaHienTai = JsonSerializer.Deserialize<ReviewSummary>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                // Hien thi in4 tong hop
                 HienThiKetQuaTong(TongDanhGiaHienTai);
                 // hien thi list danhgia ban dau
                 // lay gia tri loc hien tai
@@ -247,16 +221,6 @@ namespace CinemaManagement
             MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height));
         }
 
-
-        private void LinkTrangChuChinh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Close();
-            if (GoiChiTietPhim != null)
-            {
-                GoiChiTietPhim.TroVeTrangChuChinh();
-            }
-        }
-
         private void LinkTenPhim_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
@@ -285,12 +249,6 @@ namespace CinemaManagement
         }
 
 
-
-        private void MenuTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
         private void DangXuat_Click_1(object sender, EventArgs e)
         {
             Application.Restart();
@@ -306,11 +264,6 @@ namespace CinemaManagement
         private void Xoa_Click(object sender, EventArgs e)
         {
             NoiDungDanhGia.Clear();
-        }
-
-        private void NoiDungDanhGia_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void ThongTinTaiKhoan_Click_1(object sender, EventArgs e)
@@ -339,6 +292,21 @@ namespace CinemaManagement
         private void NutReload_Click(object sender, EventArgs e)
         {
             DanhGia_Load(sender, e);
+        }
+        
+        private void DangXuat_Click(object sender, EventArgs e)
+        {
+            var dangNhap = new PhanDangNhap();
+            this.Hide();
+            dangNhap.Show();
+
+        }
+        private void ThongTinTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
+            this.Hide();
+            thongTinTaiKhoan.ShowDialog();
+
         }
     }
 }

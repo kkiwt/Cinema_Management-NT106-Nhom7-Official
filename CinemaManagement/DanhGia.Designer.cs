@@ -150,7 +150,6 @@
             MenuTaiKhoan.Items.AddRange(new ToolStripItem[] { ThongTinTaiKhoan, VeDaDat, DangXuat });
             MenuTaiKhoan.Name = "MenuTaiKhoan";
             MenuTaiKhoan.Size = new Size(240, 88);
-            MenuTaiKhoan.Opening += MenuTaiKhoan_Opening;
             // 
             // ThongTinTaiKhoan
             // 
@@ -389,7 +388,6 @@
             NoiDungDanhGia.Name = "NoiDungDanhGia";
             NoiDungDanhGia.Size = new Size(482, 372);
             NoiDungDanhGia.TabIndex = 34;
-            NoiDungDanhGia.TextChanged += NoiDungDanhGia_TextChanged;
             // 
             // label1
             // 

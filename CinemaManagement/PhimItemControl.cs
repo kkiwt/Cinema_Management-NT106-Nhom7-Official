@@ -3,6 +3,7 @@
     public partial class PhimItemControl : UserControl
     {
         public event EventHandler<PhimDuocChonEventArgs> PhimDuocChon;
+        public event EventHandler<PhimDuocChonEventArgs> DatVeDuocChon;
         private Phim PhimHienTai;
         public PhimItemControl()
         {
@@ -32,13 +33,11 @@
 
         }
 
-        protected virtual void OnPhimDuocChon(Phim phim) //Ham kich hat su kien PhimDuocChon
+        protected virtual void OnPhimDuocChon(Phim phim) 
         {
             PhimDuocChon?.Invoke(this, new PhimDuocChonEventArgs(phim));
         }
 
-
-        public event EventHandler<PhimDuocChonEventArgs> DatVeDuocChon;
 
         private void DatVePhim_Click(object sender, EventArgs e)
         {
@@ -59,12 +58,7 @@
             }
         }
 
-        private void DatVe_Click(object sender, EventArgs e)
-        {
-
-// Khong dung
-
-        }
+  
     }
 
 }

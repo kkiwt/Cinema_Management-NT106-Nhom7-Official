@@ -9,18 +9,18 @@ namespace CinemaManagement
 
         private List<Phim> DanhSachPhim = new List<Phim>();
         private int ViTriBatDauCuaMotPhim = 0;
-
+        private UserInfo currentUser;
         private int KichThuocTrang = 3;
         private int TongSoTrang = 1;
         private int TrangHienTai = 1;
 
-        public TrangChuChinh()
+        public TrangChuChinh(UserInfo user)
         {
             InitializeComponent();
-            this.Load += TrangChuChinh_Load; // Gan su kien Load
-            TimKiem.KeyPress += TimKiem_KeyPress; //Tim kiem
+            currentUser = user; // Lưu lại để dùng sau
+            this.Load += TrangChuChinh_Load;
+            TimKiem.KeyPress += TimKiem_KeyPress;
         }
-
 
 
         private async void TrangChuChinh_Load(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace CinemaManagement
                     var Options = new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true,
- 
+
                         NumberHandling = JsonNumberHandling.AllowReadingFromString
                     };
 
@@ -118,10 +118,26 @@ namespace CinemaManagement
         private void MucPhimDuocChon(object sender, PhimDuocChonEventArgs e)
         {
             Phim PhimDaDuocChon = e.PhimDuocChon;
-            ChiTietPhim formChiTiet = new ChiTietPhim(this, currentUser); 
+            ChiTietPhim formChiTiet = new ChiTietPhim(this, currentUser);
             formChiTiet.HienThiThongTinPhim(PhimDaDuocChon);
             this.Hide();
             formChiTiet.Show();
+        }
+
+        private void MucDatVeDuocChon(object sender, PhimDuocChonEventArgs e)
+        {
+            Phim phimChon = e.PhimDuocChon;
+            if (phimChon != null && currentUser != null)
+            {
+                ChonSuatChieu formChonSuat = new ChonSuatChieu(phimChon, currentUser);
+                this.Hide();
+                formChonSuat.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Không thể đặt vé vì thiếu thông tin.", "Lỗi");
+            }
         }
 
         private void Next_Click(object sender, EventArgs e)
@@ -160,12 +176,6 @@ namespace CinemaManagement
         {
             MenuTaiKhoan.Show(TaiKhoan, new Point(0, TaiKhoan.Height));
         }
-        private void UuDai_Click(object sender, EventArgs e)
-        {
-            DanhSachUuDai danhSachUuDai = new DanhSachUuDai();
-            this.Hide();
-            danhSachUuDai.ShowDialog();
-        }
 
         private void PhimHot_Click(object sender, EventArgs e)
         {
@@ -177,7 +187,7 @@ namespace CinemaManagement
         {
             if (e.KeyChar == (char)Keys.Enter) //An enter
             {
-                e.Handled = true; 
+                e.Handled = true;
 
                 string TenPhimCanTim = TimKiem.Text.Trim();
                 if (!string.IsNullOrEmpty(TenPhimCanTim))
@@ -216,53 +226,20 @@ namespace CinemaManagement
             ThongTInTaiKhoan thongTinTaiKhoan = new ThongTInTaiKhoan(currentUser);
             thongTinTaiKhoan.ShowDialog();
 
+        }
 
-        }
-        private UserInfo currentUser;
-        public TrangChuChinh(UserInfo user)
-        {
-            InitializeComponent();
-            currentUser = user; // Lưu lại để dùng sau
-            this.Load += TrangChuChinh_Load;
-            TimKiem.KeyPress += TimKiem_KeyPress;
-        }
 
         private void DangXuat_Click(object sender, EventArgs e)
         {
             Application.Restart();
         }
 
-        private void UuDai_Click_1(object sender, EventArgs e)
-        {
-            var danhSachUuDai = new DanhSachUuDai();
-            danhSachUuDai.ShowDialog();
-        }
-
-        private void MucDatVeDuocChon(object sender, PhimDuocChonEventArgs e)
-        {
-            Phim phimChon = e.PhimDuocChon;
-            if (phimChon != null && currentUser != null)
-            {
-                ChonSuatChieu formChonSuat = new ChonSuatChieu(phimChon, currentUser);
-                this.Hide();
-                formChonSuat.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                MessageBox.Show("Không thể đặt vé vì thiếu thông tin.", "Lỗi");
-            }
-        }
-
-
         private void NutStaffOnly_Click(object sender, EventArgs e)
         {
             var staffForm = new StaffOnLy();
-            staffForm.Owner = this; 
+            staffForm.Owner = this;
             staffForm.ShowDialog();
         }
-
-
 
         public async void RefreshDanhSachPhim()
         {
@@ -291,22 +268,16 @@ namespace CinemaManagement
 
         private void TrangChuChinh_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void NutBapNuoc_Click(object sender, EventArgs e)
         {
-           
+
             var buy = new MuaBapNuoc(currentUser)
             {
-                Owner = this 
+                Owner = this
             };
 
             buy.StartPosition = FormStartPosition.CenterParent;
@@ -314,13 +285,16 @@ namespace CinemaManagement
 
             this.Show();
             this.BringToFront();
-         }
+        }
+
+        private void UuDai_Click(object sender, EventArgs e)
+        {
+            var danhSachUuDai = new DanhSachUuDai();
+            danhSachUuDai.ShowDialog();
+        }
     }
 
-
-
-
-        public class PhimDuocChonEventArgs : EventArgs
+    public class PhimDuocChonEventArgs : EventArgs
     {
         public Phim PhimDuocChon { get; private set; }
 

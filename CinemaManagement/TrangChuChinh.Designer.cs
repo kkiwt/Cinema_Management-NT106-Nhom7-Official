@@ -186,7 +186,7 @@
             UuDai.TabIndex = 1;
             UuDai.Text = "ƯU ĐÃI";
             UuDai.UseVisualStyleBackColor = false;
-            UuDai.Click += UuDai_Click_1;
+            UuDai.Click += UuDai_Click;
             // 
             // PanelDuongDan
             // 
